@@ -38,10 +38,12 @@ export const TheoryModal = ({ header, children }: Props) => {
         scrollBehavior='inside'
       >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{header}</ModalHeader>
+        <ModalContent bg='gray.800'>
+          <ModalHeader fontSize='md' color='gray.300'>
+            Theory: {header}
+          </ModalHeader>
           <ModalCloseButton />
-          <ModalBody fontSize='sm' textAlign='justify' color='gray.200'>
+          <ModalBody fontSize='sm' textAlign='justify' color='gray.300'>
             {children}
           </ModalBody>
         </ModalContent>

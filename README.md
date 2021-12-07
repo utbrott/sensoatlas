@@ -15,6 +15,6 @@ report for Sensors & Transducers laboratory. Simulations of certain sensor types
 - [Chakra UI](https://chakra-ui.com/)
 - [MathJax](https://www.mathjax.org/) and [react-mathjax](https://github.com/SamyPesse/react-mathjax)
 
-## Licence
+## License:
 
-![GitHub](https://img.shields.io/github/license/utbrott/sensolab?style=flat-square)
+MIT

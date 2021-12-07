@@ -1,5 +1,10 @@
 {
   "name": "sensolab",
+  "author": {
+    "name": "utbrott",
+    "url": "https://github.com/utbrott"
+  },
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -1,3 +1,9 @@
+import { Header } from '#components/header';
+
 export const StrainGauge = () => {
-  return <p>Strain!</p>;
+  return (
+    <>
+      <Header heading='Strain gauge sensors' hasButton />
+    </>
+  );
 };

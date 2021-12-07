@@ -1,30 +1,25 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import {
-  Temperature,
-  Displacement,
-  StrainGauge,
-  Piezoelectric,
-} from '#components/labs';
+import { Temperature, Displacement, StrainGauge, Piezoelectric } from '#components/labs';
+import { StrainProvider } from '#store/strain-provider';
 
 const Laboratories = () => {
   const router = useRouter();
   const { lab } = router.query;
 
-  let titleString = lab?.toString().replace(/([A-Z])/g, ' $1');
-  const title = `
-    ${titleString?.charAt(0).toUpperCase()}${titleString?.slice(1)}
-  `;
-
   return (
     <>
       <Head>
-        <title>Sensolab: {title}</title>
+        <title>Sensolab: Laboratories</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
       {lab === 'temperature' && <Temperature />}
       {lab === 'displacement' && <Displacement />}
-      {lab === 'strain' && <StrainGauge />}
+      {lab === 'strain' && (
+        <StrainProvider>
+          <StrainGauge />
+        </StrainProvider>
+      )}
       {lab === 'piezoelectric' && <Piezoelectric />}
     </>
   );

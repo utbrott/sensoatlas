@@ -8,6 +8,7 @@ import {
   Heading,
   Text,
   Box,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { NavItem as Item } from '#types/nav-item';
 
@@ -22,11 +23,7 @@ const NavItem = ({ item }: Props) => {
     const isActive = router.asPath === item.href ? true : false;
     return (
       <NextLink href={item.href} passHref>
-        <Link
-          variant='unstyled'
-          _hover={{ textDecoration: 'none' }}
-          _focus={{ outline: 'none' }}
-        >
+        <Link variant='unstyled' _hover={{ textDecoration: 'none' }} _focus={{ outline: 'none' }}>
           <HStack
             align='center'
             justify='flex-start'
@@ -65,11 +62,7 @@ const NavItem = ({ item }: Props) => {
     const isActive = router.asPath === item.href ? true : false;
     return (
       <NextLink href={item.href} passHref>
-        <Link
-          variant='unstyled'
-          _hover={{ textDecoration: 'none' }}
-          _focus={{ outline: 'none' }}
-        >
+        <Link variant='unstyled' _hover={{ textDecoration: 'none' }} _focus={{ outline: 'none' }}>
           <HStack
             align='center'
             justify='flex-start'

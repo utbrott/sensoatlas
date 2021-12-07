@@ -19,6 +19,7 @@
       "#components/*": ["src/components/*"],
       "#types/*": ["src/types/*"],
       "#data/*": ["src/data/*"],
+      "#store/*": ["src/store/*"],
       "#utils/*": ["src/utils/*"]
     }
   },

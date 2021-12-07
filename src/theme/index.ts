@@ -4,7 +4,6 @@ import {
   ThemeConfig,
   withDefaultVariant,
   withDefaultColorScheme,
-  withDefaultProps,
 } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 
@@ -16,14 +15,6 @@ const config: ThemeConfig = {
 export const theme = extendTheme(
   {
     config,
-    styles: {
-      global: {
-        body: {
-          bg: 'gray.900',
-          color: 'gray.100',
-        },
-      },
-    },
     colors: {
       blue: {
         50: '#c6e6ff',

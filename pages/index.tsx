@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { Hero } from '#components/hero';
 
 const IndexPage = () => {
   return (
@@ -7,6 +8,7 @@ const IndexPage = () => {
         <title>Sensolab - Home</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
+      <Hero />
     </>
   );
 };

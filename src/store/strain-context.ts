@@ -7,5 +7,7 @@ export const StrainContext = createContext({
     resistance: '120',
     bridge: 'quater',
   },
+  isConfigSaved: false,
   updateConfig: (configField: string, value: string) => {},
+  saveConfig: () => {},
 });

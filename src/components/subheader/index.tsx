@@ -8,7 +8,7 @@ type Props = {
 
 export const Subheader = ({ hasModal, modalContent }: Props) => {
   return (
-    <VStack w='full' overflow='hidden' align='flex-start' spacing={2} px={4} as='h2'>
+    <VStack w='full' overflow='hidden' align='flex-start' spacing={2} px={4}>
       <HStack w='90ch' h={20} spacing={10}>
         <Text fontSize='sm' textAlign='justify' w='60ch' flex={1}>
           Choose a sensor configuration below. Save it and perform the task that will be shown on

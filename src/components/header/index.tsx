@@ -11,7 +11,7 @@ export const Header = ({ heading, hasButton = false }: Props) => {
   const router = useRouter();
 
   return (
-    <HStack w='full' px={4} pt={4} as='h1'>
+    <HStack w='full' px={4} pt={4}>
       <Heading size='md' flex={1} lineHeight={7}>
         {heading}
       </Heading>

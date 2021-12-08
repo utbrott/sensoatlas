@@ -3,16 +3,25 @@ import { Subheader } from '#components/subheader';
 import { Content } from '#components/content';
 import { Config } from '#components/config';
 import { StrainContext } from '#store/strain-context';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Button } from '@chakra-ui/button';
+import { useToast } from '@chakra-ui/toast';
 
 export const StrainGauge = () => {
-  const configContext = useContext(StrainContext);
-  const schematicImage = `/images/strain-${configContext.config.bridge}.png`;
+  const context = useContext(StrainContext);
+  const { config } = context;
+  const schematicImage = `/images/strain-${config.bridge}.png`;
 
-  const [isConfigSaved, setIsConfigSaved] = useState(false);
+  const toast = useToast();
   const handleConfigSave = () => {
-    setIsConfigSaved(true);
+    context.saveConfig();
+    toast({
+      description: 'Configuration saved',
+      status: 'success',
+      isClosable: false,
+      position: 'top',
+      duration: 3000,
+    });
   };
 
   return (
@@ -21,12 +30,17 @@ export const StrainGauge = () => {
       <Subheader hasModal='Strain gauge sensors' />
       <Content>
         <Config
-          context={configContext}
-          isSaved={isConfigSaved}
+          context={context}
+          isSaved={context.isConfigSaved}
           setIsSaved={handleConfigSave}
           imageSource={schematicImage}
         />
-        <Button onClick={() => window.alert(JSON.stringify(configContext, null, 2))} />
+        <Button
+          size='sm'
+          onClick={() => window.alert(`Saved config:\n${JSON.stringify(context.config, null, 2)}`)}
+        >
+          Show config
+        </Button>
       </Content>
     </>
   );

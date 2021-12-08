@@ -1,5 +1,7 @@
 import { Stack, Box, Text, Radio, RadioGroup, Select } from '@chakra-ui/react';
 import { ConfigItem as Item } from '#types/config-item';
+import { useContext } from 'react';
+import { StrainContext } from '#store/strain-context';
 
 type Props = {
   item: Item;
@@ -9,6 +11,7 @@ type Props = {
 export const ConfigField = (props: Props) => {
   const { item, handleChange } = props;
   const { label, options, optionLabels, defaultValue } = item;
+  const { isConfigSaved } = useContext(StrainContext);
 
   return (
     <Box w='full'>
@@ -16,7 +19,11 @@ export const ConfigField = (props: Props) => {
         {label}
       </Text>
       {item.type === 'radio' ? (
-        <RadioGroup defaultValue={defaultValue} onChange={handleChange}>
+        <RadioGroup
+          defaultValue={defaultValue}
+          onChange={handleChange}
+          isDisabled={isConfigSaved ? true : false}
+        >
           <Stack direction='row' spacing={4}>
             {options.map((option, index) => (
               <Radio key={index} value={option}>
@@ -26,7 +33,13 @@ export const ConfigField = (props: Props) => {
           </Stack>
         </RadioGroup>
       ) : (
-        <Select size='sm' variant='filled' defaultValue={defaultValue} onChange={handleChange}>
+        <Select
+          size='sm'
+          variant='filled'
+          defaultValue={defaultValue}
+          onChange={handleChange}
+          isDisabled={isConfigSaved ? true : false}
+        >
           {options.map((option, index) => (
             <option key={index} value={option}>
               {optionLabels[index]}

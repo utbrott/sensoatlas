@@ -1,5 +1,5 @@
 import { StrainContext } from './strain-context';
-import { useReducer } from 'react';
+import { useState, useReducer } from 'react';
 
 type Props = {
   children: React.ReactNode;
@@ -29,14 +29,19 @@ const strainConfigReducer = (state: any, action: any) => {
 
 export const StrainProvider = ({ children }: Props) => {
   const [config, updateConfig] = useReducer(strainConfigReducer, defaultConfig);
+  const [isConfigSaved, setIsConfigSaved] = useState(false);
 
   const handleConfigUpdate = (configField: string, value: string) => {
     updateConfig({ type: `CHANGE_${configField.toUpperCase()}`, payload: value });
   };
 
+  const handleConfigSave = () => setIsConfigSaved(true);
+
   const strainContext = {
     config: config,
+    isConfigSaved: isConfigSaved,
     updateConfig: handleConfigUpdate,
+    saveConfig: handleConfigSave,
   };
 
   return <StrainContext.Provider value={strainContext}>{children}</StrainContext.Provider>;

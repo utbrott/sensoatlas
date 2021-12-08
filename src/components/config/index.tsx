@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
-import { HStack, VStack, Heading, Center, Text, Button, Tooltip, useToast } from '@chakra-ui/react';
+import { HStack, VStack, Heading, Center, Text, Button, Tooltip } from '@chakra-ui/react';
 import { Image } from '#components/image';
 import { StrainConfig as configItems } from '#data/config-strain';
 import { ConfigField } from './config-field';
@@ -13,21 +12,8 @@ type Props = {
 };
 
 export const Config = (props: Props) => {
-  const { context, imageSource, isSaved = false, setIsSaved } = props;
-
+  const { context, imageSource, isSaved, setIsSaved } = props;
   const router = useRouter();
-  const toast = useToast();
-
-  const handleConfigSave = () => {
-    setIsSaved;
-    toast({
-      description: 'Configuration saved.',
-      status: 'success',
-      isClosable: false,
-      position: 'top',
-      duration: 3000,
-    });
-  };
 
   const handleConfigReset = () => {
     router.reload();
@@ -88,7 +74,7 @@ export const Config = (props: Props) => {
           variant='solid'
           colorScheme='green'
           isFullWidth
-          onClick={handleConfigSave}
+          onClick={setIsSaved}
           isDisabled={isSaved ? true : false}
         >
           Save

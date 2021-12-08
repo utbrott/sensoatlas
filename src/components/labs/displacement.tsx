@@ -1,3 +1,11 @@
+import { Header } from '#components/header';
+import { Subheader } from '#components/subheader';
+
 export const Displacement = () => {
-  return <p>Displacement!</p>;
+  return (
+    <>
+      <Header heading='Displacement sensors: LVDT' hasButton />
+      <Subheader hasModal='Displacement sensors: LVDT' />
+    </>
+  );
 };

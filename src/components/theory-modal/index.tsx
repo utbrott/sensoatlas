@@ -31,7 +31,7 @@ export const TheoryModal = ({ header, children }: Props) => {
       <Modal
         isCentered
         blockScrollOnMount
-        size='xl'
+        size='2xl'
         onClose={onClose}
         isOpen={isOpen}
         motionPreset='scale'
@@ -39,7 +39,7 @@ export const TheoryModal = ({ header, children }: Props) => {
       >
         <ModalOverlay />
         <ModalContent bg='gray.800'>
-          <ModalHeader fontSize='md' color='gray.300'>
+          <ModalHeader fontSize='lg' color='gray.300'>
             Theory: {header}
           </ModalHeader>
           <ModalCloseButton />

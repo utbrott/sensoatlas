@@ -5,8 +5,7 @@ export const StrainContext = createContext({
     metal: 'copper',
     inputVoltage: '5',
     resistance: '120',
-    bridgeType: 'quater',
+    bridge: 'quater',
   },
-  // updateConfig: (param: string) => {},
-  // clearConfig: () => {},
+  updateConfig: (configField: string, value: string) => {},
 });

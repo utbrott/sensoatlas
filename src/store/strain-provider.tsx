@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const defaultConfig = {
+const defaultStrainConfig = {
   metal: 'copper',
   inputVoltage: '5',
   resistance: '120',
@@ -23,12 +23,12 @@ const strainConfigReducer = (state: any, action: any) => {
     case 'CHANGE_BRIDGE':
       return { ...state, bridge: action.payload };
     default:
-      return defaultConfig;
+      return defaultStrainConfig;
   }
 };
 
 export const LabsProvider = ({ children }: Props) => {
-  const [strainConfig, updateStrainConfig] = useReducer(strainConfigReducer, defaultConfig);
+  const [strainConfig, updateStrainConfig] = useReducer(strainConfigReducer, defaultStrainConfig);
   const [isConfigSaved, setIsConfigSaved] = useState(false);
 
   const handleConfigUpdate = (sensor: string, configField: string, value: string) => {

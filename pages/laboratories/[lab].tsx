@@ -13,14 +13,12 @@ const Laboratories = () => {
         <title>Sensolab - Laboratories</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
-      {lab === 'temperature' && <Temperature />}
-      {lab === 'displacement' && <Displacement />}
-      {lab === 'strain' && (
-        <LabsProvider>
-          <StrainGauge />
-        </LabsProvider>
-      )}
-      {lab === 'piezoelectric' && <Piezoelectric />}
+      <LabsProvider>
+        {lab === 'temperature' && <Temperature />}
+        {lab === 'displacement' && <Displacement />}
+        {lab === 'strain' && <StrainGauge />}
+        {lab === 'piezoelectric' && <Piezoelectric />}
+      </LabsProvider>
     </>
   );
 };

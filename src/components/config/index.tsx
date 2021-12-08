@@ -19,8 +19,8 @@ export const Config = (props: Props) => {
     router.reload();
   };
 
-  const handleConfigUpdate = (field: string, value: string) => {
-    context.updateConfig(field, value);
+  const handleConfigUpdate = (sensor: string, field: string, value: string) => {
+    context.updateConfig(sensor, field, value);
   };
 
   return (
@@ -45,6 +45,7 @@ export const Config = (props: Props) => {
             item={item}
             handleChange={(event: any) =>
               handleConfigUpdate(
+                item.sensor,
                 item.id,
                 item.type === 'select' ? event.currentTarget.value : event
               )

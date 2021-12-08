@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Temperature, Displacement, StrainGauge, Piezoelectric } from '#components/labs';
-import { StrainProvider } from '#store/strain-provider';
+import { LabsProvider } from '#store/strain-provider';
 
 const Laboratories = () => {
   const router = useRouter();
@@ -16,9 +16,9 @@ const Laboratories = () => {
       {lab === 'temperature' && <Temperature />}
       {lab === 'displacement' && <Displacement />}
       {lab === 'strain' && (
-        <StrainProvider>
+        <LabsProvider>
           <StrainGauge />
-        </StrainProvider>
+        </LabsProvider>
       )}
       {lab === 'piezoelectric' && <Piezoelectric />}
     </>

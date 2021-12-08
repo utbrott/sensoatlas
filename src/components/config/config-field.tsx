@@ -1,7 +1,7 @@
 import { Stack, Box, Text, Radio, RadioGroup, Select } from '@chakra-ui/react';
 import { ConfigItem as Item } from '#types/config-item';
 import { useContext } from 'react';
-import { StrainContext } from '#store/strain-context';
+import { LabsContext } from '#store/labs-context';
 
 type Props = {
   item: Item;
@@ -11,7 +11,7 @@ type Props = {
 export const ConfigField = (props: Props) => {
   const { item, handleChange } = props;
   const { label, options, optionLabels, defaultValue } = item;
-  const { isConfigSaved } = useContext(StrainContext);
+  const { isConfigSaved } = useContext(LabsContext);
 
   return (
     <Box w='full'>

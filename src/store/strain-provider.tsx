@@ -1,4 +1,4 @@
-import { StrainContext } from './strain-context';
+import { LabsContext } from './labs-context';
 import { useState, useReducer } from 'react';
 
 type Props = {
@@ -27,22 +27,36 @@ const strainConfigReducer = (state: any, action: any) => {
   }
 };
 
-export const StrainProvider = ({ children }: Props) => {
-  const [config, updateConfig] = useReducer(strainConfigReducer, defaultConfig);
+export const LabsProvider = ({ children }: Props) => {
+  const [strainConfig, updateStrainConfig] = useReducer(strainConfigReducer, defaultConfig);
   const [isConfigSaved, setIsConfigSaved] = useState(false);
 
-  const handleConfigUpdate = (configField: string, value: string) => {
-    updateConfig({ type: `CHANGE_${configField.toUpperCase()}`, payload: value });
+  const handleConfigUpdate = (sensor: string, configField: string, value: string) => {
+    switch (sensor) {
+      case 'temperature':
+        return null;
+      case 'displacement':
+        return null;
+      case 'strain':
+        updateStrainConfig({ type: `CHANGE_${configField.toUpperCase()}`, payload: value });
+      case 'piezoelectric':
+        return null;
+    }
   };
 
   const handleConfigSave = () => setIsConfigSaved(true);
 
   const strainContext = {
-    config: config,
+    config: {
+      temperature: {},
+      displacement: {},
+      strain: strainConfig,
+      piezoelectric: {},
+    },
     isConfigSaved: isConfigSaved,
     updateConfig: handleConfigUpdate,
     saveConfig: handleConfigSave,
   };
 
-  return <StrainContext.Provider value={strainContext}>{children}</StrainContext.Provider>;
+  return <LabsContext.Provider value={strainContext}>{children}</LabsContext.Provider>;
 };

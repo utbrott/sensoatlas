@@ -1,6 +1,5 @@
 import { FaHome } from 'react-icons/fa';
 import { IoIosFolderOpen } from 'react-icons/io';
-import { HiCog } from 'react-icons/hi';
 import { GoQuestion } from 'react-icons/go';
 
 import { NavItem } from '#types/nav-item';
@@ -18,28 +17,28 @@ export const navItems: NavItem[] = [
   },
   {
     type: 'link',
-    href: '/library',
+    href: '/laboratories',
     icon: IoIosFolderOpen,
     label: 'Library',
   },
   {
     type: 'linkChild',
-    href: '/library/temperature',
+    href: '/laboratories/temperature',
     label: 'Temperature sensors',
   },
   {
     type: 'linkChild',
-    href: '/library/displacement',
+    href: '/laboratories/displacement',
     label: 'Displacement sensors',
   },
   {
     type: 'linkChild',
-    href: '/library/strain',
+    href: '/laboratories/strain',
     label: 'Strain gauge sensors',
   },
   {
     type: 'linkChild',
-    href: '/library/piezoelectric',
+    href: '/laboratories/piezoelectric',
     label: 'Piezoelectric sensors',
   },
   {

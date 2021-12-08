@@ -27,7 +27,7 @@ export const Hero = () => {
           colorScheme='blue'
           size='sm'
           rightIcon={<ChevronRightIcon fontSize='md' />}
-          onClick={() => router.push('/library')}
+          onClick={() => router.push('/laboratories')}
         >
           Browse laboratories
         </Button>

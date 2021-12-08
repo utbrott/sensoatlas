@@ -1,6 +1,6 @@
-import { VStack, List, ListItem, useColorModeValue } from '@chakra-ui/react';
+import { VStack, List, ListItem } from '@chakra-ui/react';
 import NavItem from './nav-item';
-import { navItems } from './nav-data';
+import { navItems } from '#data/sidebar';
 import Logo from './logo';
 
 const Sidebar = () => {

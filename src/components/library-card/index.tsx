@@ -26,7 +26,7 @@ export const Card = ({ item, hasButton }: Props) => {
           colorScheme='blue'
           variant='ghost'
           size='sm'
-          onClick={() => router.push(`library/${id}`)}
+          onClick={() => router.push(`laboratories/${id}`)}
         >
           {hasButton}
         </Button>

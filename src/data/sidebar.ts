@@ -1,6 +1,6 @@
 import { FaHome } from 'react-icons/fa';
 import { IoIosFolderOpen } from 'react-icons/io';
-import { GoQuestion } from 'react-icons/go';
+import { HiOutlineInformationCircle } from 'react-icons/hi';
 
 import { NavItem } from '#types/nav-item';
 
@@ -48,7 +48,7 @@ export const navItems: NavItem[] = [
   {
     type: 'link',
     href: '/info',
-    icon: GoQuestion,
+    icon: HiOutlineInformationCircle,
     label: 'Informations',
   },
 ];

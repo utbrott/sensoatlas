@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { Container, VStack, useColorModeValue } from '@chakra-ui/react';
+import { Container, VStack } from '@chakra-ui/react';
 import Sidebar from '#components/sidebar';
 
 type Props = PropsWithChildren<{}>;

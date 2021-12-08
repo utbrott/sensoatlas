@@ -13,7 +13,7 @@ report for Sensors & Transducers laboratory. Simulations of certain sensor types
 - [Typescript](https://www.typescriptlang.org/)
 - [Next.js](https://nextjs.org/)
 - [Chakra UI](https://chakra-ui.com/)
-- [MathJax](https://www.mathjax.org/) and [react-mathjax](https://github.com/SamyPesse/react-mathjax)
+- [KaTeX](https://katex.org/) and [react-tex](https://github.com/dhruv004/React-Tex)
 
 ## License:
 

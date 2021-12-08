@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { Box, VStack, HStack, Heading, Text, Button, Link } from '@chakra-ui/react';
-import { ChevronRightIcon } from '@chakra-ui/icons';
+import { ChevronRightIcon } from '@heroicons/react/solid';
 
 export const Hero = () => {
   const router = useRouter();
@@ -26,7 +26,7 @@ export const Hero = () => {
         <Button
           colorScheme='blue'
           size='sm'
-          rightIcon={<ChevronRightIcon fontSize='md' />}
+          rightIcon={<ChevronRightIcon fontSize='20px' />}
           onClick={() => router.push('/laboratories')}
         >
           Browse laboratories

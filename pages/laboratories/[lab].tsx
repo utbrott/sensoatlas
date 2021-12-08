@@ -10,7 +10,7 @@ const Laboratories = () => {
   return (
     <>
       <Head>
-        <title>Sensolab: Laboratories</title>
+        <title>Sensolab - Laboratories</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
       {lab === 'temperature' && <Temperature />}

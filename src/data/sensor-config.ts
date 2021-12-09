@@ -1,12 +1,21 @@
 import { ConfigItem } from '#types/config-item';
 
-export const StrainConfig: ConfigItem[] = [
+export const SensorConfig: ConfigItem[] = [
+  // {
+  //   sensor: 'temperature',
+  //   id: 'bridge',
+  //   type: 'radio',
+  //   label: 'Bridge Configuration',
+  //   options: ['quater', 'half', 'full'],
+  //   optionLabels: ['Quater', 'Half', 'Full'],
+  //   defaultValue: 'quater',
+  // },
   {
     sensor: 'strain',
-    id: 'metal',
+    id: 'metal_gf',
     type: 'select',
     label: 'Inner wire material',
-    options: ['copper', 'constantan', 'platinium'],
+    options: ['2.6', '2.1', '6.1'],
     optionLabels: [
       'Copper (Sensitivity: 2.6)',
       'Constatan (Sensitivity: 2.1)',

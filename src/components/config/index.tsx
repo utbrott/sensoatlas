@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router';
 import { HStack, VStack, Heading, Center, Text, Button, Tooltip } from '@chakra-ui/react';
 import { Image } from '#components/image';
-import { StrainConfig as configItems } from '#data/config-strain';
+import { SensorConfig } from '#data/sensor-config';
 import { ConfigField } from './config-field';
 
 type Props = {
+  sensorName: string;
   context: any;
   imageSource: string;
   isSaved: boolean;
@@ -12,8 +13,10 @@ type Props = {
 };
 
 export const Config = (props: Props) => {
-  const { context, imageSource, isSaved, setIsSaved } = props;
+  const { sensorName, context, imageSource, isSaved, setIsSaved } = props;
   const router = useRouter();
+
+  const configItems = SensorConfig.filter((filteredItem) => filteredItem.sensor === sensorName);
 
   const handleConfigReset = () => {
     router.reload();
@@ -26,7 +29,7 @@ export const Config = (props: Props) => {
   return (
     <VStack
       h='full'
-      maxW='md'
+      maxW='sm'
       flex={1}
       bg='gray.800'
       p={4}
@@ -35,7 +38,7 @@ export const Config = (props: Props) => {
       spacing={6}
       as='section'
     >
-      <Heading size='sm' mb={2}>
+      <Heading size='sm' mb={2} spacing={2}>
         Sensor configuration
       </Heading>
       <VStack w='full' flex={1} spacing={3}>
@@ -45,7 +48,7 @@ export const Config = (props: Props) => {
             item={item}
             handleChange={(event: any) =>
               handleConfigUpdate(
-                item.sensor,
+                sensorName,
                 item.id,
                 item.type === 'select' ? event.currentTarget.value : event
               )

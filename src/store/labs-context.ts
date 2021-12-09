@@ -1,16 +1,42 @@
 import { createContext } from 'react';
 
 export const LabsContext = createContext({
-  config: {
-    temperature: {},
-    displacement: {},
-    strain: {
-      metal: 'copper',
-      inputVoltage: '5',
-      resistance: '120',
-      bridge: 'quater',
+  temperature: {
+    config: {},
+    tasks: {
+      prompts: [{ id: 0, prompt: '' }],
+      data: [],
     },
-    piezoelectric: {},
+    answers: [{ promptId: 0, values: [] }],
+  },
+  displacement: {
+    config: {},
+    tasks: {
+      prompts: [{ id: 0, prompt: '' }],
+      data: [],
+    },
+    answers: [{ promptId: 0, values: [] }],
+  },
+  strain: {
+    config: {
+      metal_gf: '',
+      inputVoltage: '',
+      resistance: '',
+      bridge: '',
+    },
+    tasks: {
+      prompts: [{ id: 0, prompt: '' }],
+      data: [],
+    },
+    answers: [{ promptId: 0, values: [] }],
+  },
+  piezoelectric: {
+    config: {},
+    tasks: {
+      prompts: [{ id: 0, prompt: '' }],
+      data: [],
+    },
+    answers: [{ promptId: 0, values: [] }],
   },
   isConfigSaved: false,
   updateConfig: (sensor: string, configField: string, value: string) => {},

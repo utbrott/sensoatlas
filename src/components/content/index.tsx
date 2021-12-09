@@ -6,7 +6,7 @@ type Props = {
 
 export const Content = ({ children }: Props) => {
   return (
-    <HStack as='main' w='full' flex={1} p={4}>
+    <HStack as='main' w='full' flex={1} p={4} spacing={4}>
       {children}
     </HStack>
   );

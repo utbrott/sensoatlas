@@ -5,11 +5,36 @@ type Props = {
   children: React.ReactNode;
 };
 
-const defaultStrainConfig = {
-  metal: 'copper',
-  inputVoltage: '5',
-  resistance: '120',
-  bridge: 'quater',
+const strainDefaults = {
+  config: {
+    metal_gf: '2.6',
+    inputVoltage: '5',
+    resistance: '120',
+    bridge: 'quater',
+  },
+  tasks: {
+    prompts: [
+      {
+        id: 1,
+        prompt: 'Given values of applied strain Ɛ, calculate the output voltage (Vout).',
+      },
+      {
+        id: 2,
+        prompt: 'Given the values of temperature T, calculate the output voltage (Vout)',
+      },
+    ],
+    data: [],
+  },
+  answers: [
+    {
+      promptId: 1,
+      values: [],
+    },
+    {
+      promptId: 2,
+      values: [],
+    },
+  ],
 };
 
 const strainConfigReducer = (state: any, action: any) => {
@@ -23,12 +48,12 @@ const strainConfigReducer = (state: any, action: any) => {
     case 'CHANGE_BRIDGE':
       return { ...state, bridge: action.payload };
     default:
-      return defaultStrainConfig;
+      return strainDefaults.config;
   }
 };
 
 export const LabsProvider = ({ children }: Props) => {
-  const [strainConfig, updateStrainConfig] = useReducer(strainConfigReducer, defaultStrainConfig);
+  const [strainConfig, updateStrainConfig] = useReducer(strainConfigReducer, strainDefaults.config);
   const [isConfigSaved, setIsConfigSaved] = useState(false);
 
   const handleConfigUpdate = (sensor: string, configField: string, value: string) => {
@@ -46,17 +71,40 @@ export const LabsProvider = ({ children }: Props) => {
 
   const handleConfigSave = () => setIsConfigSaved(true);
 
-  const strainContext = {
-    config: {
-      temperature: {},
-      displacement: {},
-      strain: strainConfig,
-      piezoelectric: {},
+  const labsContext = {
+    temperature: {
+      config: {},
+      tasks: {
+        prompts: [{ id: 0, prompt: '' }],
+        data: [],
+      },
+      answers: [{ promptId: 0, values: [] }],
+    },
+    displacement: {
+      config: {},
+      tasks: {
+        prompts: [{ id: 0, prompt: '' }],
+        data: [],
+      },
+      answers: [{ promptId: 0, values: [] }],
+    },
+    strain: {
+      config: strainConfig,
+      tasks: strainDefaults.tasks,
+      answers: strainDefaults.answers,
+    },
+    piezoelectric: {
+      config: {},
+      tasks: {
+        prompts: [{ id: 0, prompt: '' }],
+        data: [],
+      },
+      answers: [{ promptId: 0, values: [] }],
     },
     isConfigSaved: isConfigSaved,
     updateConfig: handleConfigUpdate,
     saveConfig: handleConfigSave,
   };
 
-  return <LabsContext.Provider value={strainContext}>{children}</LabsContext.Provider>;
+  return <LabsContext.Provider value={labsContext}>{children}</LabsContext.Provider>;
 };

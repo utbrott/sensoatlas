@@ -4,13 +4,13 @@ import { Content } from '#components/content';
 import { Config } from '#components/config';
 import { LabsContext } from '#store/labs-context';
 import { useContext } from 'react';
-import { Button } from '@chakra-ui/button';
 import { useToast } from '@chakra-ui/toast';
+import { Task, TaskData, TaskForm } from '#components/task';
 
 export const StrainGauge = () => {
   const context = useContext(LabsContext);
-  const { strain } = context.config;
-  const schematicImage = `/images/strain-${strain.bridge}.png`;
+  const { config } = context.strain;
+  const schematicImage = `/images/strain-${config.bridge}.png`;
 
   const toast = useToast();
   const handleConfigSave = () => {
@@ -22,6 +22,7 @@ export const StrainGauge = () => {
       position: 'top',
       duration: 3000,
     });
+    window.alert(`Saved config:\n${JSON.stringify(context.strain.config, null, 2)}`);
   };
 
   return (
@@ -30,19 +31,16 @@ export const StrainGauge = () => {
       <Subheader hasModal='Strain gauge sensors' />
       <Content>
         <Config
+          sensorName='strain'
           context={context}
           isSaved={context.isConfigSaved}
           setIsSaved={handleConfigSave}
           imageSource={schematicImage}
         />
-        <Button
-          size='sm'
-          onClick={() =>
-            window.alert(`Saved config:\n${JSON.stringify(context.config.strain, null, 2)}`)
-          }
-        >
-          Show config
-        </Button>
+        <Task>
+          <TaskData sensorName='strain' context={context} />
+          <TaskForm />
+        </Task>
       </Content>
     </>
   );

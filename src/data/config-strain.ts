@@ -2,6 +2,7 @@ import { ConfigItem } from '#types/config-item';
 
 export const StrainConfig: ConfigItem[] = [
   {
+    sensor: 'strain',
     id: 'metal',
     type: 'select',
     label: 'Inner wire material',
@@ -14,6 +15,7 @@ export const StrainConfig: ConfigItem[] = [
     defaultValue: 'copper',
   },
   {
+    sensor: 'strain',
     id: 'voltage',
     type: 'radio',
     label: 'Input voltage (Vin)',
@@ -22,6 +24,7 @@ export const StrainConfig: ConfigItem[] = [
     defaultValue: '5',
   },
   {
+    sensor: 'strain',
     id: 'resistance',
     type: 'select',
     label: 'Resistance (R)',
@@ -30,6 +33,7 @@ export const StrainConfig: ConfigItem[] = [
     defaultValue: '120',
   },
   {
+    sensor: 'strain',
     id: 'bridge',
     type: 'radio',
     label: 'Bridge Configuration',

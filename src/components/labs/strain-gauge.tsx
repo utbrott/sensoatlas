@@ -2,15 +2,15 @@ import { Header } from '#components/header';
 import { Subheader } from '#components/subheader';
 import { Content } from '#components/content';
 import { Config } from '#components/config';
-import { StrainContext } from '#store/strain-context';
+import { LabsContext } from '#store/labs-context';
 import { useContext } from 'react';
 import { Button } from '@chakra-ui/button';
 import { useToast } from '@chakra-ui/toast';
 
 export const StrainGauge = () => {
-  const context = useContext(StrainContext);
-  const { config } = context;
-  const schematicImage = `/images/strain-${config.bridge}.png`;
+  const context = useContext(LabsContext);
+  const { strain } = context.config;
+  const schematicImage = `/images/strain-${strain.bridge}.png`;
 
   const toast = useToast();
   const handleConfigSave = () => {
@@ -37,7 +37,9 @@ export const StrainGauge = () => {
         />
         <Button
           size='sm'
-          onClick={() => window.alert(`Saved config:\n${JSON.stringify(context.config, null, 2)}`)}
+          onClick={() =>
+            window.alert(`Saved config:\n${JSON.stringify(context.config.strain, null, 2)}`)
+          }
         >
           Show config
         </Button>

@@ -9,6 +9,7 @@ type SelectItem = {
 type ItemTypeProps = RadioItem | SelectItem;
 
 export type ConfigItem = ItemTypeProps & {
+  sensor: string;
   id: string;
   label: string;
   options: string[];

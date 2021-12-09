@@ -12,7 +12,13 @@ export const Card = ({ item, hasButton }: Props) => {
   const router = useRouter();
 
   return (
-    <VStack as='article' maxW='md' bg='gray.800' p={2} rounded='md' align='flex-start'>
+    <VStack
+      as='article'
+      maxW='md'
+      bg='gray.800'
+      p={2}
+      rounded='md'
+      align='flex-start'>
       <Heading size='sm' p={2}>
         {title}
       </Heading>
@@ -26,8 +32,7 @@ export const Card = ({ item, hasButton }: Props) => {
           colorScheme='blue'
           variant='ghost'
           size='sm'
-          onClick={() => router.push(`laboratories/${id}`)}
-        >
+          onClick={() => router.push(`laboratories/${id}`)}>
           {hasButton}
         </Button>
       )}

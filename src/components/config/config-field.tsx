@@ -22,8 +22,7 @@ export const ConfigField = (props: Props) => {
         <RadioGroup
           defaultValue={defaultValue}
           onChange={handleChange}
-          isDisabled={isConfigSaved ? true : false}
-        >
+          isDisabled={isConfigSaved ? true : false}>
           <Stack direction='row' spacing={4}>
             {options.map((option, index) => (
               <Radio key={index} value={option}>
@@ -38,8 +37,7 @@ export const ConfigField = (props: Props) => {
           variant='filled'
           defaultValue={defaultValue}
           onChange={handleChange}
-          isDisabled={isConfigSaved ? true : false}
-        >
+          isDisabled={isConfigSaved ? true : false}>
           {options.map((option, index) => (
             <option key={index} value={option}>
               {optionLabels[index]}

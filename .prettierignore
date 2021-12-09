@@ -1,0 +1,12 @@
+node_modules
+
+.next
+next-env.d.ts
+next.config.js
+
+*.md
+
+.eslintrc.json
+.prettierrc.json
+tsconfig.json
+package.json

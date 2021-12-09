@@ -16,11 +16,13 @@ const strainDefaults = {
     prompts: [
       {
         id: 1,
-        prompt: 'Given values of applied strain Ɛ, calculate the output voltage (Vout).',
+        prompt:
+          'Given values of applied strain Ɛ, calculate the output voltage (Vout).',
       },
       {
         id: 2,
-        prompt: 'Given the values of temperature T, calculate the output voltage (Vout)',
+        prompt:
+          'Given the values of temperature T, calculate the output voltage (Vout)',
       },
     ],
     data: [],
@@ -53,17 +55,27 @@ const strainConfigReducer = (state: any, action: any) => {
 };
 
 export const LabsProvider = ({ children }: Props) => {
-  const [strainConfig, updateStrainConfig] = useReducer(strainConfigReducer, strainDefaults.config);
+  const [strainConfig, updateStrainConfig] = useReducer(
+    strainConfigReducer,
+    strainDefaults.config
+  );
   const [isConfigSaved, setIsConfigSaved] = useState(false);
 
-  const handleConfigUpdate = (sensor: string, configField: string, value: string) => {
+  const handleConfigUpdate = (
+    sensor: string,
+    configField: string,
+    value: string
+  ) => {
     switch (sensor) {
       case 'temperature':
         return null;
       case 'displacement':
         return null;
       case 'strain':
-        updateStrainConfig({ type: `CHANGE_${configField.toUpperCase()}`, payload: value });
+        updateStrainConfig({
+          type: `CHANGE_${configField.toUpperCase()}`,
+          payload: value,
+        });
       case 'piezoelectric':
         return null;
     }
@@ -106,5 +118,7 @@ export const LabsProvider = ({ children }: Props) => {
     saveConfig: handleConfigSave,
   };
 
-  return <LabsContext.Provider value={labsContext}>{children}</LabsContext.Provider>;
+  return (
+    <LabsContext.Provider value={labsContext}>{children}</LabsContext.Provider>
+  );
 };

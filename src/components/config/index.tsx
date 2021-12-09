@@ -1,5 +1,13 @@
 import { useRouter } from 'next/router';
-import { HStack, VStack, Heading, Center, Text, Button, Tooltip } from '@chakra-ui/react';
+import {
+  HStack,
+  VStack,
+  Heading,
+  Center,
+  Text,
+  Button,
+  Tooltip,
+} from '@chakra-ui/react';
 import { Image } from '#components/image';
 import { SensorConfig } from '#data/sensor-config';
 import { ConfigField } from './config-field';
@@ -16,7 +24,9 @@ export const Config = (props: Props) => {
   const { sensorName, context, imageSource, isSaved, setIsSaved } = props;
   const router = useRouter();
 
-  const configItems = SensorConfig.filter((filteredItem) => filteredItem.sensor === sensorName);
+  const configItems = SensorConfig.filter(
+    filteredItem => filteredItem.sensor === sensorName
+  );
 
   const handleConfigReset = () => {
     router.reload();
@@ -36,13 +46,12 @@ export const Config = (props: Props) => {
       borderRadius='md'
       align='flex-start'
       spacing={6}
-      as='section'
-    >
+      as='section'>
       <Heading size='sm' mb={2} spacing={2}>
         Sensor configuration
       </Heading>
       <VStack w='full' flex={1} spacing={3}>
-        {configItems.map((item) => (
+        {configItems.map(item => (
           <ConfigField
             key={item.id}
             item={item}
@@ -79,8 +88,7 @@ export const Config = (props: Props) => {
           colorScheme='green'
           isFullWidth
           onClick={setIsSaved}
-          isDisabled={isSaved ? true : false}
-        >
+          isDisabled={isSaved ? true : false}>
           Save
         </Button>
         <Tooltip label='Carefully! All progress will be lost.' bg='red.300'>
@@ -91,8 +99,7 @@ export const Config = (props: Props) => {
             isFullWidth
             onClick={handleConfigReset}
             isDisabled={isSaved ? false : true}
-            _focus={{ outlineColor: 'none' }}
-          >
+            _focus={{ outlineColor: 'none' }}>
             Reset
           </Button>
         </Tooltip>

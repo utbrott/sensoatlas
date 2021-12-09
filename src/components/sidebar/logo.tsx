@@ -11,8 +11,7 @@ const Logo = () => {
         lineHeight={7}
         letterSpacing='wide'
         fontWeight='normal'
-        size='md'
-      >
+        size='md'>
         SensoAtlas
       </Heading>
     </HStack>

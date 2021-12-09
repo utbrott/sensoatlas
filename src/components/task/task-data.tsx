@@ -9,7 +9,14 @@ export const TaskData = (props: Props) => {
   const { sensorName, context } = props;
 
   return (
-    <VStack w='full' flex={1} bg='gray.800' p={4} rounded='md' align='flex-start' spacing={4}>
+    <VStack
+      w='full'
+      flex={1}
+      bg='gray.800'
+      p={4}
+      rounded='md'
+      align='flex-start'
+      spacing={4}>
       <VStack align='flex-start' spacing={1} h='40%'>
         <Heading size='sm' mb={2}>
           Tasks for this laboratory

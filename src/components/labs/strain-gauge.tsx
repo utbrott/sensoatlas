@@ -22,7 +22,9 @@ export const StrainGauge = () => {
       position: 'top',
       duration: 3000,
     });
-    window.alert(`Saved config:\n${JSON.stringify(context.strain.config, null, 2)}`);
+    window.alert(
+      `Saved config:\n${JSON.stringify(context.strain.config, null, 2)}`
+    );
   };
 
   return (

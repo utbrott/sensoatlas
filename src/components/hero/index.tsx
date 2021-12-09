@@ -1,5 +1,13 @@
 import { useRouter } from 'next/router';
-import { Box, VStack, HStack, Heading, Text, Button, Link } from '@chakra-ui/react';
+import {
+  Box,
+  VStack,
+  HStack,
+  Heading,
+  Text,
+  Button,
+  Link,
+} from '@chakra-ui/react';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
 export const Hero = () => {
@@ -15,10 +23,10 @@ export const Hero = () => {
           </Heading>
         </HStack>
         <Text mb={6} fontSize='md' color='gray.300' maxW='75ch' align='justify'>
-          An app designed and built to assist you in completing your reports for Sensors &
-          Transducers laboratory. Workflow is really simple - choose a laboratory that you want to
-          work with and follow the steps listed on the page. For more informations about the app
-          head to{' '}
+          An app designed and built to assist you in completing your reports for
+          Sensors & Transducers laboratory. Workflow is really simple - choose a
+          laboratory that you want to work with and follow the steps listed on
+          the page. For more informations about the app head to{' '}
           <Link color='blue.200' href='/info'>
             Informations
           </Link>
@@ -27,8 +35,7 @@ export const Hero = () => {
           colorScheme='blue'
           size='sm'
           rightIcon={<ChevronRightIcon fontSize='20px' />}
-          onClick={() => router.push('/laboratories')}
-        >
+          onClick={() => router.push('/laboratories')}>
           Browse laboratories
         </Button>
       </Box>

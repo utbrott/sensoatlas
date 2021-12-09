@@ -11,7 +11,7 @@ export const Hero = () => {
         <HStack w='full' mb={4}>
           <Heading as='h1'>Welcome to</Heading>
           <Heading as='h1' color='blue.200'>
-            SensoLab
+            SensoAtlas
           </Heading>
         </HStack>
         <Text mb={6} fontSize='md' color='gray.300' maxW='75ch' align='justify'>

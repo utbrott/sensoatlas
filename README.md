@@ -1,4 +1,4 @@
-# Sensolab ![GitHub package.json version](https://img.shields.io/github/package-json/v/utbrott/sensolab?style=flat-square)
+# SensoAtlas ![GitHub package.json version](https://img.shields.io/github/package-json/v/utbrott/sensolab?style=flat-square)
 
 Web application created for Sensors and Transducers laboratory
 @ WUT Warsaw University of Technology

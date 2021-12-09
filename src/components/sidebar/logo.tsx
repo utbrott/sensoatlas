@@ -13,7 +13,7 @@ const Logo = () => {
         fontWeight='normal'
         size='md'
       >
-        SensoLab
+        SensoAtlas
       </Heading>
     </HStack>
   );

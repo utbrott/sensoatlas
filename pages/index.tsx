@@ -5,7 +5,7 @@ const IndexPage = () => {
   return (
     <>
       <Head>
-        <title>Sensolab - Home</title>
+        <title>SensoAtlas - Home</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
       <Hero />

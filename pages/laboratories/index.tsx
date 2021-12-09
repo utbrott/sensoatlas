@@ -5,7 +5,7 @@ const Library = () => {
   return (
     <>
       <Head>
-        <title>Sensolab - Library</title>
+        <title>SensoAtlas - Library</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
       <LibraryGrid />

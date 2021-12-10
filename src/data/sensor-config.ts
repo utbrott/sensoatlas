@@ -12,14 +12,15 @@ export const SensorConfig: ConfigItem[] = [
   // },
   {
     sensor: 'strain',
-    id: 'metal_gf',
+    id: 'metal',
     type: 'select',
     label: 'Inner wire material',
-    options: ['2.6', '2.1', '6.1'],
+    options: ['copper', 'constantan', 'platinum', 'monel'],
     optionLabels: [
       'Copper (Sensitivity: 2.6)',
       'Constatan (Sensitivity: 2.1)',
-      'Platinium (Sensitivity: 6.1)',
+      'Platinum (Sensitivity: 6.1)',
+      'Monel (Sensitivity: 1.9)',
     ],
     defaultValue: 'copper',
   },

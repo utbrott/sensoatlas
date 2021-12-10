@@ -5,7 +5,7 @@ export const LabsContext = createContext({
     config: {},
     tasks: {
       prompts: [{ id: 0, prompt: '' }],
-      data: [],
+      data: {},
     },
     answers: [{ promptId: 0, values: [] }],
   },
@@ -13,20 +13,22 @@ export const LabsContext = createContext({
     config: {},
     tasks: {
       prompts: [{ id: 0, prompt: '' }],
-      data: [],
+      data: {},
     },
     answers: [{ promptId: 0, values: [] }],
   },
   strain: {
     config: {
-      metal_gf: '',
+      metal: '',
+      sensitivity: '',
+      modulus: '',
       inputVoltage: '',
       resistance: '',
       bridge: '',
     },
     tasks: {
       prompts: [{ id: 0, prompt: '' }],
-      data: [],
+      data: { 0: [0, 0, 0, 0, 0] },
     },
     answers: [{ promptId: 0, values: [] }],
   },
@@ -34,11 +36,12 @@ export const LabsContext = createContext({
     config: {},
     tasks: {
       prompts: [{ id: 0, prompt: '' }],
-      data: [],
+      data: {},
     },
     answers: [{ promptId: 0, values: [] }],
   },
   isConfigSaved: false,
   updateConfig: (sensor: string, configField: string, value: string) => {},
   saveConfig: () => {},
+  updateTaskData: (sensor: string, taskId: number, data: number) => {},
 });

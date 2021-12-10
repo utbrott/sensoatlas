@@ -8,6 +8,10 @@ type Props = {
 export const TaskData = (props: Props) => {
   const { sensorName, context } = props;
 
+  switch (sensorName) {
+    case 'strain':
+  }
+
   return (
     <VStack
       w='full'
@@ -23,7 +27,7 @@ export const TaskData = (props: Props) => {
         </Heading>
         {context[sensorName].tasks.prompts.map((item: any) => (
           <Text key={item.id} fontSize='sm'>
-            {`${item.id}. ${item.prompt}`}
+            {`${item.id + 1}. ${item.prompt}`}
           </Text>
         ))}
       </VStack>
@@ -31,7 +35,7 @@ export const TaskData = (props: Props) => {
         <Heading size='sm' mb={2}>
           Generated values for calculations
         </Heading>
-        <HStack w='full' flex={1}></HStack>
+        <VStack w='full' flex={1}></VStack>
       </VStack>
     </VStack>
   );

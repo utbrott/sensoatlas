@@ -45,31 +45,26 @@ export const LabsProvider = ({ children }: Props) => {
   const labsContext = {
     temperature: {
       config: {},
-      tasks: {
-        prompts: [{ id: 0, prompt: '' }],
-        data: {},
-      },
+      taskPrompts: { 0: '' },
+      taskData: { 0: [0, 0, 0, 0, 0] },
       answers: [{ promptId: 0, values: [] }],
     },
     displacement: {
       config: {},
-      tasks: {
-        prompts: [{ id: 0, prompt: '' }],
-        data: {},
-      },
+      taskPrompts: { 0: '' },
+      taskData: { 0: [0, 0, 0, 0, 0] },
       answers: [{ promptId: 0, values: [] }],
     },
     strain: {
       config: strainConfig,
-      tasks: sensorDefaults.strain.tasks,
+      taskPrompts: sensorDefaults.strain.taskPrompts,
+      taskData: sensorDefaults.strain.taskData,
       answers: sensorDefaults.strain.answers,
     },
     piezoelectric: {
       config: {},
-      tasks: {
-        prompts: [{ id: 0, prompt: '' }],
-        data: {},
-      },
+      taskPrompts: { 0: '' },
+      taskData: { 0: [0, 0, 0, 0, 0] },
       answers: [{ promptId: 0, values: [] }],
     },
     isConfigSaved: isConfigSaved,

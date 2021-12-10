@@ -3,18 +3,14 @@ import { createContext } from 'react';
 export const LabsContext = createContext({
   temperature: {
     config: {},
-    tasks: {
-      prompts: [{ id: 0, prompt: '' }],
-      data: {},
-    },
+    taskPrompts: { 0: '' },
+    taskData: { 0: [0, 0, 0, 0, 0] },
     answers: [{ promptId: 0, values: [] }],
   },
   displacement: {
     config: {},
-    tasks: {
-      prompts: [{ id: 0, prompt: '' }],
-      data: {},
-    },
+    taskPrompts: { 0: '' },
+    taskData: { 0: [0, 0, 0, 0, 0] },
     answers: [{ promptId: 0, values: [] }],
   },
   strain: {
@@ -26,18 +22,14 @@ export const LabsContext = createContext({
       resistance: '',
       bridge: '',
     },
-    tasks: {
-      prompts: [{ id: 0, prompt: '' }],
-      data: { 0: [0, 0, 0, 0, 0] },
-    },
+    taskPrompts: { 0: '' },
+    taskData: { 0: [0, 0, 0, 0, 0] },
     answers: [{ promptId: 0, values: [] }],
   },
   piezoelectric: {
     config: {},
-    tasks: {
-      prompts: [{ id: 0, prompt: '' }],
-      data: {},
-    },
+    taskPrompts: { 0: '' },
+    taskData: { 0: [0, 0, 0, 0, 0] },
     answers: [{ promptId: 0, values: [] }],
   },
   isConfigSaved: false,

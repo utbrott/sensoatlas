@@ -12,6 +12,8 @@ export const TaskData = (props: Props) => {
     case 'strain':
   }
 
+  const { taskPrompts } = context[sensorName];
+
   return (
     <VStack
       w='full'
@@ -25,9 +27,9 @@ export const TaskData = (props: Props) => {
         <Heading size='sm' mb={2}>
           Tasks for this laboratory
         </Heading>
-        {context[sensorName].tasks.prompts.map((item: any) => (
-          <Text key={item.id} fontSize='sm'>
-            {`${item.id + 1}. ${item.prompt}`}
+        {Object.keys(taskPrompts).map((key, index) => (
+          <Text key={key} fontSize='sm'>
+            {`${index + 1}. ${taskPrompts[key]}`}
           </Text>
         ))}
       </VStack>

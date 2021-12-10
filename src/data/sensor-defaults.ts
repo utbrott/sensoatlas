@@ -10,23 +10,13 @@ export const sensorDefaults = {
       resistance: '120',
       bridge: 'quater',
     },
-    tasks: {
-      prompts: [
-        {
-          id: 0,
-          prompt:
-            'Given values of applied strain Ɛ, calculate the output voltage (Vout).',
-        },
-        {
-          id: 1,
-          prompt:
-            'Given the values of temperature T, calculate the output voltage (Vout)',
-        },
-      ],
-      data: {
-        0: [0, 0, 0, 0, 0],
-        1: [0, 0, 0, 0, 0],
-      },
+    taskPrompts: {
+      0: 'Given values of applied strain Ɛ, calculate the output voltage (Vout).',
+      1: 'Given the values of temperature T, calculate the output voltage (Vout).',
+    },
+    taskData: {
+      0: [0, 0, 0, 0, 0],
+      1: [0, 0, 0, 0, 0],
     },
     answers: [
       {

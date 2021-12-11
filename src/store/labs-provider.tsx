@@ -36,41 +36,38 @@ export const LabsProvider = ({ children }: Props) => {
   const [isConfigSaved, setIsConfigSaved] = useState(false);
   const handleConfigSave = () => setIsConfigSaved(true);
 
-  const handleTaskDataUpdate = (
-    sensor: string,
-    taskId: number,
-    data: number
-  ) => {};
-
   const labsContext = {
     temperature: {
       config: {},
       taskPrompts: { 0: '' },
-      taskData: { 0: [0, 0, 0, 0, 0] },
-      answers: [{ promptId: 0, values: [] }],
+      taskData: { 0: [] },
+      validationData: { 0: [] },
+      submittedAnswers: { 0: [] },
     },
     displacement: {
       config: {},
       taskPrompts: { 0: '' },
-      taskData: { 0: [0, 0, 0, 0, 0] },
-      answers: [{ promptId: 0, values: [] }],
+      taskData: { 0: [] },
+      validationData: { 0: [] },
+      submittedAnswers: { 0: [] },
     },
     strain: {
       config: strainConfig,
       taskPrompts: sensorDefaults.strain.taskPrompts,
       taskData: sensorDefaults.strain.taskData,
-      answers: sensorDefaults.strain.answers,
+      validationData: sensorDefaults.strain.validationData,
+      submittedAnswers: sensorDefaults.strain.submittedAnswers,
     },
     piezoelectric: {
       config: {},
       taskPrompts: { 0: '' },
-      taskData: { 0: [0, 0, 0, 0, 0] },
-      answers: [{ promptId: 0, values: [] }],
+      taskData: { 0: [] },
+      validationData: { 0: [] },
+      submittedAnswers: { 0: [] },
     },
     isConfigSaved: isConfigSaved,
     updateConfig: handleConfigUpdate,
     saveConfig: handleConfigSave,
-    updateTaskData: handleTaskDataUpdate,
   };
 
   return (

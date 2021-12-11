@@ -39,6 +39,14 @@ export const strainConfigReducer = (state: any, action: any) => {
     case 'CHANGE_RESISTANCE':
       return { ...state, resistance: action.payload };
     case 'CHANGE_BRIDGE':
+      switch (action.payload) {
+        case 'quater':
+          return { ...state, bridge: action.payload, bridgeMultiplier: '0.25' };
+        case 'half':
+          return { ...state, bridge: action.payload, bridgeMultiplier: '0.5' };
+        case 'full':
+          return { ...state, bridge: action.payload, bridgeMultiplier: '1' };
+      }
       return { ...state, bridge: action.payload };
     default:
       return sensorDefaults.strain.config;

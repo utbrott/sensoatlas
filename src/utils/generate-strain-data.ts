@@ -28,3 +28,7 @@ export const generateTempertureValues = () => {
   }
   return [...Array.from(set)];
 };
+
+export const calcStrainValidationData = (context: any) => {
+  console.log(context.strain.taskData['0']);
+};

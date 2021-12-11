@@ -1,6 +1,11 @@
 import { VStack, Heading } from '@chakra-ui/react';
+import { calcStrainValidationData } from '#utils/generate-strain-data';
 
-export const TaskForm = () => {
+type Props = {
+  context: any;
+};
+
+export const TaskForm = ({ context }: Props) => {
   return (
     <VStack
       w='full'
@@ -11,6 +16,7 @@ export const TaskForm = () => {
       align='flex-start'>
       <Heading size='sm' mb={2}>
         Submit answers
+        {context.isConfigSaved && calcStrainValidationData(context)}
       </Heading>
     </VStack>
   );

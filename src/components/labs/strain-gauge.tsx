@@ -41,7 +41,7 @@ export const StrainGauge = () => {
         />
         <Task>
           <TaskData sensorName='strain' context={context} />
-          <TaskForm />
+          <TaskForm context={context} />
         </Task>
       </Content>
     </>

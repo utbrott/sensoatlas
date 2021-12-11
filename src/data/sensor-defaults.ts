@@ -9,6 +9,7 @@ export const sensorDefaults = {
       inputVoltage: '5',
       resistance: '120',
       bridge: 'quater',
+      bridgeMultiplier: '0.25',
     },
     taskPrompts: {
       0: 'Given values of applied strain Ɛ (μƐ), calculate the output voltage Vout (mV).',
@@ -18,16 +19,14 @@ export const sensorDefaults = {
       0: [],
       1: [],
     },
-    answers: [
-      {
-        promptId: 1,
-        values: [],
-      },
-      {
-        promptId: 2,
-        values: [],
-      },
-    ],
+    validationData: {
+      0: [],
+      1: [],
+    },
+    submittedAnswers: {
+      0: [],
+      1: [],
+    },
   },
   piezoelectric: {},
 };

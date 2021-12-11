@@ -11,12 +11,12 @@ export const sensorDefaults = {
       bridge: 'quater',
     },
     taskPrompts: {
-      0: 'Given values of applied strain Ɛ, calculate the output voltage (Vout).',
-      1: 'Given the values of temperature T, calculate the output voltage (Vout).',
+      0: 'Given values of applied strain Ɛ (μƐ), calculate the output voltage Vout (mV).',
+      1: 'Given the values of temperature T (°C), calculate the output voltage Vout (mV).',
     },
     taskData: {
-      0: [0, 0, 0, 0, 0],
-      1: [0, 0, 0, 0, 0],
+      0: [],
+      1: [],
     },
     answers: [
       {

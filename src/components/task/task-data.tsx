@@ -1,4 +1,17 @@
-import { VStack, HStack, Heading, Text } from '@chakra-ui/react';
+import {
+  VStack,
+  HStack,
+  Heading,
+  Text,
+  Tag,
+  Alert,
+  AlertIcon,
+  AlertDescription,
+} from '@chakra-ui/react';
+import {
+  generateStrainValues,
+  generateTempertureValues,
+} from '#utils/generate-strain-data';
 
 type Props = {
   sensorName: string;
@@ -7,12 +20,15 @@ type Props = {
 
 export const TaskData = (props: Props) => {
   const { sensorName, context } = props;
+  const { taskPrompts, taskData } = context[sensorName];
 
-  switch (sensorName) {
-    case 'strain':
+  if (context.isConfigSaved) {
+    switch (sensorName) {
+      case 'strain':
+        taskData['0'] = generateStrainValues(context);
+        taskData['1'] = generateTempertureValues();
+    }
   }
-
-  const { taskPrompts } = context[sensorName];
 
   return (
     <VStack
@@ -23,21 +39,43 @@ export const TaskData = (props: Props) => {
       rounded='md'
       align='flex-start'
       spacing={4}>
-      <VStack align='flex-start' spacing={1} h='40%'>
+      <VStack align='flex-start' spacing={2} h='50%'>
         <Heading size='sm' mb={2}>
           Tasks for this laboratory
         </Heading>
         {Object.keys(taskPrompts).map((key, index) => (
           <Text key={key} fontSize='sm'>
-            {`${index + 1}. ${taskPrompts[key]}`}
+            {`Task ${index + 1}: ${taskPrompts[key]}`}
           </Text>
         ))}
       </VStack>
-      <VStack align='flex-start' spacing={1}>
-        <Heading size='sm' mb={2}>
+      <VStack align='flex-start' spacing={2} w='full'>
+        <Heading size='xs' mb={2}>
           Generated values for calculations
         </Heading>
-        <VStack w='full' flex={1}></VStack>
+        {context.isConfigSaved ? (
+          Object.keys(taskData).map((key, index) => (
+            <HStack key={key} spacing={4}>
+              <Text fontSize='sm' fontWeight='medium'>
+                Task {index + 1}:
+              </Text>
+              <HStack spacing={2}>
+                {taskData[key].map((item: number) => (
+                  <Tag key={item} variant='subtle' colorScheme='blue'>
+                    {item}
+                  </Tag>
+                ))}
+              </HStack>
+            </HStack>
+          ))
+        ) : (
+          <Alert status='warning' h={10} rounded='md'>
+            <AlertIcon />
+            <AlertDescription fontSize='sm'>
+              No sensor configuration selected
+            </AlertDescription>
+          </Alert>
+        )}
       </VStack>
     </VStack>
   );

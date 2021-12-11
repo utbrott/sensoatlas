@@ -1,10 +1,4 @@
-type Variables = {
-  min: number;
-  max: number;
-  step?: number;
-};
-
-export const generateFromRange = ({ min, max, step }: Variables) => {
+export const generateFromRange = (min: number, max: number, step?: number) => {
   min = Math.ceil(min);
   max = Math.floor(max);
 

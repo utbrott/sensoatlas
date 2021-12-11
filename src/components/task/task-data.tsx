@@ -39,12 +39,12 @@ export const TaskData = (props: Props) => {
       rounded='md'
       align='flex-start'
       spacing={4}>
-      <VStack align='flex-start' spacing={2} h='50%'>
+      <VStack align='flex-start' spacing={2} h='50%' w='full'>
         <Heading size='sm' mb={2}>
           Tasks for this laboratory
         </Heading>
         {Object.keys(taskPrompts).map((key, index) => (
-          <Text key={key} fontSize='sm'>
+          <Text key={key} fontSize='sm' textAlign='justify'>
             {`Task ${index + 1}: ${taskPrompts[key]}`}
           </Text>
         ))}

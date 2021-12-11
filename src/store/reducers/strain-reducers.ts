@@ -8,29 +8,33 @@ export const strainConfigReducer = (state: any, action: any) => {
           return {
             ...state,
             metal: action.payload,
-            sensitivity: '2.6',
-            modulus: '110',
+            gaugeFactor: 2.6,
+            modulus: 110,
+            temperatureCoefficient: 0.004041,
           };
         case 'constantan':
           return {
             ...state,
             metal: action.payload,
-            sensitivity: '2.1',
-            modulus: '162',
+            gaugeFactor: 2.1,
+            modulus: 162,
+            temperatureCoefficient: -0.000074,
           };
         case 'platinum':
           return {
             ...state,
             metal: action.payload,
-            sensitivity: '6.1',
-            modulus: '154',
+            gaugeFactor: 6.1,
+            modulus: 154,
+            temperatureCoefficient: 0.003729,
           };
         case 'monel':
           return {
             ...state,
             metal: action.payload,
-            sensitivity: '1.9',
-            modulus: '180',
+            gaugeFactor: 1.9,
+            modulus: 180,
+            temperatureCoefficient: 0.0011,
           };
       }
       return { ...state, metal: action.payload };

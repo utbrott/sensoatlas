@@ -4,12 +4,13 @@ export const sensorDefaults = {
   strain: {
     config: {
       metal: 'copper',
-      sensitivity: '2.6',
-      modulus: '110',
+      gaugeFactor: 2.6,
+      modulus: 110,
+      temperatureCoefficient: 0.004041,
       inputVoltage: '5',
       resistance: '120',
       bridge: 'quater',
-      bridgeMultiplier: '0.25',
+      bridgeMultiplier: 0.25,
     },
     taskPrompts: {
       0: 'Given values of applied strain Ɛ (μƐ), calculate the output voltage Vout (mV).',

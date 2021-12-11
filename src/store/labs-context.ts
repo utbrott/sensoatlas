@@ -18,12 +18,13 @@ export const LabsContext = createContext({
   strain: {
     config: {
       metal: '',
-      sensitivity: '',
-      modulus: '',
+      gaugeFactor: 0,
+      modulus: 0,
+      temperatureCoefficient: 0,
       inputVoltage: '',
       resistance: '',
       bridge: '',
-      bridgeMultiplier: '',
+      bridgeMultiplier: 0,
     },
     taskPrompts: { 0: '' },
     taskData: { 0: [] },

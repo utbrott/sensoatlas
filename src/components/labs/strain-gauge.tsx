@@ -5,7 +5,7 @@ import { Config } from '#components/config';
 import { LabsContext } from '#store/labs-context';
 import { useContext } from 'react';
 import { useToast } from '@chakra-ui/toast';
-import { Task, TaskData, TaskForm } from '#components/task';
+import { Task, TaskData, FormPanel } from '#components/task';
 
 export const StrainGauge = () => {
   const context = useContext(LabsContext);
@@ -22,9 +22,6 @@ export const StrainGauge = () => {
       position: 'top',
       duration: 3000,
     });
-    window.alert(
-      `Saved config:\n${JSON.stringify(context.strain.config, null, 2)}`
-    );
   };
 
   return (
@@ -35,13 +32,12 @@ export const StrainGauge = () => {
         <Config
           sensorName='strain'
           context={context}
-          isSaved={context.isConfigSaved}
           setIsSaved={handleConfigSave}
           imageSource={schematicImage}
         />
         <Task>
           <TaskData sensorName='strain' context={context} />
-          <TaskForm sensorName='strain' context={context} />
+          <FormPanel sensorName='strain' context={context}></FormPanel>
         </Task>
       </Content>
     </>

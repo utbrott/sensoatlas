@@ -16,13 +16,13 @@ type Props = {
   sensorName: string;
   context: any;
   imageSource: string;
-  isSaved: boolean;
   setIsSaved: () => void;
 };
 
 export const Config = (props: Props) => {
-  const { sensorName, context, imageSource, isSaved, setIsSaved } = props;
+  const { sensorName, context, imageSource, setIsSaved } = props;
   const router = useRouter();
+  const { isConfigSaved } = context;
 
   const configItems = SensorConfig.filter(
     filteredItem => filteredItem.sensor === sensorName
@@ -88,7 +88,7 @@ export const Config = (props: Props) => {
           colorScheme='green'
           isFullWidth
           onClick={setIsSaved}
-          isDisabled={isSaved ? true : false}>
+          isDisabled={isConfigSaved ? true : false}>
           Save
         </Button>
         <Tooltip label='Carefully! All progress will be lost.' bg='red.300'>
@@ -98,7 +98,7 @@ export const Config = (props: Props) => {
             colorScheme='gray'
             isFullWidth
             onClick={handleConfigReset}
-            isDisabled={isSaved ? false : true}
+            isDisabled={isConfigSaved ? false : true}
             _focus={{ outlineColor: 'none' }}>
             Reset
           </Button>

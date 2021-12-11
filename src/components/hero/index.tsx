@@ -8,7 +8,7 @@ import {
   Button,
   Link,
 } from '@chakra-ui/react';
-import { ChevronRightIcon } from '@heroicons/react/solid';
+import { HiChevronRight } from 'react-icons/hi';
 
 export const Hero = () => {
   const router = useRouter();
@@ -34,7 +34,7 @@ export const Hero = () => {
         <Button
           colorScheme='blue'
           size='sm'
-          rightIcon={<ChevronRightIcon fontSize='20px' />}
+          rightIcon={<HiChevronRight fontSize='20px' />}
           onClick={() => router.push('/laboratories')}>
           Browse laboratories
         </Button>

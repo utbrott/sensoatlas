@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { HStack, Heading, Button } from '@chakra-ui/react';
-import { ChevronLeftIcon } from '@heroicons/react/solid';
+import { HiChevronLeft } from 'react-icons/hi';
 
 type Props = {
   heading: string;
@@ -20,7 +20,7 @@ export const Header = ({ heading, hasButton = false }: Props) => {
           colorScheme='blue'
           variant='ghost'
           size='xs'
-          leftIcon={<ChevronLeftIcon fontSize='20px' />}
+          leftIcon={<HiChevronLeft fontSize='20px' />}
           onClick={() => router.push('/library')}>
           Back to library
         </Button>

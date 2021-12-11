@@ -12,10 +12,11 @@ import { calcValidationData } from '#utils/generate-strain-data';
 type Props = {
   sensorName: string;
   context: any;
+  children?: React.ReactNode;
 };
 
-export const TaskForm = (props: Props) => {
-  const { sensorName, context } = props;
+export const FormPanel = (props: Props) => {
+  const { children, sensorName, context } = props;
   const { validationData, submittedAnswers } = context[sensorName];
 
   if (context.isConfigSaved) {
@@ -48,7 +49,9 @@ export const TaskForm = (props: Props) => {
           (5.3254 &#x21D2; 5.33, 5.10 &#x21D2; 5.1)
         </Text>
       </Box>
-      {!context.isConfigSaved && (
+      {context.isConfigSaved ? (
+        { children }
+      ) : (
         <Alert status='warning' h={10} rounded='md'>
           <AlertIcon />
           <AlertDescription fontSize='sm'>

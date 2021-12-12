@@ -24,6 +24,7 @@ export const FormPanel = (props: Props) => {
       case 'strain':
         validationData['0'] = calcValidationData(context);
         validationData['1'] = calcValidationData(context, true);
+        console.log(validationData['0'], validationData['1']);
     }
   }
 
@@ -38,7 +39,7 @@ export const FormPanel = (props: Props) => {
       spacing={4}>
       <Box mb={2}>
         <Heading size='sm' mb={2}>
-          Submit answers
+          Task answers
         </Heading>
         <Text
           fontSize='xs'
@@ -50,7 +51,7 @@ export const FormPanel = (props: Props) => {
         </Text>
       </Box>
       {context.isConfigSaved ? (
-        { children }
+        <Box>{children}</Box>
       ) : (
         <Alert status='warning' h={10} rounded='md'>
           <AlertIcon />

@@ -1,34 +1,41 @@
 import { generateFromRange } from './generate-from-range';
 
 const calculateStrain = (mod: number, area: number, mass: number) => {
-  let value = ((mass * 9.81) / (area * mod)) * Math.pow(10, 6);
+  const modulus = mod * Math.pow(10, 9);
+  let value = ((mass * 9.81) / (area * modulus)) * Math.pow(10, 6);
   return parseFloat(value.toFixed(2));
 };
 
 const calculateOutputVoltage = (
   bridge: number,
-  input: number,
+  input: string,
   strain: number,
   gf: number,
   tempCoeff?: number,
   temp?: number
 ) => {
+  const inputVoltage = parseInt(input);
+
   if (tempCoeff && temp) {
     const REF_TEMPERATURE = 20;
     const temperatureEffect = tempCoeff * (temp - REF_TEMPERATURE);
-    const value = bridge * input * strain * gf + temperatureEffect;
+    const value = bridge * inputVoltage * strain * gf + temperatureEffect;
     return parseFloat(value.toFixed(2));
   }
 
-  let value = bridge * input * strain * gf;
+  let value = bridge * inputVoltage * strain * gf;
   return parseFloat(value.toFixed(2));
 };
 
 export const generateStrainValues = (context: any) => {
-  const MODULUS = parseInt(context.strain.config.modulus) * Math.pow(10, 9);
+  const { modulus } = context.strain.config;
+
   const AREA = 0.05 * 0.005;
-  const MIN_STRAIN = calculateStrain(MODULUS, AREA, 0.5);
-  const MAX_STRAIN = calculateStrain(MODULUS, AREA, 10);
+  const MIN_MASS = 0.5;
+  const MAX_MASS = 10;
+
+  const MIN_STRAIN = calculateStrain(modulus, AREA, MIN_MASS);
+  const MAX_STRAIN = calculateStrain(modulus, AREA, MAX_MASS);
 
   const set = new Set<number>();
   for (let i = set.size; set.size < 5; ++i) {
@@ -49,10 +56,13 @@ export const generateTempertureValues = () => {
 };
 
 export const calcValidationData = (context: any, withTemperature?: boolean) => {
-  const INPUT_VOLTAGE = parseInt(context.strain.config.inputVoltage);
-  const GAUGE_FACTOR = context.strain.config.gaugeFactor;
-  const BRIDGE_MULTIPLIER = context.strain.config.bridgeMultiplier;
-  const TEMP_COEFFICIENT = context.strain.config.temperatureCoefficient;
+  const {
+    inputVoltage,
+    gaugeFactor,
+    bridgeMultiplier,
+    temperatureCoefficient,
+  } = context.strain.config;
+
   const strain = context.strain.taskData['0'];
   const temperature = context.strain.taskData['1'];
 
@@ -61,11 +71,11 @@ export const calcValidationData = (context: any, withTemperature?: boolean) => {
     strain.forEach((value: number, index: number) =>
       data.push(
         calculateOutputVoltage(
-          BRIDGE_MULTIPLIER,
-          INPUT_VOLTAGE,
+          bridgeMultiplier,
+          inputVoltage,
           value,
-          GAUGE_FACTOR,
-          TEMP_COEFFICIENT,
+          gaugeFactor,
+          temperatureCoefficient,
           temperature[index]
         )
       )
@@ -75,10 +85,11 @@ export const calcValidationData = (context: any, withTemperature?: boolean) => {
   strain.forEach((value: number) =>
     data.push(
       calculateOutputVoltage(
-        BRIDGE_MULTIPLIER,
-        INPUT_VOLTAGE,
+        bridgeMultiplier,
+        inputVoltage,
         value,
-        GAUGE_FACTOR
+        gaugeFactor,
+        temperatureCoefficient
       )
     )
   );

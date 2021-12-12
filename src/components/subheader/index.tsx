@@ -16,7 +16,7 @@ export const Subheader = ({ hasModal, modalContent }: Props) => {
           reset clears the configuration. Remember that doing so will delete any
           progress. All formulas for calculations are available under &apos;View
           theory&apos;. If you need to reset the configuration, but you
-          generated the graphs already, save them before clicking reset.
+          generated the graphs already, save them before, clicking reset.
         </Text>
         {hasModal && (
           <TheoryModal header={hasModal}>{modalContent}</TheoryModal>

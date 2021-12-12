@@ -17,7 +17,7 @@ type Props = {
 
 export const FormPanel = (props: Props) => {
   const { children, sensorName, context } = props;
-  const { validationData, submittedAnswers } = context[sensorName];
+  const { validationData } = context[sensorName];
 
   if (context.isConfigSaved) {
     switch (sensorName) {
@@ -46,7 +46,7 @@ export const FormPanel = (props: Props) => {
           fontWeight='medium'
           color='gray.400'
           fontStyle='italic'>
-          Answer format - 2 decimal digits, but no trailing zeros
+          Answer format - 2 decimal digits, no trailing zeros
         </Text>
       </Box>
       {context.isConfigSaved ? (

@@ -24,10 +24,6 @@ export const sensorDefaults = {
       0: [],
       1: [],
     },
-    submittedAnswers: {
-      0: [],
-      1: [],
-    },
   },
   piezoelectric: {},
 };

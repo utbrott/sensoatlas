@@ -6,14 +6,12 @@ export const LabsContext = createContext({
     taskPrompts: { 0: '' },
     taskData: { 0: [] },
     validationData: { 0: [] },
-    submittedAnswers: { 0: [] },
   },
   displacement: {
     config: {},
     taskPrompts: { 0: '' },
     taskData: { 0: [] },
     validationData: { 0: [] },
-    submittedAnswers: { 0: [] },
   },
   strain: {
     config: {
@@ -29,14 +27,12 @@ export const LabsContext = createContext({
     taskPrompts: { 0: '' },
     taskData: { 0: [] },
     validationData: { 0: [] },
-    submittedAnswers: { 0: [] },
   },
   piezoelectric: {
     config: {},
     taskPrompts: { 0: '' },
     taskData: { 0: [] },
     validationData: { 0: [] },
-    submittedAnswers: { 0: [] },
   },
   isConfigSaved: false,
   updateConfig: (sensor: string, configField: string, value: string) => {},

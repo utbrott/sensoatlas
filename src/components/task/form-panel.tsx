@@ -46,7 +46,9 @@ export const FormPanel = (props: Props) => {
           fontWeight='medium'
           color='gray.400'
           fontStyle='italic'>
-          Answer format - 2 decimal digits, no trailing zeros
+          All formulas needed are available under &apos;View theory&apos;.
+          <br />
+          Answer format - 2 decimal digits, no trailing zeros.
         </Text>
       </Box>
       {context.isConfigSaved ? (

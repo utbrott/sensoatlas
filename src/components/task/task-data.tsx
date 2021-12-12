@@ -7,11 +7,13 @@ import {
   Alert,
   AlertIcon,
   AlertDescription,
+  Box,
 } from '@chakra-ui/react';
 import {
   generateStrainValues,
   generateTempertureValues,
 } from '#utils/generate-strain-data';
+import Latex from 'react-latex';
 
 type Props = {
   sensorName: string;
@@ -40,12 +42,23 @@ export const TaskData = (props: Props) => {
       align='flex-start'
       spacing={4}>
       <VStack align='flex-start' spacing={2} h='50%' w='full'>
-        <Heading size='sm' mb={2}>
-          Tasks for this laboratory
-        </Heading>
+        <Box>
+          <Heading size='sm' mb={2}>
+            Tasks for this laboratory
+          </Heading>
+          <Text
+            fontSize='xs'
+            fontWeight='medium'
+            color='gray.400'
+            fontStyle='italic'
+            mb={2}>
+            All formulas needed are available under &apos;View theory&apos;
+          </Text>
+        </Box>
         {Object.keys(taskPrompts).map((key, index) => (
           <Text key={key} fontSize='sm' textAlign='justify'>
-            {`Task ${index + 1}: ${taskPrompts[key]}`}
+            {`Task ${index + 1}: `}
+            <Latex>{taskPrompts[key]}</Latex>
           </Text>
         ))}
       </VStack>

@@ -13,8 +13,8 @@ export const sensorDefaults = {
       bridgeMultiplier: 0.25,
     },
     taskPrompts: {
-      0: 'Given values of applied strain Ɛ (μƐ), calculate the output voltage Vout (mV).',
-      1: 'Given the values of temperature T (°C), calculate the output voltage Vout (mV).',
+      0: 'Given values of applied strain $\\varepsilon\\;(\\mu\\varepsilon)$, calculate the output voltage Vout (mV).',
+      1: 'Given the values of temperature T ($^\\circ C$), calculate the output voltage Vout (mV).',
     },
     taskData: {
       0: [],

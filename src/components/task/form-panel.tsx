@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const FormPanel = (props: Props) => {
-  const { children, context } = props;
+  const { context, children } = props;
 
   return (
     <VStack
@@ -25,25 +25,20 @@ export const FormPanel = (props: Props) => {
       p={4}
       rounded='md'
       align='flex-start'
-      spacing={4}>
+      spacing={4}
+    >
       <Box w='full' maxH='max' mb={2}>
         <Heading size='sm' mb={2}>
-          Task answers
+          Submit answers
         </Heading>
-        <Text
-          fontSize='xs'
-          fontWeight='medium'
-          color='gray.400'
-          fontStyle='italic'>
+        <Text fontSize='xs' fontWeight='medium' color='gray.400'>
           All formulas needed are available under &apos;View theory&apos;.
-          <br />
-          Answer format - 2 decimal digits, no trailing zeros.
         </Text>
       </Box>
       {context.isConfigSaved ? (
-        <Box w='full' flex={1}>
+        <VStack w='full' flex={1} spacing={6}>
           {children}
-        </Box>
+        </VStack>
       ) : (
         <Alert status='warning' h={10} rounded='md'>
           <AlertIcon />

@@ -14,3 +14,4 @@ export const Task = ({ children }: Props) => {
 
 export { TaskData } from './task-data';
 export { FormPanel } from './form-panel';
+export { Form } from './form';

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   VStack,
   HStack,
@@ -24,14 +25,14 @@ export const TaskData = (props: Props) => {
   const { sensorName, context } = props;
   const { taskPrompts, taskData, validationData } = context[sensorName];
 
-  if (context.isConfigSaved) {
+  if (context.isConfigSaved && !context.isValidationAvailable) {
     switch (sensorName) {
       case 'strain':
         taskData['0'] = generateStrainValues(context);
         taskData['1'] = generateTempertureValues();
         validationData['0'] = calcValidationData(context);
         validationData['1'] = calcValidationData(context, true);
-        console.log(taskData, validationData);
+        context.updateValidationState();
     }
   }
 

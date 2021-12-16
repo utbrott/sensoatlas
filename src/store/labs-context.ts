@@ -30,7 +30,10 @@ export const LabsContext = createContext({
     },
     taskPrompts: [{ taskId: 0, content: '' }],
     taskData: { 0: [] },
-    validationData: { 0: [] },
+    validationData: {
+      0: [],
+      1: [],
+    },
   },
   piezoelectric: {
     config: {},

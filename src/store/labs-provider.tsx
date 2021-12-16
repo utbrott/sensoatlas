@@ -36,16 +36,19 @@ export const LabsProvider = ({ children }: Props) => {
   const [isConfigSaved, setIsConfigSaved] = useState(false);
   const handleConfigSave = () => setIsConfigSaved(true);
 
+  const [isValidatonAvailable, setIsValidationAvailable] = useState(false);
+  const handleValidationStateChange = () => setIsValidationAvailable(true);
+
   const labsContext = {
     temperature: {
       config: {},
-      taskPrompts: { 0: '' },
+      taskPrompts: [{ taskId: 0, content: '' }],
       taskData: { 0: [] },
       validationData: { 0: [] },
     },
     displacement: {
       config: {},
-      taskPrompts: { 0: '' },
+      taskPrompts: [{ taskId: 0, content: '' }],
       taskData: { 0: [] },
       validationData: { 0: [] },
     },
@@ -57,13 +60,15 @@ export const LabsProvider = ({ children }: Props) => {
     },
     piezoelectric: {
       config: {},
-      taskPrompts: { 0: '' },
+      taskPrompts: [{ taskId: 0, content: '' }],
       taskData: { 0: [] },
       validationData: { 0: [] },
     },
     isConfigSaved: isConfigSaved,
+    isValidationAvailable: isValidatonAvailable,
     updateConfig: handleConfigUpdate,
     saveConfig: handleConfigSave,
+    updateValidationState: handleValidationStateChange,
   };
 
   return (

@@ -10,7 +10,7 @@ import { Task, TaskData, FormPanel } from '#components/task';
 export const StrainGauge = () => {
   const context = useContext(LabsContext);
   const { config } = context.strain;
-  const schematicImage = `/images/strain-${config.bridge}.png`;
+  const schematicImage = `/images/strain-${config.bridge.type}.png`;
 
   const toast = useToast();
   const handleConfigSave = () => {

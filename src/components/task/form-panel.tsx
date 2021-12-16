@@ -7,7 +7,6 @@ import {
   AlertDescription,
   Box,
 } from '@chakra-ui/react';
-import { calcValidationData } from '#utils/generate-strain-data';
 
 type Props = {
   sensorName: string;
@@ -16,17 +15,7 @@ type Props = {
 };
 
 export const FormPanel = (props: Props) => {
-  const { children, sensorName, context } = props;
-  const { validationData } = context[sensorName];
-
-  if (context.isConfigSaved) {
-    switch (sensorName) {
-      case 'strain':
-        validationData['0'] = calcValidationData(context);
-        validationData['1'] = calcValidationData(context, true);
-        console.log(validationData['0'], validationData['1']);
-    }
-  }
+  const { children, context } = props;
 
   return (
     <VStack

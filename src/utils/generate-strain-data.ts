@@ -28,7 +28,7 @@ const calculateOutputVoltage = (
 };
 
 export const generateStrainValues = (context: any) => {
-  const { modulus } = context.strain.config;
+  const { modulus } = context.strain.config.material;
 
   const AREA = 0.05 * 0.005;
   const MIN_MASS = 0.5;
@@ -56,41 +56,37 @@ export const generateTempertureValues = () => {
 };
 
 export const calcValidationData = (context: any, withTemperature?: boolean) => {
-  const {
-    inputVoltage,
-    gaugeFactor,
-    bridgeMultiplier,
-    temperatureCoefficient,
-  } = context.strain.config;
+  const { config } = context.strain;
+
+  const { inputVoltage } = config;
+  const { gaugeFactor, tempCoeff } = config.material;
+  const { multiplier } = config.bridge;
 
   const strain = context.strain.taskData['0'];
   const temperature = context.strain.taskData['1'];
+
+  console.log(inputVoltage, gaugeFactor, tempCoeff, multiplier);
 
   let data: number[] = [];
   if (withTemperature) {
     strain.forEach((value: number, index: number) =>
       data.push(
         calculateOutputVoltage(
-          bridgeMultiplier,
+          multiplier,
           inputVoltage,
           value,
           gaugeFactor,
-          temperatureCoefficient,
+          tempCoeff,
           temperature[index]
         )
       )
     );
+    console.log(data);
     return [...data];
   }
   strain.forEach((value: number) =>
     data.push(
-      calculateOutputVoltage(
-        bridgeMultiplier,
-        inputVoltage,
-        value,
-        gaugeFactor,
-        temperatureCoefficient
-      )
+      calculateOutputVoltage(multiplier, inputVoltage, value, gaugeFactor)
     )
   );
   return [...data];

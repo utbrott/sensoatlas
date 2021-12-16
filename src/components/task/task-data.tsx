@@ -7,11 +7,11 @@ import {
   Alert,
   AlertIcon,
   AlertDescription,
-  Box,
 } from '@chakra-ui/react';
 import {
   generateStrainValues,
   generateTempertureValues,
+  calcValidationData,
 } from '#utils/generate-strain-data';
 import Latex from 'react-latex';
 
@@ -22,13 +22,16 @@ type Props = {
 
 export const TaskData = (props: Props) => {
   const { sensorName, context } = props;
-  const { taskPrompts, taskData } = context[sensorName];
+  const { taskPrompts, taskData, validationData } = context[sensorName];
 
   if (context.isConfigSaved) {
     switch (sensorName) {
       case 'strain':
         taskData['0'] = generateStrainValues(context);
         taskData['1'] = generateTempertureValues();
+        validationData['0'] = calcValidationData(context);
+        validationData['1'] = calcValidationData(context, true);
+        console.log(taskData, validationData);
     }
   }
 
@@ -46,10 +49,10 @@ export const TaskData = (props: Props) => {
       {context.isConfigSaved ? (
         <>
           <VStack align='flex-start' spacing={2} w='full' flex={1}>
-            {Object.keys(taskPrompts).map((key, index) => (
-              <Text key={key} fontSize='sm' textAlign='justify'>
-                {`Task ${index + 1}: `}
-                <Latex>{taskPrompts[key]}</Latex>
+            {taskPrompts.map((item: any) => (
+              <Text key={item.taskId} fontSize='sm' textAlign='justify'>
+                {`Task ${item.taskId}: `}
+                <Latex>{item.content}</Latex>
               </Text>
             ))}
           </VStack>

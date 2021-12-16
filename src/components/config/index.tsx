@@ -36,6 +36,10 @@ export const Config = (props: Props) => {
     context.updateConfig(sensor, field, value);
   };
 
+  if (isConfigSaved) {
+    console.log(JSON.stringify(context.strain.config, null, 2));
+  }
+
   return (
     <VStack
       h='full'
@@ -55,11 +59,11 @@ export const Config = (props: Props) => {
           <ConfigField
             key={item.id}
             item={item}
-            handleChange={(event: any) =>
+            handleChange={(e: any) =>
               handleConfigUpdate(
                 sensorName,
                 item.id,
-                item.type === 'select' ? event.currentTarget.value : event
+                item.type === 'select' ? e.currentTarget.value : e
               )
             }
           />

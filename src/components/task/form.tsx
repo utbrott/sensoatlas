@@ -7,23 +7,28 @@ import {
   VStack,
   Input,
   Text,
+  FormLabel,
 } from '@chakra-ui/react';
 
 type Props = {
   taskNo: string;
   isInvalid: boolean;
+  isDisabled: boolean;
   handleSubmit: any;
   handleChange: any;
 };
 
 export const Form = (props: Props) => {
-  const { taskNo, isInvalid = false, handleSubmit, handleChange } = props;
+  const {
+    taskNo,
+    isInvalid = false,
+    isDisabled = false,
+    handleSubmit,
+    handleChange,
+  } = props;
 
   return (
     <Box w='full' flex={1}>
-      <Text mb={1} fontSize='sm'>
-        Task {taskNo}
-      </Text>
       <VStack
         w='full'
         as='form'
@@ -31,7 +36,8 @@ export const Form = (props: Props) => {
         align='flex-start'
         spacing={4}
       >
-        <FormControl isInvalid={isInvalid}>
+        <FormControl isInvalid={isInvalid} isDisabled={isDisabled}>
+          <FormLabel fontSize='sm'>Task {taskNo}</FormLabel>
           <Input
             id='submitted'
             autoComplete='off'
@@ -55,6 +61,7 @@ export const Form = (props: Props) => {
           fontWeight='normal'
           type='submit'
           isFullWidth
+          isDisabled={isDisabled}
         >
           Submit answer
         </Button>

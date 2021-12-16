@@ -27,8 +27,8 @@ export const StrainGauge = () => {
     });
   };
 
-  let strainTaskIndex = 0;
-  let tempTaskIndex = 0;
+  const strainIndexRef = useRef(0);
+  const tempIndexRef = useRef(0);
 
   let strainValidation: number[] = [];
   let tempValidation: number[] = [];
@@ -54,10 +54,11 @@ export const StrainGauge = () => {
     if (!strainRef.current) {
       error = 'Answer is required.';
       alert(error);
+      return;
     }
+    strainIndexRef.current++;
+    console.log(strainIndexRef.current);
     alert(`Entered value: ${strainRef.current}`);
-    if (strainTaskIndex < 5) strainTaskIndex++;
-    console.log(strainTaskIndex);
   };
 
   const handleTempFormSubmit = (e: any) => {
@@ -82,12 +83,14 @@ export const StrainGauge = () => {
             <Form
               taskNo='1'
               isInvalid={false}
+              isDisabled={strainIndexRef.current === 5}
               handleSubmit={handleStrainFormSubmit}
               handleChange={handleStrainFormUpdate}
             />
             <Form
               taskNo='2'
               isInvalid={false}
+              isDisabled={tempIndexRef.current === 5}
               handleSubmit={handleTempFormSubmit}
               handleChange={handleTempFormUpdate}
             />

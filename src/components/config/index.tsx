@@ -36,10 +36,6 @@ export const Config = (props: Props) => {
     context.updateConfig(sensor, field, value);
   };
 
-  if (isConfigSaved) {
-    console.log(JSON.stringify(context.strain.config, null, 2));
-  }
-
   return (
     <VStack
       h='full'

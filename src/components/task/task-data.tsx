@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {
   VStack,
   HStack,
@@ -32,8 +31,8 @@ export const TaskData = (props: Props) => {
         taskData['1'] = generateTempertureValues();
         validationData['0'] = calcValidationData(context);
         validationData['1'] = calcValidationData(context, true);
-        context.updateValidationState();
     }
+    setTimeout(() => context.updateValidationState(), 500);
   }
 
   return (

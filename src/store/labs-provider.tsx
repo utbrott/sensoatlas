@@ -34,10 +34,7 @@ export const LabsProvider = ({ children }: Props) => {
   };
 
   const [isConfigSaved, setIsConfigSaved] = useState(false);
-  const handleConfigSave = () => setIsConfigSaved(true);
-
   const [isValidatonAvailable, setIsValidationAvailable] = useState(false);
-  const handleValidationStateChange = () => setIsValidationAvailable(true);
 
   const labsContext = {
     temperature: {
@@ -67,8 +64,8 @@ export const LabsProvider = ({ children }: Props) => {
     isConfigSaved: isConfigSaved,
     isValidationAvailable: isValidatonAvailable,
     updateConfig: handleConfigUpdate,
-    saveConfig: handleConfigSave,
-    updateValidationState: handleValidationStateChange,
+    saveConfig: () => setIsConfigSaved(true),
+    updateValidationState: () => setIsValidationAvailable(true),
   };
 
   return (

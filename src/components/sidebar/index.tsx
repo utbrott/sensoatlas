@@ -11,7 +11,8 @@ const Sidebar = () => {
       maxW={64}
       flexGrow={1}
       flexShrink={0}
-      bg='gray.800'>
+      bg='gray.800'
+    >
       <Logo />
       <List w='full' overflowY='auto'>
         {navItems.map(item => (

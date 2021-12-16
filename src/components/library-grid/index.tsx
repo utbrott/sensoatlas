@@ -9,7 +9,8 @@ export const LibraryGrid = () => {
         templateColumns='repeat(2, 1fr)'
         templateRows='repeat(2, 1fr)'
         gap={6}
-        justifyItems='center'>
+        justifyItems='center'
+      >
         {cardItems.map(item => (
           <Card key={item.id} item={item} hasButton='Start laboratory' />
         ))}

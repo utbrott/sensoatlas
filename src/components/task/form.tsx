@@ -29,7 +29,8 @@ export const Form = (props: Props) => {
         as='form'
         onSubmit={handleSubmit}
         align='flex-start'
-        spacing={4}>
+        spacing={4}
+      >
         <FormControl isInvalid={isInvalid}>
           <Input
             id='submitted'
@@ -53,7 +54,8 @@ export const Form = (props: Props) => {
           colorScheme='gray'
           fontWeight='normal'
           type='submit'
-          isFullWidth>
+          isFullWidth
+        >
           Submit answer
         </Button>
       </VStack>

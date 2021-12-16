@@ -21,7 +21,8 @@ export const Header = ({ heading, hasButton = false }: Props) => {
           variant='ghost'
           size='xs'
           leftIcon={<HiChevronLeft fontSize='20px' />}
-          onClick={() => router.push('/library')}>
+          onClick={() => router.push('/library')}
+        >
           Back to library
         </Button>
       )}

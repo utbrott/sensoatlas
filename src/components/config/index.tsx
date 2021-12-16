@@ -50,7 +50,8 @@ export const Config = (props: Props) => {
       borderRadius='md'
       align='flex-start'
       spacing={6}
-      as='section'>
+      as='section'
+    >
       <Heading size='sm' mb={2} spacing={2}>
         Sensor configuration
       </Heading>
@@ -92,7 +93,8 @@ export const Config = (props: Props) => {
           colorScheme='green'
           isFullWidth
           onClick={setIsSaved}
-          isDisabled={isConfigSaved ? true : false}>
+          isDisabled={isConfigSaved ? true : false}
+        >
           Save
         </Button>
         <Tooltip label='Carefully! All progress will be lost.' bg='red.300'>
@@ -103,7 +105,8 @@ export const Config = (props: Props) => {
             isFullWidth
             onClick={handleConfigReset}
             isDisabled={isConfigSaved ? false : true}
-            _focus={{ outlineColor: 'none' }}>
+            _focus={{ outlineColor: 'none' }}
+          >
             Reset
           </Button>
         </Tooltip>

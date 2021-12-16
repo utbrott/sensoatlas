@@ -24,7 +24,8 @@ export const TheoryModal = ({ header, children }: Props) => {
         colorScheme='blue'
         variant='outline'
         onClick={() => onOpen()}
-        _focus={{ outline: 'none' }}>
+        _focus={{ outline: 'none' }}
+      >
         View theory
       </Button>
       <Modal
@@ -34,7 +35,8 @@ export const TheoryModal = ({ header, children }: Props) => {
         onClose={onClose}
         isOpen={isOpen}
         motionPreset='scale'
-        scrollBehavior='inside'>
+        scrollBehavior='inside'
+      >
         <ModalOverlay />
         <ModalContent bg='gray.800'>
           <ModalHeader fontSize='lg' color='gray.300'>

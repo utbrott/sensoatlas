@@ -18,7 +18,8 @@ export const Card = ({ item, hasButton }: Props) => {
       bg='gray.800'
       p={2}
       rounded='md'
-      align='flex-start'>
+      align='flex-start'
+    >
       <Heading size='sm' p={2}>
         {title}
       </Heading>
@@ -32,7 +33,8 @@ export const Card = ({ item, hasButton }: Props) => {
           colorScheme='blue'
           variant='ghost'
           size='sm'
-          onClick={() => router.push(`laboratories/${id}`)}>
+          onClick={() => router.push(`laboratories/${id}`)}
+        >
           {hasButton}
         </Button>
       )}

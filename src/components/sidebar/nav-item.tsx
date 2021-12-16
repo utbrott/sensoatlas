@@ -26,7 +26,8 @@ const NavItem = ({ item }: Props) => {
         <Link
           variant='unstyled'
           _hover={{ textDecoration: 'none' }}
-          _focus={{ outline: 'none' }}>
+          _focus={{ outline: 'none' }}
+        >
           <HStack
             align='center'
             justify='flex-start'
@@ -35,7 +36,8 @@ const NavItem = ({ item }: Props) => {
             transitionProperty='background'
             transitionDuration='normal'
             _hover={{ bg: 'gray.700' }}
-            _active={{ bg: 'gray.600' }}>
+            _active={{ bg: 'gray.600' }}
+          >
             <Icon
               w={5}
               h={5}
@@ -49,7 +51,8 @@ const NavItem = ({ item }: Props) => {
               fontWeight='medium'
               flex={1}
               letterSpacing='wide'
-              color={isActive ? 'blue.300' : 'gray.300'}>
+              color={isActive ? 'blue.300' : 'gray.300'}
+            >
               {item.label}
             </Heading>
             {isActive && <Box w={1} h={6} bg='blue.300' />}
@@ -66,7 +69,8 @@ const NavItem = ({ item }: Props) => {
         <Link
           variant='unstyled'
           _hover={{ textDecoration: 'none' }}
-          _focus={{ outline: 'none' }}>
+          _focus={{ outline: 'none' }}
+        >
           <HStack
             align='center'
             justify='flex-start'
@@ -75,7 +79,8 @@ const NavItem = ({ item }: Props) => {
             transitionProperty='background'
             transitionDuration='normal'
             _hover={{ bg: 'gray.700' }}
-            _active={{ bg: 'gray.600' }}>
+            _active={{ bg: 'gray.600' }}
+          >
             <Container w={5} h={8} mr={4} ml={8} p={0} centerContent>
               <Box w={0.5} h='full' bg='gray.600' />
             </Container>
@@ -84,7 +89,8 @@ const NavItem = ({ item }: Props) => {
               fontWeight='light'
               flex={1}
               textAlign='justify'
-              color={isActive ? 'blue.200' : 'gray.200'}>
+              color={isActive ? 'blue.200' : 'gray.200'}
+            >
               {item.label}
             </Text>
             {isActive && <Box w={1} h={4} bg='blue.200' />}
@@ -103,7 +109,8 @@ const NavItem = ({ item }: Props) => {
       size='xs'
       ml={8}
       mt={6}
-      mb={2}>
+      mb={2}
+    >
       {item.label}
     </Heading>
   );

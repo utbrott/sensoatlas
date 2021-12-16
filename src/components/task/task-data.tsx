@@ -43,7 +43,8 @@ export const TaskData = (props: Props) => {
       bg='gray.800'
       p={4}
       rounded='md'
-      align='flex-start'>
+      align='flex-start'
+    >
       <Heading size='sm' mb={2}>
         Tasks for this laboratory
       </Heading>

@@ -12,7 +12,8 @@ const Layout = ({ children }: Props) => {
       minH='auto'
       align='flex-start'
       p={0}
-      bg='gray.900'>
+      bg='gray.900'
+    >
       <Sidebar />
       <VStack w='full' flex={1} spacing={2} p={2}>
         {children}

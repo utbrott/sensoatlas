@@ -65,8 +65,6 @@ export const calcValidationData = (context: any, withTemperature?: boolean) => {
   const strain = context.strain.taskData['0'];
   const temperature = context.strain.taskData['1'];
 
-  console.log(inputVoltage, gaugeFactor, tempCoeff, multiplier);
-
   let data: number[] = [];
   if (withTemperature) {
     strain.forEach((value: number, index: number) =>
@@ -81,7 +79,6 @@ export const calcValidationData = (context: any, withTemperature?: boolean) => {
         )
       )
     );
-    console.log(data);
     return [...data];
   }
   strain.forEach((value: number) =>

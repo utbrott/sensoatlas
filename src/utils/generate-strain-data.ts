@@ -1,8 +1,8 @@
 import { generateFromRange } from './generate-from-range';
 
 const calculateStrain = (mod: number, area: number, mass: number) => {
-  const modulus = mod * Math.pow(10, 9);
-  let value = ((mass * 9.81) / (area * modulus)) * Math.pow(10, 6);
+  const modulus = mod * 10 ** 9;
+  let value = ((mass * 9.81) / (area * modulus)) * 10 ** 6;
   return parseFloat(value.toFixed(2));
 };
 

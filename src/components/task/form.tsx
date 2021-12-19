@@ -17,6 +17,7 @@ import { HiCheck } from 'react-icons/hi';
 
 type Props = {
   taskNo: string;
+  index: string;
   value: string;
   isInvalid: boolean;
   errorMessage: string;
@@ -28,6 +29,7 @@ type Props = {
 export const Form = (props: Props) => {
   const {
     taskNo,
+    index,
     value,
     isInvalid,
     errorMessage,
@@ -37,7 +39,7 @@ export const Form = (props: Props) => {
   } = props;
 
   return (
-    <Box w='full' flex={1}>
+    <Box w='full' h='max'>
       <VStack
         w='full'
         as='form'
@@ -46,7 +48,23 @@ export const Form = (props: Props) => {
         spacing={4}
       >
         <FormControl isInvalid={isInvalid} isDisabled={isComplete}>
-          <FormLabel fontSize='sm'>Task {taskNo}</FormLabel>
+          <HStack w='full'>
+            <FormLabel fontSize='sm' flex={1}>
+              Task {taskNo}
+            </FormLabel>
+            {isComplete ? (
+              <HStack color='green.400'>
+                <Text fontSize='xs' color='green.400'>
+                  Task completed
+                </Text>
+                <Icon as={HiCheck} />
+              </HStack>
+            ) : (
+              <Text fontSize='xs' color={isComplete ? 'green.600' : 'gray.300'}>
+                {index}/5 correct
+              </Text>
+            )}
+          </HStack>
           <Input
             id='submitted'
             autoComplete='off'
@@ -64,26 +82,17 @@ export const Form = (props: Props) => {
           )}
           <FormErrorMessage fontSize='xs'>{errorMessage}</FormErrorMessage>
         </FormControl>
-        {!isComplete ? (
-          <Button
-            size='sm'
-            variant='solid'
-            colorScheme='gray'
-            fontWeight='normal'
-            type='submit'
-            isFullWidth
-            isDisabled={isComplete}
-          >
-            Submit answer
-          </Button>
-        ) : (
-          <HStack color='green.400'>
-            <Text fontSize='sm' color='green.400'>
-              Task completed
-            </Text>
-            <Icon as={HiCheck} />
-          </HStack>
-        )}
+        <Button
+          size='sm'
+          variant='solid'
+          colorScheme='gray'
+          fontWeight='normal'
+          type='submit'
+          isFullWidth
+          isDisabled={isComplete}
+        >
+          Submit answer
+        </Button>
       </VStack>
     </Box>
   );

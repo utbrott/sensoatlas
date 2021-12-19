@@ -24,6 +24,8 @@ export const useFormInput = (validator: number[]) => {
   const isEmpty = (value: string) => value.trim() === '';
   const isFieldEmpty = isEmpty(field.value);
 
+  console.log(validator[field.index]); //! Remove before production deploy
+
   const isInvalid = (value: string) =>
     parseFloat(value) !== validator[field.index];
   const isFieldInvalid = isInvalid(field.value);

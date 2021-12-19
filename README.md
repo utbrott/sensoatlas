@@ -15,6 +15,7 @@ report for Sensors & Transducers laboratory. Simulations of certain sensor types
 - [Chakra UI](https://chakra-ui.com/)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [React Latex](https://github.com/zzish/react-latex)
+- [Apex Charts](https://apexcharts.com/)
 
 ## License:
 

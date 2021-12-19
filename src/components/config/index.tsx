@@ -28,10 +28,6 @@ export const Config = (props: Props) => {
     filteredItem => filteredItem.sensor === sensorName
   );
 
-  const handleConfigReset = () => {
-    router.reload();
-  };
-
   const handleConfigUpdate = (sensor: string, field: string, value: string) => {
     context.updateConfig(sensor, field, value);
   };
@@ -99,7 +95,7 @@ export const Config = (props: Props) => {
             variant='outline'
             colorScheme='gray'
             isFullWidth
-            onClick={handleConfigReset}
+            onClick={() => router.reload()}
             isDisabled={isConfigSaved ? false : true}
             _focus={{ outlineColor: 'none' }}
           >

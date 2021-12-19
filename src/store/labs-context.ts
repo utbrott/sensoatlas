@@ -29,7 +29,10 @@ export const LabsContext = createContext({
       },
     },
     taskPrompts: [{ taskId: 0, content: '' }],
-    taskData: { 0: [] },
+    taskData: {
+      0: [],
+      1: [],
+    },
     validationData: {
       0: [],
       1: [],
@@ -43,7 +46,9 @@ export const LabsContext = createContext({
   },
   isConfigSaved: false,
   isValidationAvailable: false,
+  isLabFinished: false,
   updateConfig: (sensor: string, configField: string, value: string) => {},
   saveConfig: () => {},
   updateValidationState: () => {},
+  updateLabFinishedState: () => {},
 });

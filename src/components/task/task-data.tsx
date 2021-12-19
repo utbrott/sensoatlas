@@ -3,9 +3,11 @@ import {
   HStack,
   Heading,
   Text,
+  Box,
   Tag,
   Alert,
   AlertIcon,
+  AlertTitle,
   AlertDescription,
 } from '@chakra-ui/react';
 import {
@@ -38,51 +40,52 @@ export const TaskData = (props: Props) => {
   return (
     <VStack
       w='full'
-      flex={1}
+      flex={0.5}
       bg='gray.800'
       p={4}
       rounded='md'
       align='flex-start'
     >
       <Heading size='sm' mb={2}>
-        Tasks for this laboratory
+        Tasks
       </Heading>
       {context.isConfigSaved ? (
-        <>
-          <VStack align='flex-start' spacing={2} w='full' flex={1}>
-            {taskPrompts.map((item: any) => (
-              <Text key={item.taskId} fontSize='sm' textAlign='justify'>
-                {`Task ${item.taskId}: `}
+        <VStack align='flex-start' spacing={4} w='full'>
+          {taskPrompts.map((item: any) => (
+            <Box key={item.taskId}>
+              <Text
+                fontSize='sm'
+                fontWeight='medium'
+              >{`Task ${item.taskId}: `}</Text>
+              <Text fontSize='sm' textAlign='justify' mb={2}>
                 <Latex>{item.content}</Latex>
               </Text>
-            ))}
-          </VStack>
-          <VStack align='flex-start' spacing={2} w='full' flex={1}>
-            <Heading size='xs' mb={2}>
-              Generated values for calculations
-            </Heading>
-            {Object.keys(taskData).map((key, index) => (
-              <HStack key={key} spacing={4}>
+              <HStack spacing={2}>
                 <Text fontSize='sm' fontWeight='medium'>
-                  Task {index + 1}:
+                  Data:
                 </Text>
                 <HStack spacing={2}>
-                  {taskData[key].map((item: number) => (
+                  {taskData[item.taskId - 1].map((item: number) => (
                     <Tag key={item} variant='subtle' colorScheme='blue'>
                       {item}
                     </Tag>
                   ))}
                 </HStack>
               </HStack>
-            ))}
-          </VStack>
-        </>
+            </Box>
+          ))}
+        </VStack>
       ) : (
-        <Alert status='warning' h={10} rounded='md'>
+        <Alert status='warning' rounded='md' py={1}>
           <AlertIcon />
-          <AlertDescription fontSize='sm'>
-            No sensor configuration selected
-          </AlertDescription>
+          <VStack flex={1} spacing={0} align='flex-start'>
+            <AlertTitle fontSize='sm'>
+              No sensor configuration selected
+            </AlertTitle>
+            <AlertDescription fontSize='xs'>
+              Select and save sensor configuration to view tasks.
+            </AlertDescription>
+          </VStack>
         </Alert>
       )}
     </VStack>

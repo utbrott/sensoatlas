@@ -1,16 +1,16 @@
+import React, { useContext } from 'react';
+import { LabsContext } from '#store/labs-context';
 import { Header } from '#components/header';
 import { Subheader } from '#components/subheader';
 import { Content } from '#components/content';
 import { Config } from '#components/config';
-import { LabsContext } from '#store/labs-context';
-import React, { useContext } from 'react';
-import { Task, TaskData, FormPanel, Form } from '#components/task';
 import { useConfigSave } from '#hooks/use-config-save';
+import { TasksCard, TaskData, FormCard, Form } from '#components/task';
 import { useFormInput } from '#hooks/use-form-input';
 import { useFormValidation } from '#hooks/use-form-validation';
-
-// TODO: Add tracking of task completition (New field in context)
-// TODO: Add showing of graph on task completition (Read all complete from context)
+import { useCompleteTask } from '#hooks/use-complete-task';
+import { ChartsCard, TaskChart } from '#components/chart';
+import { usePairArrays } from '#hooks/use-pair-arrays';
 
 export const StrainGauge = () => {
   const context = useContext(LabsContext);
@@ -18,6 +18,7 @@ export const StrainGauge = () => {
   const schematicImage = `/images/strain-${config.bridge.type}.png`;
 
   const { handleConfigSave } = useConfigSave();
+  const { handleCompleteTask } = useCompleteTask();
 
   const {
     value: strainValue,
@@ -37,8 +38,6 @@ export const StrainGauge = () => {
     handleReset: resetTemperatureInput,
   } = useFormInput(validationData['1']);
 
-  console.log(validationData['0'], validationData['1']);
-
   const {
     hasError: strainHasError,
     error: strainError,
@@ -55,6 +54,16 @@ export const StrainGauge = () => {
     resetTemperatureInput
   );
 
+  if (strainIndex === 5 && temperatureIndex === 5) {
+    setTimeout(() => {
+      handleCompleteTask();
+    }, 100);
+  }
+
+  const { data: strainChartData } = usePairArrays(context.strain, 0);
+  const { data: tempChartData } = usePairArrays(context.strain, 1);
+  console.log(strainChartData, tempChartData);
+
   return (
     <>
       <Header heading='Strain gauge sensors' hasButton />
@@ -66,11 +75,12 @@ export const StrainGauge = () => {
           setIsSaved={handleConfigSave}
           imageSource={schematicImage}
         />
-        <Task>
+        <TasksCard>
           <TaskData sensorName='strain' context={context} />
-          <FormPanel sensorName='strain' context={context}>
+          <FormCard sensorName='strain' context={context}>
             <Form
               taskNo='1'
+              index={strainIndex}
               value={strainValue}
               isInvalid={strainHasError}
               errorMessage={strainError}
@@ -79,7 +89,8 @@ export const StrainGauge = () => {
               handleSubmit={handleStrainFormSubmit}
             />
             <Form
-              taskNo='1'
+              taskNo='2'
+              index={temperatureIndex}
               value={temperatureValue}
               isInvalid={temperatureHasError}
               errorMessage={temperatureError}
@@ -87,8 +98,11 @@ export const StrainGauge = () => {
               handleChange={handleTemperatureInputChange}
               handleSubmit={handleTemperatureFormSubmit}
             />
-          </FormPanel>
-        </Task>
+          </FormCard>
+        </TasksCard>
+        <ChartsCard>
+          <TaskChart xlabel='Microstrains (με)' ylabel='Output voltage (mV)' />
+        </ChartsCard>
       </Content>
     </>
   );

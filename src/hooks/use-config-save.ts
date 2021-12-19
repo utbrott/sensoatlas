@@ -9,8 +9,7 @@ export const useConfigSave = () => {
   const handleConfigSave = () => {
     context.saveConfig();
     toast({
-      title: 'Success',
-      description: 'Configuration has been saved.',
+      description: 'Sensor configuration has been saved.',
       status: 'success',
       duration: 3000,
       position: 'top',

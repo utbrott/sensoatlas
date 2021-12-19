@@ -4,6 +4,7 @@ import {
   Text,
   Alert,
   AlertIcon,
+  AlertTitle,
   AlertDescription,
   Box,
 } from '@chakra-ui/react';
@@ -14,7 +15,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-export const FormPanel = (props: Props) => {
+export const FormCard = (props: Props) => {
   const { context, children } = props;
 
   return (
@@ -36,15 +37,20 @@ export const FormPanel = (props: Props) => {
         </Text>
       </Box>
       {context.isConfigSaved ? (
-        <VStack w='full' flex={1} spacing={6}>
+        <VStack w='full' flex={1} spacing={8}>
           {children}
         </VStack>
       ) : (
-        <Alert status='warning' h={10} rounded='md'>
+        <Alert status='warning' rounded='md' py={1}>
           <AlertIcon />
-          <AlertDescription fontSize='sm'>
-            No sensor configuration selected
-          </AlertDescription>
+          <VStack flex={1} spacing={0} align='flex-start'>
+            <AlertTitle fontSize='sm'>
+              No sensor configuration selected
+            </AlertTitle>
+            <AlertDescription fontSize='xs'>
+              Select and save sensor configuration to submit answers.
+            </AlertDescription>
+          </VStack>
         </Alert>
       )}
     </VStack>

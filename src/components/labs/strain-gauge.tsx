@@ -3,77 +3,57 @@ import { Subheader } from '#components/subheader';
 import { Content } from '#components/content';
 import { Config } from '#components/config';
 import { LabsContext } from '#store/labs-context';
-import { useContext, useState, useRef, useEffect } from 'react';
-import { useToast } from '@chakra-ui/toast';
+import React, { useContext } from 'react';
 import { Task, TaskData, FormPanel, Form } from '#components/task';
+import { useConfigSave } from '#hooks/use-config-save';
+import { useFormInput } from '#hooks/use-form-input';
+import { useFormValidation } from '#hooks/use-form-validation';
+
+// TODO: Add tracking of task completition (New field in context)
+// TODO: Add showing of graph on task completition (Read all complete from context)
 
 export const StrainGauge = () => {
   const context = useContext(LabsContext);
-  const { config } = context.strain;
+  const { config, validationData } = context.strain;
   const schematicImage = `/images/strain-${config.bridge.type}.png`;
 
-  const toast = useToast();
-  const handleConfigSave = () => {
-    context.saveConfig();
-    toast({
-      description: 'Configuration saved',
-      status: 'success',
-      isClosable: false,
-      position: 'top',
-      duration: 3000,
-    });
-  };
+  const { handleConfigSave } = useConfigSave();
 
-  const strainRef = useRef(undefined);
-  const strainValidation = useRef<number[]>([]);
-  const [strainIndex, setStrainIndex] = useState<number>(0);
-  const [strainError, setStrainError] = useState<string>('');
+  const {
+    value: strainValue,
+    index: strainIndex,
+    isFieldEmpty: strainInputEmpty,
+    isFieldInvalid: strainInputInvalid,
+    handleChange: handleStrainInputChange,
+    handleReset: resetStrainInput,
+  } = useFormInput(validationData['0']);
 
-  const tempRef = useRef(undefined);
-  const tempValidation = useRef<number[]>([]);
-  const [tempIndex, setTempIndex] = useState<number>(0);
-  const [tempError, setTempError] = useState<string>('');
+  const {
+    value: temperatureValue,
+    index: temperatureIndex,
+    isFieldEmpty: temperatureInputEmpty,
+    isFieldInvalid: temperatureInputInvalid,
+    handleChange: handleTemperatureInputChange,
+    handleReset: resetTemperatureInput,
+  } = useFormInput(validationData['1']);
 
-  const { validationData } = context.strain;
-  useEffect(() => {
-    if (context.isValidationAvailable) {
-      strainValidation.current = validationData['0'];
-      tempValidation.current = validationData['1'];
-      console.log(strainValidation.current, tempValidation.current);
-    }
-  }, [context.isValidationAvailable, validationData]);
+  console.log(validationData['0'], validationData['1']);
 
-  const handleStrainFormUpdate = (e: any) => {
-    strainRef.current = e.currentTarget.value;
-    setStrainError('');
-  };
+  const {
+    hasError: strainHasError,
+    error: strainError,
+    handleSubmit: handleStrainFormSubmit,
+  } = useFormValidation(strainInputEmpty, strainInputInvalid, resetStrainInput);
 
-  const handleTempFormUpdate = (e: any) => {
-    tempRef.current = e.currentTarget.value;
-    setTempError('');
-  };
-
-  const handleStrainFormSubmit = (e: any) => {
-    e.preventDefault();
-    let strainInput = strainRef.current;
-    if (!strainInput) return setStrainError('Answer is required');
-    if (parseFloat(strainInput) !== strainValidation.current[strainIndex]) {
-      return setStrainError('Not correct, verify your answer');
-    }
-    setStrainIndex(strainIndex => strainIndex + 1);
-    console.log(strainInput);
-  };
-
-  const handleTempFormSubmit = (e: any) => {
-    e.preventDefault();
-    let tempInput = tempRef.current;
-    if (!tempInput) return setTempError('Answer is required');
-    if (parseFloat(tempInput) !== tempValidation.current[tempIndex]) {
-      return setTempError('Not correct, verify your answer');
-    }
-    setTempIndex(tempIndex => tempIndex + 1);
-    console.log(tempInput);
-  };
+  const {
+    hasError: temperatureHasError,
+    error: temperatureError,
+    handleSubmit: handleTemperatureFormSubmit,
+  } = useFormValidation(
+    temperatureInputEmpty,
+    temperatureInputInvalid,
+    resetTemperatureInput
+  );
 
   return (
     <>
@@ -91,19 +71,21 @@ export const StrainGauge = () => {
           <FormPanel sensorName='strain' context={context}>
             <Form
               taskNo='1'
-              isInvalid={strainError !== '' ? true : false}
-              errorString={strainError}
-              isDisabled={strainIndex === 5 ? true : false}
+              value={strainValue}
+              isInvalid={strainHasError}
+              errorMessage={strainError}
+              isComplete={strainIndex === 5}
+              handleChange={handleStrainInputChange}
               handleSubmit={handleStrainFormSubmit}
-              handleChange={handleStrainFormUpdate}
             />
             <Form
-              taskNo='2'
-              isInvalid={tempError !== '' ? true : false}
-              errorString={strainError}
-              isDisabled={tempIndex === 5 ? true : false}
-              handleSubmit={handleTempFormSubmit}
-              handleChange={handleTempFormUpdate}
+              taskNo='1'
+              value={temperatureValue}
+              isInvalid={temperatureHasError}
+              errorMessage={temperatureError}
+              isComplete={temperatureIndex === 5}
+              handleChange={handleTemperatureInputChange}
+              handleSubmit={handleTemperatureFormSubmit}
             />
           </FormPanel>
         </Task>

@@ -8,25 +8,32 @@ import {
   Input,
   FormLabel,
   Text,
+  Icon,
+  HStack,
 } from '@chakra-ui/react';
+import React from 'react';
+
+import { HiCheck } from 'react-icons/hi';
 
 type Props = {
   taskNo: string;
+  value: string;
   isInvalid: boolean;
-  errorString: string;
-  isDisabled: boolean;
-  handleSubmit: any;
-  handleChange: any;
+  errorMessage: string;
+  isComplete: boolean;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (e: React.SyntheticEvent) => void;
 };
 
 export const Form = (props: Props) => {
   const {
     taskNo,
+    value,
     isInvalid,
-    errorString,
-    isDisabled,
-    handleSubmit,
+    errorMessage,
+    isComplete,
     handleChange,
+    handleSubmit,
   } = props;
 
   return (
@@ -38,7 +45,7 @@ export const Form = (props: Props) => {
         align='flex-start'
         spacing={4}
       >
-        <FormControl isInvalid={isInvalid} isDisabled={isDisabled}>
+        <FormControl isInvalid={isInvalid} isDisabled={isComplete}>
           <FormLabel fontSize='sm'>Task {taskNo}</FormLabel>
           <Input
             id='submitted'
@@ -47,16 +54,17 @@ export const Form = (props: Props) => {
             rounded='md'
             type='number'
             step='0.01'
+            value={value}
             onChange={handleChange}
           />
-          {!isInvalid && (
+          {!isInvalid && !isComplete && (
             <FormHelperText fontSize='xs'>
               Answer format - 2 decimal digits, no trailing zeros.
             </FormHelperText>
           )}
-          <FormErrorMessage fontSize='xs'>{errorString}</FormErrorMessage>
+          <FormErrorMessage fontSize='xs'>{errorMessage}</FormErrorMessage>
         </FormControl>
-        {!isDisabled ? (
+        {!isComplete ? (
           <Button
             size='sm'
             variant='solid'
@@ -64,14 +72,17 @@ export const Form = (props: Props) => {
             fontWeight='normal'
             type='submit'
             isFullWidth
-            isDisabled={isDisabled}
+            isDisabled={isComplete}
           >
             Submit answer
           </Button>
         ) : (
-          <Text fontSize='sm' color='green.400'>
-            All answers correct!
-          </Text>
+          <HStack color='green.400'>
+            <Text fontSize='sm' color='green.400'>
+              Task completed
+            </Text>
+            <Icon as={HiCheck} />
+          </HStack>
         )}
       </VStack>
     </Box>

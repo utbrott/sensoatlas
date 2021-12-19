@@ -20,7 +20,8 @@
       "#types/*": ["src/types/*"],
       "#data/*": ["src/data/*"],
       "#store/*": ["src/store/*"],
-      "#utils/*": ["src/utils/*"]
+      "#utils/*": ["src/utils/*"],
+      "#hooks/*": ["src/hooks/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

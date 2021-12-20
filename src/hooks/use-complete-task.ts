@@ -1,11 +1,7 @@
 import { useContext } from 'react';
 import { LabsContext } from '#store/labs-context';
 
-export const useCompleteTask = () => {
+export const useCompleteTask = (required: boolean) => {
   const context = useContext(LabsContext);
-  const handleCompleteTask = () => {
-    context.updateLabFinishedState();
-  };
-
-  return { handleCompleteTask };
+  if (required) context.updateLabFinishedState();
 };

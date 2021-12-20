@@ -18,7 +18,6 @@ export const StrainGauge = () => {
   const schematicImage = `/images/strain-${config.bridge.type}.png`;
 
   const { handleConfigSave } = useConfigSave();
-  const { handleCompleteTask } = useCompleteTask();
 
   const {
     value: strainValue,
@@ -54,11 +53,7 @@ export const StrainGauge = () => {
     resetTemperatureInput
   );
 
-  if (strainIndex === 5 && temperatureIndex === 5) {
-    setTimeout(() => {
-      handleCompleteTask();
-    }, 100);
-  }
+  useCompleteTask(strainIndex === 5 && temperatureIndex === 5);
 
   const { data: strainChartData } = usePairArrays(context.strain, 0);
   const { data: tempChartData } = usePairArrays(context.strain, 1);

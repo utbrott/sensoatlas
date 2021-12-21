@@ -114,7 +114,7 @@ export const StrainGauge = () => {
               </Tab>
             </TabList>
             <TabPanels>
-              <TabPanel>
+              <TabPanel px={0} py={2}>
                 <TaskChart
                   data={strainOutVoltage}
                   chartName='strain-out-voltage'
@@ -122,7 +122,7 @@ export const StrainGauge = () => {
                   ylabel='Output voltage (mV)'
                 />
               </TabPanel>
-              <TabPanel>
+              <TabPanel px={0} py={2}>
                 <TaskChart
                   data={temperatureOutVoltage}
                   chartName='temperature-out-voltage'

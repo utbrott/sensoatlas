@@ -7,8 +7,9 @@ import {
   XAxis,
   YAxis,
   Line,
+  Tooltip,
 } from 'recharts';
-import { Button, Box } from '@chakra-ui/react';
+import { Button, Box, Text } from '@chakra-ui/react';
 import { saveAs } from 'file-saver';
 import { HiDownload } from 'react-icons/hi';
 
@@ -28,9 +29,29 @@ export const TaskChart = ({ data, chartName, xlabel, ylabel }: Props) => {
     if (chartPng) saveAs(chartPng, `${chartName}-chart.png`);
   }, [getPng, chartName]);
 
+  const ChartTooltip = ({
+    active,
+    payload,
+    label,
+  }: {
+    active?: boolean;
+    payload?: { value: number }[];
+    label?: string;
+  }) => {
+    if (active && payload) {
+      return (
+        <Box bg='gray.800' rounded='md' color='white' p={2}>
+          <Text fontSize='xs'>{`${xlabel}: ${label}`}</Text>
+          <Text fontSize='xs'>{`${ylabel}: ${payload[0].value}`}</Text>
+        </Box>
+      );
+    }
+    return null;
+  };
+
   return (
     <>
-      <Box bg='gray.50' rounded='md' w='full' h='lg' p={4} maxW='3xl' mb={2}>
+      <Box bg='gray.50' rounded='md' w='full' h='lg' p={4} maxW='3xl'>
         <ResponsiveContainer
           width={680}
           height='100%'
@@ -60,16 +81,18 @@ export const TaskChart = ({ data, chartName, xlabel, ylabel }: Props) => {
                 position: 'insideLeft',
               }}
             />
+            <Tooltip content={<ChartTooltip />} />
             <Line
               type='monotone'
               dataKey='yvalue'
-              stroke='#4299E1'
+              stroke='#3182CE'
               strokeWidth={2}
             />
           </LineChart>
         </ResponsiveContainer>
       </Box>
       <Button
+        mt={4}
         size='sm'
         colorScheme='blue'
         leftIcon={<HiDownload />}

@@ -52,18 +52,18 @@ export const Form = (props: Props) => {
             <FormLabel fontSize='sm' flex={1}>
               Task {taskNo}
             </FormLabel>
-            {isComplete ? (
-              <HStack color='green.400'>
-                <Text fontSize='xs' color='green.400'>
-                  Task completed
-                </Text>
-                <Icon as={HiCheck} />
-              </HStack>
-            ) : (
-              <Text fontSize='xs' color={isComplete ? 'green.600' : 'gray.300'}>
-                {index}/5 correct
-              </Text>
-            )}
+            <HStack w='max' h='max'>
+              {isComplete ? (
+                <>
+                  <Text fontSize='xs' color='green.400'>
+                    Task completed
+                  </Text>
+                  <Icon as={HiCheck} />
+                </>
+              ) : (
+                <Text fontSize='xs'>{index}/5 correct</Text>
+              )}
+            </HStack>
           </HStack>
           <Input
             id='submitted'

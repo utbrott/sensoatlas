@@ -106,8 +106,12 @@ export const StrainGauge = () => {
         <ChartsCard>
           <Tabs isFitted>
             <TabList mb={2}>
-              <Tab fontSize='sm'>Task 1: Vout = f(ε)</Tab>
-              <Tab fontSize='sm'>Task 2: Vout = f(T)</Tab>
+              <Tab fontSize='sm' _focus={{ outline: 'none' }}>
+                Task 1: Vout = f(ε)
+              </Tab>
+              <Tab fontSize='sm' _focus={{ outline: 'none' }}>
+                Task 2: Vout = f(T)
+              </Tab>
             </TabList>
             <TabPanels>
               <TabPanel>

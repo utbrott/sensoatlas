@@ -24,7 +24,7 @@ export const useFormInput = (validator: number[]) => {
   const isEmpty = (value: string) => value.trim() === '';
   const isFieldEmpty = isEmpty(field.value);
 
-  // ! Remove before true production deploy
+  // ! Remove before true production deploy, correct answer logger
   useEffect(() => {
     console.log(`Index ${field.index}:`, validator[field.index]);
   }, [field.index, validator]);

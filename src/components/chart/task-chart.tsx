@@ -71,10 +71,10 @@ export const TaskChart = ({ data, chartName, xlabel, ylabel }: Props) => {
       </Box>
       <Button
         size='sm'
-        colorScheme='gray'
-        fontWeight='normal'
+        colorScheme='blue'
         leftIcon={<HiDownload />}
         isLoading={isLoading}
+        isFullWidth
         onClick={handleDownload}
       >
         Download

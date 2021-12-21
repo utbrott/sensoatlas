@@ -91,7 +91,7 @@ export const Form = (props: Props) => {
           isFullWidth
           isDisabled={isComplete}
         >
-          Submit answer
+          Submit
         </Button>
       </VStack>
     </Box>

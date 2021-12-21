@@ -40,7 +40,6 @@ export const useFormValidation = (
     e.preventDefault();
     if (isEmpty) return dispatch({ type: 'EMPTY' });
     if (isInvalid) return dispatch({ type: 'INVALID' });
-    console.log('Last input submitted'); //! Remove before production deploy
     dispatch({ type: 'NONE' });
     resetFunc();
   };

@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 const initialState = {
   value: '',
@@ -24,7 +24,10 @@ export const useFormInput = (validator: number[]) => {
   const isEmpty = (value: string) => value.trim() === '';
   const isFieldEmpty = isEmpty(field.value);
 
-  console.log(validator[field.index]); //! Remove before production deploy
+  // ! Remove before true production deploy
+  useEffect(() => {
+    console.log(`Index ${field.index}:`, validator[field.index]);
+  }, [field.index, validator]);
 
   const isInvalid = (value: string) =>
     parseFloat(value) !== validator[field.index];

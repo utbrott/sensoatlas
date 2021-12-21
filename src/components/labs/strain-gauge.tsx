@@ -10,7 +10,8 @@ import { useFormInput } from '#hooks/use-form-input';
 import { useFormValidation } from '#hooks/use-form-validation';
 import { useCompleteTask } from '#hooks/use-complete-task';
 import { ChartsCard, TaskChart } from '#components/chart';
-import { usePairArrays } from '#hooks/use-pair-arrays';
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/react';
+import { useGenerateChartData } from '#hooks/use-generate-chart-data';
 
 export const StrainGauge = () => {
   const context = useContext(LabsContext);
@@ -55,9 +56,16 @@ export const StrainGauge = () => {
 
   useCompleteTask(strainIndex === 5 && temperatureIndex === 5);
 
-  const { data: strainChartData } = usePairArrays(context.strain, 0);
-  const { data: tempChartData } = usePairArrays(context.strain, 1);
-  console.log(strainChartData, tempChartData);
+  const { data: strainOutVoltage } = useGenerateChartData(
+    context.strain,
+    0,
+    false
+  );
+  const { data: temperatureOutVoltage } = useGenerateChartData(
+    context.strain,
+    1,
+    true
+  );
 
   return (
     <>
@@ -96,7 +104,30 @@ export const StrainGauge = () => {
           </FormCard>
         </TasksCard>
         <ChartsCard>
-          <TaskChart xlabel='Microstrains (με)' ylabel='Output voltage (mV)' />
+          <Tabs isFitted>
+            <TabList mb={2}>
+              <Tab fontSize='sm'>Task 1: Vout = f(ε)</Tab>
+              <Tab fontSize='sm'>Task 2: Vout = f(T)</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <TaskChart
+                  data={strainOutVoltage}
+                  chartName='strain-out-voltage'
+                  xlabel='Microstrains (με)'
+                  ylabel='Output voltage (mV)'
+                />
+              </TabPanel>
+              <TabPanel>
+                <TaskChart
+                  data={temperatureOutVoltage}
+                  chartName='temperature-out-voltage'
+                  xlabel='Temperature (deg C)'
+                  ylabel='Output voltage (mV)'
+                />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
         </ChartsCard>
       </Content>
     </>

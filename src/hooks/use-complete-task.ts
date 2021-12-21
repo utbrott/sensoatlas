@@ -3,5 +3,9 @@ import { LabsContext } from '#store/labs-context';
 
 export const useCompleteTask = (required: boolean) => {
   const context = useContext(LabsContext);
-  if (required) context.updateLabFinishedState();
+  if (required) {
+    setTimeout(() => {
+      context.updateLabFinishedState();
+    }, 500);
+  }
 };

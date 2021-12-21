@@ -87,13 +87,14 @@ export const Config = (props: Props) => {
           onClick={setIsSaved}
           isDisabled={isConfigSaved ? true : false}
         >
-          Save
+          Apply
         </Button>
         <Tooltip label='Carefully! All progress will be lost.' bg='red.300'>
           <Button
             size='sm'
-            variant='outline'
+            variant='ghost'
             colorScheme='gray'
+            fontWeight='normal'
             isFullWidth
             onClick={() => router.reload()}
             isDisabled={isConfigSaved ? false : true}

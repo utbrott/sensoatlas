@@ -29,7 +29,7 @@ export const ChartsCard = ({ children }: Props) => {
       <Heading size='sm' mb={2}>
         Generated charts
       </Heading>
-      {!context.isLabFinished && (
+      {!context.isLabFinished ? (
         <Alert status='warning' rounded='md' py={1}>
           <AlertIcon />
           <VStack flex={1} spacing={0} align='flex-start'>
@@ -39,8 +39,11 @@ export const ChartsCard = ({ children }: Props) => {
             </AlertDescription>
           </VStack>
         </Alert>
+      ) : (
+        <VStack w='full' flex={1} align='stretch'>
+          {children}
+        </VStack>
       )}
-      {children}
     </VStack>
   );
 };

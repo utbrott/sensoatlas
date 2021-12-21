@@ -49,3 +49,4 @@ export const ChartsCard = ({ children }: Props) => {
 };
 
 export { TaskChart } from './task-chart';
+export { ChartTabs } from './chart-tabs';

@@ -9,8 +9,15 @@ import { TasksCard, TaskData, FormCard, Form } from '#components/task';
 import { useFormInput } from '#hooks/use-form-input';
 import { useFormValidation } from '#hooks/use-form-validation';
 import { useCompleteTask } from '#hooks/use-complete-task';
-import { ChartsCard, TaskChart } from '#components/chart';
-import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@chakra-ui/react';
+import { ChartsCard, TaskChart, ChartTabs } from '#components/chart';
+import {
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
+  Text,
+} from '@chakra-ui/react';
 import { useGenerateChartData } from '#hooks/use-generate-chart-data';
 
 export const StrainGauge = () => {
@@ -67,6 +74,31 @@ export const StrainGauge = () => {
     true
   );
 
+  const tabs = [
+    {
+      tabTitle: 'Task 1: Vout = f($\\varepsilon$)',
+      chart: (
+        <TaskChart
+          data={strainOutVoltage}
+          chartName='strain-out-voltage'
+          xlabel='Microstrains (με)'
+          ylabel='Output voltage (mV)'
+        />
+      ),
+    },
+    {
+      tabTitle: 'Task 2: Vout = f(T)',
+      chart: (
+        <TaskChart
+          data={temperatureOutVoltage}
+          chartName='temperature-out-voltage'
+          xlabel='Temperature (°C)'
+          ylabel='Output voltage (mV)'
+        />
+      ),
+    },
+  ];
+
   return (
     <>
       <Header heading='Strain gauge sensors' hasButton />
@@ -104,34 +136,7 @@ export const StrainGauge = () => {
           </FormCard>
         </TasksCard>
         <ChartsCard>
-          <Tabs isFitted>
-            <TabList mb={2}>
-              <Tab fontSize='sm' _focus={{ outline: 'none' }}>
-                Task 1: Vout = f(ε)
-              </Tab>
-              <Tab fontSize='sm' _focus={{ outline: 'none' }}>
-                Task 2: Vout = f(T)
-              </Tab>
-            </TabList>
-            <TabPanels>
-              <TabPanel px={0} py={2}>
-                <TaskChart
-                  data={strainOutVoltage}
-                  chartName='strain-out-voltage'
-                  xlabel='Microstrains (με)'
-                  ylabel='Output voltage (mV)'
-                />
-              </TabPanel>
-              <TabPanel px={0} py={2}>
-                <TaskChart
-                  data={temperatureOutVoltage}
-                  chartName='temperature-out-voltage'
-                  xlabel='Temperature (deg C)'
-                  ylabel='Output voltage (mV)'
-                />
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
+          <ChartTabs tabsData={tabs} />
         </ChartsCard>
       </Content>
     </>

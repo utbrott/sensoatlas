@@ -22,6 +22,12 @@ type Props = {
   ylabel: string;
 };
 
+type ChartTooltipTypes = {
+  active?: boolean;
+  payload?: { value: number }[];
+  label?: string;
+};
+
 export const TaskChart = ({ data, chartName, xlabel, ylabel }: Props) => {
   const [getPng, { ref, isLoading }] = useCurrentPng();
   const handleDownload = useCallback(async () => {
@@ -29,15 +35,7 @@ export const TaskChart = ({ data, chartName, xlabel, ylabel }: Props) => {
     if (chartPng) saveAs(chartPng, `${chartName}-chart.png`);
   }, [getPng, chartName]);
 
-  const ChartTooltip = ({
-    active,
-    payload,
-    label,
-  }: {
-    active?: boolean;
-    payload?: { value: number }[];
-    label?: string;
-  }) => {
+  const ChartTooltip = ({ active, payload, label }: ChartTooltipTypes) => {
     if (active && payload) {
       return (
         <Box bg='gray.800' rounded='md' color='white' p={2}>
@@ -69,9 +67,9 @@ export const TaskChart = ({ data, chartName, xlabel, ylabel }: Props) => {
               dataKey='xvalue'
               tickCount={10}
               label={{
-                value: xlabel,
-                offset: -5,
+                value: ylabel,
                 position: 'insideBottom',
+                offset: -5,
               }}
             />
             <YAxis

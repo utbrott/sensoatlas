@@ -1,26 +1,29 @@
-export const useGenerateChartData = (
-  context: any,
-  taskIndex: number,
-  sorted: boolean
-) => {
-  const data: { xvalue: number; yvalue: number }[] = [];
-  const { taskData, validationData } = context;
+type Args = {
+  input1: number[];
+  input2: number[];
+  withSorting: boolean;
+};
 
-  let xvalues = [];
-  if (sorted) {
-    xvalues = taskData[taskIndex].sort((a: number, b: number) => a - b);
+type OutputData = {
+  xvalue: number;
+  yvalue: number;
+};
+
+export const useGenerateChartData = ({ input1, input2, withSorting }: Args) => {
+  const data: OutputData[] = [];
+  let inputValues = [];
+  if (withSorting) {
+    inputValues = input1.sort((a: number, b: number) => a - b);
   } else {
-    xvalues = taskData[taskIndex];
+    inputValues = input1;
   }
 
-  xvalues.forEach((value: number, index: number) => {
+  inputValues.forEach((value: number, index: number) => {
     data.push({
       xvalue: value,
-      yvalue: validationData[taskIndex][index],
+      yvalue: input2[index],
     });
   });
-
-  data.unshift({ xvalue: 0, yvalue: 0 });
 
   return { data };
 };

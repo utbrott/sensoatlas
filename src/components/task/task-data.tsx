@@ -13,7 +13,7 @@ import {
 import {
   generateStrainValues,
   generateTempertureValues,
-  calcValidationData,
+  strainValidationData,
 } from '#utils/generate-strain-data';
 import Latex from 'react-latex';
 
@@ -31,8 +31,8 @@ export const TaskData = (props: Props) => {
       case 'strain':
         taskData['0'] = generateStrainValues(context);
         taskData['1'] = generateTempertureValues();
-        validationData['0'] = calcValidationData(context);
-        validationData['1'] = calcValidationData(context, true);
+        validationData['0'] = strainValidationData(context);
+        validationData['1'] = strainValidationData(context, true);
     }
     setTimeout(() => context.updateValidationState(), 500);
   }

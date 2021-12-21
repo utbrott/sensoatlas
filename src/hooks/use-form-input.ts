@@ -18,7 +18,7 @@ const fieldReducer = (state: any, action: any) => {
   }
 };
 
-export const useFormInput = (validator: number[]) => {
+export const useFormInput = (validator: number[], inputName?: string) => {
   const [field, dispatch] = useReducer(fieldReducer, initialState);
 
   const isEmpty = (value: string) => value.trim() === '';
@@ -26,8 +26,8 @@ export const useFormInput = (validator: number[]) => {
 
   // ! Remove before true production deploy, correct answer logger
   useEffect(() => {
-    console.log(`Index ${field.index}:`, validator[field.index]);
-  }, [field.index, validator]);
+    console.log(`${inputName}/${field.index}:`, validator[field.index]);
+  }, [inputName, field.index, validator]);
 
   const isInvalid = (value: string) =>
     parseFloat(value) !== validator[field.index];

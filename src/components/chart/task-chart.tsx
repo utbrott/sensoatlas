@@ -20,6 +20,7 @@ type Props = {
   chartName: string;
   xlabel: string;
   ylabel: string;
+  withAutoDomain?: boolean;
 };
 
 type ChartTooltipTypes = {
@@ -28,7 +29,13 @@ type ChartTooltipTypes = {
   label?: string;
 };
 
-export const TaskChart = ({ data, chartName, xlabel, ylabel }: Props) => {
+export const TaskChart = ({
+  data,
+  chartName,
+  xlabel,
+  ylabel,
+  withAutoDomain = false,
+}: Props) => {
   const [getPng, { ref, isLoading }] = useCurrentPng();
   const handleDownload = useCallback(async () => {
     const chartPng = await getPng();
@@ -67,12 +74,13 @@ export const TaskChart = ({ data, chartName, xlabel, ylabel }: Props) => {
               dataKey='xvalue'
               tickCount={10}
               label={{
-                value: ylabel,
+                value: xlabel,
                 position: 'insideBottom',
                 offset: -5,
               }}
             />
             <YAxis
+              domain={[!withAutoDomain ? 0 : 'auto', 'auto']}
               label={{
                 value: ylabel,
                 angle: -90,

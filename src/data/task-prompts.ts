@@ -24,7 +24,7 @@ export const taskPrompts: TaskPrompts = {
     {
       taskId: 2,
       content:
-        'Given the values of temperature T ($^\\circ C$), calculate the output voltage Vout (mV).',
+        'Given the values of temperature T ($^\\circ C$) and strain $\\varepsilon$=1.5, calculate the output voltage Vout (mV).',
     },
   ],
   piezoelectric: [

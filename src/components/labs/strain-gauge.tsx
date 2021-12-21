@@ -10,19 +10,12 @@ import { useFormInput } from '#hooks/use-form-input';
 import { useFormValidation } from '#hooks/use-form-validation';
 import { useCompleteTask } from '#hooks/use-complete-task';
 import { ChartsCard, TaskChart, ChartTabs } from '#components/chart';
-import {
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  Text,
-} from '@chakra-ui/react';
 import { useGenerateChartData } from '#hooks/use-generate-chart-data';
+import { strainGaugeNewResistance } from '#utils/generate-strain-data';
 
 export const StrainGauge = () => {
   const context = useContext(LabsContext);
-  const { config, validationData } = context.strain;
+  const { config, taskData, validationData } = context.strain;
   const schematicImage = `/images/strain-${config.bridge.type}.png`;
 
   const { handleConfigSave } = useConfigSave();
@@ -34,7 +27,7 @@ export const StrainGauge = () => {
     isFieldInvalid: strainInputInvalid,
     handleChange: handleStrainInputChange,
     handleReset: resetStrainInput,
-  } = useFormInput(validationData['0']);
+  } = useFormInput(validationData['0'], 'task1');
 
   const {
     value: temperatureValue,
@@ -43,7 +36,7 @@ export const StrainGauge = () => {
     isFieldInvalid: temperatureInputInvalid,
     handleChange: handleTemperatureInputChange,
     handleReset: resetTemperatureInput,
-  } = useFormInput(validationData['1']);
+  } = useFormInput(validationData['1'], 'task2');
 
   const {
     hasError: strainHasError,
@@ -63,16 +56,24 @@ export const StrainGauge = () => {
 
   useCompleteTask(strainIndex === 5 && temperatureIndex === 5);
 
-  const { data: strainOutVoltage } = useGenerateChartData(
-    context.strain,
-    0,
-    false
-  );
-  const { data: temperatureOutVoltage } = useGenerateChartData(
-    context.strain,
-    1,
-    true
-  );
+  const { data: strainOutVoltage } = useGenerateChartData({
+    input1: taskData['0'],
+    input2: validationData['0'],
+    withSorting: false,
+  });
+
+  const { data: temperatureOutVoltage } = useGenerateChartData({
+    input1: taskData['1'],
+    input2: validationData['1'],
+    withSorting: true,
+  });
+
+  const bonusGraphData = strainGaugeNewResistance(context);
+  const { data: temperatureResistance } = useGenerateChartData({
+    input1: taskData['1'],
+    input2: bonusGraphData,
+    withSorting: true,
+  });
 
   const tabs = [
     {
@@ -87,13 +88,26 @@ export const StrainGauge = () => {
       ),
     },
     {
-      tabTitle: 'Task 2: Vout = f(T)',
+      tabTitle: 'Task 2.1: Vout = f(T)',
       chart: (
         <TaskChart
           data={temperatureOutVoltage}
           chartName='temperature-out-voltage'
           xlabel='Temperature (°C)'
           ylabel='Output voltage (mV)'
+          withAutoDomain
+        />
+      ),
+    },
+    {
+      tabTitle: 'Task 2.2: R = f(T)',
+      chart: (
+        <TaskChart
+          data={temperatureResistance}
+          chartName='temperature-resistance'
+          xlabel='Temperature (°C)'
+          ylabel='Resistance (Ω)'
+          withAutoDomain
         />
       ),
     },

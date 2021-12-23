@@ -1,7 +1,7 @@
 import { LabsContext } from './labs-context';
 import { useState, useReducer } from 'react';
 import { sensorDefaults } from '#data/sensor-defaults';
-import { strainConfigReducer } from './reducers/strain-reducers';
+import { strainConfigReducer, temperatureRtdConfigReducer } from './reducers';
 
 type Props = {
   children: React.ReactNode;
@@ -13,13 +13,23 @@ export const LabsProvider = ({ children }: Props) => {
     sensorDefaults.strain.config
   );
 
+  const [temperatureRtdConfig, updateTemperatureRtdConfig] = useReducer(
+    temperatureRtdConfigReducer,
+    sensorDefaults.temperatureRtd.config
+  );
+
   const handleConfigUpdate = (
     sensor: string,
     configField: string,
     value: string
   ) => {
     switch (sensor) {
-      case 'temperature':
+      case 'temperatureRtd':
+        updateTemperatureRtdConfig({
+          type: `CHANGE_${configField.toUpperCase()}`,
+          payload: value,
+        });
+      case 'temperatureCouple':
         return null;
       case 'displacement':
         return null;
@@ -38,7 +48,13 @@ export const LabsProvider = ({ children }: Props) => {
   const [isLabFinished, setIsLabFinished] = useState(false);
 
   const labsContext = {
-    temperature: {
+    temperatureRtd: {
+      config: temperatureRtdConfig,
+      taskPrompts: sensorDefaults.temperatureRtd.taskPrompts,
+      taskData: sensorDefaults.temperatureRtd.taskData,
+      validationData: sensorDefaults.temperatureRtd.validationData,
+    },
+    temperatureCouple: {
       config: {},
       taskPrompts: [{ taskId: 0, content: '' }],
       taskData: { 0: [] },

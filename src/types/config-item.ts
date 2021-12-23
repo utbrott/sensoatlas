@@ -9,7 +9,12 @@ type SelectItem = {
 type ItemTypeProps = RadioItem | SelectItem;
 
 export type ConfigItem = ItemTypeProps & {
-  sensor: 'temperature' | 'displacement' | 'strain' | 'piezoelectric';
+  sensor:
+    | 'temperatureRtd'
+    | 'temperatureCouple'
+    | 'displacement'
+    | 'strain'
+    | 'piezoelectric';
   id: string;
   label: string;
   options: string[];

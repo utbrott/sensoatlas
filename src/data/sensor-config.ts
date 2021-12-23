@@ -1,15 +1,33 @@
 import { ConfigItem } from '#types/config-item';
 
 export const SensorConfig: ConfigItem[] = [
-  // {
-  //   sensor: 'temperature',
-  //   id: 'bridge',
-  //   type: 'radio',
-  //   label: 'Bridge Configuration',
-  //   options: ['quater', 'half', 'full'],
-  //   optionLabels: ['Quater', 'Half', 'Full'],
-  //   defaultValue: 'quater',
-  // },
+  {
+    sensor: 'temperatureRtd',
+    id: 'sensor',
+    type: 'select',
+    label: 'Inner wire material',
+    options: ['platinum', 'copper', 'nickel', 'tungsten'],
+    optionLabels: ['Platinum', 'Copper', 'Nickel', 'Tungsten'],
+    defaultValue: 'platinum',
+  },
+  {
+    sensor: 'temperatureRtd',
+    id: 'filler',
+    type: 'radio',
+    label: 'Thermowell filling material',
+    options: ['mgoPowder', 'siliconCompound'],
+    optionLabels: ['MgO Powder', 'Silicon Compound'],
+    defaultValue: 'mgoPowder',
+  },
+  {
+    sensor: 'temperatureRtd',
+    id: 'resistance',
+    type: 'select',
+    label: 'Resistance (R)',
+    options: ['100', '500', '1000'],
+    optionLabels: ['100Ω', '500Ω', '1000Ω'],
+    defaultValue: '100',
+  },
   {
     sensor: 'strain',
     id: 'metal',

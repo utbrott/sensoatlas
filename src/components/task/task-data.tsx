@@ -60,18 +60,20 @@ export const TaskData = (props: Props) => {
               <Text fontSize='sm' textAlign='justify' mb={2}>
                 <Latex>{item.content}</Latex>
               </Text>
-              <HStack spacing={2}>
-                <Text fontSize='sm' fontWeight='medium'>
-                  Data:
-                </Text>
+              {item.hasData && (
                 <HStack spacing={2}>
-                  {taskData[item.taskId - 1].map((item: number) => (
-                    <Tag key={item} variant='subtle' colorScheme='blue'>
-                      {item}
-                    </Tag>
-                  ))}
+                  <Text fontSize='sm' fontWeight='medium'>
+                    Data:
+                  </Text>
+                  <HStack spacing={2}>
+                    {taskData[item.taskId - 1].map((item: number) => (
+                      <Tag key={item} variant='subtle' colorScheme='blue'>
+                        {item}
+                      </Tag>
+                    ))}
+                  </HStack>
                 </HStack>
-              </HStack>
+              )}
             </Box>
           ))}
         </VStack>

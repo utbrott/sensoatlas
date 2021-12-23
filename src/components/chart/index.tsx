@@ -48,5 +48,6 @@ export const ChartsCard = ({ children }: Props) => {
   );
 };
 
-export { TaskChart } from './task-chart';
+export { SingleLineChart } from './single-line-chart';
+export { MultiLineChart } from './multi-line-chart';
 export { ChartTabs } from './chart-tabs';

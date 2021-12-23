@@ -18,6 +18,7 @@ import { HiCheck } from 'react-icons/hi';
 type Props = {
   taskNo: string;
   index: string;
+  maxIndex: number;
   value: string;
   isInvalid: boolean;
   errorMessage: string;
@@ -30,6 +31,7 @@ export const Form = (props: Props) => {
   const {
     taskNo,
     index,
+    maxIndex,
     value,
     isInvalid,
     errorMessage,
@@ -58,10 +60,12 @@ export const Form = (props: Props) => {
                   <Text fontSize='xs' color='green.400'>
                     Task completed
                   </Text>
-                  <Icon as={HiCheck} />
+                  <Icon as={HiCheck} color='green.400' />
                 </>
               ) : (
-                <Text fontSize='xs'>{index}/5 correct</Text>
+                <Text fontSize='xs'>
+                  {index}/{maxIndex} correct
+                </Text>
               )}
             </HStack>
           </HStack>
@@ -71,7 +75,7 @@ export const Form = (props: Props) => {
             size='sm'
             rounded='md'
             type='number'
-            step='0.01'
+            step='0.001'
             value={value}
             onChange={handleChange}
           />

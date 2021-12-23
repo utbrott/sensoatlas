@@ -1,7 +1,34 @@
 import { taskPrompts } from './task-prompts';
 
 export const sensorDefaults = {
-  temperature: {},
+  temperatureRtd: {
+    config: {
+      sensorMaterial: {
+        metal: 'platinum',
+        tempCoeff: 0.003729,
+        density: 21.45,
+        heatCapacity: 0.133,
+        conductivity: 69.1,
+      },
+      fillerMaterial: {
+        type: 'mgoPowder',
+        density: 3.58,
+        heatCapacity: 0.877,
+        conductivity: 26.8,
+      },
+      resistance: '100',
+    },
+    taskPrompts: taskPrompts.temperatureRtd,
+    taskData: {
+      0: [],
+      1: [],
+    },
+    validationData: {
+      0: [],
+      1: [],
+    },
+  },
+  temperatureCouple: {},
   displacement: {},
   strain: {
     config: {

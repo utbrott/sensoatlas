@@ -1,7 +1,28 @@
 import { createContext } from 'react';
 
 export const LabsContext = createContext({
-  temperature: {
+  temperatureRtd: {
+    config: {
+      sensorMaterial: {
+        metal: '',
+        tempCoeff: 0,
+        density: 0,
+        heatCapacity: 0,
+        conductivity: 0,
+      },
+      fillerMaterial: {
+        type: '',
+        density: 0,
+        heatCapacity: 0,
+        conductivity: 0,
+      },
+      resistance: '',
+    },
+    taskPrompts: [{ taskId: 0, content: '' }],
+    taskData: { 0: [] },
+    validationData: { 0: [] },
+  },
+  temperatureCouple: {
     config: {},
     taskPrompts: [{ taskId: 0, content: '' }],
     taskData: { 0: [] },

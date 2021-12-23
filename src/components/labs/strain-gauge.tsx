@@ -9,8 +9,8 @@ import { TasksCard, TaskData, FormCard, Form } from '#components/task';
 import { useFormInput } from '#hooks/use-form-input';
 import { useFormValidation } from '#hooks/use-form-validation';
 import { useCompleteTask } from '#hooks/use-complete-task';
-import { ChartsCard, TaskChart, ChartTabs } from '#components/chart';
-import { useGenerateChartData } from '#hooks/use-generate-chart-data';
+import { ChartsCard, SingleLineChart, ChartTabs } from '#components/chart';
+import { useSingleLineChartData } from '#hooks/use-chart-data';
 import { strainGaugeNewResistance } from '#utils/generate-strain-data';
 
 export const StrainGauge = () => {
@@ -56,45 +56,42 @@ export const StrainGauge = () => {
 
   useCompleteTask(strainIndex === 5 && temperatureIndex === 5);
 
-  const { data: strainOutVoltage } = useGenerateChartData({
+  const { data: strainOutVoltage } = useSingleLineChartData({
     input1: taskData['0'],
     input2: validationData['0'],
-    withSorting: false,
   });
 
-  const { data: temperatureOutVoltage } = useGenerateChartData({
+  const { data: temperatureOutVoltage } = useSingleLineChartData({
     input1: taskData['1'],
     input2: validationData['1'],
-    withSorting: true,
   });
 
   const bonusGraphData = strainGaugeNewResistance(context);
-  const { data: temperatureResistance } = useGenerateChartData({
+  const { data: temperatureResistance } = useSingleLineChartData({
     input1: taskData['1'],
     input2: bonusGraphData,
-    withSorting: true,
   });
 
-  const tabs = [
+  const tabsData = [
     {
       tabTitle: 'Task 1: Vout = f($\\varepsilon$)',
       chart: (
-        <TaskChart
+        <SingleLineChart
           data={strainOutVoltage}
           chartName='strain-out-voltage'
-          xlabel='Microstrains (με)'
-          ylabel='Output voltage (mV)'
+          xlabel='Microstrains [με]'
+          ylabel='Output voltage [mV]'
         />
       ),
     },
     {
       tabTitle: 'Task 2.1: Vout = f(T)',
       chart: (
-        <TaskChart
+        <SingleLineChart
           data={temperatureOutVoltage}
           chartName='temperature-out-voltage'
-          xlabel='Temperature (°C)'
-          ylabel='Output voltage (mV)'
+          xlabel='Temperature [°C]'
+          ylabel='Output voltage [mV]'
           withAutoDomain
         />
       ),
@@ -102,11 +99,11 @@ export const StrainGauge = () => {
     {
       tabTitle: 'Task 2.2: R = f(T)',
       chart: (
-        <TaskChart
+        <SingleLineChart
           data={temperatureResistance}
           chartName='temperature-resistance'
-          xlabel='Temperature (°C)'
-          ylabel='Resistance (Ω)'
+          xlabel='Temperature [°C]'
+          ylabel='Resistance [Ω]'
           withAutoDomain
         />
       ),
@@ -130,6 +127,7 @@ export const StrainGauge = () => {
             <Form
               taskNo='1'
               index={strainIndex}
+              maxIndex={5}
               value={strainValue}
               isInvalid={strainHasError}
               errorMessage={strainError}
@@ -140,6 +138,7 @@ export const StrainGauge = () => {
             <Form
               taskNo='2'
               index={temperatureIndex}
+              maxIndex={5}
               value={temperatureValue}
               isInvalid={temperatureHasError}
               errorMessage={temperatureError}
@@ -150,7 +149,7 @@ export const StrainGauge = () => {
           </FormCard>
         </TasksCard>
         <ChartsCard>
-          <ChartTabs tabsData={tabs} />
+          <ChartTabs tabsData={tabsData} />
         </ChartsCard>
       </Content>
     </>

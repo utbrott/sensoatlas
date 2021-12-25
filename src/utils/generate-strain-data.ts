@@ -1,9 +1,10 @@
 import { generateFromRange } from './generate-from-range';
+import { roundToDecimal } from './round-to-decimal';
 
 const calculateStrain = (mod: number, area: number, mass: number) => {
   const modulus = mod * 10 ** 9;
-  let value = ((mass * 9.81) / (area * modulus)) * 10 ** 6;
-  return parseFloat(value.toFixed(2));
+  const value = ((mass * 9.81) / (area * modulus)) * 10 ** 6;
+  return roundToDecimal(value);
 };
 
 const calculateTemperatureEffect = (coeff: number, tempValue: number) => {
@@ -28,7 +29,7 @@ const calculateNewResistance = (
   const TEMP_EFFECT = calculateTemperatureEffect(coeff, temp);
 
   const value = resistance * (1 + DELTA_RESISTANCE + TEMP_EFFECT);
-  return parseFloat(value.toFixed(2));
+  return roundToDecimal(value);
 };
 
 const calculateOutputVoltage = (
@@ -45,11 +46,11 @@ const calculateOutputVoltage = (
   if (tempCoeff && temp) {
     const TEMP_EFFECT = calculateTemperatureEffect(tempCoeff, temp);
     const value = bridge * inputVoltage * DELTA_RESISTANCE + TEMP_EFFECT;
-    return parseFloat(value.toFixed(2));
+    return roundToDecimal(value);
   }
 
   const value = bridge * inputVoltage * DELTA_RESISTANCE;
-  return parseFloat(value.toFixed(2));
+  return roundToDecimal(value);
 };
 
 export const generateStrainValues = (context: any) => {
@@ -64,10 +65,8 @@ export const generateStrainValues = (context: any) => {
 
   const set = new Set<number>();
   for (let i = set.size; set.size < 5; ++i) {
-    const value = parseFloat(
-      generateFromRange(MIN_STRAIN, MAX_STRAIN, 0.1).toFixed(2)
-    );
-    set.add(value);
+    const value = generateFromRange(MIN_STRAIN, MAX_STRAIN, 0.1);
+    set.add(roundToDecimal(value));
   }
   return [...Array.from(set)];
 };

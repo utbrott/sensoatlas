@@ -1,3 +1,5 @@
+import { roundToDecimal } from './round-to-decimal';
+
 const calculateResistanceInTemperature = (
   res: string,
   coeff: number,
@@ -7,7 +9,7 @@ const calculateResistanceInTemperature = (
   const REF_TEMPERATURE = 0;
   const value = resistance * (1 + coeff * (temp - REF_TEMPERATURE));
 
-  return parseFloat(value.toFixed(2));
+  return roundToDecimal(value);
 };
 
 const calculateTimeConstant = (
@@ -28,7 +30,7 @@ const calculateTimeConstant = (
 
   const value =
     ((thickness * 10 ** -3) / conductivity) * density * LENGTH * heatCapacity;
-  return parseFloat(value.toFixed(2));
+  return roundToDecimal(value);
 };
 
 export const tauValidation = (context: any) => {

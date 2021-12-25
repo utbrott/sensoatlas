@@ -1,4 +1,5 @@
 import { generateFromRange } from './generate-from-range';
+import { roundToDecimal } from './round-to-decimal';
 
 type TemperatureValuesArgs = {
   min: number;
@@ -48,7 +49,8 @@ const calculateTemperature = ({ time, tau, sensorType }: TemperatureArgs) => {
   const value =
     MEDIUM_TEMPERATURE -
     (MEDIUM_TEMPERATURE - INITIAL_TEMPERATURE) * Math.exp(-(time / tau));
-  return parseFloat(value.toFixed(2));
+
+  return roundToDecimal(value);
 };
 
 export const generateTemperatureSlope = ({

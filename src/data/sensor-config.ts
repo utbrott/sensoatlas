@@ -24,8 +24,8 @@ export const SensorConfig: ConfigItem[] = [
     id: 'thickness',
     type: 'radio',
     label: 'Sheath/Thermowell thickness',
-    options: ['0.5', '1.0', '1.5'],
-    optionLabels: ['0.5mm', '1.0mm', '1.5mm'],
+    options: ['0.5', '0.75', '1.0'],
+    optionLabels: ['0.5mm', '0.75mm', '1.0mm'],
     defaultValue: '0.5',
   },
   {

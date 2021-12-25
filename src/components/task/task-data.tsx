@@ -33,7 +33,7 @@ export const TaskData = (props: Props) => {
   if (context.isConfigSaved && !context.isValidationAvailable) {
     switch (sensorName) {
       case 'temperatureRtd':
-        taskData['0'] = generateTempertureValues({ min: -50, max: 500 });
+        taskData['0'] = generateTempertureValues({ min: 0, max: 500 });
         validationData['0'] = rtdResistanceValidation(context);
         validationData['1'] = tauValidation(context);
         break;

@@ -31,7 +31,7 @@ type Props = {
 
 type ChartTooltipTypes = {
   active?: boolean;
-  payload?: { value: number }[];
+  payload?: { name: string; value: number }[];
   label?: string;
 };
 
@@ -53,7 +53,10 @@ export const MultiLineChart = ({
       return (
         <Box bg='gray.800' rounded='md' color='white' p={2}>
           <Text fontSize='xs'>{`${xlabel}: ${label}`}</Text>
-          <Text fontSize='xs'>{`${ylabel}: ${payload[0].value}`}</Text>
+          <Text fontSize='xs'>{`${ylabel}`}</Text>
+          <Text fontSize='xs'>{`${payload[0].name}: ${payload[0].value}`}</Text>
+          <Text fontSize='xs'>{`${payload[1].name}: ${payload[1].value}`}</Text>
+          <Text fontSize='xs'>{`${payload[2].name}: ${payload[2].value}`}</Text>
         </Box>
       );
     }
@@ -78,7 +81,8 @@ export const MultiLineChart = ({
             <XAxis
               type='number'
               dataKey='xvalue'
-              interval={4}
+              tickCount={11}
+              domain={[0, 'dataMax']}
               label={{
                 value: xlabel,
                 position: 'insideBottom',
@@ -122,7 +126,7 @@ export const MultiLineChart = ({
               strokeWidth={2}
               dot={false}
             />
-            <Legend />
+            <Legend verticalAlign='top' />
           </LineChart>
         </ResponsiveContainer>
       </Box>

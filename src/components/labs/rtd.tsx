@@ -7,12 +7,14 @@ import { TasksCard, TaskData, FormCard, Form } from '#components/task';
 import { useFormInput } from '#hooks/use-form-input';
 import { useFormValidation } from '#hooks/use-form-validation';
 import { useCompleteTask } from '#hooks/use-complete-task';
-import { ChartsCard, MultiLineChart, ChartTabs } from '#components/chart';
-import { useSingleLineChartData } from '#hooks/use-chart-data';
 import {
-  generateTemperatureSlope,
-  generateTempertureValues,
-} from '#utils/generate-temperature-values';
+  ChartsCard,
+  SingleLineChart,
+  MultiLineChart,
+  ChartTabs,
+} from '#components/chart';
+import { useSingleLineChartData } from '#hooks/use-chart-data';
+import { generateTemperatureSlope } from '#utils/generate-temperature-values';
 import { Box } from '@chakra-ui/react';
 
 export const RTDSensor = () => {
@@ -21,10 +23,6 @@ export const RTDSensor = () => {
   const schematicImage = `/images/temperature-rtd.png`;
 
   const { handleConfigSave } = useConfigSave();
-
-  console.log(context.temperatureRtd.config);
-  console.log(taskData);
-  console.log(validationData);
 
   const {
     value: resistanceValue,
@@ -71,21 +69,33 @@ export const RTDSensor = () => {
     input2: validationData['0'],
   });
 
-  const slopeData = generateTemperatureSlope({
+  const timeTemperatureRtd = generateTemperatureSlope({
     sensorType: 'rtd',
     tauValuesArray: validationData['1'],
   });
 
-  console.log(slopeData);
-
   const tabsData = [
     {
       tabTitle: 'Task 1: Static RTD sensor characteristic',
-      chart: <Box />,
+      chart: (
+        <SingleLineChart
+          data={temperatureResistance}
+          chartName='temperature-resistance'
+          xlabel='Temperature [°C]'
+          ylabel='Resistance [Ω]'
+        />
+      ),
     },
     {
       tabTitle: 'Task 2: Dynamic RTD sensor characteristic',
-      chart: <Box />,
+      chart: (
+        <MultiLineChart
+          data={timeTemperatureRtd}
+          chartName='time-temperature-rtd'
+          xlabel='Time [s]'
+          ylabel='Temperature [°C]'
+        />
+      ),
     },
   ];
 

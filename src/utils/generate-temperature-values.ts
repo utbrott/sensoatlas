@@ -1,5 +1,5 @@
 import { generateFromRange } from './generate-from-range';
-import { roundToDecimal } from './round-to-decimal';
+import { round } from 'lodash';
 
 type TemperatureValuesArgs = {
   min: number;
@@ -35,13 +35,15 @@ export const generateTempertureValues = ({
 };
 
 const calculateTemperature = ({ time, tau, sensorType }: TemperatureArgs) => {
-  let INITIAL_TEMPERATURE: number;
-  let MEDIUM_TEMPERATURE: number;
+  let INITIAL_TEMPERATURE: number = 0;
+  let MEDIUM_TEMPERATURE: number = 0;
 
   if (sensorType === 'rtd') {
     INITIAL_TEMPERATURE = 0;
     MEDIUM_TEMPERATURE = 50;
-  } else {
+  }
+
+  if (sensorType === 'thermocouple') {
     INITIAL_TEMPERATURE = 0;
     MEDIUM_TEMPERATURE = 300;
   }
@@ -50,7 +52,7 @@ const calculateTemperature = ({ time, tau, sensorType }: TemperatureArgs) => {
     MEDIUM_TEMPERATURE -
     (MEDIUM_TEMPERATURE - INITIAL_TEMPERATURE) * Math.exp(-(time / tau));
 
-  return roundToDecimal(value);
+  return round(value, 2);
 };
 
 export const generateTemperatureSlope = ({

@@ -7,7 +7,7 @@ export const taskPrompts: TaskPrompts = {
     {
       taskId: 1,
       content:
-        'Given the values of temperature T $[^\\circ C]$, calculate the output resistance $[\\Omega]$.',
+        'Given the values of temperature T $[^\\circ C]$, calculate resistance $[\\Omega]$ on the output.',
       hasData: true,
     },
     {
@@ -20,13 +20,15 @@ export const taskPrompts: TaskPrompts = {
   temperatureCouple: [
     {
       taskId: 1,
-      content: '',
+      content:
+        'Given the values of temperature T $[^\\circ C]$, calculate the output voltage $[mV]$.',
       hasData: true,
     },
     {
       taskId: 2,
-      content: '',
-      hasData: true,
+      content:
+        'Based on selected sensor configuration, calculate time constant $\\tau[\\text{s}]$ of sensor (bare, sheathed and in thermowell).',
+      hasData: false,
     },
   ],
   displacement: [

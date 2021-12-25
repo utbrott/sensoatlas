@@ -15,7 +15,6 @@ import {
 } from '#components/chart';
 import { useSingleLineChartData } from '#hooks/use-chart-data';
 import { generateTemperatureSlope } from '#utils/generate-temperature-values';
-import { Box } from '@chakra-ui/react';
 
 export const RTDSensor = () => {
   const context = useContext(LabsContext);

@@ -1,10 +1,10 @@
 import { generateFromRange } from './generate-from-range';
-import { roundToDecimal } from './round-to-decimal';
+import { round } from 'lodash';
 
 const calculateStrain = (mod: number, area: number, mass: number) => {
   const modulus = mod * 10 ** 9;
   const value = ((mass * 9.81) / (area * modulus)) * 10 ** 6;
-  return roundToDecimal(value);
+  return round(value, 2);
 };
 
 const calculateTemperatureEffect = (coeff: number, tempValue: number) => {
@@ -29,7 +29,7 @@ const calculateNewResistance = (
   const TEMP_EFFECT = calculateTemperatureEffect(coeff, temp);
 
   const value = resistance * (1 + DELTA_RESISTANCE + TEMP_EFFECT);
-  return roundToDecimal(value);
+  return round(value, 2);
 };
 
 const calculateOutputVoltage = (
@@ -46,11 +46,11 @@ const calculateOutputVoltage = (
   if (tempCoeff && temp) {
     const TEMP_EFFECT = calculateTemperatureEffect(tempCoeff, temp);
     const value = bridge * inputVoltage * DELTA_RESISTANCE + TEMP_EFFECT;
-    return roundToDecimal(value);
+    return round(value, 2);
   }
 
   const value = bridge * inputVoltage * DELTA_RESISTANCE;
-  return roundToDecimal(value);
+  return round(value, 2);
 };
 
 export const generateStrainValues = (context: any) => {
@@ -66,7 +66,7 @@ export const generateStrainValues = (context: any) => {
   const set = new Set<number>();
   for (let i = set.size; set.size < 5; ++i) {
     const value = generateFromRange(MIN_STRAIN, MAX_STRAIN, 0.1);
-    set.add(roundToDecimal(value));
+    set.add(round(value, 2));
   }
   return [...Array.from(set)];
 };

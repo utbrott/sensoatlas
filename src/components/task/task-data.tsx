@@ -10,15 +10,17 @@ import {
   AlertTitle,
   AlertDescription,
 } from '@chakra-ui/react';
+import { generateTempertureValues } from '#utils/generate-temperature-values';
 import {
   generateStrainValues,
   strainValidationData,
-} from '#utils/generate-strain-data';
-import { generateTempertureValues } from '#utils/generate-temperature-values';
+} from '#utils/generate-strain-lab-data';
 import {
   rtdResistanceValidation,
-  tauValidation,
-} from '#utils/generate-temperatureRtd-data';
+  thermocoupleVoltageValidation,
+  tauValidationRtd,
+  tauValidationCouple,
+} from '#utils/generate-temperature-lab-data';
 import Latex from 'react-latex';
 
 type Props = {
@@ -35,7 +37,12 @@ export const TaskData = (props: Props) => {
       case 'temperatureRtd':
         taskData['0'] = generateTempertureValues({ min: 0, max: 500 });
         validationData['0'] = rtdResistanceValidation(context);
-        validationData['1'] = tauValidation(context);
+        validationData['1'] = tauValidationRtd(context);
+        break;
+      case 'temperatureCouple':
+        taskData['0'] = generateTempertureValues({ min: 0, max: 500 });
+        validationData['0'] = thermocoupleVoltageValidation(context);
+        validationData['1'] = tauValidationCouple(context);
         break;
       case 'strain':
         taskData['0'] = generateStrainValues(context);

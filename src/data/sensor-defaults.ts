@@ -28,7 +28,33 @@ export const sensorDefaults = {
       1: [],
     },
   },
-  temperatureCouple: {},
+  temperatureCouple: {
+    config: {
+      thermocouple: {
+        type: 'typeJ',
+        seebeckCoeff: 51,
+        density: 8535,
+        heatCapacity: 345,
+        conductivity: 46,
+      },
+      fillerMaterial: {
+        type: 'mgoPowder',
+        density: 3580,
+        heatCapacity: 877,
+        conductivity: 26.8,
+      },
+      refTemperature: '0',
+      thickness: '0.5',
+    },
+    taskPrompts: taskPrompts.temperatureCouple,
+    taskData: {
+      0: [],
+    },
+    validationData: {
+      0: [],
+      1: [],
+    },
+  },
   displacement: {},
   strain: {
     config: {

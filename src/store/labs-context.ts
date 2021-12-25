@@ -29,7 +29,23 @@ export const LabsContext = createContext({
     },
   },
   temperatureCouple: {
-    config: {},
+    config: {
+      thermocouple: {
+        type: '',
+        seebeckCoeff: 0,
+        density: 0,
+        heatCapacity: 0,
+        conductivity: 0,
+      },
+      fillerMaterial: {
+        type: '',
+        density: 0,
+        heatCapacity: 0,
+        conductivity: 0,
+      },
+      refTemperature: '',
+      thickness: '',
+    },
     taskPrompts: [{ taskId: 0, content: '' }],
     taskData: {
       0: [],

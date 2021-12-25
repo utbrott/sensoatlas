@@ -11,7 +11,7 @@ import { useFormValidation } from '#hooks/use-form-validation';
 import { useCompleteTask } from '#hooks/use-complete-task';
 import { ChartsCard, SingleLineChart, ChartTabs } from '#components/chart';
 import { useSingleLineChartData } from '#hooks/use-chart-data';
-import { strainGaugeNewResistance } from '#utils/generate-strain-data';
+import { strainGaugeNewResistance } from '#utils/generate-strain-lab-data';
 
 export const StrainGauge = () => {
   const context = useContext(LabsContext);

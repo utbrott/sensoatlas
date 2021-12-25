@@ -9,14 +9,22 @@ import { useFormValidation } from '#hooks/use-form-validation';
 import { useCompleteTask } from '#hooks/use-complete-task';
 import { ChartsCard, MultiLineChart, ChartTabs } from '#components/chart';
 import { useSingleLineChartData } from '#hooks/use-chart-data';
+import {
+  generateTemperatureSlope,
+  generateTempertureValues,
+} from '#utils/generate-temperature-values';
 import { Box } from '@chakra-ui/react';
 
 export const RTDSensor = () => {
   const context = useContext(LabsContext);
-  const { taskData, validationData } = context.strain;
+  const { taskData, validationData } = context.temperatureRtd;
   const schematicImage = `/images/temperature-rtd.png`;
 
   const { handleConfigSave } = useConfigSave();
+
+  console.log(context.temperatureRtd.config);
+  console.log(taskData);
+  console.log(validationData);
 
   const {
     value: resistanceValue,
@@ -63,10 +71,12 @@ export const RTDSensor = () => {
     input2: validationData['0'],
   });
 
-  const { data: timeConstant } = useSingleLineChartData({
-    input1: taskData['1'],
-    input2: validationData['1'],
+  const slopeData = generateTemperatureSlope({
+    sensorType: 'rtd',
+    tauValuesArray: validationData['1'],
   });
+
+  console.log(slopeData);
 
   const tabsData = [
     {

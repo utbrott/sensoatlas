@@ -81,7 +81,7 @@ export const Form = (props: Props) => {
           />
           {!isInvalid && !isComplete && (
             <FormHelperText fontSize='xs'>
-              Answer format - 3 decimal digits, no trailing zeros.
+              Answer format - 2 decimal digits, no trailing zeros.
             </FormHelperText>
           )}
           <FormErrorMessage fontSize='xs'>{errorMessage}</FormErrorMessage>

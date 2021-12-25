@@ -26,7 +26,7 @@ export const ConfigField = (props: Props) => {
         >
           <Stack direction='row' spacing={4}>
             {options.map((option, index) => (
-              <Radio key={index} value={option}>
+              <Radio key={index} value={option} size='sm'>
                 {optionLabels[index]}
               </Radio>
             ))}

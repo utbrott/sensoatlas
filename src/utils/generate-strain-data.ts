@@ -3,7 +3,7 @@ import { generateFromRange } from './generate-from-range';
 const calculateStrain = (mod: number, area: number, mass: number) => {
   const modulus = mod * 10 ** 9;
   let value = ((mass * 9.81) / (area * modulus)) * 10 ** 6;
-  return parseFloat(value.toFixed(3));
+  return parseFloat(value.toFixed(2));
 };
 
 const calculateTemperatureEffect = (coeff: number, tempValue: number) => {
@@ -28,7 +28,7 @@ const calculateNewResistance = (
   const TEMP_EFFECT = calculateTemperatureEffect(coeff, temp);
 
   const value = resistance * (1 + DELTA_RESISTANCE + TEMP_EFFECT);
-  return parseFloat(value.toFixed(3));
+  return parseFloat(value.toFixed(2));
 };
 
 const calculateOutputVoltage = (
@@ -45,11 +45,11 @@ const calculateOutputVoltage = (
   if (tempCoeff && temp) {
     const TEMP_EFFECT = calculateTemperatureEffect(tempCoeff, temp);
     const value = bridge * inputVoltage * DELTA_RESISTANCE + TEMP_EFFECT;
-    return parseFloat(value.toFixed(3));
+    return parseFloat(value.toFixed(2));
   }
 
   const value = bridge * inputVoltage * DELTA_RESISTANCE;
-  return parseFloat(value.toFixed(3));
+  return parseFloat(value.toFixed(2));
 };
 
 export const generateStrainValues = (context: any) => {
@@ -65,21 +65,10 @@ export const generateStrainValues = (context: any) => {
   const set = new Set<number>();
   for (let i = set.size; set.size < 5; ++i) {
     const value = parseFloat(
-      generateFromRange(MIN_STRAIN, MAX_STRAIN, 0.1).toFixed(3)
+      generateFromRange(MIN_STRAIN, MAX_STRAIN, 0.1).toFixed(2)
     );
     set.add(value);
   }
-  return [...Array.from(set)];
-};
-
-export const generateTempertureValues = () => {
-  const set = new Set<number>();
-  set.add(0);
-  for (let i = set.size; set.size < 4; ++i) {
-    set.add(generateFromRange(0, 45, 5));
-  }
-  set.add(50);
-
   return [...Array.from(set)];
 };
 

@@ -12,9 +12,13 @@ import {
 } from '@chakra-ui/react';
 import {
   generateStrainValues,
-  generateTempertureValues,
   strainValidationData,
 } from '#utils/generate-strain-data';
+import { generateTempertureValues } from '#utils/generate-temperature-values';
+import {
+  rtdResistanceValidation,
+  tauValidation,
+} from '#utils/generate-temperatureRtd-data';
 import Latex from 'react-latex';
 
 type Props = {
@@ -28,11 +32,17 @@ export const TaskData = (props: Props) => {
 
   if (context.isConfigSaved && !context.isValidationAvailable) {
     switch (sensorName) {
+      case 'temperatureRtd':
+        taskData['0'] = generateTempertureValues({ min: -50, max: 500 });
+        validationData['0'] = rtdResistanceValidation(context);
+        validationData['1'] = tauValidation(context);
+        break;
       case 'strain':
         taskData['0'] = generateStrainValues(context);
-        taskData['1'] = generateTempertureValues();
+        taskData['1'] = generateTempertureValues({ min: 0, max: 50 });
         validationData['0'] = strainValidationData(context);
         validationData['1'] = strainValidationData(context, true);
+        break;
     }
     setTimeout(() => context.updateValidationState(), 500);
   }

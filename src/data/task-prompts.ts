@@ -7,7 +7,7 @@ export const taskPrompts: TaskPrompts = {
     {
       taskId: 1,
       content:
-        'Given the randomized values of temperature T $[^\\circ C]$, calculate the output resistance $[\\Omega]$.',
+        'Given the values of temperature T $[^\\circ C]$, calculate the output resistance $[\\Omega]$.',
       hasData: true,
     },
     {

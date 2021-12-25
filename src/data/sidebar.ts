@@ -6,10 +6,20 @@ import { NavItem } from '#types/nav-item';
 
 export const navItems: NavItem[] = [
   {
+    type: 'header',
+    label: 'General',
+  },
+  {
     type: 'link',
     href: '/',
     icon: FaHome,
     label: 'Home',
+  },
+  {
+    type: 'link',
+    href: '/info',
+    icon: HiOutlineInformationCircle,
+    label: 'Informations',
   },
   {
     type: 'header',
@@ -40,15 +50,5 @@ export const navItems: NavItem[] = [
     type: 'linkChild',
     href: '/laboratories/piezoelectric',
     label: 'Piezoelectric sensors',
-  },
-  {
-    type: 'header',
-    label: 'General',
-  },
-  {
-    type: 'link',
-    href: '/info',
-    icon: HiOutlineInformationCircle,
-    label: 'Informations',
   },
 ];

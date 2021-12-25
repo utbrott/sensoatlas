@@ -6,22 +6,22 @@ export const sensorDefaults = {
       sensorMaterial: {
         metal: 'platinum',
         tempCoeff: 0.003729,
-        density: 21.45,
-        heatCapacity: 0.133,
+        density: 21450,
+        heatCapacity: 133,
         conductivity: 69.1,
       },
       fillerMaterial: {
         type: 'mgoPowder',
-        density: 3.58,
-        heatCapacity: 0.877,
+        density: 3580,
+        heatCapacity: 877,
         conductivity: 26.8,
       },
       resistance: '100',
+      thickness: '0.5',
     },
     taskPrompts: taskPrompts.temperatureRtd,
     taskData: {
       0: [],
-      1: [],
     },
     validationData: {
       0: [],

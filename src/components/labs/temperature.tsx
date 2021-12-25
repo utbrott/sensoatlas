@@ -1,42 +1,41 @@
+import { useState } from 'react';
 import { Header } from '#components/header';
 import { Subheader } from '#components/subheader';
 import {
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
   VStack,
 } from '@chakra-ui/react';
 import { RTDSensor, ThermocoupleSensor } from '#components/labs';
 
 export const Temperature = () => {
+  const [sensorType, setSensorType] = useState('');
+
   return (
     <>
       <Header heading='Temperature sensors: RTD, Thermocouple' hasButton />
-      <Subheader hasModal='Temperature sensors: RTD, Thermocouple' />
-      <VStack w='full' flex={1} align='stretch'>
-        <Tabs isFitted h='full' flex={1} overflowY='hidden' pt={1}>
-          <TabList>
-            <Tab _focus={{ outline: 'none' }}>
-              RTD: Resistance Temperature Detector
-            </Tab>
-            <Tab _focus={{ outline: 'none' }}>Thermocouple</Tab>
-          </TabList>
-          <TabPanels h='full'>
-            <TabPanel p={0} pb={10} pt={2} h='full' flex={1}>
-              <VStack h='full' flex={1}>
-                <RTDSensor />
-              </VStack>
-            </TabPanel>
-            <TabPanel p={0} pb={10} pt={2} h='full' flex={1}>
-              <VStack h='full' flex={1}>
-                <ThermocoupleSensor />
-              </VStack>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
-      </VStack>
+      <Subheader
+        hasModal='Temperature sensors: RTD, Thermocouple'
+        hasSelect
+        selectOnChange={event => setSensorType(event.currentTarget.value)}
+      />
+      {sensorType === '' && (
+        <VStack p={10} flex={1} w='full'>
+          <Alert status='warning' rounded='md' py={1} mx={10}>
+            <AlertIcon />
+            <VStack flex={1} spacing={0} align='flex-start'>
+              <AlertTitle fontSize='md'>No sensor type selected</AlertTitle>
+              <AlertDescription fontSize='sm'>
+                Please choose a sensor type from dropdown above to begin.
+              </AlertDescription>
+            </VStack>
+          </Alert>
+        </VStack>
+      )}
+      {sensorType === 'rtd' && <RTDSensor />}
+      {sensorType === 'thermocouple' && <ThermocoupleSensor />}
     </>
   );
 };

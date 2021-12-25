@@ -14,10 +14,15 @@ import { Button, Box, Text } from '@chakra-ui/react';
 import { saveAs } from 'file-saver';
 import { HiDownload } from 'react-icons/hi';
 
-type DataType = { xvalue: number; yvalue: number }[];
+type DataType = {
+  xvalue: number;
+  yvalueBare: number;
+  yvalueSheath: number;
+  yvalueThermowell: number;
+};
 
 type Props = {
-  data: DataType;
+  data: DataType[];
   chartName: string;
   xlabel: string;
   ylabel: string;
@@ -73,7 +78,7 @@ export const MultiLineChart = ({
             <XAxis
               type='number'
               dataKey='xvalue'
-              tickCount={10}
+              interval={4}
               label={{
                 value: xlabel,
                 position: 'insideBottom',
@@ -92,27 +97,30 @@ export const MultiLineChart = ({
             <Tooltip content={<ChartTooltip />} />
             <Line
               type='monotone'
-              dataKey='yvalue_bare'
+              dataKey='yvalueBare'
+              name='Bare'
               stroke='#3182CE'
               fill='#3182CE'
               strokeWidth={2}
-              dot={{ strokeWidth: 0 }}
+              dot={false}
             />
             <Line
               type='natural'
-              dataKey='yvalue_sheath'
+              dataKey='yvalueSheath'
+              name='Sheathed'
               stroke='#DD6B20'
               fill='#DD6B20'
               strokeWidth={2}
-              dot={{ strokeWidth: 0 }}
+              dot={false}
             />
             <Line
               type='natural'
-              dataKey='yvalue_well'
+              dataKey='yvalueThermowell'
+              name='Inside thermowell'
               stroke='#2F855A'
               fill='#2F855A'
               strokeWidth={2}
-              dot={{ strokeWidth: 0 }}
+              dot={false}
             />
             <Legend />
           </LineChart>

@@ -17,16 +17,28 @@ export const LabsContext = createContext({
         conductivity: 0,
       },
       resistance: '',
+      thickness: '',
     },
     taskPrompts: [{ taskId: 0, content: '' }],
-    taskData: { 0: [] },
-    validationData: { 0: [] },
+    taskData: {
+      0: [],
+    },
+    validationData: {
+      0: [],
+      1: [],
+    },
   },
   temperatureCouple: {
     config: {},
     taskPrompts: [{ taskId: 0, content: '' }],
-    taskData: { 0: [] },
-    validationData: { 0: [] },
+    taskData: {
+      0: [],
+      1: [],
+    },
+    validationData: {
+      0: [],
+      1: [],
+    },
   },
   displacement: {
     config: {},

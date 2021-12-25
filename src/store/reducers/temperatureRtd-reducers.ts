@@ -10,8 +10,8 @@ export const temperatureRtdConfigReducer = (state: any, action: any) => {
             sensorMaterial: {
               metal: action.payload,
               tempCoeff: 0.003729,
-              density: 21.45,
-              heatCapacity: 0.133,
+              density: 21450,
+              heatCapacity: 133,
               conductivity: 69.1,
             },
           };
@@ -21,7 +21,7 @@ export const temperatureRtdConfigReducer = (state: any, action: any) => {
             sensorMaterial: {
               metal: action.payload,
               tempCoeff: 0.004041,
-              density: 8.96,
+              density: 8960,
               heatCapacity: 0.385,
               conductivity: 384.1,
             },
@@ -32,8 +32,8 @@ export const temperatureRtdConfigReducer = (state: any, action: any) => {
             sensorMaterial: {
               metal: action.payload,
               tempCoeff: 0.00617,
-              density: 8.908,
-              heatCapacity: 0.44,
+              density: 8908,
+              heatCapacity: 440,
               conductivity: 106,
             },
           };
@@ -43,8 +43,8 @@ export const temperatureRtdConfigReducer = (state: any, action: any) => {
             sensorMaterial: {
               metal: action.payload,
               tempCoeff: 0.0045,
-              density: 19.3,
-              heatCapacity: 0.134,
+              density: 19300,
+              heatCapacity: 134,
               conductivity: 173,
             },
           };
@@ -57,8 +57,8 @@ export const temperatureRtdConfigReducer = (state: any, action: any) => {
             ...state,
             fillerMaterial: {
               type: action.payload,
-              density: 3.58,
-              heatCapacity: 0.877,
+              density: 3580,
+              heatCapacity: 877,
               conductivity: 26.8,
             },
           };
@@ -67,8 +67,8 @@ export const temperatureRtdConfigReducer = (state: any, action: any) => {
             ...state,
             fillerMaterial: {
               type: action.payload,
-              density: 3.21,
-              heatCapacity: 0.8,
+              density: 3210,
+              heatCapacity: 800,
               conductivity: 3,
             },
           };
@@ -76,6 +76,9 @@ export const temperatureRtdConfigReducer = (state: any, action: any) => {
     }
     case 'CHANGE_RESISTANCE': {
       return { ...state, resistance: action.payload };
+    }
+    case 'CHANGE_THICKNESS': {
+      return { ...state, thickness: action.payload };
     }
     default:
       return sensorDefaults.temperatureRtd.config;

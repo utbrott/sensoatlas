@@ -33,7 +33,6 @@ export const LabsContext = createContext({
     taskPrompts: [{ taskId: 0, content: '' }],
     taskData: {
       0: [],
-      1: [],
     },
     validationData: {
       0: [],

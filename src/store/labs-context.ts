@@ -56,7 +56,11 @@ export const LabsContext = createContext({
     },
   },
   displacement: {
-    config: {},
+    config: {
+      turns: '',
+      inputVoltage: '',
+      frequency: '',
+    },
     taskPrompts: [{ taskId: 0, content: '' }],
     taskData: { 0: [] },
     validationData: { 0: [] },

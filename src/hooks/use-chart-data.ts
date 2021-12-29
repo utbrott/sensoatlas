@@ -20,3 +20,21 @@ export const useSingleLineChartData = ({ input1, input2 }: SingleLineArgs) => {
 
   return { data };
 };
+
+type MirrorValuesArgs = {
+  input: SingleLineData[];
+};
+
+export const useMirrorValues = ({ input }: MirrorValuesArgs) => {
+  const data: SingleLineData[] = [];
+
+  input.forEach((pair: SingleLineData, index: number) => {
+    data.unshift({
+      xvalue: -input[index].xvalue,
+      yvalue: input[index].yvalue,
+    });
+    data.push(pair);
+  });
+
+  return { data };
+};

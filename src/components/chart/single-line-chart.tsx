@@ -8,6 +8,7 @@ import {
   YAxis,
   Line,
   Tooltip,
+  ReferenceLine,
 } from 'recharts';
 import { Button, Box, Text } from '@chakra-ui/react';
 import { saveAs } from 'file-saver';
@@ -21,6 +22,7 @@ type Props = {
   xlabel: string;
   ylabel: string;
   withAutoDomain?: boolean;
+  withZeroReference?: boolean;
 };
 
 type ChartTooltipTypes = {
@@ -35,6 +37,7 @@ export const SingleLineChart = ({
   xlabel,
   ylabel,
   withAutoDomain = false,
+  withZeroReference = false,
 }: Props) => {
   const [getPng, { ref, isLoading }] = useCurrentPng();
   const handleDownload = useCallback(async () => {
@@ -70,9 +73,13 @@ export const SingleLineChart = ({
           >
             <CartesianGrid strokeDasharray='3 3' />
             <XAxis
+              domain={[
+                withZeroReference ? -20 : 'auto',
+                withZeroReference ? 20 : 'auto',
+              ]}
               type='number'
               dataKey='xvalue'
-              tickCount={10}
+              tickCount={withZeroReference ? 11 : 10}
               label={{
                 value: xlabel,
                 position: 'insideBottom',
@@ -89,6 +96,9 @@ export const SingleLineChart = ({
               }}
             />
             <Tooltip content={<ChartTooltip />} />
+            {withZeroReference && (
+              <ReferenceLine x={0} stroke='#18181B' strokeDasharray='3 3' />
+            )}
             <Line
               type='monotone'
               dataKey='yvalue'

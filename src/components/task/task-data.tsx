@@ -21,6 +21,10 @@ import {
   tauValidationRtd,
   tauValidationCouple,
 } from '#utils/generate-temperature-lab-data';
+import {
+  generateDisplacementValues,
+  lvdtVoltageValidation,
+} from '#utils/generate-displacement-lab-data';
 import Latex from 'react-latex';
 
 type Props = {
@@ -43,6 +47,10 @@ export const TaskData = (props: Props) => {
         taskData['0'] = generateTempertureValues({ min: 0, max: 500 });
         validationData['0'] = thermocoupleVoltageValidation(context);
         validationData['1'] = tauValidationCouple(context);
+        break;
+      case 'displacement':
+        taskData['0'] = generateDisplacementValues({ min: 0, max: 15 });
+        validationData['0'] = lvdtVoltageValidation(context);
         break;
       case 'strain':
         taskData['0'] = generateStrainValues(context);

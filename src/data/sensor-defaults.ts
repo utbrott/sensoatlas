@@ -55,7 +55,20 @@ export const sensorDefaults = {
       1: [],
     },
   },
-  displacement: {},
+  displacement: {
+    config: {
+      turns: '1000',
+      inputVoltage: '5.0',
+      frequency: '1000',
+    },
+    taskPrompts: taskPrompts.displacement,
+    taskData: {
+      0: [],
+    },
+    validationData: {
+      0: [],
+    },
+  },
   strain: {
     config: {
       material: {

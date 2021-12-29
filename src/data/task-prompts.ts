@@ -34,7 +34,8 @@ export const taskPrompts: TaskPrompts = {
   displacement: [
     {
       taskId: 1,
-      content: '',
+      content:
+        'Given the values of displacement x [mm], calculate the output voltage Vout [mV]',
       hasData: true,
     },
   ],

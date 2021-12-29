@@ -69,7 +69,7 @@ export const Config = (props: Props) => {
         <Center w='full'>
           <Image
             width='350px'
-            height='280px'
+            height='300px'
             objectFit='cover'
             src={imageSource}
             alt='schematic'

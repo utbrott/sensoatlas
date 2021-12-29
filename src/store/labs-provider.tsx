@@ -5,6 +5,7 @@ import {
   strainConfigReducer,
   temperatureRtdConfigReducer,
   temperatureCoupleConfigReducer,
+  displacementConfigReducer,
 } from './reducers';
 
 type Props = {
@@ -27,6 +28,11 @@ export const LabsProvider = ({ children }: Props) => {
     sensorDefaults.temperatureCouple.config
   );
 
+  const [displacementConfig, updateDisplacementConfig] = useReducer(
+    displacementConfigReducer,
+    sensorDefaults.displacement.config
+  );
+
   const handleConfigUpdate = (
     sensor: string,
     configField: string,
@@ -44,7 +50,10 @@ export const LabsProvider = ({ children }: Props) => {
           payload: value,
         });
       case 'displacement':
-        return null;
+        updateDisplacementConfig({
+          type: `CHANGE_${configField.toUpperCase()}`,
+          payload: value,
+        });
       case 'strain':
         updateStrainConfig({
           type: `CHANGE_${configField.toUpperCase()}`,
@@ -73,10 +82,10 @@ export const LabsProvider = ({ children }: Props) => {
       validationData: sensorDefaults.temperatureCouple.validationData,
     },
     displacement: {
-      config: {},
-      taskPrompts: [{ taskId: 0, content: '' }],
-      taskData: { 0: [] },
-      validationData: { 0: [] },
+      config: displacementConfig,
+      taskPrompts: sensorDefaults.displacement.taskPrompts,
+      taskData: sensorDefaults.displacement.taskData,
+      validationData: sensorDefaults.displacement.validationData,
     },
     strain: {
       config: strainConfig,

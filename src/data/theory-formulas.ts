@@ -106,9 +106,9 @@ export const strainTheory: TheoryItem[] = [
   {
     caption: '(Task 1) Calculating the output voltage in bridge:',
     formulas: [
-      '$V_{out}^{Quat} = \\frac{1}{4}V_{in}(\\frac{\\Delta R}{R})$',
-      '$V_{out}^{Half}=\\frac{1}{4}V_{in}(\\frac{\\Delta R}{R}-\\frac{(-\\Delta R)}{R})=\\frac{1}{2}V_{in}(\\frac{\\Delta R}{R})$',
-      '$V_{out}^{Full}=\\frac{1}{4}V_{in}(\\frac{\\Delta R}{R}-\\frac{(-\\Delta R)}{R}+\\frac{\\Delta R}{R}-\\frac{(-\\Delta R)}{R})=V_{in}(\\frac{\\Delta R}{R})$',
+      '$V_{out}^{Quat} = \\frac{1}{4}V_{in}(\\cfrac{\\Delta R}{R})$',
+      '$V_{out}^{Half}=\\frac{1}{4}V_{in}(\\cfrac{\\Delta R}{R}-\\cfrac{(-\\Delta R)}{R})=\\cfrac{1}{2}V_{in}(\\cfrac{\\Delta R}{R})$',
+      '$V_{out}^{Full}=\\frac{1}{4}V_{in}(\\cfrac{\\Delta R}{R}-\\cfrac{(-\\Delta R)}{R}+\\cfrac{\\Delta R}{R}-\\cfrac{(-\\Delta R)}{R})=V_{in}(\\cfrac{\\Delta R}{R})$',
     ],
     symbols: [
       '$V_{in}$ - Input voltage [V];',

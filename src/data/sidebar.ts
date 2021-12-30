@@ -1,6 +1,5 @@
 import { FaHome } from 'react-icons/fa';
 import { IoIosFolderOpen } from 'react-icons/io';
-import { HiOutlineInformationCircle } from 'react-icons/hi';
 
 import { NavItem } from '#types/nav-item';
 
@@ -14,12 +13,6 @@ export const navItems: NavItem[] = [
     href: '/',
     icon: FaHome,
     label: 'Home',
-  },
-  {
-    type: 'link',
-    href: '/info',
-    icon: HiOutlineInformationCircle,
-    label: 'Informations',
   },
   {
     type: 'header',

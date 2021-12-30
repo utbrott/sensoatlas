@@ -2,6 +2,6 @@
   "printWidth": 80,
   "singleQuote": true,
   "jsxSingleQuote": true,
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "endOfLine": "lf"
 }

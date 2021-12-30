@@ -37,6 +37,7 @@
     "@types/node": "16.11.11",
     "@types/react": "17.0.37",
     "@types/react-latex": "^2.0.0",
+    "@types/react-table": "^7.7.9",
     "eslint": "8.4.0",
     "eslint-config-next": "12.0.7",
     "prettier": "^2.5.1",

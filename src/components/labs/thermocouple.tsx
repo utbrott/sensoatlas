@@ -121,7 +121,7 @@ export const ThermocoupleSensor = () => {
             handleSubmit={handleOutVoltageFormSubmit}
           />
           <Form
-            taskNo='1'
+            taskNo='2'
             index={timeConstantIndex}
             maxIndex={3}
             value={timeConstantValue}

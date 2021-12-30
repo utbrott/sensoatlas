@@ -1,8 +1,9 @@
 import { VStack, HStack, Text, Select } from '@chakra-ui/react';
-import { TheoryModal } from '../theory-modal';
+import { Modal } from '#components/theory';
 
 type Props = {
   hasModal?: string;
+  isModalDisabled?: boolean;
   modalContent?: any;
   hasSelect?: boolean;
   selectOnChange?: (event: any) => void;
@@ -10,6 +11,7 @@ type Props = {
 
 export const Subheader = ({
   hasModal,
+  isModalDisabled = false,
   modalContent,
   hasSelect = false,
   selectOnChange,
@@ -36,12 +38,14 @@ export const Subheader = ({
               onChange={selectOnChange}
               maxW='md'
             >
-              <option value='rtd'>RTD: Resistance Temperature Detector</option>
-              <option value='thermocouple'>Thermocouple</option>
+              <option value='RTD'>RTD: Resistance Temperature Detector</option>
+              <option value='Thermocouple'>Thermocouple</option>
             </Select>
           )}
           {hasModal && (
-            <TheoryModal header={hasModal}>{modalContent}</TheoryModal>
+            <Modal header={hasModal} isDisabled={isModalDisabled}>
+              {modalContent}
+            </Modal>
           )}
         </HStack>
       </HStack>

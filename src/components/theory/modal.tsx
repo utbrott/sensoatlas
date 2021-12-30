@@ -1,5 +1,5 @@
 import {
-  Modal,
+  Modal as ChakraModal,
   ModalOverlay,
   ModalContent,
   ModalCloseButton,
@@ -11,10 +11,11 @@ import {
 
 type Props = {
   header?: string;
+  isDisabled?: boolean;
   children?: React.ReactNode;
 };
 
-export const TheoryModal = ({ header, children }: Props) => {
+export const Modal = ({ header, children, isDisabled = false }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -25,13 +26,14 @@ export const TheoryModal = ({ header, children }: Props) => {
         variant='outline'
         onClick={() => onOpen()}
         _focus={{ outline: 'none' }}
+        isDisabled={isDisabled}
       >
         View theory
       </Button>
-      <Modal
+      <ChakraModal
         isCentered
         blockScrollOnMount
-        size='2xl'
+        size='5xl'
         onClose={onClose}
         isOpen={isOpen}
         motionPreset='scale'
@@ -43,11 +45,25 @@ export const TheoryModal = ({ header, children }: Props) => {
             Theory: {header}
           </ModalHeader>
           <ModalCloseButton />
-          <ModalBody fontSize='sm' textAlign='justify' color='gray.300'>
+          <ModalBody
+            fontSize='sm'
+            textAlign='justify'
+            color='gray.300'
+            sx={{
+              '&::-webkit-scrollbar': {
+                width: 2,
+                backgroundColor: '#212125',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: '#656567',
+              },
+              scrollbarWidth: 'thin',
+            }}
+          >
             {children}
           </ModalBody>
         </ModalContent>
-      </Modal>
+      </ChakraModal>
     </>
   );
 };

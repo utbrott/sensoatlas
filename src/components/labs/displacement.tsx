@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { LabsContext } from '#store/labs-context';
 import { Header } from '#components/header';
 import { Subheader } from '#components/subheader';
+import { Theory, Formula } from '#components/theory';
+import { displacementTheory } from '#data/theory-formulas';
 import { Content } from '#components/content';
 import { Config } from '#components/config';
 import { useConfigSave } from '#hooks/use-config-save';
@@ -18,6 +20,12 @@ export const Displacement = () => {
   const schematicImage = `/images/displacement-lvdt.png`;
 
   const { handleConfigSave } = useConfigSave();
+
+  const modalContent = (
+    <Theory>
+      <Formula data={displacementTheory} />
+    </Theory>
+  );
 
   const {
     value: displacementValue,
@@ -69,7 +77,10 @@ export const Displacement = () => {
   return (
     <>
       <Header heading='Displacement sensors: LVDT' hasButton />
-      <Subheader hasModal='Displacement sensors: LVDT' />
+      <Subheader
+        hasModal='LVDT (Linear Variable Differential Transformer)'
+        modalContent={modalContent}
+      />
       <Content>
         <Config
           sensorName='displacement'

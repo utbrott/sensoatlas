@@ -12,7 +12,12 @@ const calculateTemperatureEffect = (coeff: number, tempValue: number) => {
   return coeff * (tempValue - REF_TEMPERATURE);
 };
 
-const calculateResistanceChange = (strain: number, gf: number) => {
+const calculateResistanceChange = (
+  strain: number,
+  gf: number,
+  resistance?: string
+) => {
+  if (resistance) return Number(resistance) * strain * gf;
   return strain * gf;
 };
 
@@ -23,12 +28,11 @@ const calculateNewResistance = (
   coeff: number,
   temp: number
 ) => {
-  const resistance = parseInt(res);
   const strainValue = strain / 10 ** 6;
   const DELTA_RESISTANCE = calculateResistanceChange(strainValue, gf);
   const TEMP_EFFECT = calculateTemperatureEffect(coeff, temp);
 
-  const value = resistance * (1 + DELTA_RESISTANCE + TEMP_EFFECT);
+  const value = Number(res) * (1 + DELTA_RESISTANCE + TEMP_EFFECT);
   return round(value, 2);
 };
 
@@ -37,19 +41,21 @@ const calculateOutputVoltage = (
   input: string,
   strain: number,
   gf: number,
+  resistance?: string,
   tempCoeff?: number,
   temp?: number
 ) => {
-  const inputVoltage = parseInt(input);
-  const DELTA_RESISTANCE = calculateResistanceChange(strain, gf);
+  let deltaResistance: number;
 
-  if (tempCoeff && temp) {
+  if (tempCoeff && temp && resistance) {
+    deltaResistance = calculateResistanceChange(strain, gf, resistance);
     const TEMP_EFFECT = calculateTemperatureEffect(tempCoeff, temp);
-    const value = bridge * inputVoltage * DELTA_RESISTANCE + TEMP_EFFECT;
+    const value = bridge * Number(input) * deltaResistance + TEMP_EFFECT;
     return round(value, 2);
   }
 
-  const value = bridge * inputVoltage * DELTA_RESISTANCE;
+  deltaResistance = calculateResistanceChange(strain, gf);
+  const value = bridge * Number(input) * deltaResistance;
   return round(value, 2);
 };
 
@@ -76,7 +82,7 @@ export const strainValidationData = (
   withTemperature?: boolean
 ) => {
   const { config } = context.strain;
-  const { inputVoltage } = config;
+  const { inputVoltage, resistance } = config;
   const { gaugeFactor, tempCoeff } = config.material;
   const { type, multiplier } = config.bridge;
   const STATIC_STRAIN = 1.5;
@@ -94,6 +100,7 @@ export const strainValidationData = (
             inputVoltage,
             STATIC_STRAIN,
             gaugeFactor,
+            resistance,
             tempCoeff,
             value
           )
@@ -108,6 +115,7 @@ export const strainValidationData = (
           inputVoltage,
           STATIC_STRAIN,
           gaugeFactor,
+          resistance,
           tempCoeff,
           STATIC_TEMPERATURE
         )

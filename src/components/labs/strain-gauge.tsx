@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { LabsContext } from '#store/labs-context';
 import { Header } from '#components/header';
 import { Subheader } from '#components/subheader';
+import { Theory, Formula, Table } from '#components/theory';
+import { strainTheory } from '#data/theory-formulas';
+import { strainSensorTable } from '#data/theory-tables';
 import { Content } from '#components/content';
 import { Config } from '#components/config';
 import { useConfigSave } from '#hooks/use-config-save';
@@ -19,6 +22,13 @@ export const StrainGauge = () => {
   const schematicImage = `/images/strain-${config.bridge.type}.png`;
 
   const { handleConfigSave } = useConfigSave();
+
+  const modalContent = (
+    <Theory>
+      <Formula data={strainTheory} />
+      <Table data={strainSensorTable} />
+    </Theory>
+  );
 
   const {
     value: strainValue,
@@ -113,7 +123,7 @@ export const StrainGauge = () => {
   return (
     <>
       <Header heading='Strain gauge sensors' hasButton />
-      <Subheader hasModal='Strain gauge sensors' />
+      <Subheader hasModal='Strain gauge sensors' modalContent={modalContent} />
       <Content>
         <Config
           sensorName='strain'

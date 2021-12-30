@@ -46,9 +46,9 @@ export const navItems: NavItem[] = [
     href: '/laboratories/strain',
     label: 'Strain gauge sensors',
   },
-  {
-    type: 'linkChild',
-    href: '/laboratories/piezoelectric',
-    label: 'Piezoelectric sensors',
-  },
+  // {
+  //   type: 'linkChild',
+  //   href: '/laboratories/piezoelectric',
+  //   label: 'Piezoelectric sensors',
+  // },
 ];

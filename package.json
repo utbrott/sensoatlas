@@ -27,7 +27,6 @@
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
     "react-latex": "^2.0.0",
-    "react-table": "^7.7.0",
     "recharts": "^2.1.8",
     "recharts-to-png": "^1.1.1"
   },
@@ -37,7 +36,6 @@
     "@types/node": "16.11.11",
     "@types/react": "17.0.37",
     "@types/react-latex": "^2.0.0",
-    "@types/react-table": "^7.7.9",
     "eslint": "8.4.0",
     "eslint-config-next": "12.0.7",
     "prettier": "^2.5.1",

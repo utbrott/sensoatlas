@@ -8,18 +8,44 @@ import {
   AlertDescription,
   VStack,
 } from '@chakra-ui/react';
+import { Theory, Formula, Table } from '#components/theory';
+import {
+  temperatureRtdTheory,
+  temperatureCoupleTheory,
+} from '#data/theory-formulas';
+import {
+  rtdSensorTable,
+  thermocoupleSensorTable,
+  fillerMaterialTable,
+} from '#data/theory-tables';
 import { RTDSensor, ThermocoupleSensor } from '#components/labs';
 
 export const Temperature = () => {
   const [sensorType, setSensorType] = useState('');
 
+  const modalContent = (
+    <Theory>
+      <Formula
+        data={
+          sensorType == 'RTD' ? temperatureRtdTheory : temperatureCoupleTheory
+        }
+      />
+      <Table
+        data={sensorType == 'RTD' ? rtdSensorTable : thermocoupleSensorTable}
+      />
+      <Table data={fillerMaterialTable} />
+    </Theory>
+  );
+
   return (
     <>
       <Header heading='Temperature sensors: RTD, Thermocouple' hasButton />
       <Subheader
-        hasModal='Temperature sensors: RTD, Thermocouple'
+        hasModal={`${sensorType} temperature sensor`}
+        isModalDisabled={sensorType === ''}
+        modalContent={modalContent}
         hasSelect
-        selectOnChange={event => setSensorType(event.currentTarget.value)}
+        selectOnChange={(event) => setSensorType(event.currentTarget.value)}
       />
       {sensorType === '' && (
         <VStack p={10} flex={1} w='full'>
@@ -34,8 +60,8 @@ export const Temperature = () => {
           </Alert>
         </VStack>
       )}
-      {sensorType === 'rtd' && <RTDSensor />}
-      {sensorType === 'thermocouple' && <ThermocoupleSensor />}
+      {sensorType === 'RTD' && <RTDSensor />}
+      {sensorType === 'Thermocouple' && <ThermocoupleSensor />}
     </>
   );
 };

@@ -11,7 +11,7 @@ export const LibraryGrid = () => {
         gap={6}
         justifyItems='center'
       >
-        {cardItems.map(item => (
+        {cardItems.map((item) => (
           <Card key={item.id} item={item} hasButton='Start laboratory' />
         ))}
       </Grid>

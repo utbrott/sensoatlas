@@ -25,7 +25,7 @@ export const Config = (props: Props) => {
   const { isConfigSaved } = context;
 
   const configItems = SensorConfig.filter(
-    filteredItem => filteredItem.sensor === sensorName
+    (filteredItem) => filteredItem.sensor === sensorName
   );
 
   const handleConfigUpdate = (sensor: string, field: string, value: string) => {
@@ -48,7 +48,7 @@ export const Config = (props: Props) => {
         Sensor configuration
       </Heading>
       <VStack w='full' flex={1} spacing={3}>
-        {configItems.map(item => (
+        {configItems.map((item) => (
           <ConfigField
             key={item.id}
             item={item}

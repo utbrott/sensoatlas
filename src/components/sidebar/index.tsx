@@ -15,7 +15,7 @@ const Sidebar = () => {
     >
       <Logo />
       <List w='full' overflowY='auto'>
-        {navItems.map(item => (
+        {navItems.map((item) => (
           <ListItem key={item.label}>
             <NavItem item={item} />
           </ListItem>

@@ -11,8 +11,7 @@ Web application created for Sensors and Transducers laboratory
 
 ## Built with
 
-- [Typescript](https://www.typescriptlang.org/)
-- [Next.js](https://nextjs.org/)
+- [Next.js](https://nextjs.org/) & [Typescript](https://www.typescriptlang.org/)
 - [Chakra UI](https://chakra-ui.com/)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [React Latex](https://github.com/zzish/react-latex)

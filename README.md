@@ -5,8 +5,9 @@ Web application created for Sensors and Transducers laboratory
 
 ## Features
 
-Creating graphs and other visualizations that can be used to make a complete
-report for Sensors & Transducers laboratory. Simulations of certain sensor types.
+- Four sensors (RTD, Thermocouple, LVDT, Strain gauge) available
+- Tasks with randomized data generated for them
+- Downloadable sensor's characteristic charts for each of the sensors
 
 ## Built with
 

@@ -89,7 +89,7 @@ export const Config = (props: Props) => {
         >
           Apply
         </Button>
-        <Tooltip label='Carefully! All progress will be lost.' bg='red.300'>
+        <Tooltip label='Are you sure? All progress will be lost.' bg='red.300'>
           <Button
             size='sm'
             variant='ghost'

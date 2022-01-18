@@ -122,20 +122,21 @@ export const displacementTheory: TheoryItem[] = [
   {
     caption: '(Task 1) Calculating the output voltage:',
     formulas: [
-      '$V_{out}=f(\\cfrac{V_{in}}{R})(4\\pi\\cdot N_p N_s\\cdot \\mu_0\\cdot \\cfrac{bx}{3m\\cdot\\log{(r_{out}/r_{in}})})(1-\\cfrac{x^2}{2b^2})$',
-      '$\\rArr V_{out}=f(\\cfrac{V_{in}}{R})(4\\pi\\cdot 0.5 N_p^2\\cdot \\mu_0\\cdot \\cfrac{bx}{3m\\cdot\\log{(r_{out}/r_{in}})})(1-\\cfrac{x^2}{2b^2})$',
+      '$V_{out}=f\\cdot I_p\\cdot\\bigg(4\\pi\\cdot N_p N_s\\cdot\\mu_0\\cdot l_p\\cdot\\cfrac{x}{3l_s}\\cdot\\log{\\Big(\\cfrac{r_o}{r_i}\\Big)}\\bigg)\\bigg(1-\\cfrac{x^2}{2l_p^2}\\bigg)$',
+      '$\\therefore V_{out}=f\\cdot\\cfrac{V_{in}}{R}\\cdot\\bigg(4\\pi\\cdot 0.5\\cdot N_p^2\\cdot\\mu_0\\cdot l_p\\cdot\\cfrac{x}{3l_s}\\cdot\\log{\\Big(\\cfrac{r_o}{r_i}\\Big)}\\bigg)\\bigg(1-\\cfrac{x^2}{2l_p^2}\\bigg)$',
     ],
     symbols: [
       '$f$ - Source frequency [$Hz$];',
+      '$I_p=\\cfrac{V_{in}}{R}$ - Current induced in the primary winding [$A$];',
       '$V_{in}$ - Input voltage [V];',
       '$R=10$ - Resistance [k$\\Omega$];',
-      '$Np$ - Number of turns in primary winding;',
-      '$Ns=0.5Np$ - Number of turns in secondary windings;',
+      '$N_p$ - Number of turns in primary winding;',
+      '$N_s=0.5\\cdot N_p$ - Number of turns in secondary windings;',
       '$\\mu_0=4\\pi\\cdot 10^{-7}$ - Vacuum permeability [$Hm^{-1}$];',
       '$x$ - Core displacement [mm];',
-      '$b=20$ - Length of primary winding [mm];',
-      '$m=10$ - Length of secondary windings [mm];',
-      '$r_{out}/r_{in}=2$ - Outer to inner coil winding radius ratio;',
+      '$l_p=20$ - Length of primary winding [mm];',
+      '$l_s=10$ - Length of secondary windings [mm];',
+      '$\\cfrac{r_{out}}{r_{in}}=2$ - Outer to inner coil winding radius ratio;',
     ],
   },
 ];

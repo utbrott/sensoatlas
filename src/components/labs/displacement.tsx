@@ -57,8 +57,6 @@ export const Displacement = () => {
     input: displacementOutVoltageSingle,
   });
 
-  console.log(displacementOutVoltage);
-
   const tabsData = [
     {
       tabTitle: 'Task 1: Vout = f(x)',

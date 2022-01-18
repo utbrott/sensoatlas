@@ -7,9 +7,13 @@ const calculateStrain = (mod: number, area: number, mass: number) => {
   return round(value, 2);
 };
 
-const calculateTemperatureEffect = (coeff: number, tempValue: number) => {
+const calculateTemperatureEffect = (
+  coeff: number,
+  tempValue: number,
+  resistance: string
+) => {
   const REF_TEMPERATURE = 20;
-  return coeff * (tempValue - REF_TEMPERATURE);
+  return Number(resistance) * coeff * (tempValue - REF_TEMPERATURE);
 };
 
 const calculateResistanceChange = (
@@ -17,8 +21,7 @@ const calculateResistanceChange = (
   gf: number,
   resistance?: string
 ) => {
-  if (resistance) return Number(resistance) * strain * gf;
-  return strain * gf;
+  return Number(resistance) * strain * gf;
 };
 
 const calculateNewResistance = (
@@ -29,10 +32,10 @@ const calculateNewResistance = (
   temp: number
 ) => {
   const strainValue = strain / 10 ** 6;
-  const DELTA_RESISTANCE = calculateResistanceChange(strainValue, gf);
-  const TEMP_EFFECT = calculateTemperatureEffect(coeff, temp);
+  const DELTA_RESISTANCE = calculateResistanceChange(strainValue, gf, res);
+  const TEMP_EFFECT = calculateTemperatureEffect(coeff, temp, res);
 
-  const value = Number(res) * (1 + DELTA_RESISTANCE + TEMP_EFFECT);
+  const value = Number(res) + DELTA_RESISTANCE + TEMP_EFFECT;
   return round(value, 2);
 };
 
@@ -46,15 +49,14 @@ const calculateOutputVoltage = (
   temp?: number
 ) => {
   let deltaResistance: number;
+  deltaResistance = calculateResistanceChange(strain, gf, resistance);
 
   if (tempCoeff && temp && resistance) {
-    deltaResistance = calculateResistanceChange(strain, gf, resistance);
-    const TEMP_EFFECT = calculateTemperatureEffect(tempCoeff, temp);
+    const TEMP_EFFECT = calculateTemperatureEffect(tempCoeff, temp, resistance);
     const value = bridge * Number(input) * deltaResistance + TEMP_EFFECT;
     return round(value, 2);
   }
 
-  deltaResistance = calculateResistanceChange(strain, gf);
   const value = bridge * Number(input) * deltaResistance;
   return round(value, 2);
 };

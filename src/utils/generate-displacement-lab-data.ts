@@ -16,7 +16,7 @@ const calculateOutVoltage = (
   const inputValue = Number(frequency) * (Number(voltage) / RESISTANCE);
   const vacuumCoeff = 4 * Math.PI * VACUUM;
   const windingValue = 0.5 * Number(turns) ** 2;
-  const coilRatio = PRI_LENGTH / (3 * SEC_LENGTH * Math.log10(RADII_RATIO));
+  const coilRatio = (PRI_LENGTH / (3 * SEC_LENGTH)) * Math.log10(RADII_RATIO);
   const winding = vacuumCoeff * windingValue * displacement * coilRatio;
   const displacementRatio = round(
     1 - displacement ** 2 / (2 * PRI_LENGTH ** 2),

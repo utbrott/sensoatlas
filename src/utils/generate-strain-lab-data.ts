@@ -13,7 +13,8 @@ const calculateTemperatureEffect = (
   resistance: string
 ) => {
   const REF_TEMPERATURE = 20;
-  return Number(resistance) * coeff * (tempValue - REF_TEMPERATURE);
+  const value = Number(resistance) * coeff * (tempValue - REF_TEMPERATURE);
+  return value;
 };
 
 const calculateResistanceChange = (
@@ -21,7 +22,8 @@ const calculateResistanceChange = (
   gf: number,
   resistance?: string
 ) => {
-  return Number(resistance) * strain * gf;
+  const value = Number(resistance) * strain * gf;
+  return value;
 };
 
 const calculateNewResistance = (
@@ -53,11 +55,14 @@ const calculateOutputVoltage = (
 
   if (tempCoeff && temp && resistance) {
     const TEMP_EFFECT = calculateTemperatureEffect(tempCoeff, temp, resistance);
-    const value = bridge * Number(input) * deltaResistance + TEMP_EFFECT;
+    const value =
+      bridge *
+      Number(input) *
+      ((deltaResistance + TEMP_EFFECT) / Number(resistance));
     return round(value, 2);
   }
 
-  const value = bridge * Number(input) * deltaResistance;
+  const value = bridge * Number(input) * (deltaResistance / Number(resistance));
   return round(value, 2);
 };
 
@@ -127,7 +132,13 @@ export const strainValidationData = (
   }
   generatedStrain.forEach((value: number) =>
     data.push(
-      calculateOutputVoltage(multiplier, inputVoltage, value, gaugeFactor)
+      calculateOutputVoltage(
+        multiplier,
+        inputVoltage,
+        value,
+        gaugeFactor,
+        resistance
+      )
     )
   );
   return [...data];

@@ -92,7 +92,9 @@ export const strainTheory: TheoryItem[] = [
   },
   {
     caption: '(Task 2) Calculating resistance change with temperature effect:',
-    formulas: ['$\\Delta R=R\\cdot \\varepsilon \\cdot GF + \\alpha\\Delta T$'],
+    formulas: [
+      '$\\Delta R=R\\cdot (\\varepsilon \\cdot GF + \\alpha\\Delta T)$',
+    ],
     symbols: [
       '$R$ — Base resistance [$\\,\\Omega\\,$];',
       '$\\varepsilon$ - Applied strain [$\\,\\mu\\varepsilon\\,$];',

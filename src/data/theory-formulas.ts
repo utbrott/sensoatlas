@@ -9,7 +9,7 @@ export const temperatureRtdTheory: TheoryItem[] = [
       '$\\alpha$ - Temperature coefficient [-];',
       '$\\Delta T=T-T_{REF}$ - Temperature difference [$\\,^\\circ {C}\\,$];',
       '$T$ - Surroundings temperature [$\\,^\\circ C\\,$] (Given in task)',
-      '$T_{REF}$ - Reference temperature (20$^\\circ C$)',
+      '$T_{REF}$ - Reference temperature (0$^\\circ$C)',
     ],
   },
   {

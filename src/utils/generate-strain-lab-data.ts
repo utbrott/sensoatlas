@@ -46,14 +46,14 @@ const calculateOutputVoltage = (
   input: string,
   strain: number,
   gf: number,
-  resistance?: string,
+  resistance: string,
   tempCoeff?: number,
   temp?: number
 ) => {
   let deltaResistance: number;
   deltaResistance = calculateResistanceChange(strain, gf, resistance);
 
-  if (tempCoeff && temp && resistance) {
+  if (tempCoeff && temp) {
     const TEMP_EFFECT = calculateTemperatureEffect(tempCoeff, temp, resistance);
     const value =
       bridge *

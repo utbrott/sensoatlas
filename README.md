@@ -1,60 +1,77 @@
-# SensoAtlas ![GitHub package.json version](https://img.shields.io/github/package-json/v/utbrott/sensolab?style=flat-square)
+<div align="center">
 
-Web application created for Sensors and Transducers laboratory
-@ WUT Warsaw University of Technology
+<h1>SensoAtlas</h1>
+<h5>
+Web application created for Sensors and Transducers laboratory <br />
+Built in mind with simplyfing remote studying
+</h5>
+<h6>WUT Warsaw University of Technology</h6>
 
-## Features
+[![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=nextdotjs)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/typescript-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![Chakra UI](https://img.shields.io/badge/chakra%20ui-319795?style=for-the-badge&logo=chakraui&logoColor=white)](https://chakra-ui.com)
+![Work In Progress](https://img.shields.io/badge/Work%20In%20Progress-orange?style=for-the-badge)
+
+</div>
+
+## Table of Contents
+- [Features](#features)
+- [Libraries](#libraries)
+- [Setup and Configuration](#setup-configuration)
+
+## Features<a name="features"></a>
 
 - Four sensors (RTD, Thermocouple, LVDT, Strain gauge) available
 - Tasks with randomized data generated for them
 - Downloadable sensor's characteristic charts for each of the sensors
 
-## Built with
+## Libraries used<a name="libraries"></a>
 
-- [Next.js](https://nextjs.org/) & [Typescript](https://www.typescriptlang.org/)
+Project was built using:
 - [Chakra UI](https://chakra-ui.com/)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [React Latex](https://github.com/zzish/react-latex)
 - [Recharts](https://recharts.org/en-US/)
 
-## How to setup your own dev server
+## Setup and Configuration for development
+### Requirements
 
-1. Install [Node.js](https://nodejs.org/en/) & [Yarn](https://nodejs.org/en/) (if Yarn is preferred to npm)
-2. Git is required to clone the repo (although source code can be downloaded via .zip)
-3. Navigate to the directory with the source code
-4. In the main folder (if not renamed - **sensoatlas**) run in the console:
+- [**Node**](https://nodejs.org/en)
+- Package manager for Node (NPM, Yarn, PNPM)
+- Git
 
-With npm:
+### Setup
 
+#### Clone the repo:
+```shell
+git clone https://github.com/utbrott/sensoatlas
 ```
+<h6>Remove hidden .git folder if you want to make the project your own</h6>
+
+#### Install dependencies
+
+Using NPM:
+```shell
 npm install
 ```
-
-With yarn
-
-```
+Using Yarn:
+```shell
 yarn
 ```
 
-This will install all the dependencies required by the project
+#### Run dev server
 
-5. To start the dev server use:
-
-With npm
-
-```
+Using NPM:
+```shell
 npm run dev
 ```
 
-With yarn
-
-```
+Using Yarn:
+```shell
 yarn dev
 ```
 
-This will open a dev server on localhost:3000, if not configured differently
-
-_Preferably: Delete the hidden .git and init your own repo_
+This will start a development server at port 3000 (`http://localhost:3000`, if the configuration wasn't changed)
 
 ## License:
 

@@ -10,7 +10,7 @@ const Layout = ({ children }: Props) => {
       display='flex'
       maxW='100vw'
       minH='auto'
-      align='flex-start'
+      alignItems='flex-start'
       p={0}
       bg='gray.900'
     >

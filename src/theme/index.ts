@@ -4,6 +4,7 @@ import {
   ThemeConfig,
   withDefaultVariant,
   withDefaultColorScheme,
+  defineStyleConfig,
 } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 
@@ -17,16 +18,16 @@ export const theme = extendTheme(
     config,
     colors: {
       blue: {
-        50: '#c6e6ff',
-        100: '#96d0ff',
-        200: '#6cb6ff',
-        300: '#539bf5',
-        400: '#4184e4',
-        500: '#316dca',
-        600: '#255ab2',
-        700: '#1b4b91',
-        800: '#143d79',
-        900: '#0f2d5c',
+        50: '#eff6ff',
+        100: '#dbeafe',
+        200: '#bfdbfe',
+        300: '#93c5fd',
+        400: '#60a5fa',
+        500: '#3b82f6',
+        600: '#2563eb',
+        700: '#1d4ed8',
+        800: '#1e40af',
+        900: '#1e3a8a',
       },
       gray: {
         50: '#FAFAFA',
@@ -55,6 +56,16 @@ export const theme = extendTheme(
         baseStyle: (props: any) => ({
           color: mode('gray.800', 'gray.100')(props),
         }),
+      },
+      Button: {
+        variants: {
+          solid: {
+            bg: 'blue.500',
+            _hover: {
+              bg: 'blue.400',
+            },
+          },
+        },
       },
     },
   },

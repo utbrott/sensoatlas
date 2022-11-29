@@ -16,29 +16,31 @@
     "prettier-pages": "prettier --write pages/**/*.{js,jsx,ts,tsx}"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.4.1",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
+    "@chakra-ui/react": "^2.4.2",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "file-saver": "^2.0.5",
-    "framer-motion": "^6",
-    "next": "^13.0.4",
-    "prop-types": "^15.7.2",
+    "framer-motion": "^7.6.15",
+    "next": "^12.3",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.3.1",
+    "react-icons": "^4.7.1",
     "react-latex": "^2.0.0",
-    "recharts": "^2.1.8",
-    "recharts-to-png": "^1.1.1"
+    "recharts": "^2.1.16",
+    "recharts-to-png": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
-    "@types/file-saver": "^2.0.4",
-    "@types/node": "16.11.11",
-    "@types/react": "17.0.37",
+    "@emotion/babel-plugin": "^11.10.5",
+    "@types/file-saver": "^2.0.5",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
     "@types/react-latex": "^2.0.0",
-    "eslint": "8.4.0",
-    "eslint-config-next": "12.0.7",
-    "prettier": "^2.5.1",
-    "typescript": "4.5.2"
+    "eslint": "^8.28.0",
+    "eslint-config-next": "^13.0.5",
+    "prettier": "^2.8.0",
+    "typescript": "^4.9.3"
   }
 }

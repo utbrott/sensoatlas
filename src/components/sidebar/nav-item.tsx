@@ -43,7 +43,7 @@ const NavItem = ({ item }: Props) => {
               h={5}
               mr={4}
               ml={8}
-              color={isActive ? 'blue.200' : 'gray.300'}
+              color={isActive ? 'blue.400' : 'gray.300'}
               as={item.icon}
             />
             <Heading
@@ -51,11 +51,11 @@ const NavItem = ({ item }: Props) => {
               fontWeight='medium'
               flex={1}
               letterSpacing='wide'
-              color={isActive ? 'blue.200' : 'gray.200'}
+              color={isActive ? 'blue.400' : 'gray.200'}
             >
               {item.label}
             </Heading>
-            {isActive && <Box w={1} h={6} bg='blue.300' />}
+            {isActive && <Box w={1} h={6} bg='blue.400' />}
           </HStack>
         </Link>
       </NextLink>

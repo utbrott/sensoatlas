@@ -92,7 +92,6 @@ export const Form = (props: Props) => {
           colorScheme='gray'
           fontWeight='normal'
           type='submit'
-          isFullWidth
           isDisabled={isComplete}
         >
           Submit

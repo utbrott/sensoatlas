@@ -44,7 +44,7 @@ export const Config = (props: Props) => {
       spacing={6}
       as='section'
     >
-      <Heading size='sm' mb={2} spacing={2}>
+      <Heading size='sm' mb={2}>
         Sensor configuration
       </Heading>
       <VStack w='full' flex={1} spacing={3}>
@@ -68,8 +68,8 @@ export const Config = (props: Props) => {
         </Text>
         <Center w='full'>
           <Image
-            width='350px'
-            height='300px'
+            width='350'
+            height='300'
             objectFit='cover'
             src={imageSource}
             alt='schematic'
@@ -83,19 +83,18 @@ export const Config = (props: Props) => {
           size='sm'
           variant='solid'
           colorScheme='green'
-          isFullWidth
           onClick={setIsSaved}
           isDisabled={isConfigSaved ? true : false}
         >
           Apply
         </Button>
+        {isConfigSaved ? 
         <Tooltip label='Are you sure? All progress will be lost.' bg='red.300'>
           <Button
             size='sm'
             variant='ghost'
             colorScheme='gray'
             fontWeight='normal'
-            isFullWidth
             onClick={() => router.reload()}
             isDisabled={isConfigSaved ? false : true}
             _focus={{ outlineColor: 'none' }}
@@ -103,6 +102,7 @@ export const Config = (props: Props) => {
             Reset
           </Button>
         </Tooltip>
+        : <> </>}
       </HStack>
     </VStack>
   );

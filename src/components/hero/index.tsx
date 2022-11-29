@@ -10,7 +10,7 @@ export const Hero = () => {
       <Box>
         <HStack w='full' mb={4}>
           <Heading as='h1'>Welcome to</Heading>
-          <Heading as='h1' color='blue.200'>
+          <Heading as='h1' color='blue.400'>
             SensoAtlas
           </Heading>
         </HStack>

@@ -15,6 +15,7 @@ Built in mind with simplyfing remote studying
 </div>
 
 ## Table of Contents
+
 - [Features](#features)
 - [Libraries](#libraries)
 - [Setup and Configuration](#setup-configuration)
@@ -28,12 +29,14 @@ Built in mind with simplyfing remote studying
 ## Libraries used<a name="libraries"></a>
 
 Project was built using:
+
 - [Chakra UI](https://chakra-ui.com/)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [React Latex](https://github.com/zzish/react-latex)
 - [Recharts](https://recharts.org/en-US/)
 
 ## Setup and Configuration for development
+
 ### Requirements
 
 - [**Node**](https://nodejs.org/en)
@@ -43,18 +46,23 @@ Project was built using:
 ### Setup
 
 #### Clone the repo:
+
 ```shell
 git clone https://github.com/utbrott/sensoatlas
 ```
+
 <h6>Remove hidden .git folder if you want to make the project your own</h6>
 
 #### Install dependencies
 
 Using NPM:
+
 ```shell
 npm install
 ```
+
 Using Yarn:
+
 ```shell
 yarn
 ```
@@ -62,11 +70,13 @@ yarn
 #### Run dev server
 
 Using NPM:
+
 ```shell
 npm run dev
 ```
 
 Using Yarn:
+
 ```shell
 yarn dev
 ```

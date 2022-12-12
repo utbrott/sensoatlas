@@ -116,7 +116,6 @@ export const SingleLineChart = ({
         colorScheme='blue'
         leftIcon={<HiDownload />}
         isLoading={isLoading}
-        isFullWidth
         onClick={handleDownload}
       >
         Download

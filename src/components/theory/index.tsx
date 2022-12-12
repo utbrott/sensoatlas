@@ -1,7 +1,9 @@
 import { VStack } from '@chakra-ui/react';
-import { FC } from 'react';
 
-export const Theory: FC = ({ children }) => {
+type Props = {
+  children?: React.ReactNode;
+};
+export const Theory: React.FC<Props> = ({ children }) => {
   return (
     <VStack w='full' flex={1} spacing={8}>
       {children}

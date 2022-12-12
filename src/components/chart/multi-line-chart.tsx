@@ -136,7 +136,6 @@ export const MultiLineChart = ({
         colorScheme='blue'
         leftIcon={<HiDownload />}
         isLoading={isLoading}
-        isFullWidth
         onClick={handleDownload}
       >
         Download

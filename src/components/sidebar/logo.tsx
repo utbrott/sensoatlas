@@ -7,7 +7,7 @@ const Logo = () => {
       <Icon w={7} h={7} as={BiAnalyse} />
       <Heading
         flex={1}
-        align='flex-start'
+        // align='flex-start'
         lineHeight={7}
         letterSpacing='wide'
         fontWeight='normal'

@@ -1,9 +1,7 @@
 import Head from 'next/head';
-import { AppLogo, FacultyLogo } from '@components/ui/logo';
-import { ThemeToggle } from '@components/ui/theme-toggle';
-import { Button } from '@components/ui/button';
+import { Header, Footer } from '@components/layout';
 import { Link } from '@components/ui/link';
-import { MarkGithubIcon, ChevronLeftIcon } from '@primer/octicons-react';
+import { ChevronLeftIcon } from '@primer/octicons-react';
 
 export default function Custom404() {
   return (
@@ -12,21 +10,8 @@ export default function Custom404() {
         <title>Not found | SensoAtlas</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
-      <div className='flex flex-col h-screen'>
-        <div className='flex items-center justify-between px-8 pt-2'>
-          <AppLogo variant='full' withGradient />
-          <div className='flex gap-x-2'>
-            <ThemeToggle />
-            <Button
-              variant='default'
-              modifier='ghost'
-              iconOnly
-              href='https://github.com/utbrott/sensoatlas'
-            >
-              <MarkGithubIcon className='w-5 h-5' />
-            </Button>
-          </div>
-        </div>
+      <div className='flex flex-col justify-between h-screen'>
+        <Header />
         <div className='relative max-w-5xl pt-24 mx-auto'>
           <h1 className='font-semibold tracking-tight text-center text-9xl'>
             <span className='font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-sky-400 to-blue-600'>
@@ -43,10 +28,8 @@ export default function Custom404() {
             </Link>
           </div>
         </div>
-        <div className='h-full' />
-        <footer className='flex justify-center pb-4'>
-          <FacultyLogo variant='full' />
-        </footer>
+        <div />
+        <Footer />
       </div>
     </>
   );

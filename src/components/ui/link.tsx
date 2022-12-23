@@ -12,7 +12,9 @@ export const Link = ({ isExternal, ...props }: Props) => {
         className='text-sky-500 hover:underline focus-visible:outline-none focus-visible:ring-2'
         {...props}
       />
-      {isExternal && <LinkExternalIcon className='w-4 h-4 pl-1 text-sky-500' />}
+      {isExternal && (
+        <LinkExternalIcon className='w-4 h-4 pl-1 pointer-events-none text-sky-500' />
+      )}
     </>
   );
 };

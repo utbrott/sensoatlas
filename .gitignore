@@ -36,5 +36,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# assets
-/public/_assets
+# tailwind migration, remove after done
+src/_old

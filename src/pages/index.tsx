@@ -26,7 +26,7 @@ export default function Index() {
             follow instructions on the page.
           </p>
           <div className='flex justify-center mt-6'>
-            <Button variant='primary' href='/labs#'>
+            <Button variant='primary' href='/laboratories'>
               Get started
               <ChevronRightIcon className='w-4 h-4' />
             </Button>

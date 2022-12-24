@@ -22,7 +22,7 @@ export function AppLogo({ variant, withGradient }: AppLogoProps) {
             ) : (
               <AppIconPlain background={logoBackground} />
             )}
-            <div className='inline-flex flex-row spacing-x-[-2] select-none'>
+            <div className='inline-flex flex-row select-none'>
               <p className='text-xl font-semibold font-inter'>senso</p>
               <p className='text-xl font-light font-inter'>atlas</p>
             </div>

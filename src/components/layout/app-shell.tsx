@@ -1,5 +1,5 @@
 import { Header } from './header';
-import { Navbar } from '@components/ui/navbar';
+import { Navbar } from '@components/atoms/navbar';
 
 interface AppShellProps {
   children: React.ReactNode;

@@ -41,52 +41,6 @@ export const NavItem = ({ label, children }: NavItemProps) => {
   );
 };
 
-const routes: NavItemProps[] = [
-  {
-    label: 'Introduction',
-    children: [
-      { label: 'Getting started', href: '/#' },
-      { label: 'Library', href: '/labs#' }
-    ]
-  },
-  {
-    label: 'Labs: Temperature',
-    children: [
-      { label: 'RTDs', href: '/sandbox' },
-      { label: 'Thermocouples', href: '/sandbox' }
-    ]
-  },
-  {
-    label: 'Labs: Displacement',
-    children: [{ label: 'LVDTs', href: '/sandbox' }]
-  },
-  {
-    label: 'Labs: Strain',
-    children: [{ label: 'Strain gauges', href: '/sandbox' }]
-  },
-  {
-    label: 'Labs: Magnetoresistance',
-    children: [
-      { label: 'AMR sensors', href: '/sandbox' },
-      { label: 'Hall effect', href: '/sandbox' }
-    ]
-  },
-  {
-    label: 'Labs: Piezoelectrity',
-    children: [
-      { label: 'RTDs', href: '/sandbox' },
-      { label: 'Thermocouples', href: '/sandbox' }
-    ]
-  },
-  {
-    label: 'Labs: Temperature',
-    children: [
-      { label: 'RTDs', href: '/sandbox' },
-      { label: 'Thermocouples', href: '/sandbox' }
-    ]
-  }
-];
-
 export const Navbar = () => {
   const items = navItems.map(item => <NavItem key={item.label} {...item} />);
   return <nav className='px-8 py-4'>{items}</nav>;

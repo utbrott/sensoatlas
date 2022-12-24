@@ -1,17 +1,27 @@
 <div align="center">
 
-<h1>SensoAtlas</h1>
-<h5>
-Web application created for Sensors and Transducers laboratory <br />
-Built in mind with simplyfing remote studying
-</h5>
-<h6>WUT Warsaw University of Technology</h6>
+<p align="center">
+  <a href="https://sensoatlas.vercel.app/" target="_blank">
+    <img src="./.github/logo-github.svg" alt="SensoAtlas" height="56">
+  </a>
+</p>
 
-[![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=nextdotjs)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/typescript-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
-[![Chakra UI](https://img.shields.io/badge/chakra%20ui-319795?style=for-the-badge&logo=chakraui&logoColor=white)](https://chakra-ui.com)
-![Work In Progress](https://img.shields.io/badge/Work%20In%20Progress-orange?style=for-the-badge)
+<p align="center">
+<h3>
+  Web app designed and built to assist in learning about various sensors and
+  transducers with simple workflow.
+</h3>
+</p>
 
+<br>
+
+<p align="center">
+<img src="https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=nextdotjs">
+<img src="https://img.shields.io/badge/typescript-blue?style=for-the-badge&logo=typescript&logoColor=white">
+<img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white">
+
+<img src="https://img.shields.io/badge/Work%20In%20Progress-orange?style=for-the-badge">
+</p>
 </div>
 
 ## Table of Contents
@@ -28,61 +38,27 @@ Built in mind with simplyfing remote studying
 
 ## Libraries used<a name="libraries"></a>
 
-Project was built using:
-
-- [Chakra UI](https://chakra-ui.com/)
-- [React Icons](https://react-icons.github.io/react-icons/)
-- [React Latex](https://github.com/zzish/react-latex)
-- [Recharts](https://recharts.org/en-US/)
+Project was built using [Next.js](https://nextjs.org) and [TailwindCSS](https://tailwindcss.com). Icons come from [Tabler icons](https://tabler-icons.io), [Heroicons](https://heroicons.com/) or [Octicons](https://primer.style/octicons/).<br>
+Embedded math done using [React Latex](https://github.com/zzish/react-latex). Charts generation with [Recharts](https://recharts.org)
 
 ## Setup and Configuration for development
 
-### Requirements
+SensoAtlas uses `pnpm` by default (fast alternative to `npm`). It's not required
+to start with the project, but it's highly recommended. You can get it here:
+https://pnpm.io/
 
-- [**Node**](https://nodejs.org/en)
-- Package manager for Node (NPM, Yarn, PNPM)
-- Git
-
-### Setup
-
-#### Clone the repo:
-
+### Install required dependencies:
 ```shell
-git clone https://github.com/utbrott/sensoatlas
+pnpm install
 ```
 
-<h6>Remove hidden .git folder if you want to make the project your own</h6>
-
-#### Install dependencies
-
-Using NPM:
-
+### Start development server
 ```shell
-npm install
+pnpm dev
 ```
+Server should be available at http://localhost:3000, if the post is available (check logs in terminal for port that server uses)
 
-Using Yarn:
-
-```shell
-yarn
-```
-
-#### Run dev server
-
-Using NPM:
-
-```shell
-npm run dev
-```
-
-Using Yarn:
-
-```shell
-yarn dev
-```
-
-This will start a development server at port 3000 (`http://localhost:3000`, if the configuration wasn't changed)
 
 ## License:
 
-MIT
+(MIT) Faculty of Electrical Engineering, WUT Warsaw University of Technology

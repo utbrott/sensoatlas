@@ -1,6 +1,6 @@
 import { Button } from '@ui/button';
 import { AppLogo } from '@components/ui/logo';
-import { ThemeToggle } from '@components/ui/theme-toggle';
+import { ThemeToggle } from '@components/atoms/theme-toggle';
 import { MarkGithubIcon } from '@primer/octicons-react';
 
 export const Header = () => {

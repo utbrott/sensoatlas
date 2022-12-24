@@ -3,29 +3,32 @@ import { ButtonOrLink, Props as ButtonOrLinkProps } from './button-or-link';
 
 const buttonStyles = cva(
   [
-    'inline-flex items-center px-4 py-1 justify-center gap-2 rounded font-medium',
+    'box-border flex px-5 py-2 items-center justify-center gap-2 rounded text-sm font-medium',
     'focus-visible:outline focus-visible:outline-1 focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent',
-    'disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed'
+    'disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed',
+    'trasition-color ease-in-out duration-100'
   ],
   {
     variants: {
       variant: {
         default:
-          'bg-zinc-200 dark:bg-zinc-700 hover:bg-zinc-300 dark:hover:bg-zinc-600 outline-zinc-200 dark:outline-zinc-700 active:bg-zinc-200 active:dark:bg-zinc-700',
+          'bg-gray-200 outline-gray-200 hover:bg-gray-300 active:bg-gray-200 dark:bg-gray-700 dark:outline-gray-700 dark:hover:bg-gray-600 active:dark:bg-gray-700',
         primary:
-          'text-zinc-50 bg-sky-500 outline-sky-600 hover:bg-sky-400 active:bg-sky-500'
+          'text-zinc-50 bg-blue-500 outline-blue-500 hover:bg-blue-600 active:bg-blue-700',
+        danger:
+          'text-zinc-50 bg-red-500 outline-red-500 hover:bg-red-600 active:bg-red-600'
       },
       modifier: {
         outline:
-          'bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-10 dark:hover:bg-opacity-10 outline outline-1',
+          'bg-opacity-0 hover:bg-opacity-20 active:bg-opacity-10 dark:bg-opacity-0 dark:hover:bg-opacity-20 dark:active:bg-opacity-10 outline outline-1',
         ghost:
-          'bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-10 dark:hover:bg-opacity-10'
+          'bg-opacity-0 hover:bg-opacity-20 active:bg-opacity-10 dark:bg-opacity-0 dark:hover:bg-opacity-20 dark:active:bg-opacity-10'
       },
       fullWidth: {
         true: 'w-full'
       },
       iconOnly: {
-        true: 'px-2 py-2'
+        true: 'pl-3 pr-3'
       }
     },
     compoundVariants: [
@@ -33,12 +36,19 @@ const buttonStyles = cva(
         variant: 'default',
         modifier: ['outline', 'ghost'],
         className:
-          'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50'
+          'text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-50'
       },
       {
         variant: 'primary',
         modifier: ['outline', 'ghost'],
-        className: 'text-sky-500 dark:text-sky-400'
+        className:
+          'text-blue-500 dark:text-blue-400 hover:bg-blue-500 active:bg-blue-500'
+      },
+      {
+        variant: 'danger',
+        modifier: ['outline', 'ghost'],
+        className:
+          'text-red-500 dark:text-red-400 hover:bg-red-500 active:bg-red-500'
       }
     ],
     defaultVariants: {

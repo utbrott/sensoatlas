@@ -5,7 +5,7 @@ export const navItems: NavItemProps[] = [
     label: 'Introduction',
     children: [
       { label: 'Getting started', href: '/#' },
-      { label: 'Library', href: '/labs#' }
+      { label: 'Library', href: '/labs' }
     ]
   },
   {
@@ -33,15 +33,15 @@ export const navItems: NavItemProps[] = [
   {
     label: 'Labs: Piezoelectrity',
     children: [
-      { label: 'RTDs', href: '/sandbox' },
-      { label: 'Thermocouples', href: '/sandbox' }
+      { label: 'Piezoelectric cable', href: '/sandbox' },
+      { label: 'Accelerometer', href: '/sandbox' }
     ]
   },
   {
-    label: 'Labs: Temperature',
+    label: 'Labs: Transducers',
     children: [
-      { label: 'RTDs', href: '/sandbox' },
-      { label: 'Thermocouples', href: '/sandbox' }
+      { label: 'Measurement loop', href: '/sandbox' },
+      { label: 'Pressure transducers', href: '/sandbox' }
     ]
   }
 ];

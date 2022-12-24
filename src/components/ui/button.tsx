@@ -13,13 +13,13 @@ const buttonStyles = cva(
         default:
           'bg-zinc-200 dark:bg-zinc-700 hover:bg-zinc-300 dark:hover:bg-zinc-600 outline-zinc-200 dark:outline-zinc-700 active:bg-zinc-200 active:dark:bg-zinc-700',
         primary:
-          'text-zinc-50 bg-blue-600 outline-blue-600 hover:bg-blue-700 active:bg-blue-600'
+          'text-zinc-50 bg-sky-500 outline-sky-600 hover:bg-sky-400 active:bg-sky-500'
       },
       modifier: {
         outline:
-          'bg-opacity-0 dark:bg-inherit hover:bg-opacity-20 dark:hover:bg-opacity-20 outline outline-1',
+          'bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-10 dark:hover:bg-opacity-10 outline outline-1',
         ghost:
-          'bg-opacity-0 dark:bg-inherit hover:bg-opacity-20 dark:hover:bg-opacity-20'
+          'bg-opacity-0 dark:bg-opacity-0 hover:bg-opacity-10 dark:hover:bg-opacity-10'
       },
       fullWidth: {
         true: 'w-full'
@@ -30,9 +30,15 @@ const buttonStyles = cva(
     },
     compoundVariants: [
       {
+        variant: 'default',
+        modifier: ['outline', 'ghost'],
+        className:
+          'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50'
+      },
+      {
         variant: 'primary',
         modifier: ['outline', 'ghost'],
-        className: 'text-blue-500 dark:text-blue-400'
+        className: 'text-sky-500 dark:text-sky-400'
       }
     ],
     defaultVariants: {

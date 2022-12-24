@@ -15,6 +15,7 @@ const grayColor = {
   800: '#1A202C',
   900: '#171923'
 };
+
 const deepGreenColor = {
   50: '#DFFAEA',
   100: '#B1F4D1',
@@ -48,6 +49,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
-    require('@tailwindcss/aspect-ratio')
+    require('@tailwindcss/aspect-ratio'),
+    require('tailwind-scrollbar')({ nocompatible: true })
   ]
 };

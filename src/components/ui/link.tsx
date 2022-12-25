@@ -1,5 +1,4 @@
 import { ButtonOrLink, Props as ButtonOrLinkProps } from './button-or-link';
-// import { LinkExternalIcon } from '@primer/octicons-react';
 import { ArrowTopRightOnSquareIcon as LinkExternalIcon } from '@heroicons/react/20/solid';
 
 export interface Props extends ButtonOrLinkProps {

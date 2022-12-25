@@ -1,7 +1,7 @@
-import { Footer, Header } from '@components/layout';
-import { Button } from '@components/ui/button';
-import { ChevronRightIcon } from '@primer/octicons-react';
-import Head from 'next/head';
+import { Footer, Header } from '@components/layout'
+import { Button } from '@components/ui/button'
+import { ChevronRightIcon } from '@primer/octicons-react'
+import Head from 'next/head'
 
 export default function Index() {
   return (
@@ -10,22 +10,22 @@ export default function Index() {
         <title>Home | SensoAtlas</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
-      <div className='flex flex-col justify-between h-screen'>
+      <div className='flex h-screen flex-col justify-between'>
         <Header />
-        <div className='relative flex flex-col items-center max-w-5xl m-auto select-none'>
-          <h1 className='text-4xl font-semibold tracking-tight text-center'>
+        <div className='relative m-auto flex max-w-5xl select-none flex-col items-center'>
+          <h1 className='text-center text-4xl font-semibold tracking-tight'>
             Take your online laboratories to{' '}
-            <span className='font-extrabold gradient-emphasis'>next level</span>
+            <span className='gradient-emphasis font-extrabold'>next level</span>
           </h1>
-          <p className='max-w-3xl mx-auto mt-6 text-lg text-center text-zinc-700 dark:text-zinc-300'>
+          <p className='mx-auto mt-6 max-w-3xl text-center text-lg text-zinc-700 dark:text-zinc-300'>
             An app designed and built to assist in learning about various
             sensors and transducers. Simple workflow - choose laboratory and
             follow instructions on the page.
           </p>
-          <div className='flex justify-center mt-6'>
+          <div className='mt-6 flex justify-center'>
             <Button variant='primary' href='/laboratories'>
               Get started
-              <ChevronRightIcon className='w-4 h-4' />
+              <ChevronRightIcon className='h-4 w-4' />
             </Button>
           </div>
         </div>
@@ -33,5 +33,5 @@ export default function Index() {
         <Footer />
       </div>
     </>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import { cva, VariantProps } from 'class-variance-authority';
-import { ButtonOrLink, Props as ButtonOrLinkProps } from './button-or-link';
+import { cva, VariantProps } from 'class-variance-authority'
+import { ButtonOrLink, Props as ButtonOrLinkProps } from './button-or-link'
 
 const buttonStyles = cva(
   [
@@ -55,7 +55,7 @@ const buttonStyles = cva(
       variant: 'default'
     }
   }
-);
+)
 
 export interface Props
   extends ButtonOrLinkProps,
@@ -73,5 +73,5 @@ export function Button({
       className={buttonStyles({ variant, modifier, iconOnly, fullWidth })}
       {...props}
     />
-  );
+  )
 }

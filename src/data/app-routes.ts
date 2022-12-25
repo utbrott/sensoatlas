@@ -1,10 +1,10 @@
-import { NavItemProps } from '@components/atoms/navbar';
+import { NavItemProps } from '@components/atoms/navbar'
 
 export const navItems: NavItemProps[] = [
   {
-    label: 'Introduction',
+    label: 'Getting started',
     children: [
-      { label: 'Getting started', href: '/#' },
+      { label: 'Introduction', href: '/#' },
       { label: 'Library', href: '/labs' }
     ]
   },
@@ -44,4 +44,4 @@ export const navItems: NavItemProps[] = [
       { label: 'Pressure transducers', href: '/sandbox' }
     ]
   }
-];
+]

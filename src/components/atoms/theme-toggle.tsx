@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
-import { Button } from '../ui/button';
-import { SunIcon, MoonIcon } from '@heroicons/react/24/solid';
+import { useState, useEffect } from 'react'
+import { useTheme } from 'next-themes'
+import { Button } from '../ui/button'
+import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'
 
 export function ThemeToggle() {
-  const [isMounted, setIsMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [isMounted, setIsMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    setIsMounted(true)
+  }, [])
 
-  const t = theme === 'light' ? 'dark' : 'light';
+  const t = theme === 'light' ? 'dark' : 'light'
 
   return isMounted ? (
     <Button
@@ -26,5 +26,5 @@ export function ThemeToggle() {
         <MoonIcon className='h-5' />
       )}
     </Button>
-  ) : null;
+  ) : null
 }

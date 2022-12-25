@@ -1,8 +1,8 @@
-import { Header } from './header';
-import { Navbar } from '@components/atoms/navbar';
+import { Header } from './header'
+import { Navbar } from '@components/atoms/navbar'
 
 interface AppShellProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export const AppShell = ({ children }: AppShellProps) => {
@@ -10,12 +10,12 @@ export const AppShell = ({ children }: AppShellProps) => {
     <>
       <Header />
       <div className='flex flex-row justify-start'>
-        <div className='fixed block w-64 h-screen overflow-y-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-track-transparent scrollbar-thumb-gray-700'>
+        <div className='fixed block h-screen w-64 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-700 scrollbar-thumb-rounded'>
           <Navbar />
           <div className='h-14' />
         </div>
         <div className='w-full'>{children}</div>
       </div>
     </>
-  );
-};
+  )
+}

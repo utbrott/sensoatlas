@@ -12,13 +12,10 @@ export default function Index() {
       </Head>
       <div className='flex flex-col justify-between h-screen'>
         <Header />
-        <div className='relative max-w-5xl pt-24 mx-auto select-none'>
+        <div className='relative flex flex-col items-center max-w-5xl m-auto select-none'>
           <h1 className='text-4xl font-semibold tracking-tight text-center'>
-            Take your online laboratories to next level with{' '}
-            <span className='font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-sky-400 to-blue-600'>
-              senso
-            </span>
-            <span className='font-normal'>atlas</span>
+            Take your online laboratories to{' '}
+            <span className='font-extrabold gradient-emphasis'>next level</span>
           </h1>
           <p className='max-w-3xl mx-auto mt-6 text-lg text-center text-zinc-700 dark:text-zinc-300'>
             An app designed and built to assist in learning about various

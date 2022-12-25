@@ -3,7 +3,7 @@ import { ButtonOrLink, Props as ButtonOrLinkProps } from './button-or-link';
 
 const buttonStyles = cva(
   [
-    'box-border flex px-5 py-2 items-center justify-center gap-2 rounded text-sm font-medium',
+    'box-border flex px-4 py-2 items-center justify-center gap-2 rounded text-sm font-medium',
     'focus-visible:outline focus-visible:outline-1 focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent',
     'disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed',
     'trasition-color ease-in-out duration-100'

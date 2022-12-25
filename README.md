@@ -38,8 +38,10 @@
 
 ## Libraries used<a name="libraries"></a>
 
-Project was built using [Next.js](https://nextjs.org) and [TailwindCSS](https://tailwindcss.com). Icons come from [Tabler icons](https://tabler-icons.io), [Heroicons](https://heroicons.com/) or [Octicons](https://primer.style/octicons/).<br>
-Embedded math done using [React Latex](https://github.com/zzish/react-latex). Charts generation with [Recharts](https://recharts.org)
+- Built using [Next.js](https://nextjs.org) and [Tailwind CSS](https://tailwindcss.com)
+- Icons from [Tabler icons](https://tabler-icons.io), [Heroicons](https://heroicons.com/), [Octicons](https://primer.style/octicons/)
+- Equations with [React Latex](https://github.com/zzish/react-latex) and [Katex](https://katex.org/)
+- Charts generation via [Recharts](https://recharts.org)
 
 ## Setup and Configuration for development
 

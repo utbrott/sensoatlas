@@ -4,8 +4,8 @@ export const navItems: NavItemProps[] = [
   {
     label: 'Getting started',
     children: [
-      { label: 'Introduction', href: '/#' },
-      { label: 'Library', href: '/labs' }
+      { label: 'Introduction', href: '/introduction' },
+      { label: 'Library', href: '/laboratories' }
     ]
   },
   {

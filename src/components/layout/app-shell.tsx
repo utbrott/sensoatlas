@@ -10,7 +10,7 @@ export const AppShell = ({ children }: AppShellProps) => {
     <>
       <Header />
       <div className='flex flex-row justify-start'>
-        <div className='fixed block h-screen w-64 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-700 scrollbar-thumb-rounded'>
+        <div className='thin-scrollbar fixed block h-screen w-64 overflow-y-scroll'>
           <Navbar />
           <div className='h-14' />
         </div>

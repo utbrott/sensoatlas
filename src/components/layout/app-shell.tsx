@@ -14,8 +14,8 @@ export const AppShell = ({ children }: AppShellProps) => {
           <Navbar />
           <div className='h-14' />
         </div>
-        <div>
-          <div className='mt-8 ml-64 w-full'>{children}</div>
+        <div className='w-full'>
+          <div className='ml-64 mt-8'>{children}</div>
           <div className='h-14' />
         </div>
       </div>

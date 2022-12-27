@@ -20,7 +20,7 @@
       "@assets/*": ["./public/assets/*"],
       "@components/*": ["./src/components/*"],
       "@ui/*": ["./src/components/ui/*"],
-      "@types/*": ["./src/types/*"],
+      "@theory/*": ["./src/data/theory/*"],
       "@data/*": ["./src/data/*"],
       "@states/*": ["./src/states/*"],
       "@store/*": ["./src/store/*"],

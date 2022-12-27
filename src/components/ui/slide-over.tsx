@@ -10,10 +10,12 @@ interface SlideOverHeaderProps {
 
 const SlideOverHeader = ({ title, closeHandler }: SlideOverHeaderProps) => {
   return (
-    <div className='flex h-9 flex-row items-center justify-between'>
-      <Dialog.Title className='text-xl font-medium text-gray-900 dark:text-gray-50'>
-        {title}
-      </Dialog.Title>
+    <div className='sticky top-0 z-50 flex h-14 flex-row items-center justify-between border-b bg-gray-50 pl-4 dark:border-gray-700 dark:bg-gray-800'>
+      <div className='flex w-full flex-col items-start justify-center'>
+        <Dialog.Title className='text-lg font-semibold text-gray-900 dark:text-gray-50'>
+          {title}
+        </Dialog.Title>
+      </div>
       <Button
         variant='default'
         modifier='ghost'
@@ -72,13 +74,14 @@ export const SlideOver = ({
                 leaveTo='translate-x-full'
               >
                 <Dialog.Panel className='pointer-events-auto relative w-screen max-w-screen-sm'>
-                  <div className='thin-scrollbar flex h-full flex-col overflow-y-scroll bg-gray-50 py-6 shadow-xl dark:bg-gray-800'>
+                  <div className='thin-scrollbar flex h-full flex-col overflow-y-scroll bg-gray-50 shadow-xl dark:bg-gray-800'>
                     <div className='px-4'>
                       <SlideOverHeader
                         title={title}
                         closeHandler={closeHandler}
                       />
                       <SlideOverContent>{children}</SlideOverContent>
+                      <div className='h-14' />
                     </div>
                   </div>
                 </Dialog.Panel>

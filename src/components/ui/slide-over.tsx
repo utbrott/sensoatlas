@@ -33,7 +33,7 @@ interface SlideOverContentProps {
 }
 
 const SlideOverContent = ({ children }: SlideOverContentProps) => {
-  return <div className='relative mt-6 h-screen flex-1 px-4'>{children}</div>
+  return <div className='relative mt-6 h-fit flex-1 px-4'>{children}</div>
 }
 
 interface SlideOverProps extends SlideOverHeaderProps, SlideOverContentProps {
@@ -73,7 +73,7 @@ export const SlideOver = ({
                 leaveFrom='translate-x-0'
                 leaveTo='translate-x-full'
               >
-                <Dialog.Panel className='pointer-events-auto relative w-screen max-w-screen-sm'>
+                <Dialog.Panel className='pointer-events-auto relative w-screen max-w-screen-md'>
                   <div className='thin-scrollbar flex h-full flex-col overflow-y-scroll bg-gray-50 shadow-xl dark:bg-gray-800'>
                     <div className='px-4'>
                       <SlideOverHeader

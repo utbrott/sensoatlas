@@ -1,8 +1,8 @@
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment } from 'react'
 import { Button, Props as ButtonProps } from './button'
 import { ButtonOrLink, Props as ButtonOrLinkProps } from './button-or-link'
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 interface DropdownButtonProps {
   children: React.ReactNode

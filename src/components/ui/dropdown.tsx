@@ -45,7 +45,7 @@ const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
         <ButtonOrLink
           className={`bg-gray-100 dark:bg-gray-800 ${
             active &&
-            ' bg-gray-200 font-medium text-gray-900 dark:border-blue-500 dark:bg-gray-700 dark:text-gray-50'
+            ' bg-gray-200 font-medium text-gray-900 dark:bg-gray-700/90 dark:text-gray-50'
           } flex w-full items-center gap-2 rounded px-4 py-2 text-sm text-gray-700 dark:text-gray-300`}
           {...props}
         >
@@ -71,7 +71,7 @@ const DropdownItems = ({ children }: DropdownItemsProps) => {
       leaveFrom='transform opacity-100 scale-100'
       leaveTo='transform opacity-0 scale-95'
     >
-      <Menu.Items className='border-box absolute left-0 z-10 mt-2 w-56 origin-top-left divide-y rounded border bg-gray-100 shadow-lg focus-visible:outline-none dark:divide-gray-700/70 dark:border-gray-700/70 dark:bg-gray-800'>
+      <Menu.Items className='absolute left-0 z-10 mt-2 w-56 origin-top-left divide-y rounded border bg-gray-100 shadow-lg focus-visible:outline-none dark:divide-gray-700/70 dark:border-gray-700/70 dark:bg-gray-800'>
         {children}
       </Menu.Items>
     </Transition>

@@ -9,6 +9,7 @@ export interface Props {
 
 export const Card = ({ category, title, description, redirects }: Props) => {
   const { buttonLabel, href } = redirects
+
   return (
     <div className='flex h-full w-[32rem] max-w-md flex-col rounded p-8'>
       {category && (
@@ -24,9 +25,9 @@ export const Card = ({ category, title, description, redirects }: Props) => {
       </div>
       {redirects && (
         <div className='max-w-fit'>
-          <Button variant='default' href={href}>
+          <Button.Link variant='default' href={href}>
             {buttonLabel}
-          </Button>
+          </Button.Link>
         </div>
       )}
     </div>

@@ -1,7 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { Button, Props as ButtonProps } from './button'
-import { ButtonOrLink, Props as ButtonOrLinkProps } from './button-or-link'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 interface DropdownButtonProps {
@@ -24,11 +23,11 @@ const DropdownButton = ({
   )
 }
 
-interface DropdownProps {
+interface DropdownRootProps {
   children: React.ReactNode
 }
 
-const DropdownRoot = ({ children }: DropdownProps) => {
+const DropdownRoot = ({ children }: DropdownRootProps) => {
   return (
     <Menu as='div' className='relative inline-block text-left'>
       {children}
@@ -36,13 +35,15 @@ const DropdownRoot = ({ children }: DropdownProps) => {
   )
 }
 
-interface DropdownItemProps extends ButtonOrLinkProps {}
+interface DropdownItemProps {
+  children: React.ReactNode
+}
 
 const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
   return (
     <Menu.Item>
       {({ active }) => (
-        <ButtonOrLink
+        <button
           className={`bg-gray-100 dark:bg-gray-800 ${
             active &&
             ' bg-gray-200 font-medium text-gray-900 dark:bg-gray-700/90 dark:text-gray-50'
@@ -50,7 +51,7 @@ const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
           {...props}
         >
           {children}
-        </ButtonOrLink>
+        </button>
       )}
     </Menu.Item>
   )
@@ -65,11 +66,11 @@ const DropdownItems = ({ children }: DropdownItemsProps) => {
     <Transition
       as={Fragment}
       enter='transition ease-out duration-100'
-      enterFrom='transform opacity-0 scale-95'
-      enterTo='transform opacity-100 scale-100'
-      leave='transition ease-in duration-75'
-      leaveFrom='transform opacity-100 scale-100'
-      leaveTo='transform opacity-0 scale-95'
+      enterFrom='opacity-0'
+      enterTo='opacity-100'
+      leave='ease-in duration-75'
+      leaveFrom='opacity-100'
+      leaveTo='opacity-0'
     >
       <Menu.Items className='absolute left-0 z-10 mt-2 w-56 origin-top-left divide-y rounded border bg-gray-100 shadow-lg focus-visible:outline-none dark:divide-gray-700/70 dark:border-gray-700/70 dark:bg-gray-800'>
         {children}

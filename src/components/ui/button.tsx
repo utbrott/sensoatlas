@@ -1,5 +1,6 @@
+import { ComponentProps } from 'react'
 import { cva, VariantProps } from 'class-variance-authority'
-import { ButtonOrLink, Props as ButtonOrLinkProps } from './button-or-link'
+import { useRouter } from 'next/router'
 
 const buttonStyles = cva(
   [
@@ -14,7 +15,7 @@ const buttonStyles = cva(
         accent:
           'text-zinc-50 bg-blue-500 outline-blue-500 hover:bg-blue-600 active:bg-blue-700',
         default:
-          'bg-gray-200 outline-gray-200 hover:bg-gray-300 active:bg-gray-200 dark:bg-gray-700 dark:outline-gray-700 dark:hover:bg-gray-600 active:dark:bg-gray-700',
+          'bg-gray-200 outline-gray-300 hover:bg-gray-300 active:bg-gray-200 dark:bg-gray-700 dark:outline-gray-600 dark:hover:bg-gray-600 active:dark:bg-gray-700',
         negative:
           'text-zinc-50 bg-red-500 outline-red-500 hover:bg-red-600 active:bg-red-600'
       },
@@ -57,21 +58,46 @@ const buttonStyles = cva(
   }
 )
 
-export interface Props
-  extends ButtonOrLinkProps,
+interface ButtonProps
+  extends ComponentProps<'button'>,
     VariantProps<typeof buttonStyles> {}
 
-export function Button({
+const _Button = ({
   variant,
   modifier,
   iconOnly,
   fullWidth,
   ...props
-}: Props) {
+}: ButtonProps) => {
   return (
-    <ButtonOrLink
+    <button
       className={buttonStyles({ variant, modifier, iconOnly, fullWidth })}
       {...props}
     />
   )
 }
+
+interface LinkButtonProps extends ButtonProps {
+  href: string
+}
+
+const LinkButton = ({
+  variant,
+  modifier,
+  iconOnly,
+  fullWidth,
+  href,
+  ...props
+}: LinkButtonProps) => {
+  const router = useRouter()
+
+  return (
+    <button
+      className={buttonStyles({ variant, modifier, iconOnly, fullWidth })}
+      onClick={() => router.push(href)}
+      {...props}
+    />
+  )
+}
+
+export const Button = Object.assign(_Button, { Link: LinkButton })

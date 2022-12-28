@@ -21,6 +21,6 @@ input:-webkit-autofill {
   }
 
   .thin-scrollbar {
-    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700;
+    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400/50 dark:scrollbar-thumb-gray-600/50;
   }
 }

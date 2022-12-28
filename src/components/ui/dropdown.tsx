@@ -1,22 +1,19 @@
 import { Menu, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
-import { Button, Props as ButtonProps } from './button'
+import { Button, ButtonProps } from './button'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
-interface DropdownButtonProps {
+interface DropdownButtonProps extends ButtonProps {
   children: React.ReactNode
-  variant?: ButtonProps['variant']
-  modifier?: ButtonProps['modifier']
   withArrow?: boolean
 }
 const DropdownButton = ({
   children,
-  variant,
-  modifier,
-  withArrow
+  withArrow,
+  ...props
 }: DropdownButtonProps) => {
   return (
-    <Menu.Button as={Button} variant={variant} modifier={modifier}>
+    <Menu.Button as={Button} {...props}>
       {children}
       {withArrow && <ChevronDownIcon className='h-5 w-5' />}
     </Menu.Button>

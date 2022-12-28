@@ -58,7 +58,7 @@ const buttonStyles = cva(
   }
 )
 
-interface ButtonProps
+export interface ButtonProps
   extends ComponentProps<'button'>,
     VariantProps<typeof buttonStyles> {}
 

@@ -41,11 +41,11 @@ export const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
     <Menu.Item>
       {({ active }) => (
         <ButtonOrLink
-          className={`bg-gray-200 dark:bg-gray-700 ${
+          className={`bg-gray-100 dark:bg-gray-800 ${
             active
-              ? 'border-l border-blue-400 bg-blue-400/10 dark:border-blue-500 dark:bg-blue-500/10'
+              ? ' bg-gray-200/50 font-medium text-gray-900 dark:border-blue-500 dark:bg-gray-700/50 dark:text-gray-50'
               : ''
-          } flex w-full items-center gap-2 px-4 py-2 text-sm`}
+          } flex w-full items-center gap-2 rounded px-4 py-2 text-sm text-gray-700 dark:text-gray-300`}
           {...props}
         >
           {children}
@@ -70,7 +70,7 @@ export const DropdownItems = ({ children }: DropdownItemsProps) => {
       leaveFrom='transform opacity-100 scale-100'
       leaveTo='transform opacity-0 scale-95'
     >
-      <Menu.Items className='absolute left-0 mt-2 w-56 origin-top-left divide-y divide-gray-300/70 rounded bg-gray-200 shadow-lg focus-visible:outline-none dark:divide-gray-800/50 dark:bg-gray-700'>
+      <Menu.Items className='border-box absolute left-0 mt-2 w-56 origin-top-left divide-y rounded border bg-gray-100 shadow-lg focus-visible:outline-none dark:divide-gray-700/70 dark:border-gray-700/70 dark:bg-gray-800'>
         {children}
       </Menu.Items>
     </Transition>

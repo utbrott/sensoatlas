@@ -12,7 +12,7 @@ export const LibraryCard = ({
   href
 }: LibraryCardProps) => {
   return (
-    <div className='w-min rounded bg-gray-100 shadow transition-transform hover:scale-105 hover:outline hover:outline-1 hover:outline-blue-500 dark:bg-gray-800 dark:hover:outline-blue-400'>
+    <div className='w-min rounded-md bg-gray-100 shadow transition-transform hover:scale-105 hover:outline hover:outline-1 hover:outline-blue-500 dark:bg-gray-800/50 dark:hover:outline-blue-400'>
       <Card
         category={category}
         title={name}

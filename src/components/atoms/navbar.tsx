@@ -20,8 +20,8 @@ export const NavItem = ({ label, children }: NavItemProps) => {
           href={link.href}
           className={`trasition-colors duration-50 -ml-px block border-l border-transparent pl-4 text-sm ease-in-out ${
             isActive
-              ? 'cursor-default border-blue-500 bg-blue-500/5 font-medium text-blue-500'
-              : 'text-gray-600 hover:border-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-50'
+              ? 'cursor-default border-blue-500 font-semibold  text-blue-500'
+              : 'text-gray-600 hover:border-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50'
           }`}
         >
           {link.label}

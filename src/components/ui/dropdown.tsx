@@ -6,6 +6,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 interface DropdownButtonProps extends ButtonProps {
   children: React.ReactNode
   withArrow?: boolean
+  open?: boolean
 }
 const DropdownButton = ({
   children,
@@ -15,19 +16,36 @@ const DropdownButton = ({
   return (
     <Menu.Button as={Button} {...props}>
       {children}
-      {withArrow && <ChevronDownIcon className='h-5 w-5' />}
+      {withArrow && (
+        <span className={props.open && 'rotate-180 transform duration-200'}>
+          <ChevronDownIcon className='h-5 w-5' />
+        </span>
+      )}
     </Menu.Button>
   )
 }
 
-interface DropdownRootProps {
+interface DropdownRootProps extends DropdownButtonProps {
+  label: React.ReactNode
   children: React.ReactNode
 }
 
-const DropdownRoot = ({ children }: DropdownRootProps) => {
+const DropdownRoot = ({ label, children, ...props }: DropdownRootProps) => {
   return (
-    <Menu as='div' className='relative inline-block text-left'>
-      {children}
+    <Menu
+      as='div'
+      className={`relative inline-block text-left ${
+        props.fullWidth && 'w-full'
+      }`}
+    >
+      {({ open }) => (
+        <>
+          <DropdownButton {...props} open={open}>
+            {label}
+          </DropdownButton>
+          {children}
+        </>
+      )}
     </Menu>
   )
 }

@@ -8,16 +8,18 @@ interface DropdownButtonProps {
   children: React.ReactNode
   variant?: ButtonProps['variant']
   modifier?: ButtonProps['modifier']
+  withArrow?: boolean
 }
 export const DropdownButton = ({
   children,
   variant,
-  modifier
+  modifier,
+  withArrow
 }: DropdownButtonProps) => {
   return (
     <Menu.Button as={Button} variant={variant} modifier={modifier}>
       {children}
-      <ChevronDownIcon className='h-6 w-5' />
+      {withArrow && <ChevronDownIcon className='h-5 w-5' />}
     </Menu.Button>
   )
 }

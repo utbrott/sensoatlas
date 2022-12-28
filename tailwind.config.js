@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme');
-const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 // Pallete extension
 const grayColor = {
@@ -14,7 +14,7 @@ const grayColor = {
   700: '#2D3748',
   800: '#1A202C',
   900: '#171923'
-};
+}
 
 const deepGreenColor = {
   50: '#DFFAEA',
@@ -27,7 +27,7 @@ const deepGreenColor = {
   700: '#007D4E',
   800: '#006C43',
   900: '#005C38'
-};
+}
 
 module.exports = {
   content: ['./src/**/*.{ts,tsx}'],
@@ -52,4 +52,4 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('tailwind-scrollbar')({ nocompatible: true })
   ]
-};
+}

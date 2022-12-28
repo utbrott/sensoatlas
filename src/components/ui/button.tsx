@@ -11,11 +11,11 @@ const buttonStyles = cva(
   {
     variants: {
       variant: {
+        accent:
+          'text-zinc-50 bg-blue-500 outline-blue-500 hover:bg-blue-600 active:bg-blue-700',
         default:
           'bg-gray-200 outline-gray-200 hover:bg-gray-300 active:bg-gray-200 dark:bg-gray-700 dark:outline-gray-700 dark:hover:bg-gray-600 active:dark:bg-gray-700',
-        primary:
-          'text-zinc-50 bg-blue-500 outline-blue-500 hover:bg-blue-600 active:bg-blue-700',
-        danger:
+        negative:
           'text-zinc-50 bg-red-500 outline-red-500 hover:bg-red-600 active:bg-red-600'
       },
       modifier: {
@@ -39,13 +39,13 @@ const buttonStyles = cva(
           'text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-50'
       },
       {
-        variant: 'primary',
+        variant: 'accent',
         modifier: ['outline', 'ghost'],
         className:
           'text-blue-500 dark:text-blue-400 hover:bg-blue-500 active:bg-blue-500'
       },
       {
-        variant: 'danger',
+        variant: 'negative',
         modifier: ['outline', 'ghost'],
         className:
           'text-red-500 dark:text-red-400 hover:bg-red-500 active:bg-red-500'

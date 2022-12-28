@@ -10,7 +10,7 @@ interface DropdownButtonProps {
   modifier?: ButtonProps['modifier']
   withArrow?: boolean
 }
-export const DropdownButton = ({
+const DropdownButton = ({
   children,
   variant,
   modifier,
@@ -28,7 +28,7 @@ interface DropdownProps {
   children: React.ReactNode
 }
 
-export const Dropdown = ({ children }: DropdownProps) => {
+const DropdownRoot = ({ children }: DropdownProps) => {
   return (
     <Menu as='div' className='relative inline-block text-left'>
       {children}
@@ -36,17 +36,16 @@ export const Dropdown = ({ children }: DropdownProps) => {
   )
 }
 
-export interface DropdownItemProps extends ButtonOrLinkProps {}
+interface DropdownItemProps extends ButtonOrLinkProps {}
 
-export const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
+const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
   return (
     <Menu.Item>
       {({ active }) => (
         <ButtonOrLink
           className={`bg-gray-100 dark:bg-gray-800 ${
-            active
-              ? ' bg-gray-200/50 font-medium text-gray-900 dark:border-blue-500 dark:bg-gray-700/50 dark:text-gray-50'
-              : ''
+            active &&
+            ' bg-gray-200 font-medium text-gray-900 dark:border-blue-500 dark:bg-gray-700 dark:text-gray-50'
           } flex w-full items-center gap-2 rounded px-4 py-2 text-sm text-gray-700 dark:text-gray-300`}
           {...props}
         >
@@ -57,11 +56,11 @@ export const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
   )
 }
 
-export interface DropdownItemsProps {
+interface DropdownItemsProps {
   children: React.ReactNode
 }
 
-export const DropdownItems = ({ children }: DropdownItemsProps) => {
+const DropdownItems = ({ children }: DropdownItemsProps) => {
   return (
     <Transition
       as={Fragment}
@@ -72,9 +71,24 @@ export const DropdownItems = ({ children }: DropdownItemsProps) => {
       leaveFrom='transform opacity-100 scale-100'
       leaveTo='transform opacity-0 scale-95'
     >
-      <Menu.Items className='border-box absolute left-0 mt-2 w-56 origin-top-left divide-y rounded border bg-gray-100 shadow-lg focus-visible:outline-none dark:divide-gray-700/70 dark:border-gray-700/70 dark:bg-gray-800'>
+      <Menu.Items className='border-box absolute left-0 z-10 mt-2 w-56 origin-top-left divide-y rounded border bg-gray-100 shadow-lg focus-visible:outline-none dark:divide-gray-700/70 dark:border-gray-700/70 dark:bg-gray-800'>
         {children}
       </Menu.Items>
     </Transition>
   )
 }
+
+interface DropdownSection {
+  children: React.ReactNode
+}
+
+const DropdownSection = ({ children }) => {
+  return <div className='px-1 py-1'>{children}</div>
+}
+
+export const Dropdown = Object.assign(DropdownRoot, {
+  Button: DropdownButton,
+  Items: DropdownItems,
+  Section: DropdownSection,
+  Item: DropdownItem
+})

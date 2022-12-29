@@ -23,9 +23,7 @@ export const FieldError = ({ name }: FieldErrorProps) => {
   if (!error) return null
 
   return (
-    <div className='text-sm font-semibold text-red-500'>
-      {error.message.toString()}
-    </div>
+    <div className='mt-1 text-xs text-red-500'>{error.message.toString()}</div>
   )
 }
 
@@ -33,6 +31,7 @@ interface FormProps<T extends FieldValues = any>
   extends Omit<ComponentProps<'form'>, 'onSubmit'> {
   form: UseFormReturn<T>
   onSubmit: SubmitHandler<T>
+  complete?: boolean
 }
 
 const FormRoot = <T extends FieldValues = any>({
@@ -57,24 +56,51 @@ const FormRoot = <T extends FieldValues = any>({
 
 interface InputProps extends ComponentProps<'input'> {
   label: string
+  withProgress?: { max: number; value: number }
 }
+
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { label, type = 'number', ...props },
+  { label, withProgress, type = 'number', ...props },
   ref
 ) {
   return (
     <label>
-      <div className='mb-1 text-gray-800 dark:text-gray-200'>{label}</div>
+      <div className='mb-1 text-sm text-gray-800 dark:text-gray-200'>
+        {label}
+      </div>
       <input
-        className='w-full rounded border bg-white px-4 py-2 text-gray-800 focus:border-blue-600 focus:ring-blue-500 disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200'
+        className='h-9 w-full rounded border border-gray-700 bg-white px-4 py-2 text-gray-800 focus:border-blue-600 focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200'
         type={type}
         ref={ref}
         {...props}
-      >
-        <FieldError name={props.name} />
-      </input>
+      />
+      {withProgress && (
+        <InputProgressBar max={withProgress.max} value={withProgress.value} />
+      )}
+      <FieldError name={props.name} />
     </label>
   )
 })
+
+interface InputProgressBarProps {
+  value?: number
+  max?: number
+}
+
+const InputProgressBar = ({ value, max }: InputProgressBarProps) => {
+  const barWidth = `${(value / max) * 100}%`
+  console.log(barWidth)
+
+  return (
+    <div className='mt-1 flex h-1 flex-row rounded bg-gray-700/30'>
+      <div
+        className={`rounded ${
+          value === max ? 'bg-green-500/70' : 'bg-blue-500/70'
+        } transition-all duration-200`}
+        style={{ width: barWidth }}
+      />
+    </div>
+  )
+}
 
 export const Form = Object.assign(FormRoot, { Input })

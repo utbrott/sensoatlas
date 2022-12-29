@@ -89,7 +89,6 @@ interface InputProgressBarProps {
 
 const InputProgressBar = ({ value, max }: InputProgressBarProps) => {
   const barWidth = `${(value / max) * 100}%`
-  console.log(barWidth)
 
   return (
     <div className='mt-1 flex h-1 flex-row rounded bg-gray-700/30'>

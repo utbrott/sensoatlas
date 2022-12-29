@@ -1,7 +1,7 @@
 import { Fragment, SetStateAction } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/20/solid'
-import { Button } from './button'
+import { Button } from './Button'
 
 interface SlideOverHeaderProps {
   title: string

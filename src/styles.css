@@ -4,7 +4,7 @@
 
 /* Global default styles */
 body {
-  @apply thin-scrollbar bg-gray-50 font-sans text-gray-900 antialiased transition-colors duration-200 ease-in-out dark:bg-gray-900 dark:text-gray-50;
+  @apply thin-scrollbar bg-gray-100 font-sans text-gray-900 antialiased transition-colors duration-200 ease-in-out dark:bg-gray-900 dark:text-gray-50;
 }
 
 form {

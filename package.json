@@ -19,6 +19,7 @@
     "@floating-ui/react": "^0.15.0",
     "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^2.0.13",
+    "@hookform/resolvers": "^2.9.10",
     "@primer/octicons-react": "^17.10.0",
     "@tabler/icons": "^1.117.0",
     "class-variance-authority": "^0.4.0",

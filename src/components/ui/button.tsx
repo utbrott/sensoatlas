@@ -14,7 +14,7 @@ const buttonStyles = cva(
     variants: {
       variant: {
         accent:
-          'text-zinc-50 bg-blue-500 outline-blue-500 hover:bg-blue-600 active:bg-blue-700',
+          'text-zinc-50 bg-blue-500 dark:bg-blue-600 outline-blue-500 dark:outline-blue-600 hover:bg-blue-600 dark:hover:bg-blue-500 active:bg-blue-500 dark:active:bg-blue-600',
         default:
           'bg-gray-200 outline-gray-300 hover:bg-gray-300 active:bg-gray-200 dark:bg-gray-700 dark:outline-gray-600 dark:hover:bg-gray-600 active:dark:bg-gray-700',
         negative:

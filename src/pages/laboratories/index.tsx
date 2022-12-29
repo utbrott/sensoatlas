@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import { AppShell } from '@components/layout'
-import { library } from '@data/lab-library'
-import { LibraryCard } from '@components/atoms/library-card'
-import { useMakeLibraryCards } from '@hooks/use-make-library-cards'
+import { AppShell } from '@ui/Layout'
+import { library } from '@data/labs-library'
+import { LibraryCard } from '@ui/LibraryCard'
+import { useMakeLibraryCards } from '@hooks/useMakeLibraryCards'
 
-const Library = () => {
+export default function Library() {
   const cards = useMakeLibraryCards(library).map(card => {
     return (
       <LibraryCard
@@ -32,5 +32,3 @@ const Library = () => {
     </>
   )
 }
-
-export default Library

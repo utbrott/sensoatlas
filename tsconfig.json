@@ -17,15 +17,16 @@
     "plugins": [{ "name": "next" }],
     "baseUrl": ".",
     "paths": {
+      "@hooks/*": ["./src/hooks/*"],
       "@assets/*": ["./public/assets/*"],
-      "@components/*": ["./src/components/*"],
       "@ui/*": ["./src/components/ui/*"],
+      "@atoms/*": ["./src/components/atoms/*"],
+      "@layout/*": ["src/components/ui/layout/*"],
       "@theory/*": ["./src/data/theory/*"],
-      "@data/*": ["./src/data/*"],
-      "@states/*": ["./src/states/*"],
-      "@store/*": ["./src/store/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@hooks/*": ["./src/hooks/*"]
+      "@data/*": ["./src/data/*"]
+      // "@states/*": ["./src/states/*"],
+      // "@store/*": ["./src/store/*"],
+      // "@utils/*": ["./src/utils/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

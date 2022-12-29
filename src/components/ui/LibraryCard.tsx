@@ -1,5 +1,5 @@
 import { Card } from '@components/ui/card'
-import { LaboratoryProps } from '@data/lab-library'
+import { LaboratoryProps } from '@data/labs-library'
 
 export interface LibraryCardProps extends LaboratoryProps {
   category: string

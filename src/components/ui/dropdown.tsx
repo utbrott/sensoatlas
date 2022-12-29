@@ -1,6 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
-import { Button, ButtonProps } from './button'
+import { Button, ButtonProps } from './Button'
 import { IconCaretDown } from '@tabler/icons'
 
 interface DropdownButtonProps extends ButtonProps {

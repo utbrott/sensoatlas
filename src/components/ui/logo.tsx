@@ -3,12 +3,15 @@ import { useTheme } from 'next-themes'
 import { AppIconGradient, AppIconPlain } from '@assets/logo/app-icon'
 import { FacultyFull, FacultyIcon } from '@assets/logo/faculty-logo'
 
-interface AppLogoProps {
-  variant: 'full' | 'logo'
+interface LogoProps {
+  variant: 'full' | 'icon'
+}
+
+interface AppLogoProps extends LogoProps {
   withGradient?: boolean
 }
 
-export function AppLogo({ variant, withGradient }: AppLogoProps) {
+const AppLogo = ({ variant, withGradient }: AppLogoProps) => {
   const { theme } = useTheme()
   const logoBackground = theme === 'light' ? 'light' : 'dark'
 
@@ -37,11 +40,9 @@ export function AppLogo({ variant, withGradient }: AppLogoProps) {
   )
 }
 
-interface FacultyLogoProps {
-  variant: 'full' | 'logo'
-}
+interface FacultyLogoProps extends LogoProps {}
 
-export function FacultyLogo({ variant }: FacultyLogoProps) {
+const FacultyLogo = ({ variant }: FacultyLogoProps) => {
   const { theme } = useTheme()
   const logoBackground = theme === 'light' ? 'light' : 'dark'
 
@@ -55,3 +56,5 @@ export function FacultyLogo({ variant }: FacultyLogoProps) {
     </>
   )
 }
+
+export const Logo = Object.assign({ App: AppLogo, Faculty: FacultyLogo })

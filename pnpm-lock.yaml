@@ -5,6 +5,7 @@ specifiers:
   '@floating-ui/react': ^0.15.0
   '@headlessui/react': ^1.7.7
   '@heroicons/react': ^2.0.13
+  '@hookform/resolvers': ^2.9.10
   '@primer/octicons-react': ^17.10.0
   '@tabler/icons': ^1.117.0
   '@tailwindcss/aspect-ratio': ^0.4.2
@@ -42,6 +43,7 @@ dependencies:
   '@floating-ui/react': 0.15.0_ib3m5ricvtkl2cll7qpr2f6lvq
   '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
   '@heroicons/react': 2.0.13_react@18.2.0
+  '@hookform/resolvers': 2.9.10_react-hook-form@7.41.1
   '@primer/octicons-react': 17.10.0_react@18.2.0
   '@tabler/icons': 1.118.0_biqbaboplfbrettd7655fr4n2y
   class-variance-authority: 0.4.0_typescript@4.9.4
@@ -358,6 +360,14 @@ packages:
       react: '>= 16'
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /@hookform/resolvers/2.9.10_react-hook-form@7.41.1:
+    resolution: {integrity: sha512-JIL1DgJIlH9yuxcNGtyhsWX/PgNltz+5Gr6+8SX9fhXc/hPbEIk6wPI82nhgvp3uUb6ZfAM5mqg/x7KR7NAb+A==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.41.1_react@18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.11.8:

@@ -1,6 +1,6 @@
-import { Footer, Header } from '@components/layout'
-import { Button } from '@components/ui/button'
-import { ChevronRightIcon } from '@primer/octicons-react'
+import { PageShell } from '@ui/Layout'
+import { Button } from '@ui/Button'
+import { IconChevronRight } from '@tabler/icons'
 import Head from 'next/head'
 
 export default function Index() {
@@ -10,8 +10,7 @@ export default function Index() {
         <title>Home | SensoAtlas</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
-      <div className='flex h-screen flex-col justify-between'>
-        <Header />
+      <PageShell>
         <div className='relative m-auto flex max-w-5xl select-none flex-col items-center'>
           <h1 className='text-center text-4xl font-semibold tracking-tight'>
             Take your online laboratories to{' '}
@@ -25,13 +24,11 @@ export default function Index() {
           <div className='mt-6 flex justify-center'>
             <Button.Link variant='accent' href='/laboratories'>
               Get started
-              <ChevronRightIcon className='h-4 w-4' />
+              <IconChevronRight className='h-5 w-5' />
             </Button.Link>
           </div>
         </div>
-        <div />
-        <Footer />
-      </div>
+      </PageShell>
     </>
   )
 }

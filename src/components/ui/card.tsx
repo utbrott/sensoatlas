@@ -1,4 +1,4 @@
-import { Button } from '@components/ui/button'
+import { Button } from '@ui/Button'
 
 export interface Props {
   category?: string

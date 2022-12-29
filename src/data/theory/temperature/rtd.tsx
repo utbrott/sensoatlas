@@ -1,5 +1,5 @@
-import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
-import { TableProps, useParseTable } from '@hooks/use-parse-table'
+import { EquationProps, useParseEquation } from '@hooks/useParseEquation'
+import { TableProps, useParseTable } from '@hooks/useParseTable'
 import { units } from '@theory/index'
 
 export const RtdArticle = () => {

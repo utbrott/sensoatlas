@@ -1,26 +1,21 @@
 import { Menu, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
 import { Button, ButtonProps } from './button'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { IconCaretDown } from '@tabler/icons'
 
 interface DropdownButtonProps extends ButtonProps {
   children: React.ReactNode
-  withArrow?: boolean
-  open?: boolean
+  withCaret?: boolean
 }
 const DropdownButton = ({
   children,
-  withArrow,
+  withCaret,
   ...props
 }: DropdownButtonProps) => {
   return (
     <Menu.Button as={Button} {...props}>
       {children}
-      {withArrow && (
-        <span className={props.open && 'rotate-180 transform duration-200'}>
-          <ChevronDownIcon className='h-5 w-5' />
-        </span>
-      )}
+      {withCaret && <IconCaretDown className='h-4 w-4 fill-gray-50' />}
     </Menu.Button>
   )
 }
@@ -38,14 +33,8 @@ const DropdownRoot = ({ label, children, ...props }: DropdownRootProps) => {
         props.fullWidth && 'w-full'
       }`}
     >
-      {({ open }) => (
-        <>
-          <DropdownButton {...props} open={open}>
-            {label}
-          </DropdownButton>
-          {children}
-        </>
-      )}
+      <DropdownButton {...props}>{label}</DropdownButton>
+      {children}
     </Menu>
   )
 }
@@ -59,10 +48,11 @@ const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
     <Menu.Item>
       {({ active }) => (
         <button
-          className={`bg-gray-100 dark:bg-gray-800 ${
-            active &&
-            ' bg-gray-200 font-medium text-gray-900 dark:bg-gray-700/90 dark:text-gray-50'
-          } flex w-full items-center gap-2 rounded px-4 py-2 text-sm text-gray-700 dark:text-gray-300`}
+          className={`flex w-full items-center gap-2 rounded px-4 py-2 text-sm ${
+            active
+              ? 'bg-gray-300/40 text-gray-900 dark:bg-gray-700/40 dark:text-gray-50'
+              : 'text-gray-700 dark:text-gray-300'
+          }`}
           {...props}
         >
           {children}

@@ -2,13 +2,17 @@ import { Fragment, SetStateAction } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
-interface SelectButtonProps {
+interface SelectButtonProps extends Pick<SelectRootProps, 'fullWidth'> {
   children: React.ReactNode
 }
 
-export const SelectButton = ({ children }: SelectButtonProps) => {
+export const SelectButton = ({ children, fullWidth }: SelectButtonProps) => {
   return (
-    <Listbox.Button className='group relative h-9 w-full cursor-default rounded bg-gray-300/30 py-2 pl-3 pr-10 text-left text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent hover:bg-gray-300/50  dark:bg-gray-700/50 dark:focus-visible:border-blue-500 dark:hover:bg-gray-700'>
+    <Listbox.Button
+      className={`group relative cursor-default rounded bg-gray-300/30 py-2 pl-3 pr-10 text-left text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent hover:bg-gray-300/50  dark:bg-gray-700/50 dark:focus-visible:border-blue-500 dark:hover:bg-gray-700 ${
+        fullWidth && 'w-full'
+      }`}
+    >
       <span className='flex items-center truncate font-medium'>{children}</span>
       <span className='pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2'>
         <ChevronUpDownIcon className='h-5 w-5 text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-50' />
@@ -21,6 +25,7 @@ interface SelectRootProps {
   label?: string
   value: any
   selectionHandler: React.Dispatch<SetStateAction<any>>
+  fullWidth?: boolean
   children: React.ReactNode
 }
 
@@ -28,7 +33,8 @@ const SelectRoot = ({
   label,
   value,
   selectionHandler,
-  children
+  children,
+  ...props
 }: SelectRootProps) => {
   return (
     <Listbox value={value} onChange={selectionHandler}>
@@ -38,8 +44,12 @@ const SelectRoot = ({
             {label}
           </Listbox.Label>
         )}
-        <div className={`relative ${label && 'mt-1'}`}>
-          <SelectButton>{value}</SelectButton>
+        <div
+          className={`relative ${label && 'mt-1'} ${
+            props.fullWidth && 'w-full'
+          }`}
+        >
+          <SelectButton fullWidth={props.fullWidth}>{value}</SelectButton>
           {children}
         </div>
       </span>
@@ -57,7 +67,9 @@ const SelectOption = ({ children, ...props }: SelectOptionProps) => {
     <Listbox.Option
       className={({ active }) =>
         `relative cursor-default select-none py-2 pl-3 pr-9 ${
-          active ? 'bg-blue-500 text-white' : 'text-gray-300'
+          active
+            ? 'bg-gray-300/40 text-gray-900 dark:bg-gray-700/40 dark:text-gray-50'
+            : 'text-gray-700 dark:text-gray-300'
         }`
       }
       {...props}
@@ -67,19 +79,15 @@ const SelectOption = ({ children, ...props }: SelectOptionProps) => {
           <div className='flex items-center'>
             <span
               className={`ml-3 block truncate ${
-                selected ? 'font-semibold' : 'font-normal'
+                selected ? 'font-medium' : 'font-normal'
               }`}
             >
               {children}
             </span>
           </div>
           {selected ? (
-            <span
-              className={`absolute inset-y-0 right-0 flex items-center pr-4 ${
-                active ? 'text-white' : 'text-blue-500'
-              }`}
-            >
-              <CheckIcon className='h-5 w-5' />
+            <span className='absolute inset-y-0 right-0 flex items-center pr-4 text-blue-600 dark:text-blue-500'>
+              <CheckIcon className='h-4 w-4' />
             </span>
           ) : null}
         </>
@@ -103,7 +111,7 @@ const SelectOptions = ({ children }: SelectOptionsProps) => {
       leaveFrom='opacity-100'
       leaveTo='opacity-0'
     >
-      <Listbox.Options className=' thin-scrollbar absolute z-10 mt-1 max-h-min w-56 overflow-auto rounded border bg-gray-100 py-1 text-sm shadow-lg focus-visible:outline-none dark:border-gray-700/70 dark:bg-gray-800'>
+      <Listbox.Options className=' thin-scrollbar absolute z-10 mt-1 max-h-min w-64 overflow-auto rounded border bg-gray-100 py-1 text-sm shadow-lg focus-visible:outline-none dark:border-gray-700/70 dark:bg-gray-800'>
         {children}
       </Listbox.Options>
     </Transition>

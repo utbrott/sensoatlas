@@ -26,7 +26,7 @@ export default function Custom404() {
             </span>
           </div>
           <div className='mt-6 flex justify-center'>
-            <Button.Link variant='default' modifier='ghost' href='/'>
+            <Button.Link variant='accent' modifier='ghost' href='/'>
               Go back home
             </Button.Link>
           </div>

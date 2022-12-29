@@ -2,7 +2,7 @@ import { default as NextHead } from 'next/head'
 import { Button } from '@ui/Button'
 import { Logo } from '@ui/Logo'
 import { ThemeToggle } from '@ui/ThemeToggle'
-import { Navbar } from '@ui/Navbar'
+import { Navbar } from '@atoms/Navbar'
 import { IconBrandGithub } from '@tabler/icons'
 
 interface HeadProps {

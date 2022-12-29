@@ -1,5 +1,5 @@
 import { LibraryProps } from '@data/labs-library'
-import { LibraryCardProps as LibraryItem } from '@ui/LibraryCard'
+import { LibraryCardProps as LibraryItem } from '@atoms/LibraryCard'
 
 export const useMakeLibraryCards = (library: LibraryProps[]): LibraryItem[] => {
   let libraryCards: LibraryItem[] = []

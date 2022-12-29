@@ -1,6 +1,6 @@
 import { Shell } from '@ui/Layout'
 import { library } from '@data/labs-library'
-import { LibraryCard } from '@ui/LibraryCard'
+import { LibraryCard } from '@atoms/LibraryCard'
 import { useMakeLibraryCards } from '@hooks/useMakeLibraryCards'
 
 export default function Library() {

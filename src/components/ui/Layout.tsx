@@ -1,12 +1,26 @@
+import { default as NextHead } from 'next/head'
 import { Button } from '@ui/Button'
 import { Logo } from '@ui/Logo'
 import { ThemeToggle } from '@ui/ThemeToggle'
 import { Navbar } from '@ui/Navbar'
-import { MarkGithubIcon } from '@primer/octicons-react'
+import { IconBrandGithub } from '@tabler/icons'
+
+interface HeadProps {
+  title?: string
+}
+
+export const Head = ({ title }: HeadProps) => {
+  return (
+    <NextHead>
+      {title && <title>{title}</title>}
+      <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+    </NextHead>
+  )
+}
 
 export const Header = () => {
   return (
-    <div className='sticky top-0 z-50 box-border flex h-14 items-center justify-between border-b bg-gray-100 px-8 py-2 dark:border-gray-700 dark:bg-gray-900'>
+    <div className='sticky top-0 z-50 box-border flex h-14 items-center justify-between border-b bg-gray-50 px-8 py-2 dark:border-gray-700 dark:bg-gray-900'>
       <Logo.App variant='full' withGradient />
       <div className='flex gap-x-2'>
         <ThemeToggle />
@@ -16,7 +30,7 @@ export const Header = () => {
           iconOnly
           href='https://github.com/utbrott/sensoatlas'
         >
-          <MarkGithubIcon className='h-5 w-5' />
+          <IconBrandGithub className='h-5 w-5' />
         </Button.Link>
       </div>
     </div>
@@ -33,13 +47,14 @@ export const Footer = () => {
   )
 }
 
-interface LayoutShellProps {
+interface LayoutShellProps extends HeadProps {
   children: React.ReactNode
 }
 
-export const AppShell = ({ children }: LayoutShellProps) => {
+const AppShell = ({ title, children }: LayoutShellProps) => {
   return (
     <>
+      <Head title={title} />
       <Header />
       <div className='flex flex-row justify-start'>
         <div className='thin-scrollbar fixed block h-screen w-64 overflow-y-scroll'>
@@ -55,12 +70,17 @@ export const AppShell = ({ children }: LayoutShellProps) => {
   )
 }
 
-export const PageShell = ({ children }: LayoutShellProps) => {
+const PageShell = ({ title, children }: LayoutShellProps) => {
   return (
-    <div className='flex h-screen flex-col justify-between'>
-      <Header />
-      <div className='m-auto'>{children}</div>
-      <Footer />
-    </div>
+    <>
+      <Head title={title} />
+      <div className='flex h-screen flex-col justify-between'>
+        <Header />
+        <div className='m-auto'>{children}</div>
+        <Footer />
+      </div>
+    </>
   )
 }
+
+export const Shell = Object.assign({ App: AppShell, Page: PageShell })

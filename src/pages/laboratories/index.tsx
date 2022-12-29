@@ -1,5 +1,4 @@
-import Head from 'next/head'
-import { AppShell } from '@ui/Layout'
+import { Shell } from '@ui/Layout'
 import { library } from '@data/labs-library'
 import { LibraryCard } from '@ui/LibraryCard'
 import { useMakeLibraryCards } from '@hooks/useMakeLibraryCards'
@@ -17,18 +16,12 @@ export default function Library() {
     )
   })
   return (
-    <>
-      <Head>
-        <title>Library | SensoAtlas</title>
-        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-      </Head>
-      <AppShell>
-        <div className='flex items-center justify-center'>
-          <div className='grid grid-cols-2 items-center justify-center gap-8'>
-            {cards}
-          </div>
+    <Shell.App title='Library | SensoAtlas'>
+      <div className='flex items-center justify-center'>
+        <div className='grid grid-cols-2 items-center justify-center gap-8'>
+          {cards}
         </div>
-      </AppShell>
-    </>
+      </div>
+    </Shell.App>
   )
 }

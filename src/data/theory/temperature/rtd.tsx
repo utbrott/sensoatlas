@@ -1,15 +1,15 @@
 import { EquationProps, useParseEquation } from '@hooks/useParseEquation'
 import { TableProps, useParseTable } from '@hooks/useParseTable'
-import { units } from '@theory/index'
+import { units } from '@theory/units'
 
 export const RtdArticle = () => {
   const sensorResistanceEq: EquationProps = {
     equations: ['R_t=R(1+\\alpha(T-T_{ref}))'],
     symbols: [
-      `$R$ is base resistance ${units.resistance},`,
+      `$R$ is base resistance ${units.ohms},`,
       '$\\alpha$ is temperature coefficient,',
-      `$T$ is surroundings temperature [${units.degreeCelcius}],`,
-      `$T_{ref}$ is reference temperature, 0${units.degreeCelcius}.`
+      `$T$ is surroundings temperature [${units.celcius}],`,
+      `$T_{ref}$ is reference temperature, 0${units.celcius}.`
     ]
   }
 

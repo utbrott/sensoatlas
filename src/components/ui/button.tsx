@@ -24,7 +24,7 @@ const buttonStyles = cva(
         outline:
           'bg-opacity-0 hover:bg-opacity-20 active:bg-opacity-10 dark:bg-opacity-0 dark:hover:bg-opacity-20 dark:active:bg-opacity-10 outline outline-1',
         ghost:
-          'bg-opacity-0 hover:bg-opacity-20 active:bg-opacity-10 dark:bg-opacity-0 dark:hover:bg-opacity-20 dark:active:bg-opacity-10'
+          'bg-opacity-0 hover:bg-opacity-40 active:bg-opacity-30 dark:bg-opacity-0 dark:hover:bg-opacity-20 dark:active:bg-opacity-10'
       },
       fullWidth: {
         true: 'w-full'
@@ -122,7 +122,7 @@ const SubmitButton = ({ children, ...props }: SubmitButtonProps) => {
             cy='12'
             r='10'
             stroke='currentColor'
-            stroke-width='4'
+            strokeWidth='4'
           ></circle>
           <path
             className='opacity-75'

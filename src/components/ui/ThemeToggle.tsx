@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { Button } from './Button'
-import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'
+import { IconSunHigh, IconMoon } from '@tabler/icons'
 
 export function ThemeToggle() {
   const [isMounted, setIsMounted] = useState(false)
@@ -21,9 +21,9 @@ export function ThemeToggle() {
       onClick={() => setTheme(t)}
     >
       {theme === 'light' ? (
-        <SunIcon className='h-5' />
+        <IconSunHigh className='h-5' />
       ) : (
-        <MoonIcon className='h-5' />
+        <IconMoon className='h-5' />
       )}
     </Button>
   ) : null

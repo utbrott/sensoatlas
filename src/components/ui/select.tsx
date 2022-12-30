@@ -9,7 +9,7 @@ interface SelectButtonProps extends Pick<SelectRootProps, 'fullWidth'> {
 export const SelectButton = ({ children, fullWidth }: SelectButtonProps) => {
   return (
     <Listbox.Button
-      className={`group relative cursor-default rounded bg-gray-300/30 py-2 pl-3 pr-10 text-left text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent hover:bg-gray-300/50  dark:bg-gray-700/50 dark:focus-visible:border-blue-500 dark:hover:bg-gray-700 ${
+      className={`group relative cursor-default rounded bg-gray-400/50 py-2 pl-3 pr-10 text-left text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent hover:bg-gray-300/50  dark:bg-gray-700/50 dark:focus-visible:border-blue-500 dark:hover:bg-gray-700 ${
         fullWidth && 'w-full'
       }`}
     >
@@ -74,7 +74,7 @@ const SelectOption = ({ children, ...props }: SelectOptionProps) => {
       }
       {...props}
     >
-      {({ selected, active }) => (
+      {({ selected }) => (
         <>
           <div className='flex items-center'>
             <span

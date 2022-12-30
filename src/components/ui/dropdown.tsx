@@ -46,18 +46,12 @@ interface DropdownItemProps {
 const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
   return (
     <Menu.Item>
-      {({ active }) => (
-        <button
-          className={`flex w-full items-center gap-2 rounded px-4 py-2 text-sm ${
-            active
-              ? 'bg-gray-300/40 text-gray-900 dark:bg-gray-700/40 dark:text-gray-50'
-              : 'text-gray-700 dark:text-gray-300'
-          }`}
-          {...props}
-        >
-          {children}
-        </button>
-      )}
+      <button
+        className='relative cursor-default select-none py-2 pl-3 pr-9 text-gray-700 ui-active:bg-gray-300/40 ui-active:text-gray-900 dark:text-gray-300 dark:ui-active:bg-gray-700/40 dark:ui-active:text-gray-50'
+        {...props}
+      >
+        {children}
+      </button>
     </Menu.Item>
   )
 }

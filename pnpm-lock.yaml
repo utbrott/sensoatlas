@@ -4,6 +4,7 @@ specifiers:
   '@babel/core': ^7.16.0
   '@headlessui/react': ^1.7.7
   '@headlessui/tailwindcss': ^0.1.2
+  '@heroicons/react': ^2.0.13
   '@hookform/resolvers': ^2.9.10
   '@tabler/icons': ^1.117.0
   '@tailwindcss/aspect-ratio': ^0.4.2
@@ -40,6 +41,7 @@ specifiers:
 dependencies:
   '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
   '@headlessui/tailwindcss': 0.1.2_tailwindcss@3.2.4
+  '@heroicons/react': 2.0.13_react@18.2.0
   '@hookform/resolvers': 2.9.10_react-hook-form@7.41.1
   '@tabler/icons': 1.118.0_biqbaboplfbrettd7655fr4n2y
   class-variance-authority: 0.4.0_typescript@4.9.4
@@ -321,6 +323,14 @@ packages:
       tailwindcss: ^3.0
     dependencies:
       tailwindcss: 3.2.4_postcss@8.4.20
+    dev: false
+
+  /@heroicons/react/2.0.13_react@18.2.0:
+    resolution: {integrity: sha512-iSN5XwmagrnirWlYEWNPdCDj9aRYVD/lnK3JlsC9/+fqGF80k8C7rl+1HCvBX0dBoagKqOFBs6fMhJJ1hOg1EQ==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@hookform/resolvers/2.9.10_react-hook-form@7.41.1:

@@ -1,6 +1,6 @@
 import { Fragment, SetStateAction } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/20/solid'
+import { IconX } from '@tabler/icons'
 import { Button } from './Button'
 
 interface SlideOverHeaderProps {
@@ -22,7 +22,7 @@ const SlideOverHeader = ({ title, closeHandler }: SlideOverHeaderProps) => {
         iconOnly
         onClick={() => closeHandler(false)}
       >
-        <XMarkIcon className='h-5 w-5' />
+        <IconX className='h-5 w-5' />
       </Button>
     </div>
   )

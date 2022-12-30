@@ -1,6 +1,6 @@
 import { Fragment, SetStateAction } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { IconCheck, IconSelector } from '@tabler/icons'
 
 interface SelectButtonProps extends Pick<SelectRootProps, 'fullWidth'> {
   children: React.ReactNode
@@ -15,7 +15,7 @@ export const SelectButton = ({ children, fullWidth }: SelectButtonProps) => {
     >
       <span className='flex items-center truncate font-medium'>{children}</span>
       <span className='pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2'>
-        <ChevronUpDownIcon className='h-5 w-5 text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-50' />
+        <IconSelector className='h-5 w-5 text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-50' />
       </span>
     </Listbox.Button>
   )
@@ -87,7 +87,7 @@ const SelectOption = ({ children, ...props }: SelectOptionProps) => {
           </div>
           {selected ? (
             <span className='absolute inset-y-0 right-0 flex items-center pr-4 text-blue-600 dark:text-blue-500'>
-              <CheckIcon className='h-4 w-4' />
+              <IconCheck className='h-4 w-4' />
             </span>
           ) : null}
         </>

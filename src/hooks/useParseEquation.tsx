@@ -5,7 +5,10 @@ export interface EquationProps {
   symbols?: string[]
 }
 
-export const useParseEquation = ({ equations, symbols }: EquationProps) => {
+export const useParseEquation = ({
+  equations,
+  symbols
+}: EquationProps): JSX.Element => {
   const hasEquations = Array.isArray(equations)
   const hasSymbols = Array.isArray(symbols)
 

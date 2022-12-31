@@ -11,7 +11,7 @@ export interface TableProps {
   data: TableDataProps[]
 }
 
-export const useParseTable = ({ headers, data }: TableProps) => {
+export const useParseTable = ({ headers, data }: TableProps): JSX.Element => {
   const headersList = headers.map((header, index) => {
     return (
       <th

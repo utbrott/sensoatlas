@@ -43,6 +43,9 @@ module.exports = {
       },
       ringColor: {
         DEFAULT: colors.blue['500']
+      },
+      animation: {
+        'ease-spin': 'spin 800ms ease-in-out infinite'
       }
     }
   },

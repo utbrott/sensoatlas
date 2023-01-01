@@ -73,7 +73,7 @@ export const LineChart = ({
               }}
             />
             {withTooltip && (
-              <Tooltip content={<ChartTooltip chartLabels={labels} />} />
+              <Tooltip content={<ChartTooltip labels={labels} />} />
             )}
             {withZeroRef.x && (
               <ReferenceLine
@@ -106,20 +106,14 @@ export const LineChart = ({
   )
 }
 
-interface TooltipProps {
-  chartLabels?: { xaxis: string; yaxis: string }
+interface TooltipProps extends Pick<ChartProps, 'labels'> {
   label?: string
   active?: boolean
   payload?: { name: string; value: number }[]
 }
 
-const ChartTooltip = ({
-  chartLabels,
-  label,
-  active,
-  payload
-}: TooltipProps) => {
-  const { xaxis, yaxis } = chartLabels
+const ChartTooltip = ({ labels, label, active, payload }: TooltipProps) => {
+  const { xaxis, yaxis } = labels
   const yLabels = payload.map((label, index) => {
     return <p key={index}>{`${label.name}: ${label.value}`}</p>
   })
@@ -127,7 +121,7 @@ const ChartTooltip = ({
   return active && payload ? (
     <div className='rounded bg-gray-800 p-2 text-xs text-gray-50'>
       <p>{`${xaxis}: ${label}`}</p>
-      {payload.length > 1 && <p>{`${yaxis}`}</p>}
+      {payload.length > 1 && <p>{`${yaxis}:`}</p>}
       {payload.length > 1 ? (
         <p>{yLabels}</p>
       ) : (

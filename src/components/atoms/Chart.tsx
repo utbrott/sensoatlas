@@ -141,7 +141,7 @@ interface DownloadBtnProps extends ButtonProps {
   isLoading: boolean
 }
 
-export const DownloadBtn = ({ isLoading, ...props }: DownloadBtnProps) => {
+const DownloadBtn = ({ isLoading, ...props }: DownloadBtnProps) => {
   return (
     <Button variant='default' disabled={isLoading} {...props}>
       {isLoading ? (

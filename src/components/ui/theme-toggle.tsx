@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
-import { Button } from './Button'
+import { Button } from './button'
 import { IconSunHigh, IconMoon } from '@tabler/icons'
 
 export function ThemeToggle() {

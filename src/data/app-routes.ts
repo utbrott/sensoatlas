@@ -1,4 +1,4 @@
-import { NavItemProps } from '@atoms/Navbar'
+import { NavItemProps } from '@atoms/navbar'
 
 export const navItems: NavItemProps[] = [
   {

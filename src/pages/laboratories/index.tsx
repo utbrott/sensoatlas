@@ -1,7 +1,7 @@
-import { Shell } from '@ui/Layout'
+import { Shell } from '@ui/layout'
 import { library } from '@data/labs-library'
-import { LibraryCard } from '@atoms/LibraryCard'
-import { useMakeLibraryCards } from '@hooks/useMakeLibraryCards'
+import { LibraryCard } from '@atoms/library-card'
+import { useMakeLibraryCards } from '@hooks/use-make-library'
 
 export default function Library() {
   const cards = useMakeLibraryCards(library).map(card => {

@@ -1,4 +1,4 @@
-import { Card } from '@ui/Card'
+import { Card } from '@ui/card'
 import { LaboratoryProps } from '@data/labs-library'
 
 export interface LibraryCardProps extends LaboratoryProps {

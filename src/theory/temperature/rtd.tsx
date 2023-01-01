@@ -1,6 +1,6 @@
-import { EquationProps, useParseEquation } from '@hooks/useParseEquation'
-import { TableProps, useParseTable } from '@hooks/useParseTable'
-import { units } from '@theory/units'
+import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
+import { TableProps, useParseTable } from '@hooks/use-parse-table'
+import { units } from '@data/units'
 
 export const RtdArticle = () => {
   const sensorResistanceEq: EquationProps = {

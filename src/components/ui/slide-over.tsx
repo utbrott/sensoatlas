@@ -1,7 +1,7 @@
 import { Fragment, SetStateAction } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { IconX } from '@tabler/icons'
-import { Button } from './Button'
+import { Button } from './button'
 
 interface SlideOverHeaderProps {
   title: string

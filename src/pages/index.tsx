@@ -1,5 +1,5 @@
-import { Shell } from '@ui/Layout'
-import { Button } from '@ui/Button'
+import { Shell } from '@ui/layout'
+import { Button } from '@ui/button'
 import { IconChevronRight } from '@tabler/icons'
 
 export default function Index() {

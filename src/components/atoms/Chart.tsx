@@ -8,12 +8,12 @@ import {
   Legend,
   ReferenceLine
 } from 'recharts'
-import { Button, ButtonProps } from '@ui/Button'
+import { Button, ButtonProps } from '@ui/button'
 import { Spinner } from '@ui/Spinner'
 import { IconFileDownload } from '@tabler/icons'
 import colors from 'tailwindcss/colors'
-import { useDownloadChart } from '@hooks/useDownloadChart'
-import { useMakeChartLines, ChartLineProps } from '@hooks/useMakeChartLines'
+import { useDownloadChart } from '@hooks/use-download-chart'
+import { useMakeChartLines, ChartLineProps } from '@hooks/use-make-chart-lines'
 
 type zeroReference = { x?: number; y?: number }
 

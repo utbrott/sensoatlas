@@ -1,5 +1,5 @@
-import { Shell } from '@ui/Layout'
-import { Button } from '@ui/Button'
+import { Shell } from '@ui/layout'
+import { Button } from '@ui/button'
 
 export default function Custom404() {
   return (

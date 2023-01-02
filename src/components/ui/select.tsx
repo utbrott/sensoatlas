@@ -108,6 +108,11 @@ const SelectOptions = ({ children }: SelectOptionsProps) => {
   )
 }
 
+export const Select = Object.assign(SelectRoot, {
+  Options: SelectOptions,
+  Option: SelectOption
+})
+
 type UseSelect = [component: JSX.Element, selected: any]
 interface UseSelectProps {
   label?: string

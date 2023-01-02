@@ -52,31 +52,3 @@ const RadioGroupOption = ({ value, children }: RadioGroupOptionProps) => {
 export const RadioGroup = Object.assign(RadioGroupRoot, {
   Option: RadioGroupOption
 })
-
-type UseRadioGroup = [Component: JSX.Element, selected: any]
-interface UseRadioGroupProps {
-  label?: string
-  options: { name: string; [key: string]: number | string }[]
-}
-
-export const useRadioGroupComponent = ({
-  label,
-  options
-}: UseRadioGroupProps): UseRadioGroup => {
-  const [value, setValue] = useState(options[0].name)
-
-  const RadioGroup = (
-    <div className='w-full'>
-      <RadioGroupRoot label={label} value={value} selectionHandler={setValue}>
-        {options.map((option, optIdx) => {
-          return (
-            <RadioGroupOption value={option.name} key={optIdx}>
-              {option.name}
-            </RadioGroupOption>
-          )
-        })}
-      </RadioGroupRoot>
-    </div>
-  )
-  return [RadioGroup, value]
-}

@@ -1,6 +1,6 @@
 import { Card } from '@ui/card'
-import { LaboratoryProps } from '@data/labs-library'
-
+import { LibraryCardProps as LibraryItem } from '@atoms/library-card'
+import { LaboratoryProps, LibraryProps } from '@data/labs-library'
 export interface LibraryCardProps extends LaboratoryProps {
   category: string
 }
@@ -24,4 +24,23 @@ export const LibraryCard = ({
       />
     </div>
   )
+}
+
+export const makeLibraryCards = (library: LibraryProps[]): LibraryItem[] => {
+  let libraryCards: LibraryItem[] = []
+
+  library.forEach(element => {
+    const { category, laboratories } = element
+
+    laboratories.forEach(laboratory => {
+      libraryCards.push({
+        category: category,
+        name: laboratory.name,
+        description: laboratory.description,
+        href: laboratory.href
+      })
+    })
+  })
+
+  return [...libraryCards]
 }

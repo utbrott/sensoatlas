@@ -1,10 +1,9 @@
 import { Shell } from '@ui/layout'
 import { library } from '@data/labs-library'
-import { LibraryCard } from '@atoms/library-card'
-import { useMakeLibraryCards } from '@hooks/use-make-library'
+import { LibraryCard, makeLibraryCards } from '@atoms/library-card'
 
 export default function Library() {
-  const cards = useMakeLibraryCards(library).map(card => {
+  const Cards = makeLibraryCards(library).map(card => {
     return (
       <LibraryCard
         category={card.category}
@@ -19,7 +18,7 @@ export default function Library() {
     <Shell.App title='Library | SensoAtlas'>
       <div className='flex items-center justify-center'>
         <div className='grid grid-cols-2 items-center justify-center gap-8'>
-          {cards}
+          {Cards}
         </div>
       </div>
     </Shell.App>

@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { IconCheck, IconSelector } from '@tabler/icons'
 
@@ -26,6 +26,7 @@ interface SelectRootProps {
   value: any
   selectionHandler: React.Dispatch<React.SetStateAction<any>>
   fullWidth?: boolean
+  disabled?: boolean
   children: React.ReactNode
 }
 
@@ -37,7 +38,11 @@ const SelectRoot = ({
   ...props
 }: SelectRootProps) => {
   return (
-    <Listbox value={value} onChange={selectionHandler}>
+    <Listbox
+      value={value}
+      onChange={selectionHandler}
+      disabled={props.disabled}
+    >
       <span className='flex flex-col items-start'>
         {label && (
           <Listbox.Label className='block text-sm dark:text-gray-300'>
@@ -50,7 +55,7 @@ const SelectRoot = ({
           }`}
         >
           <SelectButton fullWidth={props.fullWidth}>{value}</SelectButton>
-          {children}
+          <SelectOptions>{children}</SelectOptions>
         </div>
       </span>
     </Listbox>
@@ -109,42 +114,5 @@ const SelectOptions = ({ children }: SelectOptionsProps) => {
 }
 
 export const Select = Object.assign(SelectRoot, {
-  Options: SelectOptions,
   Option: SelectOption
 })
-
-type UseSelect = [component: JSX.Element, selected: any]
-interface UseSelectProps {
-  label?: string
-  options: { name: string; [key: string]: string | number }[]
-}
-
-export const useSelectComponent = ({
-  label,
-  options
-}: UseSelectProps): UseSelect => {
-  const [value, setValue] = useState(options[0].name)
-
-  const Select = (
-    <div className='w-full'>
-      <SelectRoot
-        label={label}
-        value={value}
-        selectionHandler={setValue}
-        fullWidth
-      >
-        <SelectOptions>
-          {options.map((option, optIdx) => {
-            return (
-              <SelectOption key={optIdx} value={option.name}>
-                {option.name}
-              </SelectOption>
-            )
-          })}
-        </SelectOptions>
-      </SelectRoot>
-    </div>
-  )
-
-  return [Select, value]
-}

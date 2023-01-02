@@ -4,16 +4,29 @@ import {
   CartesianGrid,
   XAxis,
   YAxis,
+  Line,
   Tooltip,
   Legend,
   ReferenceLine
 } from 'recharts'
 import { Button, ButtonProps } from '@ui/button'
-import { Spinner } from '@ui/Spinner'
+import { Spinner } from '@ui/spinner'
 import { IconFileDownload } from '@tabler/icons'
 import colors from 'tailwindcss/colors'
-import { useDownloadChart } from '@hooks/use-download-chart'
-import { useMakeChartLines, ChartLineProps } from '@hooks/use-make-chart-lines'
+import { useCallback } from 'react'
+import { useCurrentPng } from 'recharts-to-png'
+import { saveAs } from 'file-saver'
+
+type ChartData = {
+  xval: number
+  [key: string]: number
+}
+
+interface ChartLineProps {
+  chartData: ChartData[]
+  legend?: string[]
+  hasDataPoints?: boolean
+}
 
 type zeroReference = { x?: number; y?: number }
 
@@ -36,8 +49,6 @@ export const LineChart = ({
   withZeroRef
 }: ChartProps) => {
   const [downloadHandler, { ref, isLoading }] = useDownloadChart(chartName)
-
-  const chartLines = useMakeChartLines({ chartData, legend, hasDataPoints })
 
   return (
     <>
@@ -89,7 +100,11 @@ export const LineChart = ({
                 strokeDasharray='2 2'
               />
             )}
-            {chartLines}
+            <ChartLines
+              chartData={chartData}
+              legend={legend}
+              hasDataPoints={hasDataPoints}
+            />
             {legend && <Legend verticalAlign='top' />}
           </LineChartRoot>
         </ResponsiveContainer>
@@ -131,6 +146,45 @@ const ChartTooltip = ({ labels, label, active, payload }: TooltipProps) => {
   ) : null
 }
 
+export const ChartLines = ({
+  chartData,
+  legend,
+  hasDataPoints
+}: ChartLineProps): JSX.Element => {
+  const lineColors: string[] = [
+    colors.sky[600],
+    colors.emerald[600],
+    colors.yellow[500],
+    colors.purple[700],
+    colors.red[600]
+  ]
+
+  const yKeys = Object.keys(chartData[0]).filter(point => point.startsWith('y'))
+
+  function Lines(keys: string[], colors: string[]) {
+    return (
+      <>
+        {keys.map((key, index) => {
+          return (
+            <Line
+              key={index}
+              type='monotone'
+              dataKey={key}
+              name={legend && legend[index]}
+              stroke={colors[index]}
+              strokeWidth={2}
+              dot={hasDataPoints ? { strokeWidth: 0 } : false}
+              fill={lineColors[index]}
+            />
+          )
+        })}
+      </>
+    )
+  }
+
+  return Lines(yKeys, lineColors)
+}
+
 interface DownloadBtnProps extends ButtonProps {
   isLoading: boolean
 }
@@ -146,4 +200,20 @@ const DownloadBtn = ({ isLoading, ...props }: DownloadBtnProps) => {
       {isLoading ? 'Downloading...' : 'Download chart'}
     </Button>
   )
+}
+
+type UseDownloadChart = [
+  () => Promise<void | undefined>,
+  { ref: React.MutableRefObject<any>; isLoading: boolean }
+]
+
+const useDownloadChart = (chartName: string): UseDownloadChart => {
+  const [getPng, { ref, isLoading }] = useCurrentPng()
+
+  const downloadChart = useCallback(async () => {
+    const chartAsPng = await getPng()
+    if (chartAsPng) saveAs(chartAsPng, `sensoatlas-${chartName}-chart.png`)
+  }, [getPng, chartName])
+
+  return [downloadChart, { ref: ref, isLoading: isLoading }]
 }

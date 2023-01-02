@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { IconCheck, IconSelector } from '@tabler/icons'
 
@@ -108,7 +108,38 @@ const SelectOptions = ({ children }: SelectOptionsProps) => {
   )
 }
 
-export const Select = Object.assign(SelectRoot, {
-  Options: SelectOptions,
-  Option: SelectOption
-})
+type UseSelect = [component: JSX.Element, selected: any]
+interface UseSelectProps {
+  label?: string
+  options: { name: string; [key: string]: string | number }[]
+}
+
+export const useSelectComponent = ({
+  label,
+  options
+}: UseSelectProps): UseSelect => {
+  const [value, setValue] = useState(options[0].name)
+
+  const Select = (
+    <div className='w-full'>
+      <SelectRoot
+        label={label}
+        value={value}
+        selectionHandler={setValue}
+        fullWidth
+      >
+        <SelectOptions>
+          {options.map((option, optIdx) => {
+            return (
+              <SelectOption key={optIdx} value={option.name}>
+                {option.name}
+              </SelectOption>
+            )
+          })}
+        </SelectOptions>
+      </SelectRoot>
+    </div>
+  )
+
+  return [Select, value]
+}

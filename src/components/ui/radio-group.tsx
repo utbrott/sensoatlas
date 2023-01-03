@@ -5,7 +5,7 @@ interface RadioGroupRootProps {
   label?: React.ReactNode
   stacked?: boolean
   value: any
-  selectionHandler: React.Dispatch<React.SetStateAction<any>>
+  onChange: React.Dispatch<any>
   children: React.ReactNode
   disabled?: boolean
 }
@@ -13,12 +13,12 @@ interface RadioGroupRootProps {
 const RadioGroupRoot = ({
   label,
   value,
-  selectionHandler,
+  onChange,
   children,
   ...props
 }: RadioGroupRootProps) => {
   return (
-    <HeadlessRadio value={value} onChange={selectionHandler} {...props}>
+    <HeadlessRadio value={value} onChange={onChange} {...props}>
       <HeadlessRadio.Label className='block text-sm dark:text-gray-300'>
         {label}
       </HeadlessRadio.Label>

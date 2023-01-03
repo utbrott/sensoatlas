@@ -1,5 +1,6 @@
 export const units = {
   /* General */
+  ohmsUnicode: '\u03a9',
   ohms: '$\\big[\\Omega\\big]$',
   kohms: '$\\big[k\\Omega\\big]$',
   density: '$\\big[kg{\\cdot}m^{-3}\\big]$',

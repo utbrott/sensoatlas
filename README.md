@@ -22,67 +22,35 @@ Built in mind with simplyfing remote studying
 
 ## Features<a name="features"></a>
 
-- Four sensors (RTD, Thermocouple, LVDT, Strain gauge) available
+- Four sensors (RTD, Thermocouple, LVDT, Strain gauge) available (+6 more being added)
 - Tasks with randomized data generated for them
 - Downloadable sensor's characteristic charts for each of the sensors
 
 ## Libraries used<a name="libraries"></a>
 
-Project was built using:
-
-- [Chakra UI](https://chakra-ui.com/)
-- [React Icons](https://react-icons.github.io/react-icons/)
-- [React Latex](https://github.com/zzish/react-latex)
-- [Recharts](https://recharts.org/en-US/)
+- Built using [Next.js](https://nextjs.org) and [Chakra UI](https://chakra-ui.com)
+- Icons from [React Icons](https://react-icons.github.io/react-icons/)
+- Equations with [React Latex](https://github.com/zzish/react-latex) and [Katex](https://katex.org/)
+- Charts generation via [Recharts](https://recharts.org)
 
 ## Setup and Configuration for development
 
-### Requirements
+SensoAtlas uses `pnpm` by default (fast alternative to `npm`). It's not required
+to start with the project, but it's highly recommended. You can get it here:
+https://pnpm.io/
 
-- [**Node**](https://nodejs.org/en)
-- Package manager for Node (NPM, Yarn, PNPM)
-- Git
-
-### Setup
-
-#### Clone the repo:
-
+### Install required dependencies (with pnpm):
 ```shell
-git clone https://github.com/utbrott/sensoatlas
+pnpm install
 ```
 
-<h6>Remove hidden .git folder if you want to make the project your own</h6>
-
-#### Install dependencies
-
-Using NPM:
-
+### Start development server (with pnpm)
 ```shell
-npm install
+pnpm dev
 ```
+Server should be available at http://localhost:3000, if the post is available (check logs in terminal for port that server uses)
 
-Using Yarn:
-
-```shell
-yarn
-```
-
-#### Run dev server
-
-Using NPM:
-
-```shell
-npm run dev
-```
-
-Using Yarn:
-
-```shell
-yarn dev
-```
-
-This will start a development server at port 3000 (`http://localhost:3000`, if the configuration wasn't changed)
 
 ## License:
 
-MIT
+(MIT) Faculty of Electrical Engineering, WUT Warsaw University of Technology

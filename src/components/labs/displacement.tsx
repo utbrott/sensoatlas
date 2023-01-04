@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
-import { LabsContext } from '#store/labs-context';
-import { Header } from '#components/header';
-import { Subheader } from '#components/subheader';
-import { Theory, Formula } from '#components/theory';
-import { displacementTheory } from '#data/theory-formulas';
-import { Content } from '#components/content';
-import { Config } from '#components/config';
-import { useConfigSave } from '#hooks/use-config-save';
-import { TasksCard, TaskData, FormCard, Form } from '#components/task';
-import { useFormInput } from '#hooks/use-form-input';
-import { useFormValidation } from '#hooks/use-form-validation';
-import { useCompleteTask } from '#hooks/use-complete-task';
-import { ChartsCard, SingleLineChart, ChartTabs } from '#components/chart';
-import { useSingleLineChartData, useMirrorValues } from '#hooks/use-chart-data';
+import { LabsContext } from '@store/labs-context';
+import { Header } from '@components/header';
+import { Subheader } from '@components/subheader';
+import { Theory, Formula } from '@components/theory';
+import { displacementTheory } from '@data/theory-formulas';
+import { Content } from '@components/content';
+import { Config } from '@components/config';
+import { useConfigSave } from '@hooks/use-config-save';
+import { TasksCard, TaskData, FormCard, Form } from '@components/task';
+import { useFormInput } from '@hooks/use-form-input';
+import { useFormValidation } from '@hooks/use-form-validation';
+import { useCompleteTask } from '@hooks/use-complete-task';
+import { ChartsCard, SingleLineChart, ChartTabs } from '@components/chart';
+import { useSingleLineChartData, useMirrorValues } from '@hooks/use-chart-data';
 
 export const Displacement = () => {
   const context = useContext(LabsContext);
@@ -74,7 +74,7 @@ export const Displacement = () => {
 
   return (
     <>
-      <Header heading='Displacement sensors: LVDT' hasButton />
+      <Header heading='Displacement sensors: LVDT' />
       <Subheader
         hasModal='LVDT (Linear Variable Differential Transformer)'
         modalContent={modalContent}

@@ -1,7 +1,7 @@
 import { FaHome } from 'react-icons/fa';
 import { IoIosFolderOpen } from 'react-icons/io';
 
-import { NavItem } from '#types/nav-item';
+import { NavItem } from '@components/sidebar/nav-item';
 
 export const navItems: NavItem[] = [
   {
@@ -39,9 +39,4 @@ export const navItems: NavItem[] = [
     href: '/laboratories/strain',
     label: 'Strain gauge sensors',
   },
-  // {
-  //   type: 'linkChild',
-  //   href: '/laboratories/piezoelectric',
-  //   label: 'Piezoelectric sensors',
-  // },
 ];

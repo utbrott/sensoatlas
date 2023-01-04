@@ -1,4 +1,4 @@
-import { TheoryItem } from '#types/theory-formula-item';
+import { TheoryItem } from '@components/theory/formula';
 
 export const temperatureRtdTheory: TheoryItem[] = [
   {

@@ -1,6 +1,6 @@
 import { LabsContext } from './labs-context';
 import { useState, useReducer } from 'react';
-import { sensorDefaults } from '#data/sensor-defaults';
+import { sensorDefaults } from '@data/sensor-defaults';
 import {
   strainConfigReducer,
   temperatureRtdConfigReducer,

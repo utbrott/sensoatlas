@@ -8,8 +8,8 @@ import {
   Button,
   Tooltip,
 } from '@chakra-ui/react';
-import { Image } from '#components/image';
-import { SensorConfig } from '#data/sensor-config';
+import { Image } from '@components/image';
+import { SensorConfig } from '@data/sensor-config';
 import { ConfigField } from './config-field';
 
 type Props = {
@@ -88,21 +88,26 @@ export const Config = (props: Props) => {
         >
           Apply
         </Button>
-        {isConfigSaved ? 
-        <Tooltip label='Are you sure? All progress will be lost.' bg='red.300'>
-          <Button
-            size='sm'
-            variant='ghost'
-            colorScheme='gray'
-            fontWeight='normal'
-            onClick={() => router.reload()}
-            isDisabled={isConfigSaved ? false : true}
-            _focus={{ outlineColor: 'none' }}
+        {isConfigSaved ? (
+          <Tooltip
+            label='Are you sure? All progress will be lost.'
+            bg='red.300'
           >
-            Reset
-          </Button>
-        </Tooltip>
-        : <> </>}
+            <Button
+              size='sm'
+              variant='ghost'
+              colorScheme='gray'
+              fontWeight='normal'
+              onClick={() => router.reload()}
+              isDisabled={isConfigSaved ? false : true}
+              _focus={{ outlineColor: 'none' }}
+            >
+              Reset
+            </Button>
+          </Tooltip>
+        ) : (
+          <> </>
+        )}
       </HStack>
     </VStack>
   );

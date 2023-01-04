@@ -10,21 +10,21 @@ import {
   AlertTitle,
   AlertDescription,
 } from '@chakra-ui/react';
-import { generateTempertureValues } from '#utils/generate-temperature-values';
+import { generateTempertureValues } from '@utils/generate-temperature-values';
 import {
   generateStrainValues,
   strainValidationData,
-} from '#utils/generate-strain-lab-data';
+} from '@utils/generate-strain-lab-data';
 import {
   rtdResistanceValidation,
   thermocoupleVoltageValidation,
   tauValidationRtd,
   tauValidationCouple,
-} from '#utils/generate-temperature-lab-data';
+} from '@utils/generate-temperature-lab-data';
 import {
   generateDisplacementValues,
   lvdtVoltageValidation,
-} from '#utils/generate-displacement-lab-data';
+} from '@utils/generate-displacement-lab-data';
 import Latex from 'react-latex';
 
 type Props = {

@@ -1,6 +1,6 @@
 import { Grid, VStack } from '@chakra-ui/react';
-import { cardItems } from '#data/labs-library';
-import { Card } from '#components/library-card';
+import { cardItems } from '@data/labs-library';
+import { Card } from '@components/library-card';
 
 export const LibraryGrid = () => {
   return (

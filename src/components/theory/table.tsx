@@ -9,8 +9,13 @@ import {
   Heading,
   Text,
 } from '@chakra-ui/react';
-import { TheoryTable } from '#types/theory-table';
 import Latex from 'react-latex';
+
+export type TheoryTable = {
+  caption: string;
+  headers: { text: string; unit: string }[];
+  rows: (string | number)[][];
+};
 
 type Props = {
   data: TheoryTable;

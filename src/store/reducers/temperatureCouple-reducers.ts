@@ -1,4 +1,4 @@
-import { sensorDefaults } from '#data/sensor-defaults';
+import { sensorDefaults } from '@data/sensor-defaults';
 
 export const temperatureCoupleConfigReducer = (state: any, action: any) => {
   switch (action.type) {

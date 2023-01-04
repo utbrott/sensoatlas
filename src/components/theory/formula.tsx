@@ -1,6 +1,11 @@
 import { Text, Heading, VStack, Box } from '@chakra-ui/react';
-import { TheoryItem } from '#types/theory-formula-item';
 import Latex from 'react-latex';
+
+export type TheoryItem = {
+  caption?: string;
+  formulas: string[];
+  symbols?: string[];
+};
 
 type Props = {
   data: TheoryItem[];

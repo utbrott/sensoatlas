@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { LibraryGrid } from '#components/library-grid';
+import { LibraryGrid } from '@components/library-grid';
 
 const Library = () => {
   return (

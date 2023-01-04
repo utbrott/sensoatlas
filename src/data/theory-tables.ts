@@ -1,4 +1,4 @@
-import { TheoryTable } from '#types/theory-table';
+import { TheoryTable } from '@components/theory/table';
 
 export const rtdSensorTable: TheoryTable = {
   caption: 'RTD sensor material data',

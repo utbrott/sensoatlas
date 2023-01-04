@@ -1,7 +1,7 @@
 import { VStack, List, ListItem, Box } from '@chakra-ui/react';
 import NavItem from './nav-item';
-import { navItems } from '#data/sidebar';
-import { Logo } from '#components/logo';
+import { navItems } from '@data/sidebar';
+import { Logo } from '@components/logo';
 
 const Sidebar = () => {
   return (

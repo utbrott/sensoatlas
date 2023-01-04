@@ -1,5 +1,5 @@
 import { VStack, HStack, Text, Select } from '@chakra-ui/react';
-import { Modal } from '#components/theory';
+import { Modal } from '@components/theory';
 
 type Props = {
   hasModal?: string;

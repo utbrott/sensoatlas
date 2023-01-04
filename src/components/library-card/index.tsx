@@ -1,9 +1,14 @@
 import { useRouter } from 'next/router';
 import { Button, Box, VStack, Heading, Text } from '@chakra-ui/react';
-import { CardItem as Item } from '#types/card-item';
+
+export type CardItem = {
+  id: string;
+  title: string;
+  desc: string;
+};
 
 type Props = {
-  item: Item;
+  item: CardItem;
   hasButton?: string;
 };
 

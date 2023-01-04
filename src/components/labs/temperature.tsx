@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Header } from '#components/header';
-import { Subheader } from '#components/subheader';
+import { Header } from '@components/header';
+import { Subheader } from '@components/subheader';
 import {
   Alert,
   AlertIcon,
@@ -8,17 +8,17 @@ import {
   AlertDescription,
   VStack,
 } from '@chakra-ui/react';
-import { Theory, Formula, Table } from '#components/theory';
+import { Theory, Formula, Table } from '@components/theory';
 import {
   temperatureRtdTheory,
   temperatureCoupleTheory,
-} from '#data/theory-formulas';
+} from '@data/theory-formulas';
 import {
   rtdSensorTable,
   thermocoupleSensorTable,
   fillerMaterialTable,
-} from '#data/theory-tables';
-import { RTDSensor, ThermocoupleSensor } from '#components/labs';
+} from '@data/theory-tables';
+import { RTDSensor, ThermocoupleSensor } from '@components/labs';
 
 export const Temperature = () => {
   const [sensorType, setSensorType] = useState('');
@@ -39,7 +39,7 @@ export const Temperature = () => {
 
   return (
     <>
-      <Header heading='Temperature sensors: RTD, Thermocouple' hasButton />
+      <Header heading='Temperature sensors: RTD, Thermocouple' />
       <Subheader
         hasModal={`${sensorType} temperature sensor`}
         isModalDisabled={sensorType === ''}

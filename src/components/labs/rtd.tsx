@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
-import { LabsContext } from '#store/labs-context';
-import { Content } from '#components/content';
-import { Config } from '#components/config';
-import { useConfigSave } from '#hooks/use-config-save';
-import { TasksCard, TaskData, FormCard, Form } from '#components/task';
-import { useFormInput } from '#hooks/use-form-input';
-import { useFormValidation } from '#hooks/use-form-validation';
-import { useCompleteTask } from '#hooks/use-complete-task';
+import { LabsContext } from '@store/labs-context';
+import { Content } from '@components/content';
+import { Config } from '@components/config';
+import { useConfigSave } from '@hooks/use-config-save';
+import { TasksCard, TaskData, FormCard, Form } from '@components/task';
+import { useFormInput } from '@hooks/use-form-input';
+import { useFormValidation } from '@hooks/use-form-validation';
+import { useCompleteTask } from '@hooks/use-complete-task';
 import {
   ChartsCard,
   SingleLineChart,
   MultiLineChart,
   ChartTabs,
-} from '#components/chart';
-import { useSingleLineChartData } from '#hooks/use-chart-data';
-import { generateTemperatureSlope } from '#utils/generate-temperature-values';
+} from '@components/chart';
+import { useSingleLineChartData } from '@hooks/use-chart-data';
+import { generateTemperatureSlope } from '@utils/generate-temperature-values';
 
 export const RTDSensor = () => {
   const context = useContext(LabsContext);

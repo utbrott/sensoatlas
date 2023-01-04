@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { LabsContext } from '#store/labs-context';
+import { LabsContext } from '@store/labs-context';
 import {
   VStack,
   Heading,

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { LabsContext } from '#store/labs-context';
+import { LabsContext } from '@store/labs-context';
 import { useToast } from '@chakra-ui/react';
 
 export const useConfigSave = () => {

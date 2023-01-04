@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from 'src/theme';
-import Layout from '#components/layout';
+import Layout from '@components/layout';
 
 function App({ Component, pageProps }: AppProps) {
   return (

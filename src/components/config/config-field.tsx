@@ -1,10 +1,33 @@
 import { Stack, Box, Text, Radio, RadioGroup, Select } from '@chakra-ui/react';
-import { ConfigItem as Item } from '#types/config-item';
 import { useContext } from 'react';
-import { LabsContext } from '#store/labs-context';
+import { LabsContext } from '@store/labs-context';
+
+type RadioItem = {
+  type: 'radio';
+};
+
+type SelectItem = {
+  type: 'select';
+};
+
+type ItemTypeProps = RadioItem | SelectItem;
+
+export type ConfigField = ItemTypeProps & {
+  sensor:
+    | 'temperatureRtd'
+    | 'temperatureCouple'
+    | 'displacement'
+    | 'strain'
+    | 'piezoelectric';
+  id: string;
+  label: string;
+  options: string[];
+  optionLabels: string[];
+  defaultValue: string;
+};
 
 type Props = {
-  item: Item;
+  item: ConfigField;
   handleChange: any;
 };
 

@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
-import { LabsContext } from '#store/labs-context';
-import { Header } from '#components/header';
-import { Subheader } from '#components/subheader';
-import { Theory, Formula, Table } from '#components/theory';
-import { strainTheory } from '#data/theory-formulas';
-import { strainSensorTable } from '#data/theory-tables';
-import { Content } from '#components/content';
-import { Config } from '#components/config';
-import { useConfigSave } from '#hooks/use-config-save';
-import { TasksCard, TaskData, FormCard, Form } from '#components/task';
-import { useFormInput } from '#hooks/use-form-input';
-import { useFormValidation } from '#hooks/use-form-validation';
-import { useCompleteTask } from '#hooks/use-complete-task';
-import { ChartsCard, SingleLineChart, ChartTabs } from '#components/chart';
-import { useSingleLineChartData } from '#hooks/use-chart-data';
-import { strainGaugeNewResistance } from '#utils/generate-strain-lab-data';
+import { LabsContext } from '@store/labs-context';
+import { Header } from '@components/header';
+import { Subheader } from '@components/subheader';
+import { Theory, Formula, Table } from '@components/theory';
+import { strainTheory } from '@data/theory-formulas';
+import { strainSensorTable } from '@data/theory-tables';
+import { Content } from '@components/content';
+import { Config } from '@components/config';
+import { useConfigSave } from '@hooks/use-config-save';
+import { TasksCard, TaskData, FormCard, Form } from '@components/task';
+import { useFormInput } from '@hooks/use-form-input';
+import { useFormValidation } from '@hooks/use-form-validation';
+import { useCompleteTask } from '@hooks/use-complete-task';
+import { ChartsCard, SingleLineChart, ChartTabs } from '@components/chart';
+import { useSingleLineChartData } from '@hooks/use-chart-data';
+import { strainGaugeNewResistance } from '@utils/generate-strain-lab-data';
 
 export const StrainGauge = () => {
   const context = useContext(LabsContext);
@@ -122,7 +122,7 @@ export const StrainGauge = () => {
 
   return (
     <>
-      <Header heading='Strain gauge sensors' hasButton />
+      <Header heading='Strain gauge sensors' />
       <Subheader hasModal='Strain gauge sensors' modalContent={modalContent} />
       <Content>
         <Config

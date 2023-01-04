@@ -1,6 +1,6 @@
-import { ConfigItem } from '#types/config-item';
+import { ConfigField } from '@components/config/config-field';
 
-export const SensorConfig: ConfigItem[] = [
+export const SensorConfig: ConfigField[] = [
   {
     sensor: 'temperatureRtd',
     id: 'sensor',

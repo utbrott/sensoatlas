@@ -1,4 +1,4 @@
-import { CardItem } from '#types/card-item';
+import { CardItem } from '@components/library-card';
 
 export const cardItems: CardItem[] = [
   {

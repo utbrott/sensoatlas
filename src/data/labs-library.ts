@@ -2,9 +2,14 @@ import { CardItem } from '#types/card-item';
 
 export const cardItems: CardItem[] = [
   {
-    id: 'temperature',
-    title: 'Temperature sensors: RTD & Thermocouple',
-    desc: 'Aim of this laboratory is to observe how the temperature sensors parameters change dependant on the configuration. For each sensor type there are two tasks to be completed. Using the provided values and formulas complete the tasks and view the generated graph. ',
+    id: 'temperature-rtd',
+    title: 'Temperature sensors: RTD',
+    desc: 'Aim of this laboratory is to observe how the RTD temperature sensor parameters change dependant on the configuration. For each sensor type there are two tasks to be completed. Using the provided values and formulas complete the tasks and view the generated graph. ',
+  },
+  {
+    id: 'temperature-thermcouple',
+    title: 'Temperature sensors: Thermocouple',
+    desc: 'Aim of this laboratory is to observe how the Thermocouple sensors parameters change dependant on the configuration. For each sensor type there are two tasks to be completed. Using the provided values and formulas complete the tasks and view the generated graph. ',
   },
   {
     id: 'displacement',
@@ -14,6 +19,6 @@ export const cardItems: CardItem[] = [
   {
     id: 'strain',
     title: 'Strain gauge sensors',
-    desc: 'Aim of this laboratory is to observe how the strain gauge sensor parameters change dependant on the configuration. There are two tasks to be completed. Using the provided values and formulas complete the tasks and view the generated graph. ',
+    desc: 'Aim of this laboratory is to observe how the Strain Gauge sensor parameters change dependant on the configuration. There are two tasks to be completed. Using the provided values and formulas complete the tasks and view the generated graph. ',
   },
 ];

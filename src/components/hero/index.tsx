@@ -3,10 +3,18 @@ import { Box, VStack, HStack, Heading, Text, Button } from '@chakra-ui/react';
 import { HiChevronRight } from 'react-icons/hi';
 
 export const Hero = () => {
-  const router = useRouter();
+  const { push } = useRouter();
 
   return (
-    <VStack w='full' h='full' justify='center' align='center' as='section'>
+    <VStack
+      w='full'
+      h='full'
+      maxH='100vh'
+      justify='justify-between'
+      align='center'
+      as='section'
+    >
+      <Box h={20} />
       <Box>
         <HStack w='full' mb={4}>
           <Heading as='h1'>Welcome to</Heading>
@@ -24,7 +32,7 @@ export const Hero = () => {
           colorScheme='blue'
           size='sm'
           rightIcon={<HiChevronRight fontSize='20px' />}
-          onClick={() => router.push('/laboratories')}
+          onClick={() => push('/laboratories')}
         >
           Browse laboratories
         </Button>

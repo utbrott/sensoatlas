@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': ^7.16.0
-  '@chakra-ui/react': ^2.4.2
+  '@chakra-ui/react': ^2.4.3
   '@emotion/babel-plugin': ^11.10.5
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
@@ -14,7 +14,7 @@ specifiers:
   eslint: ^8.28.0
   eslint-config-next: ^13.0.5
   file-saver: ^2.0.5
-  framer-motion: ^7.6.15
+  framer-motion: ^7.6.19
   next: ^12.3
   prettier: ^2.8.0
   prop-types: ^15.8.1

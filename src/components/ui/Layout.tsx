@@ -20,7 +20,7 @@ export const Head = ({ title }: HeadProps) => {
 
 export const Header = () => {
   return (
-    <div className='sticky top-0 z-50 box-border flex h-14 items-center justify-between border-b bg-gray-50 px-8 py-2 dark:border-gray-700 dark:bg-gray-900'>
+    <div className='sticky top-0 z-50 box-border flex h-14 items-center justify-between border-b bg-gray-50 px-8 py-2 dark:border-gray-700/50 dark:bg-gray-900'>
       <Logo.App variant='full' withGradient />
       <div className='flex gap-x-2'>
         <ThemeToggle />
@@ -57,12 +57,12 @@ const AppShell = ({ title, children }: LayoutShellProps) => {
       <Head title={title} />
       <Header />
       <div className='flex flex-row justify-start'>
-        <div className='thin-scrollbar fixed block h-screen w-64 overflow-y-scroll'>
+        <div className='thin-scrollbar fixed block h-screen w-64 overflow-y-scroll border-r dark:border-gray-700/50'>
           <Navbar />
           <div className='h-14' />
         </div>
         <div className='w-full'>
-          <div className='ml-64 mt-8'>{children}</div>
+          <div className='ml-64 mt-1 p-4'>{children}</div>
           <div className='h-14' />
         </div>
       </div>

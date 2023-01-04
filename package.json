@@ -4,7 +4,7 @@
     "name": "utbrott",
     "url": "https://github.com/utbrott"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -12,8 +12,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier-src": "prettier --write src/**/*.{js,jsx,ts,tsx}",
-    "prettier-pages": "prettier --write pages/**/*.{js,jsx,ts,tsx}"
+    "prettier": "prettier --write \"./src/**/*.{ts,tsx}\"",
+    "prettier:check": "prettier --check \"./src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.3",

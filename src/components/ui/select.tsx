@@ -15,7 +15,7 @@ export const SelectButton = ({
 }: SelectButtonProps) => {
   return (
     <Listbox.Button
-      className={`group relative cursor-default rounded bg-gray-300/50 py-2 pl-3 pr-10 text-left text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent disabled:cursor-not-allowed disabled:opacity-60 hover:bg-gray-300 disabled:hover:bg-opacity-60 dark:bg-gray-700/50 dark:focus-visible:border-blue-500 dark:hover:bg-gray-700 dark:disabled:hover:bg-opacity-60 ${
+      className={`group relative cursor-default rounded bg-gray-300/50 py-1 pl-3 pr-10 text-left text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent disabled:cursor-not-allowed disabled:opacity-60 hover:bg-gray-300 disabled:hover:bg-opacity-60 dark:bg-gray-700/50 dark:focus-visible:border-blue-500 dark:hover:bg-gray-700 dark:disabled:hover:bg-opacity-60 ${
         fullWidth && 'w-full'
       }`}
       disabled={disabled}
@@ -73,7 +73,7 @@ interface SelectOptionProps {
 const SelectOption = ({ children, ...props }: SelectOptionProps) => {
   return (
     <Listbox.Option
-      className='relative cursor-default select-none py-2 pl-3 pr-9 text-gray-700 ui-active:bg-gray-300/40 ui-active:text-gray-900 dark:text-gray-300 dark:ui-active:bg-gray-700/40 dark:ui-active:text-gray-50'
+      className='relative cursor-default select-none py-1 pl-3 pr-9 text-gray-700 ui-active:bg-gray-300/40 ui-active:text-gray-900 dark:text-gray-300 dark:ui-active:bg-gray-700/40 dark:ui-active:text-gray-50'
       {...props}
     >
       {({ selected }) => (
@@ -81,7 +81,7 @@ const SelectOption = ({ children, ...props }: SelectOptionProps) => {
           <span className='block ui-selected:font-medium'>{children}</span>
           {selected ? (
             <span className='absolute inset-y-0 right-0 flex items-center pr-3'>
-              <IconCheck className='h-5 w-5 stroke-blue-500' />
+              <IconCheck className='h-5 w-5 stroke-blue-500 dark:stroke-blue-400' />
             </span>
           ) : null}
         </>

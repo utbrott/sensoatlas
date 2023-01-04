@@ -7,7 +7,7 @@ import { ConfigItem } from '@utils/initial-config-creator'
 import { useGetImagePath } from '@hooks/use-get-image-path'
 import { getFieldById, getFieldOption } from '@utils/config-utils'
 
-export type ConfigKey = Record<string, { [key: string]: string | number }>
+export type ConfigKeys = Record<string, { [key: string]: string | number }>
 
 interface ConfigFieldProps {
   name: string
@@ -22,7 +22,7 @@ const ConfigField = ({
   useStore,
   disabled
 }: ConfigFieldProps) => {
-  const [fieldValue, setStore] = useStore((store: ConfigKey) => store[name])
+  const [fieldValue, setStore] = useStore((store: ConfigKeys) => store[name])
   const field = getFieldById(fields, name)
 
   if (field.type === 'select') {
@@ -64,34 +64,36 @@ const ConfigField = ({
 }
 
 interface Props {
+  initial: ConfigKeys
   fields: ConfigItem[]
   useStore: any
-  withExtension?: boolean
   disabled?: boolean
   configSaveHandler: () => void
 }
 
 export const Config = ({
+  initial,
   fields,
   useStore,
-  withExtension,
   disabled,
   configSaveHandler
 }: Props) => {
   const { reload, asPath } = useRouter()
 
-  const [store] = useStore((store: ConfigKey) => store)
+  const [store] = useStore((store: ConfigKeys) => store)
 
-  let imagePath = useGetImagePath({ withExtension })
-  if (asPath.includes('strain') && !withExtension) {
+  const singleImg = !asPath.includes('strain') ? true : false
+
+  let imagePath = useGetImagePath({ withExtension: singleImg })
+  if (!singleImg) {
     imagePath = `${imagePath}-${store.bridge.name.toLowerCase()}.png`
   }
 
   return (
-    <div className='flex w-full max-w-sm flex-col gap-2 rounded-md bg-gray-200 px-4 py-2 dark:bg-gray-800'>
+    <div className='flex w-full max-w-sm flex-col gap-2 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
       <span className='font-medium'>Sensor configuration</span>
       <span className='space-y-2'>
-        {Object.keys(store).map(key => {
+        {Object.keys(initial).map(key => {
           return (
             <ConfigField
               key={key}

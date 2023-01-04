@@ -18,14 +18,12 @@
     "baseUrl": ".",
     "paths": {
       "@hooks/*": ["./src/hooks/*"],
+      "@utils/*": ["./src/utils/*"],
       "@assets/*": ["./public/*"],
       "@ui/*": ["./src/components/ui/*"],
       "@atoms/*": ["./src/components/atoms/*"],
-      "@layout/*": ["src/components/ui/layout/*"],
+      "@store/*": ["./src/store/*"],
       "@data/*": ["./src/data/*"]
-      // "@states/*": ["./src/states/*"],
-      // "@store/*": ["./src/store/*"],
-      // "@utils/*": ["./src/utils/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

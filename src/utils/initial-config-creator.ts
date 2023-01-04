@@ -9,7 +9,7 @@ interface Props {
   fields: ConfigItem[]
 }
 
-export const configContextCreator = ({ fields }: Props) => {
+export const initialConfigCreator = ({ fields }: Props) => {
   const config = {}
 
   fields.map(field => {

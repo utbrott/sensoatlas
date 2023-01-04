@@ -1,48 +1,40 @@
 import { Select } from '@ui/select'
 import { RadioGroup } from '@ui/radio-group'
-import Latex from 'react-latex'
-import { InitialConfigType } from 'src/pages/sandbox'
+import { Button } from '@ui/button'
+import { SchematicImage } from './schematic-image'
+import { useRouter } from 'next/router'
+import { ConfigItem } from '@utils/initial-config-creator'
+import { useGetImagePath } from '@hooks/use-get-image-path'
+import { getFieldById, getFieldOption } from '@utils/config-utils'
 
-export type ConfigItem = {
-  type: 'select' | 'radio'
-  id: string
-  label?: string
-  options?: { [key: string]: number | string }[]
-}
+export type ConfigKey = Record<string, { [key: string]: string | number }>
 
 interface ConfigFieldProps {
-  value: string | number
+  name: string
   fields: ConfigItem[]
   useStore: any
   disabled?: boolean
 }
 
 const ConfigField = ({
-  value,
+  name,
   fields,
-  disabled,
-  useStore
+  useStore,
+  disabled
 }: ConfigFieldProps) => {
-  const [fieldValue, setStore] = useStore((store: any) => store[value])
+  const [fieldValue, setStore] = useStore((store: ConfigKey) => store[name])
+  const field = getFieldById(fields, name)
 
-  const field = fields.find(element => element.id === value)
-  const { type, label, options } = field
-
-  function setOption(val: string) {
-    const option = options.find((opt: { name: string }) => opt.name === val)
-    setStore({ [value]: option })
-  }
-
-  if (type === 'select') {
+  if (field.type === 'select') {
     return (
       <Select
         value={fieldValue.name}
-        onChange={value => setOption(value)}
-        label={label}
+        onChange={value => setStore({ [name]: getFieldOption(field, value) })}
+        label={field.label}
         disabled={disabled}
         fullWidth
       >
-        {options.map((option, index) => {
+        {field.options.map((option, index) => {
           return (
             <Select.Option value={option.name} key={index}>
               {option.name}
@@ -56,11 +48,11 @@ const ConfigField = ({
   return (
     <RadioGroup
       value={fieldValue.name}
-      onChange={value => setOption(value)}
+      onChange={value => setStore({ [name]: getFieldOption(field, value) })}
       disabled={disabled}
-      label={label}
+      label={field.label}
     >
-      {options.map((option, index) => {
+      {field.options.map((option, index) => {
         return (
           <RadioGroup.Option value={option.name} key={index}>
             {option.name}
@@ -71,32 +63,68 @@ const ConfigField = ({
   )
 }
 
-interface ConfigProps {
-  config: InitialConfigType
-  configFields: ConfigItem[]
+interface Props {
+  fields: ConfigItem[]
   useStore: any
-  isSaved?: boolean
+  withExtension?: boolean
+  disabled?: boolean
+  configSaveHandler: () => void
 }
 
 export const Config = ({
-  config,
-  configFields,
+  fields,
   useStore,
-  isSaved
-}: ConfigProps) => {
+  withExtension,
+  disabled,
+  configSaveHandler
+}: Props) => {
+  const { reload, asPath } = useRouter()
+
+  const [store] = useStore((store: ConfigKey) => store)
+
+  let imagePath = useGetImagePath({ withExtension })
+  if (asPath.includes('strain') && !withExtension) {
+    imagePath = `${imagePath}-${store.bridge.name.toLowerCase()}.png`
+  }
+
   return (
-    <div className='flex flex-col gap-2'>
-      {Object.keys(config).map(key => {
-        return (
-          <ConfigField
-            value={key}
-            fields={configFields}
-            key={key}
-            useStore={useStore}
-            disabled={isSaved}
-          />
-        )
-      })}
+    <div className='flex w-full max-w-sm flex-col gap-2 rounded-md bg-gray-200 px-4 py-2 dark:bg-gray-800'>
+      <span className='font-medium'>Sensor configuration</span>
+      <span className='space-y-2'>
+        {Object.keys(store).map(key => {
+          return (
+            <ConfigField
+              key={key}
+              name={key}
+              fields={fields}
+              useStore={useStore}
+              disabled={disabled}
+            />
+          )
+        })}
+      </span>
+      <span>
+        <div className='mt-2 text-sm'>Simplfied schematic</div>
+        <span className='flex items-center justify-center'>
+          <SchematicImage imagePath={imagePath} />
+        </span>
+      </span>
+      <span>
+        <div className='mt-2 flex flex-row gap-2'>
+          <Button fullWidth onClick={configSaveHandler} disabled={disabled}>
+            Save configuration
+          </Button>
+          <Button
+            modifier='outline'
+            variant='default'
+            fullWidth
+            onClick={() => reload()}
+            disabled={!disabled}
+          >
+            Reset laboratory
+          </Button>
+        </div>
+      </span>
     </div>
   )
 }

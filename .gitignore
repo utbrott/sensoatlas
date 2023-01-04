@@ -41,3 +41,5 @@ src/_old
 
 # testing page, storybook replacement
 src/pages/sandbox.tsx
+
+public/logo/*.svg

@@ -1,4 +1,4 @@
-import { ConfigItem } from '@atoms/config'
+import { ConfigItem } from '@utils/initial-config-creator'
 import { units } from '@data/units'
 
 export const configFields: ConfigItem[] = [

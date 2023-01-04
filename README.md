@@ -33,7 +33,7 @@ Built in mind with simplyfing remote studying
 - Equations with [React Latex](https://github.com/zzish/react-latex) and [Katex](https://katex.org/)
 - Charts generation via [Recharts](https://recharts.org)
 
-## Setup and Configuration for development
+## Setup and Configuration for development<a name="setup-configuration">
 
 SensoAtlas uses `pnpm` by default (fast alternative to `npm`). It's not required
 to start with the project, but it's highly recommended. You can get it here:

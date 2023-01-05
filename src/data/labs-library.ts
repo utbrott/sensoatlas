@@ -1,7 +1,9 @@
 export interface LaboratoryProps {
+  label?: string
   name: string
   description: string
   href: string
+  disabled?: boolean
 }
 
 export interface LibraryProps {
@@ -14,12 +16,13 @@ export const library: LibraryProps[] = [
     category: 'temperature',
     laboratories: [
       {
-        name: 'resistance temperature detectors',
+        label: 'RTDs',
+        name: 'Resistance Temperature Detectors',
         description: 'Short about RTDs',
         href: '/rtd'
       },
       {
-        name: 'thermocouples',
+        name: 'Thermocouples',
         description: 'Short about Thermocouples',
         href: '/thermocouple'
       }
@@ -29,6 +32,7 @@ export const library: LibraryProps[] = [
     category: 'displacement',
     laboratories: [
       {
+        label: 'LVDT',
         name: 'Linear Variable Differential Transformer',
         description: 'Short about LVDTs',
         href: '/lvdt'
@@ -54,7 +58,8 @@ export const library: LibraryProps[] = [
         href: '/amr'
       },
       {
-        name: 'hall effect sensors',
+        label: 'Hall effect',
+        name: 'Hall Effect sensors',
         description: 'Short about hall effect sensors',
         href: '/hall-effect'
       }
@@ -79,6 +84,7 @@ export const library: LibraryProps[] = [
     category: 'transducers',
     laboratories: [
       {
+        label: 'Measurement loop',
         name: '4-20mA measurement loop',
         description: 'Short about Measurement loop',
         href: '/measurement-loop'

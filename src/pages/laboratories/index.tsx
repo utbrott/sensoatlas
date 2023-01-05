@@ -1,9 +1,10 @@
 import { Shell } from '@ui/layout'
 import { library } from '@data/labs-library'
-import { LibraryCard, makeLibraryCards } from '@atoms/library-card'
+import { LibraryCard } from '@atoms/library-card'
+import { libraryCardCreator } from '@utils/library-utils'
 
 export default function Library() {
-  const Cards = makeLibraryCards(library).map(card => {
+  const Cards = libraryCardCreator(library).map(card => {
     return (
       <LibraryCard
         category={card.category}
@@ -11,6 +12,7 @@ export default function Library() {
         description={card.description}
         href={card.href}
         key={card.href}
+        disabled={card.disabled}
       />
     )
   })

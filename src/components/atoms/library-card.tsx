@@ -1,18 +1,33 @@
 import { Card } from '@ui/card'
-import { LibraryCardProps as LibraryItem } from '@atoms/library-card'
-import { LaboratoryProps, LibraryProps } from '@data/labs-library'
+import { LaboratoryProps } from '@data/labs-library'
+
 export interface LibraryCardProps extends LaboratoryProps {
   category: string
+  disabled?: boolean
 }
 
 export const LibraryCard = ({
   category,
   name,
   description,
-  href
+  href,
+  disabled
 }: LibraryCardProps) => {
   return (
-    <div className='w-min rounded-md bg-gray-100 shadow transition-transform hover:scale-105 hover:outline hover:outline-1 hover:outline-blue-500 dark:bg-gray-800/70 dark:hover:outline-blue-400'>
+    <div
+      className={`relative w-min rounded-md bg-gray-100 shadow transition-transform hover:scale-105 hover:outline hover:outline-1 hover:outline-blue-500 disabled:hover:scale-100 dark:bg-gray-800/70 dark:hover:outline-blue-400 ${
+        disabled && 'pointer-events-none'
+      }`}
+    >
+      {disabled && (
+        <div
+          className={`absolute h-full w-full ${'bg-gray-900/20 backdrop-blur-sm'}`}
+        >
+          <span className='flex h-full items-center justify-center text-2xl'>
+            Currently unavailable
+          </span>
+        </div>
+      )}
       <Card
         category={category}
         title={name}
@@ -24,23 +39,4 @@ export const LibraryCard = ({
       />
     </div>
   )
-}
-
-export const makeLibraryCards = (library: LibraryProps[]): LibraryItem[] => {
-  let libraryCards: LibraryItem[] = []
-
-  library.forEach(element => {
-    const { category, laboratories } = element
-
-    laboratories.forEach(laboratory => {
-      libraryCards.push({
-        category: category,
-        name: laboratory.name,
-        description: laboratory.description,
-        href: laboratory.href
-      })
-    })
-  })
-
-  return [...libraryCards]
 }

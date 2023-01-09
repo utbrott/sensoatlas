@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  scrollbar-width: thin;
+}
 /* Global default styles */
 body {
   @apply thin-scrollbar bg-gray-50 font-sans text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-50;

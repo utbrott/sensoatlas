@@ -25,7 +25,7 @@ export const rtdSensorTable: TheoryTable = {
     },
   ],
   rows: [
-    ['Platinum', 0.003729, 21450, 133, 69.1],
+    ['Platinum', 0.00385, 21450, 133, 69.1],
     ['Copper', 0.004041, 8960, 385, 384.1],
     ['Nickel', 0.00617, 8908, 440, 106],
     ['Tungsten', 0.0045, 21450, 134, 173],

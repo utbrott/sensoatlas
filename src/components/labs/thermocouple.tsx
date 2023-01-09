@@ -1,6 +1,14 @@
 import React, { useContext } from 'react';
 import { LabsContext } from '@store/labs-context';
 import { Content } from '@components/content';
+import { Header } from '@components/header';
+import { Subheader } from '@components/subheader';
+import { Theory, Formula, Table } from '@components/theory';
+import { temperatureCoupleTheory } from '@data/theory-formulas';
+import {
+  thermocoupleSensorTable,
+  fillerMaterialTable,
+} from '@data/theory-tables';
 import { Config } from '@components/config';
 import { useConfigSave } from '@hooks/use-config-save';
 import { TasksCard, TaskData, FormCard, Form } from '@components/task';
@@ -20,6 +28,14 @@ export const ThermocoupleSensor = () => {
   const context = useContext(LabsContext);
   const { taskData, validationData } = context.temperatureCouple;
   const schematicImage = `/images/temperature-thermocouple.png`;
+
+  const modalContent = (
+    <Theory>
+      <Formula data={temperatureCoupleTheory} />
+      <Table data={thermocoupleSensorTable} />
+      <Table data={fillerMaterialTable} />
+    </Theory>
+  );
 
   const { handleConfigSave } = useConfigSave();
 
@@ -99,43 +115,47 @@ export const ThermocoupleSensor = () => {
   ];
 
   return (
-    <Content>
-      <Config
-        sensorName='temperatureCouple'
-        context={context}
-        setIsSaved={handleConfigSave}
-        imageSource={schematicImage}
-      />
-      <TasksCard>
-        <TaskData sensorName='temperatureCouple' context={context} />
-        <FormCard sensorName='temperatureCouple' context={context}>
-          <Form
-            taskNo='1'
-            index={outVoltageIndex}
-            maxIndex={5}
-            value={outVoltageValue}
-            isInvalid={outVoltageHasError}
-            errorMessage={outVoltageError}
-            isComplete={outVoltageIndex === 5}
-            handleChange={handleOutVoltageInputChange}
-            handleSubmit={handleOutVoltageFormSubmit}
-          />
-          <Form
-            taskNo='2'
-            index={timeConstantIndex}
-            maxIndex={3}
-            value={timeConstantValue}
-            isInvalid={timeConstantHasError}
-            errorMessage={timeConstantError}
-            isComplete={timeConstantIndex === 3}
-            handleChange={handleTimeConstantInputChange}
-            handleSubmit={handleTimeConstantFormSubmit}
-          />
-        </FormCard>
-      </TasksCard>
-      <ChartsCard>
-        <ChartTabs tabsData={tabsData} />
-      </ChartsCard>
-    </Content>
+    <>
+      <Header heading='Temperature sensors: Thermocouple' />
+      <Subheader hasModal='Thermocouples' modalContent={modalContent} />
+      <Content>
+        <Config
+          sensorName='temperatureCouple'
+          context={context}
+          setIsSaved={handleConfigSave}
+          imageSource={schematicImage}
+        />
+        <TasksCard>
+          <TaskData sensorName='temperatureCouple' context={context} />
+          <FormCard sensorName='temperatureCouple' context={context}>
+            <Form
+              taskNo='1'
+              index={outVoltageIndex}
+              maxIndex={5}
+              value={outVoltageValue}
+              isInvalid={outVoltageHasError}
+              errorMessage={outVoltageError}
+              isComplete={outVoltageIndex === 5}
+              handleChange={handleOutVoltageInputChange}
+              handleSubmit={handleOutVoltageFormSubmit}
+            />
+            <Form
+              taskNo='2'
+              index={timeConstantIndex}
+              maxIndex={3}
+              value={timeConstantValue}
+              isInvalid={timeConstantHasError}
+              errorMessage={timeConstantError}
+              isComplete={timeConstantIndex === 3}
+              handleChange={handleTimeConstantInputChange}
+              handleSubmit={handleTimeConstantFormSubmit}
+            />
+          </FormCard>
+        </TasksCard>
+        <ChartsCard>
+          <ChartTabs tabsData={tabsData} />
+        </ChartsCard>
+      </Content>
+    </>
   );
 };

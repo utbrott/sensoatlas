@@ -26,8 +26,13 @@ export const navItems: NavItem[] = [
   },
   {
     type: 'linkChild',
-    href: '/laboratories/temperature',
-    label: 'Temperature sensors',
+    href: '/laboratories/temperature-rtd',
+    label: 'Temperature: RTDs',
+  },
+  {
+    type: 'linkChild',
+    href: '/laboratories/temperature-thermocouple',
+    label: 'Temperature: Thermocouples',
   },
   {
     type: 'linkChild',

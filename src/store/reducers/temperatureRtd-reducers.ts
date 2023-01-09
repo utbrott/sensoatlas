@@ -9,7 +9,7 @@ export const temperatureRtdConfigReducer = (state: any, action: any) => {
             ...state,
             sensorMaterial: {
               metal: action.payload,
-              tempCoeff: 0.003729,
+              tempCoeff: 0.00385,
               density: 21450,
               heatCapacity: 133,
               conductivity: 69.1,

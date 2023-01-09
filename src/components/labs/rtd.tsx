@@ -1,6 +1,11 @@
 import React, { useContext } from 'react';
 import { LabsContext } from '@store/labs-context';
 import { Content } from '@components/content';
+import { Header } from '@components/header';
+import { Subheader } from '@components/subheader';
+import { Theory, Formula, Table } from '@components/theory';
+import { temperatureRtdTheory } from '@data/theory-formulas';
+import { rtdSensorTable, fillerMaterialTable } from '@data/theory-tables';
 import { Config } from '@components/config';
 import { useConfigSave } from '@hooks/use-config-save';
 import { TasksCard, TaskData, FormCard, Form } from '@components/task';
@@ -22,6 +27,14 @@ export const RTDSensor = () => {
   const schematicImage = `/images/temperature-rtd.png`;
 
   const { handleConfigSave } = useConfigSave();
+
+  const modalContent = (
+    <Theory>
+      <Formula data={temperatureRtdTheory} />
+      <Table data={rtdSensorTable} />
+      <Table data={fillerMaterialTable} />
+    </Theory>
+  );
 
   const {
     value: resistanceValue,
@@ -99,43 +112,47 @@ export const RTDSensor = () => {
   ];
 
   return (
-    <Content>
-      <Config
-        sensorName='temperatureRtd'
-        context={context}
-        setIsSaved={handleConfigSave}
-        imageSource={schematicImage}
-      />
-      <TasksCard>
-        <TaskData sensorName='temperatureRtd' context={context} />
-        <FormCard sensorName='temperatureRtd' context={context}>
-          <Form
-            taskNo='1'
-            index={resistanceIndex}
-            maxIndex={5}
-            value={resistanceValue}
-            isInvalid={resistanceHasError}
-            errorMessage={resistanceError}
-            isComplete={resistanceIndex === 5}
-            handleChange={handleResistanceInputChange}
-            handleSubmit={handleResistanceFormSubmit}
-          />
-          <Form
-            taskNo='2'
-            index={timeConstantIndex}
-            maxIndex={3}
-            value={timeConstantValue}
-            isInvalid={timeConstantHasError}
-            errorMessage={timeConstantError}
-            isComplete={timeConstantIndex === 3}
-            handleChange={handleTimeConstantInputChange}
-            handleSubmit={handleTimeConstantFormSubmit}
-          />
-        </FormCard>
-      </TasksCard>
-      <ChartsCard>
-        <ChartTabs tabsData={tabsData} />
-      </ChartsCard>
-    </Content>
+    <>
+      <Header heading='Temperature sensors: RTDs' />
+      <Subheader hasModal='RTDs' modalContent={modalContent} />
+      <Content>
+        <Config
+          sensorName='temperatureRtd'
+          context={context}
+          setIsSaved={handleConfigSave}
+          imageSource={schematicImage}
+        />
+        <TasksCard>
+          <TaskData sensorName='temperatureRtd' context={context} />
+          <FormCard sensorName='temperatureRtd' context={context}>
+            <Form
+              taskNo='1'
+              index={resistanceIndex}
+              maxIndex={5}
+              value={resistanceValue}
+              isInvalid={resistanceHasError}
+              errorMessage={resistanceError}
+              isComplete={resistanceIndex === 5}
+              handleChange={handleResistanceInputChange}
+              handleSubmit={handleResistanceFormSubmit}
+            />
+            <Form
+              taskNo='2'
+              index={timeConstantIndex}
+              maxIndex={3}
+              value={timeConstantValue}
+              isInvalid={timeConstantHasError}
+              errorMessage={timeConstantError}
+              isComplete={timeConstantIndex === 3}
+              handleChange={handleTimeConstantInputChange}
+              handleSubmit={handleTimeConstantFormSubmit}
+            />
+          </FormCard>
+        </TasksCard>
+        <ChartsCard>
+          <ChartTabs tabsData={tabsData} />
+        </ChartsCard>
+      </Content>
+    </>
   );
 };

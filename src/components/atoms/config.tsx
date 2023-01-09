@@ -123,7 +123,7 @@ export const Config = ({
             onClick={() => reload()}
             disabled={!disabled}
           >
-            Reset laboratory
+            Reset
           </Button>
         </div>
       </span>

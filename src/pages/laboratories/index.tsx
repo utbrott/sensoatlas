@@ -1,7 +1,7 @@
 import { Shell } from '@ui/layout'
 import { library } from '@data/labs-library'
 import { LibraryCard } from '@atoms/library-card'
-import { libraryCardCreator } from '@utils/library-utils'
+import { libraryCardCreator } from '@utils/library'
 
 export default function Library() {
   const Cards = libraryCardCreator(library).map(card => {

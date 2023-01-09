@@ -3,9 +3,9 @@ import { RadioGroup } from '@ui/radio-group'
 import { Button } from '@ui/button'
 import { SchematicImage } from './schematic-image'
 import { useRouter } from 'next/router'
-import { ConfigItem } from '@utils/config-utils'
+import { ConfigItem } from '@utils/configuration'
 import { useGetImagePath } from '@hooks/use-get-image-path'
-import { getFieldById, getFieldOption } from '@utils/config-utils'
+import { getFieldById, getFieldOption } from '@utils/configuration'
 
 export type ConfigKeys = Record<string, { [key: string]: string | number }>
 

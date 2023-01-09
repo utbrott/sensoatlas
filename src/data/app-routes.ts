@@ -1,6 +1,6 @@
 import { NavItemProps } from '@atoms/navbar'
 import { library } from './labs-library'
-import { appRoutesCreator } from '@utils/library-utils'
+import { appRoutesCreator } from '@utils/library'
 
 const introRoutes: NavItemProps[] = [
   {

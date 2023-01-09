@@ -6,7 +6,7 @@ import {
   useSyncExternalStore
 } from 'react'
 
-export default function createConfigContext<Store>(initState: Store) {
+export function createStoreContext<Store>(initState: Store) {
   type UseStoreData = {
     get: () => Store
     set: (value: Partial<Store>) => void

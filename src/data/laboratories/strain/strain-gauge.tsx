@@ -1,4 +1,4 @@
-import { ConfigItem } from '@utils/initial-config-creator'
+import { ConfigItem } from '@utils/config-utils'
 import { units } from '@data/units'
 
 export const configFields: ConfigItem[] = [
@@ -93,5 +93,18 @@ export const configFields: ConfigItem[] = [
         multiplier: 1.0
       }
     ]
+  }
+]
+
+export const taskPrompts = [
+  {
+    prompt:
+      'Given values of applied strain $\\varepsilon\\;[\\mu\\varepsilon]$, calculate the output voltage Vout [mV].',
+
+    data: [3.7, 3, 2.9, 3.3, 1.3]
+  },
+  {
+    prompt: `Given the values of temperature T [${units.celcius}] and strain $\\varepsilon\\;[\\mu\\varepsilon]$ = 1.5, calculate the output voltage Vout [mV].`,
+    data: [0, 30, 45, 5, 50]
   }
 ]

@@ -1,4 +1,4 @@
-import { Shell } from '@ui/layout'
+import { Shell } from '@ui/layouts'
 import { Button } from '@ui/button'
 import { IconChevronRight } from '@tabler/icons'
 

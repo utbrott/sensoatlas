@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Shell } from '@ui/layout'
+import { Shell } from '@ui/layouts'
 import {
   config,
   tasks,

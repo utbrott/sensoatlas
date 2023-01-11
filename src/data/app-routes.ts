@@ -1,4 +1,4 @@
-import { NavItemProps } from '@atoms/navbar'
+import { NavItemProps } from '@atoms/navigation'
 import { library } from './labs-library'
 import { appRoutesCreator } from '@utils/library'
 

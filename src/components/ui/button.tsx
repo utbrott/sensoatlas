@@ -2,7 +2,7 @@ import { ComponentProps } from 'react'
 import { cva, VariantProps } from 'class-variance-authority'
 import { useRouter } from 'next/router'
 import { useFormContext } from 'react-hook-form'
-import { Spinner } from './spinner'
+import { Spinner } from './loading-spinner'
 
 const buttonStyles = cva(
   [

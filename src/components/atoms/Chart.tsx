@@ -10,8 +10,8 @@ import {
   ReferenceLine
 } from 'recharts'
 import { Button, ButtonProps } from '@ui/button'
-import { Spinner } from '@ui/spinner'
 import { IconFileDownload } from '@tabler/icons'
+import { Spinner } from '@ui/loading-spinner'
 import colors from 'tailwindcss/colors'
 import { useCallback } from 'react'
 import { useCurrentPng } from 'recharts-to-png'

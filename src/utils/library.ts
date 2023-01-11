@@ -1,6 +1,6 @@
 import { LibraryProps } from '@data/labs-library'
 import { LibraryCardProps } from '@atoms/library-card'
-import { NavItemProps } from '@atoms/navbar'
+import { NavItemProps } from '@atoms/navigation'
 
 export const libraryCardCreator = (
   library: LibraryProps[]

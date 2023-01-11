@@ -1,5 +1,8 @@
-import { ConfigItem } from '@utils/config-utils'
+import { ConfigItem } from '@utils/configuration'
+import { TaskItem } from '@utils/tasks'
 import { units } from '@data/units'
+
+export const pageHeader = {}
 
 export const configFields: ConfigItem[] = [
   {
@@ -96,15 +99,17 @@ export const configFields: ConfigItem[] = [
   }
 ]
 
-export const taskPrompts = [
+export const taskFields: TaskItem[] = [
   {
     prompt:
       'Given values of applied strain $\\varepsilon\\;[\\mu\\varepsilon]$, calculate the output voltage Vout [mV].',
 
-    data: [3.7, 3, 2.9, 3.3, 1.3]
+    data: [],
+    validation: []
   },
   {
     prompt: `Given the values of temperature T [${units.celcius}] and strain $\\varepsilon\\;[\\mu\\varepsilon]$ = 1.5, calculate the output voltage Vout [mV].`,
-    data: [0, 30, 45, 5, 50]
+    data: [],
+    validation: []
   }
 ]

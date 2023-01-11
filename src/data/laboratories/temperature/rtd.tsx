@@ -1,9 +1,8 @@
 import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
 import { TableProps, useParseTable } from '@hooks/use-parse-table'
-import { ConfigItem } from '@utils/initial-config-creator'
 import { units } from '@data/units'
 
-export const Article = () => {
+export const RtdArticle = () => {
   const sensorResistanceEq: EquationProps = {
     equations: ['R_t=R(1+\\alpha(T-T_{ref}))'],
     symbols: [

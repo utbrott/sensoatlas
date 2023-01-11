@@ -1,9 +1,15 @@
+import { createStoreContext } from '@store/create-store-context'
+
 import { configFields } from '@data/laboratories/strain/strain-gauge'
-import { Config } from '@atoms/config'
-import { initialConfigCreator } from '@utils/initial-config-creator'
-import createConfigContext from '@utils/create-config-context'
+import { taskFields } from '@data/laboratories/strain/strain-gauge'
+
+import { initialConfigCreator } from '@utils/configuration'
+import { initialTaskCreator, initialValidationCreator } from '@utils/tasks'
 
 export const config = initialConfigCreator({ fields: configFields })
-console.log(config)
+export const tasks = initialTaskCreator({ fields: taskFields })
+export const validation = initialValidationCreator({ fields: taskFields })
 
-export const { Provider, useStore } = createConfigContext(config)
+const testContext = { ...config, ...tasks, ...validation }
+
+export const { Provider, useStore } = createStoreContext(testContext)

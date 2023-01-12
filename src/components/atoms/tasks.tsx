@@ -1,6 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { TaskItem } from '@utils/tasks'
 import { Form, useZodForm } from '@ui/forms'
+import { Button } from '@ui/button'
+import { object, number } from 'zod'
 import { Alert } from '@ui/alerts'
 import { ConfigKeys } from './config'
 import Latex from 'react-latex'
@@ -20,9 +22,6 @@ interface DataDisplayProps {
 export const DataDisplay = ({ data }: DataDisplayProps) => {
   return (
     <div className='mt-2 flex flex-col space-y-1'>
-      <div className='text-sm text-gray-700 dark:text-gray-300'>
-        Your datapoints:
-      </div>
       <div className='flex w-full flex-row space-x-2 '>
         {data.map((value, idx) => {
           return (
@@ -39,17 +38,20 @@ export const DataDisplay = ({ data }: DataDisplayProps) => {
   )
 }
 
-interface TaskFieldProps {
+interface TaskPromptFieldProps {
   prompt: string
   initial: number[]
   index: number
   useStore: any
 }
 
-const TaskField = ({ prompt, initial, useStore, index }: TaskFieldProps) => {
-  const [dataValue, setTask] = useStore(
-    (store: ConfigKeys) => store[`data${index}`]
-  )
+const TaskPromptField = ({
+  prompt,
+  initial,
+  useStore,
+  index
+}: TaskPromptFieldProps) => {
+  const [_, setTask] = useStore((store: ConfigKeys) => store[`data${index}`])
 
   useEffect(() => {
     setTask({ [`data${index}`]: initial })
@@ -58,6 +60,9 @@ const TaskField = ({ prompt, initial, useStore, index }: TaskFieldProps) => {
 
   return (
     <span className='flex flex-col'>
+      <div className='mb-1 border-b pb-1 text-sm text-gray-700 dark:border-gray-700 dark:text-gray-300'>
+        Task {index + 1}
+      </div>
       <div className='text-sm'>
         <Latex>{prompt}</Latex>
       </div>
@@ -66,13 +71,62 @@ const TaskField = ({ prompt, initial, useStore, index }: TaskFieldProps) => {
   )
 }
 
-interface TasksFormProps {}
-
-export const TaskForm = ({}: TasksFormProps) => {
-  return <div></div>
+interface TaskFormFieldProps {
+  validation: number[]
+  index: number
 }
 
-interface TasksProps {
+const TaskFormField = ({ validation, index }: TaskFormFieldProps) => {
+  const [progress, setProgress] = useState(0)
+
+  const currentValidation = validation[progress]
+  const formDone = progress === validation.length
+
+  useEffect(() => {
+    if (!formDone) {
+      console.log(
+        `Task ${index + 1} (${progress + 1}/${validation.length}):`,
+        currentValidation
+      )
+    }
+  }, [currentValidation, index, progress, validation, formDone])
+
+  const validator = object({
+    value: number().max(currentValidation).min(currentValidation)
+  })
+
+  const form = useZodForm({
+    schema: validator,
+    reValidateMode: 'onSubmit'
+  })
+
+  return (
+    <Form
+      form={form}
+      onSubmit={({ value }) => {
+        console.log('valid', value)
+        if (progress !== validation.length) {
+          setProgress(p => p + 1)
+          form.setValue('value', null)
+        }
+      }}
+    >
+      <Form.Input
+        label={`Your answers for task ${index + 1}`}
+        type='number'
+        withProgress={{ max: validation.length, value: progress }}
+        {...form.register('value', { valueAsNumber: true })}
+        disabled={formDone}
+        step={0.01}
+      />
+      <Button.Submit disabled={formDone}>
+        {formDone ? 'Completed' : 'Submit'}
+      </Button.Submit>
+    </Form>
+  )
+}
+
+interface TaskPromptsProps {
   initialTasks: DataKeys
   initialValidation: DataKeys
   fields: TaskItem[]
@@ -80,13 +134,13 @@ interface TasksProps {
   unlocked?: boolean
 }
 
-export const Tasks = ({
+export const TaskPrompts = ({
   initialTasks,
   initialValidation,
   fields,
   useStore,
   unlocked
-}: TasksProps) => {
+}: TaskPromptsProps) => {
   const [store, setStore] = useStore((store: ConfigKeys) => store)
   const { asPath } = useRouter()
 
@@ -151,17 +205,26 @@ export const Tasks = ({
   }, [unlocked])
 
   return (
-    <div className='flex h-full max-h-fit w-full max-w-sm flex-col gap-2 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
+    <div className='flex w-full max-w-sm flex-col gap-2 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
       <span className='font-medium'>Tasks for the laboratory</span>
       {unlocked ? (
-        <div className='flex flex-col space-y-4'>
+        <div className='flex h-full flex-col justify-between space-y-4'>
           {Object.keys(initialTasks).map((_, index) => {
             return (
-              <TaskField
+              <TaskPromptField
                 prompt={fields[index].prompt}
                 initial={data[index]}
                 useStore={useStore}
                 key={index}
+                index={index}
+              />
+            )
+          })}
+          {Object.keys(initialValidation).map((_, index) => {
+            return (
+              <TaskFormField
+                key={index}
+                validation={validation[index]}
                 index={index}
               />
             )
@@ -175,3 +238,12 @@ export const Tasks = ({
     </div>
   )
 }
+
+// interface TaskFormsProps {
+//   tasks: DataKeys
+//   useStore: any
+// }
+
+// export const TaskForms = () => {
+//   return
+// }

@@ -102,13 +102,13 @@ export const configFields: ConfigItem[] = [
 export const taskFields: TaskItem[] = [
   {
     prompt:
-      'Given values of applied strain $\\varepsilon\\;[\\mu\\varepsilon]$, calculate the output voltage Vout [mV].',
+      'Using the values of applied strain $\\varepsilon\\;[\\mu\\varepsilon]$ given below, calculate the output voltage Vout [mV].',
 
     data: [],
     validation: []
   },
   {
-    prompt: `Given the values of temperature T [${units.celcius}] and strain $\\varepsilon\\;[\\mu\\varepsilon]$ = 1.5, calculate the output voltage Vout [mV].`,
+    prompt: `Using the values of temperature T [${units.celcius}] given below and strain $\\varepsilon$ = 1.5 $\\mu\\varepsilon$, calculate the output voltage Vout [mV].`,
     data: [],
     validation: []
   }

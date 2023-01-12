@@ -9,7 +9,7 @@ import {
 } from '@store/strain-gauge'
 import { Config } from '@atoms/config'
 import { configFields } from '@data/laboratories/strain/strain-gauge'
-import { Tasks } from '@atoms/tasks'
+import { TaskPrompts } from '@atoms/tasks'
 import { taskFields } from '@data/laboratories/strain/strain-gauge'
 
 export default function StrainGauge() {
@@ -26,7 +26,7 @@ export default function StrainGauge() {
             disabled={isConfigSaved}
             configSaveHandler={() => setIsConfigSaved(true)}
           />
-          <Tasks
+          <TaskPrompts
             initialTasks={tasks}
             initialValidation={validation}
             fields={taskFields}

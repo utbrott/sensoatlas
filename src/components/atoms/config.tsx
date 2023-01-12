@@ -90,9 +90,9 @@ export const Config = ({
   }
 
   return (
-    <div className='flex w-full max-w-sm flex-col gap-2 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
+    <div className='flex w-full max-w-sm flex-col space-y-4 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
       <span className='font-medium'>Sensor configuration</span>
-      <span className='space-y-2'>
+      <div className='space-y-2'>
         {Object.keys(initial).map(key => {
           return (
             <ConfigField
@@ -104,15 +104,13 @@ export const Config = ({
             />
           )
         })}
-      </span>
-      <span>
-        <div className='mt-2 text-sm'>Simplfied schematic</div>
-        <span className='flex items-center justify-center'>
-          <SchematicImage imagePath={imagePath} />
-        </span>
-      </span>
-      <span>
-        <div className='mt-2 flex flex-row gap-2'>
+      </div>
+      <div className='mt-1'>
+        <div className='mb-1 text-sm'>Simplfied schematic:</div>
+        <SchematicImage imagePath={imagePath} />
+      </div>
+      <div>
+        <div className='mt-1 flex flex-row gap-2'>
           <Button fullWidth onClick={configSaveHandler} disabled={disabled}>
             Save configuration
           </Button>
@@ -126,7 +124,7 @@ export const Config = ({
             Reset
           </Button>
         </div>
-      </span>
+      </div>
     </div>
   )
 }

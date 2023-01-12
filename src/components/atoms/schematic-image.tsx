@@ -1,4 +1,4 @@
-import { default as NextImage } from 'next/image'
+/* eslint-disable @next/next/no-img-element */
 
 interface SchematicImageProps {
   imagePath: string
@@ -6,15 +6,8 @@ interface SchematicImageProps {
 
 export const SchematicImage = ({ imagePath }: SchematicImageProps) => {
   return (
-    <div className='relative mt-1 block h-80 w-80'>
-      <NextImage
-        src={imagePath}
-        alt='schematic'
-        fill
-        priority
-        sizes='33vw'
-        className='rounded-md'
-      />
+    <div className='flex w-full items-center justify-center rounded-md bg-white px-2 py-4'>
+      <img src={imagePath} alt='schematic' className='aspect-video h-full' />
     </div>
   )
 }

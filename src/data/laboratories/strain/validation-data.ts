@@ -69,12 +69,11 @@ function getNewResistance(
 
 interface ValidationFnProps {
   material: {
-    name: string
     gaugeFactor: number
     modulus: number
     tempCoeff: number
   }
-  voltage: number
+  voltage?: number
   resistance: number
   bridge: { name: string; multiplier: number }
   taskData: number[]
@@ -131,11 +130,9 @@ export const getStrainValidationData = ({
 
 export const getNewGaugeResistance = ({
   material,
-  voltage,
   resistance,
   bridge,
-  taskData,
-  withTemperature
+  taskData
 }: ValidationFnProps) => {
   const STATIC_STRAIN = 1.5
   const STATIC_TEMPERATURE = 20
@@ -143,7 +140,8 @@ export const getNewGaugeResistance = ({
   const data: number[] = []
 
   taskData.forEach(dataPoint => {
-    const value = bridge.name === 'quater' ? dataPoint : STATIC_STRAIN
+    const value =
+      bridge.name.toLowerCase() === 'quater' ? dataPoint : STATIC_TEMPERATURE
 
     data.push(
       getNewResistance(resistance, STATIC_STRAIN, material.gaugeFactor, {

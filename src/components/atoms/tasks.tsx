@@ -94,7 +94,7 @@ export const TaskFormField = ({
         currentValidation
       )
     }
-  }, [currentValidation, index, progress, validation, formDone])
+  }, [formDone, currentValidation, index, progress, validation])
 
   const validator = object({
     value: number({
@@ -114,7 +114,6 @@ export const TaskFormField = ({
     <Form
       form={form}
       onSubmit={({ value }) => {
-        console.log('valid', value)
         if (progress !== validation.length) {
           updateProgressHandler(progress)
           form.setValue('value', null)
@@ -155,28 +154,30 @@ export const Tasks = ({
 }: TasksProps) => {
   const [store, setStore] = useStore((store: ConfigKeys) => store)
   const { asPath } = useRouter()
+
   const [dataReady, setDataReady] = useState(false)
-  const [data, setData] = useState<number[][]>([[], []])
-  const [validation, setValidation] = useState<number[][]>([[], []])
-  const [progress, setProgress] = useState([0, 0])
 
-  useEffect(() => {
-    if (unlocked) {
-      Object.keys(initialValidation).map((_, index) => {
-        setStore({ [`validation${index}`]: validation[index] })
-      })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [unlocked])
-
+  const [progress, setProgress] = useState<number[]>([])
   const updateProgress = (idx: number) => {
     const updatedProgress = progress.map((state, index) => {
       return idx === index ? state + 1 : state
     })
 
     setProgress(updatedProgress)
+
+    let completed = true
+    updatedProgress.forEach((value, index) => {
+      if (value !== validation[index].length) {
+        completed = false
+      }
+    })
+
+    if (completed) {
+      completionHandler(true)
+    }
   }
 
+  const [data, setData] = useState<number[][]>([])
   const updateData = (newData: number[], idx: number) => {
     setData(currentData => {
       currentData[idx] = newData
@@ -184,6 +185,7 @@ export const Tasks = ({
     })
   }
 
+  const [validation, setValidation] = useState<number[][]>([])
   const updateValidation = (newValidation: number[], idx: number) => {
     setValidation(currentValidation => {
       currentValidation[idx] = newValidation
@@ -201,17 +203,19 @@ export const Tasks = ({
       case 'displacement/lvdt':
         break
       case 'strain/strain-gauge':
+        setData([[], []])
+        setValidation([[], []])
+        setProgress([0, 0])
+
         const data0 = getRandomStrainSet({
           modulus: Number(store.material.modulus)
         })
         updateData(data0, 0)
-        console.log(data)
         const data1 = getRandomTemperatureSet({
           min: 5,
           max: 45
         })
         updateData(data1, 1)
-        console.log(data)
 
         const validation0 = getStrainValidationData({
           material: store.material,
@@ -221,6 +225,7 @@ export const Tasks = ({
           taskData: data0
         })
         updateValidation(validation0, 0)
+
         const validation1 = getStrainValidationData({
           material: store.material,
           voltage: Number(store.voltage.voltage),
@@ -230,16 +235,6 @@ export const Tasks = ({
           withTemperature: true
         })
         updateValidation(validation1, 1)
-
-        if (dataReady) {
-          if (
-            progress[0] === validation[0].length &&
-            progress[1] === validation[1].length
-          ) {
-            console.log('complete')
-            completionHandler(true)
-          }
-        }
 
         break
       case 'magnetoresistance/amr':
@@ -260,6 +255,15 @@ export const Tasks = ({
 
     setDataReady(true)
   }
+
+  useEffect(() => {
+    if (unlocked) {
+      Object.keys(initialValidation).map((_, index) => {
+        setStore({ [`validation${index}`]: validation[index] })
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [unlocked])
 
   return (
     <div className='flex w-full max-w-sm flex-col gap-2 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>

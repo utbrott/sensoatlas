@@ -16,39 +16,36 @@ import { LineChart } from '@atoms/chart'
 import { Tab } from '@ui/tab-group'
 import { getNewGaugeResistance } from '@data/index'
 
-// const Lab = () => {
-//   const [labState, dispatch] = useReducer(labStateReducer, initialLabState)
-//   return
-// }
-
 export default function StrainGauge() {
   const [isConfigSaved, setIsConfigSaved] = useState(false)
   const [tasksComplete, setTasksComplete] = useState(false)
 
-  console.log('tasks complete', tasksComplete)
+  console.log(tasksComplete)
 
   return (
     <Shell.App title='Laboratories | SensoAtlas'>
       <Provider>
-        <div className='flex max-w-3xl flex-col space-y-4'>
-          <div className='flex justify-center space-x-4'>
-            <Config
-              initial={config}
-              fields={configFields}
-              useStore={useStore}
-              disabled={isConfigSaved}
-              configSaveHandler={() => setIsConfigSaved(true)}
-            />
-            <Tasks
-              initialTasks={tasks}
-              initialValidation={validation}
-              fields={taskFields}
-              useStore={useStore}
-              unlocked={isConfigSaved}
-              completionHandler={setTasksComplete}
-            />
+        <div className='flex w-full justify-center'>
+          <div className='flex max-w-3xl flex-col content-center space-y-4'>
+            <div className='flex justify-center space-x-4'>
+              <Config
+                initial={config}
+                fields={configFields}
+                useStore={useStore}
+                disabled={isConfigSaved}
+                configSaveHandler={() => setIsConfigSaved(true)}
+              />
+              <Tasks
+                initialTasks={tasks}
+                initialValidation={validation}
+                fields={taskFields}
+                useStore={useStore}
+                unlocked={isConfigSaved}
+                completionHandler={setTasksComplete}
+              />
+            </div>
+            <Charts unlocked={isConfigSaved} tasksComplete={tasksComplete} />
           </div>
-          <div className='w-full max-w-full'>{isConfigSaved && <Charts />}</div>
         </div>
         <Debug />
       </Provider>
@@ -56,9 +53,12 @@ export default function StrainGauge() {
   )
 }
 
-interface Charts {}
+interface ChartsProps {
+  unlocked: boolean
+  tasksComplete: boolean
+}
 
-const Charts = () => {
+const Charts = ({ unlocked, tasksComplete }: ChartsProps) => {
   const [dataStore] = useStore((store: Record<string, number[]>) => store)
   const [configStore] = useStore(
     (store: Record<string, { [key: string]: string | number }>) => store
@@ -74,27 +74,29 @@ const Charts = () => {
     yvalues: dataStore.validation1
   })
 
-  const chart3values = getNewGaugeResistance({
-    material: {
-      gaugeFactor: Number(configStore.material.gaugeFactor),
-      modulus: Number(configStore.material.modulus),
-      tempCoeff: Number(configStore.material.tempCoeff)
-    },
-    resistance: Number(configStore.resistance.resistance),
-    bridge: {
-      name: String(configStore.bridge.name),
-      multiplier: Number(configStore.bridge.multiplier)
-    },
-    taskData: dataStore.data1
-  })
-
   const chart3Data = lineChartCreator({
     xvalues: dataStore.data1,
-    yvalues: chart3values
+    yvalues: getNewGaugeResistance({
+      material: {
+        gaugeFactor: Number(configStore.material.gaugeFactor),
+        modulus: Number(configStore.material.modulus),
+        tempCoeff: Number(configStore.material.tempCoeff)
+      },
+      resistance: Number(configStore.resistance.resistance),
+      bridge: {
+        name: String(configStore.bridge.name),
+        multiplier: Number(configStore.bridge.multiplier)
+      },
+      taskData: dataStore.data1
+    })
   })
 
   const dataReady =
-    chart1Data.length > 0 && chart2Data.length > 0 && chart3Data.length > 0
+    chart1Data.length > 0 &&
+    chart2Data.length > 0 &&
+    chart3Data.length > 0 &&
+    unlocked &&
+    tasksComplete
 
   return dataReady ? (
     <Tab.Group>

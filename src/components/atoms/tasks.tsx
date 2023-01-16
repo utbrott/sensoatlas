@@ -45,7 +45,7 @@ interface TaskPromptFieldProps {
   useStore: any
 }
 
-const TaskPromptField = ({
+export const TaskPromptField = ({
   prompt,
   initial,
   useStore,
@@ -74,11 +74,16 @@ const TaskPromptField = ({
 interface TaskFormFieldProps {
   validation: number[]
   index: number
+  progress: number
+  updateProgressHandler: (progress: number) => void
 }
 
-const TaskFormField = ({ validation, index }: TaskFormFieldProps) => {
-  const [progress, setProgress] = useState(0)
-
+export const TaskFormField = ({
+  validation,
+  index,
+  progress,
+  updateProgressHandler
+}: TaskFormFieldProps) => {
   const currentValidation = validation[progress]
   const formDone = progress === validation.length
 
@@ -92,7 +97,12 @@ const TaskFormField = ({ validation, index }: TaskFormFieldProps) => {
   }, [currentValidation, index, progress, validation, formDone])
 
   const validator = object({
-    value: number().max(currentValidation).min(currentValidation)
+    value: number({
+      required_error: "This can't be empty",
+      invalid_type_error: "This can't be empty"
+    })
+      .max(currentValidation, { message: "This doesn't seem to be correct." })
+      .min(currentValidation, { message: "This doesn't seem to be correct." })
   })
 
   const form = useZodForm({
@@ -106,7 +116,7 @@ const TaskFormField = ({ validation, index }: TaskFormFieldProps) => {
       onSubmit={({ value }) => {
         console.log('valid', value)
         if (progress !== validation.length) {
-          setProgress(p => p + 1)
+          updateProgressHandler(progress)
           form.setValue('value', null)
         }
       }}
@@ -126,74 +136,29 @@ const TaskFormField = ({ validation, index }: TaskFormFieldProps) => {
   )
 }
 
-interface TaskPromptsProps {
+interface TasksProps {
   initialTasks: DataKeys
   initialValidation: DataKeys
   fields: TaskItem[]
   useStore: any
   unlocked?: boolean
+  completionHandler: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const TaskPrompts = ({
+export const Tasks = ({
   initialTasks,
   initialValidation,
   fields,
   useStore,
-  unlocked
-}: TaskPromptsProps) => {
+  unlocked,
+  completionHandler
+}: TasksProps) => {
   const [store, setStore] = useStore((store: ConfigKeys) => store)
   const { asPath } = useRouter()
-
-  /* Scuffed, but does the job */
-  const data: number[][] = []
-  const validation: number[][] = []
-
-  switch (asPath.replace('/laboratories/', '')) {
-    case 'temperature/rtd':
-      break
-    case 'temperature/thermocouple':
-      break
-    case 'displacement/lvdt':
-      break
-    case 'strain/strain-gauge':
-      data[0] = getRandomStrainSet({
-        modulus: Number(store.material.modulus)
-      })
-      data[1] = getRandomTemperatureSet({
-        min: 5,
-        max: 45
-      })
-      validation[0] = getStrainValidationData({
-        material: store.material,
-        voltage: Number(store.voltage.voltage),
-        resistance: Number(store.resistance.resistance),
-        bridge: store.bridge,
-        taskData: data[0]
-      })
-      validation[1] = getStrainValidationData({
-        material: store.material,
-        voltage: Number(store.voltage.voltage),
-        resistance: Number(store.resistance.resistance),
-        bridge: store.bridge,
-        taskData: data[0],
-        withTemperature: true
-      })
-      break
-    case 'magnetoresistance/amr':
-      break
-    case 'magnetoresistance/hall-effect':
-      break
-    case 'piezoelectricity/cable':
-      break
-    case 'piezoelectricity/accelerometer':
-      break
-    case 'transducers/measurement-loop':
-      break
-    case 'transducers/pressure':
-      break
-    default:
-      throw new Error('Laboratory not found')
-  }
+  const [dataReady, setDataReady] = useState(false)
+  const [data, setData] = useState<number[][]>([[], []])
+  const [validation, setValidation] = useState<number[][]>([[], []])
+  const [progress, setProgress] = useState([0, 0])
 
   useEffect(() => {
     if (unlocked) {
@@ -203,6 +168,98 @@ export const TaskPrompts = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unlocked])
+
+  const updateProgress = (idx: number) => {
+    const updatedProgress = progress.map((state, index) => {
+      return idx === index ? state + 1 : state
+    })
+
+    setProgress(updatedProgress)
+  }
+
+  const updateData = (newData: number[], idx: number) => {
+    setData(currentData => {
+      currentData[idx] = newData
+      return currentData
+    })
+  }
+
+  const updateValidation = (newValidation: number[], idx: number) => {
+    setValidation(currentValidation => {
+      currentValidation[idx] = newValidation
+      return currentValidation
+    })
+  }
+
+  /* Scuffed, but does the job */
+  if (unlocked && !dataReady) {
+    switch (asPath.replace('/laboratories/', '')) {
+      case 'temperature/rtd':
+        break
+      case 'temperature/thermocouple':
+        break
+      case 'displacement/lvdt':
+        break
+      case 'strain/strain-gauge':
+        const data0 = getRandomStrainSet({
+          modulus: Number(store.material.modulus)
+        })
+        updateData(data0, 0)
+        console.log(data)
+        const data1 = getRandomTemperatureSet({
+          min: 5,
+          max: 45
+        })
+        updateData(data1, 1)
+        console.log(data)
+
+        const validation0 = getStrainValidationData({
+          material: store.material,
+          voltage: Number(store.voltage.voltage),
+          resistance: Number(store.resistance.resistance),
+          bridge: store.bridge,
+          taskData: data0
+        })
+        updateValidation(validation0, 0)
+        const validation1 = getStrainValidationData({
+          material: store.material,
+          voltage: Number(store.voltage.voltage),
+          resistance: Number(store.resistance.resistance),
+          bridge: store.bridge,
+          taskData: data1,
+          withTemperature: true
+        })
+        updateValidation(validation1, 1)
+
+        if (dataReady) {
+          if (
+            progress[0] === validation[0].length &&
+            progress[1] === validation[1].length
+          ) {
+            console.log('complete')
+            completionHandler(true)
+          }
+        }
+
+        break
+      case 'magnetoresistance/amr':
+        break
+      case 'magnetoresistance/hall-effect':
+        break
+      case 'piezoelectricity/cable':
+        break
+      case 'piezoelectricity/accelerometer':
+        break
+      case 'transducers/measurement-loop':
+        break
+      case 'transducers/pressure':
+        break
+      default:
+        throw new Error('Laboratory not found')
+    }
+
+    setDataReady(true)
+  }
 
   return (
     <div className='flex w-full max-w-sm flex-col gap-2 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
@@ -226,6 +283,8 @@ export const TaskPrompts = ({
                 key={index}
                 validation={validation[index]}
                 index={index}
+                progress={progress[index]}
+                updateProgressHandler={() => updateProgress(index)}
               />
             )
           })}

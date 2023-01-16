@@ -36,9 +36,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# tailwind migration, remove after done
-src/_old
-
 # testing page, storybook replacement
 src/pages/sandbox.tsx
 

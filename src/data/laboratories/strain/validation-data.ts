@@ -96,7 +96,8 @@ export const getStrainValidationData = ({
 
   if (withTemperature) {
     taskData.forEach(dataPoint => {
-      const value = bridge.name === 'quater' ? dataPoint : STATIC_TEMPERATURE
+      const value =
+        bridge.name.toLowerCase() === 'quater' ? dataPoint : STATIC_TEMPERATURE
 
       data.push(
         getOutputVoltage(

@@ -72,38 +72,59 @@ export const TaskPromptField = ({
 }
 
 interface TaskFormFieldProps {
-  validation: number[]
+  data: number[]
+  withValidation?: boolean
   index: number
+  useStore: any
   progress: number
   updateProgressHandler: (progress: number) => void
 }
 
 export const TaskFormField = ({
-  validation,
+  data,
+  withValidation,
   index,
+  useStore,
   progress,
   updateProgressHandler
 }: TaskFormFieldProps) => {
-  const currentValidation = validation[progress]
-  const formDone = progress === validation.length
+  const [_, setStore] = useStore(
+    (store: ConfigKeys) => store[`validation${index}`]
+  )
+  const formDone = progress === data.length
 
   useEffect(() => {
     if (!formDone) {
       console.log(
-        `Task ${index + 1} (${progress + 1}/${validation.length}):`,
-        currentValidation
+        `Task ${index + 1} (${progress + 1}/${data.length}):`,
+        data[progress]
       )
     }
-  }, [formDone, currentValidation, index, progress, validation])
+  }, [formDone, index, progress, data])
 
-  const validator = object({
-    value: number({
-      required_error: "This can't be empty",
-      invalid_type_error: "This can't be empty"
+  const errMsgs = {
+    missing: "This can't be empty.",
+    invalid: "This doesn't seem to be correct."
+  }
+
+  let validator: any
+  if (withValidation) {
+    validator = object({
+      value: number({
+        required_error: errMsgs.missing,
+        invalid_type_error: errMsgs.missing
+      })
+        .max(data[progress], { message: errMsgs.invalid })
+        .min(data[progress], { message: errMsgs.invalid })
     })
-      .max(currentValidation, { message: "This doesn't seem to be correct." })
-      .min(currentValidation, { message: "This doesn't seem to be correct." })
-  })
+  } else {
+    validator = object({
+      value: number({
+        required_error: errMsgs.missing,
+        invalid_type_error: errMsgs.missing
+      })
+    })
+  }
 
   const form = useZodForm({
     schema: validator,
@@ -114,16 +135,20 @@ export const TaskFormField = ({
     <Form
       form={form}
       onSubmit={({ value }) => {
-        if (progress !== validation.length) {
+        if (progress !== data.length) {
+          if (!withValidation) {
+            setStore({ [`validation${index}`]: value })
+          }
           updateProgressHandler(progress)
-          form.setValue('value', null)
+          form.reset()
+          setTimeout(() => form.setFocus('value'), 0)
         }
       }}
     >
       <Form.Input
         label={`Your answers for task ${index + 1}`}
         type='number'
-        withProgress={{ max: validation.length, value: progress }}
+        withProgress={{ max: data.length, value: progress }}
         {...form.register('value', { valueAsNumber: true })}
         disabled={formDone}
         step={0.01}
@@ -285,8 +310,10 @@ export const Tasks = ({
             return (
               <TaskFormField
                 key={index}
-                validation={validation[index]}
+                data={validation[index]}
+                withValidation={true}
                 index={index}
+                useStore={useStore}
                 progress={progress[index]}
                 updateProgressHandler={() => updateProgress(index)}
               />

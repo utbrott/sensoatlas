@@ -42,21 +42,19 @@ export default function StrainGauge() {
                 completionHandler={setTasksComplete}
               />
             </div>
-            <Charts unlocked={isConfigSaved} tasksComplete={tasksComplete} />
+            <Charts tasksComplete={tasksComplete} />
           </div>
         </div>
-        <Debug />
       </Provider>
     </Shell.App>
   )
 }
 
 interface ChartsProps {
-  unlocked: boolean
   tasksComplete: boolean
 }
 
-const Charts = ({ unlocked, tasksComplete }: ChartsProps) => {
+const Charts = ({ tasksComplete }: ChartsProps) => {
   const [dataStore] = useStore((store: Record<string, number[]>) => store)
   const [configStore] = useStore(
     (store: Record<string, { [key: string]: string | number }>) => store
@@ -95,9 +93,9 @@ const Charts = ({ unlocked, tasksComplete }: ChartsProps) => {
       <span>
         <Tab.Group>
           <Tab.List>
-            <Tab>Task 1</Tab>
-            <Tab>Task 2.1</Tab>
-            <Tab>Task 2.2</Tab>
+            <Tab>{'Task 1: Vout = f(\u03b5)'}</Tab>
+            <Tab>{'Task 2.1: Vout = f(T)'}</Tab>
+            <Tab>{'Task 2.2: R = f(T)'}</Tab>
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
@@ -117,7 +115,7 @@ const Charts = ({ unlocked, tasksComplete }: ChartsProps) => {
                 chartName='temperature-out-voltage'
                 chartData={chart2Data}
                 labels={{
-                  xaxis: 'Microstrains [\u00b5\u03b5]',
+                  xaxis: 'Temperature [\u00b0C]',
                   yaxis: 'Output voltage [mV]'
                 }}
                 hasDataPoints
@@ -129,8 +127,8 @@ const Charts = ({ unlocked, tasksComplete }: ChartsProps) => {
                 chartName='temperature-resistance'
                 chartData={chart3Data}
                 labels={{
-                  xaxis: 'Microstrains [\u00b5\u03b5]',
-                  yaxis: 'Output voltage [mV]'
+                  xaxis: 'Temperature [\u00b0C]',
+                  yaxis: 'Resistance [\u03a9]'
                 }}
                 hasDataPoints
                 withTooltip
@@ -141,12 +139,4 @@ const Charts = ({ unlocked, tasksComplete }: ChartsProps) => {
       </span>
     </div>
   ) : null
-}
-
-function Debug() {
-  const [store] = useStore(store => store)
-
-  console.log('in debug', store)
-
-  return null
 }

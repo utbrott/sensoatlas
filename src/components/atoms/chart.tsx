@@ -7,7 +7,8 @@ import {
   Line,
   Tooltip,
   Legend,
-  ReferenceLine
+  ReferenceLine,
+  Label
 } from 'recharts'
 import { Button, ButtonProps } from '@ui/button'
 import { IconFileDownload } from '@tabler/icons'
@@ -101,12 +102,12 @@ export const LineChart = ({
 
   return (
     <>
-      <div className='relative flex h-full w-full rounded bg-gray-50 p-4'>
-        <ResponsiveContainer aspect={1.7778}>
+      <div className='relative flex h-full w-full rounded bg-gray-50 p-4 text-gray-900'>
+        <ResponsiveContainer height={395} aspect={1.78}>
           <LineChartRoot
             data={chartData}
             ref={ref}
-            margin={{ top: 5, right: 15, left: 15, bottom: 10 }}
+            margin={{ top: 5, right: 15, left: 15, bottom: 15 }}
           >
             <CartesianGrid strokeDasharray='3 3' />
             <XAxis
@@ -120,7 +121,7 @@ export const LineChart = ({
               label={{
                 value: labels.xaxis,
                 position: 'insideBottom',
-                offset: -5
+                offset: -10
               }}
             />
             <YAxis

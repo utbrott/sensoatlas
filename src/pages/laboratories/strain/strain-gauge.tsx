@@ -20,8 +20,6 @@ export default function StrainGauge() {
   const [isConfigSaved, setIsConfigSaved] = useState(false)
   const [tasksComplete, setTasksComplete] = useState(false)
 
-  console.log(tasksComplete)
-
   return (
     <Shell.App title='Laboratories | SensoAtlas'>
       <Provider>
@@ -91,59 +89,57 @@ const Charts = ({ unlocked, tasksComplete }: ChartsProps) => {
     })
   })
 
-  const dataReady =
-    chart1Data.length > 0 &&
-    chart2Data.length > 0 &&
-    chart3Data.length > 0 &&
-    unlocked &&
-    tasksComplete
-
-  return dataReady ? (
-    <Tab.Group>
-      <Tab.List>
-        <Tab>Task 1</Tab>
-        <Tab>Task 2.1</Tab>
-        <Tab>Task 2.2</Tab>
-      </Tab.List>
-      <Tab.Panels>
-        <Tab.Panel>
-          <LineChart
-            chartName='strain-out-volt'
-            chartData={chart1Data}
-            labels={{
-              xaxis: 'Microstrains [\u00b5\u03b5]',
-              yaxis: 'Output voltage [mV]'
-            }}
-            hasDataPoints
-            withTooltip
-          />
-        </Tab.Panel>
-        <Tab.Panel>
-          <LineChart
-            chartName='temperature-out-voltage'
-            chartData={chart2Data}
-            labels={{
-              xaxis: 'Microstrains [\u00b5\u03b5]',
-              yaxis: 'Output voltage [mV]'
-            }}
-            hasDataPoints
-            withTooltip
-          />
-        </Tab.Panel>
-        <Tab.Panel>
-          <LineChart
-            chartName='temperature-resistance'
-            chartData={chart3Data}
-            labels={{
-              xaxis: 'Microstrains [\u00b5\u03b5]',
-              yaxis: 'Output voltage [mV]'
-            }}
-            hasDataPoints
-            withTooltip
-          />
-        </Tab.Panel>
-      </Tab.Panels>
-    </Tab.Group>
+  return tasksComplete ? (
+    <div className='flex h-full w-full flex-col space-y-4 rounded-md bg-gray-800 p-4'>
+      <span className='font-medium'>Generated charts</span>
+      <span>
+        <Tab.Group>
+          <Tab.List>
+            <Tab>Task 1</Tab>
+            <Tab>Task 2.1</Tab>
+            <Tab>Task 2.2</Tab>
+          </Tab.List>
+          <Tab.Panels>
+            <Tab.Panel>
+              <LineChart
+                chartName='strain-out-volt'
+                chartData={chart1Data}
+                labels={{
+                  xaxis: 'Microstrains [\u00b5\u03b5]',
+                  yaxis: 'Output voltage [mV]'
+                }}
+                hasDataPoints
+                withTooltip
+              />
+            </Tab.Panel>
+            <Tab.Panel>
+              <LineChart
+                chartName='temperature-out-voltage'
+                chartData={chart2Data}
+                labels={{
+                  xaxis: 'Microstrains [\u00b5\u03b5]',
+                  yaxis: 'Output voltage [mV]'
+                }}
+                hasDataPoints
+                withTooltip
+              />
+            </Tab.Panel>
+            <Tab.Panel>
+              <LineChart
+                chartName='temperature-resistance'
+                chartData={chart3Data}
+                labels={{
+                  xaxis: 'Microstrains [\u00b5\u03b5]',
+                  yaxis: 'Output voltage [mV]'
+                }}
+                hasDataPoints
+                withTooltip
+              />
+            </Tab.Panel>
+          </Tab.Panels>
+        </Tab.Group>
+      </span>
+    </div>
   ) : null
 }
 

@@ -41,7 +41,7 @@ interface PanelProps extends WithChildrenProps {}
 const Panel = ({ children }: PanelProps) => {
   return (
     <div className='rounded-md bg-gray-300/30 dark:bg-gray-800'>
-      <HeadlessTab.Panel className='max-h-fit rounded-md bg-gray-300/70 p-4 dark:bg-gray-800'>
+      <HeadlessTab.Panel className='max-h-fit rounded-md bg-gray-300/70 dark:bg-gray-800'>
         {children}
       </HeadlessTab.Panel>
     </div>

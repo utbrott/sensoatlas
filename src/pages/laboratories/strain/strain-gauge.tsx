@@ -24,6 +24,7 @@ export default function StrainGauge() {
     <Shell.App title='Laboratories | SensoAtlas'>
       <Provider>
         <div className='flex w-full justify-center'>
+          <div className=''></div>
           <div className='flex max-w-3xl flex-col content-center space-y-4'>
             <div className='flex justify-center space-x-4'>
               <Config
@@ -88,7 +89,7 @@ const Charts = ({ tasksComplete }: ChartsProps) => {
   })
 
   return tasksComplete ? (
-    <div className='flex h-full w-full flex-col space-y-4 rounded-md bg-gray-800 p-4'>
+    <div className='flex h-full w-full flex-col space-y-4 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
       <span className='font-medium'>Generated charts</span>
       <span>
         <Tab.Group>

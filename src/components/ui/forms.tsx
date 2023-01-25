@@ -89,7 +89,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         {label}
       </div>
       <input
-        className='h-9 w-full rounded border border-gray-700 bg-white px-4 py-2 text-gray-800 focus:border-blue-600 focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:bg-gray-900 dark:text-gray-200'
+        className='h-9 w-full rounded border border-gray-300 bg-white px-4 py-2 text-gray-800 focus:border-blue-500 focus:ring-blue-400 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:focus:border-blue-600 dark:focus:ring-blue-500'
         type={type}
         ref={ref}
         {...props}
@@ -111,10 +111,12 @@ const InputProgressBar = ({ value, max }: InputProgressBarProps) => {
   const barWidth = `${(value / max) * 100}%`
 
   return (
-    <div className='mt-1 flex h-1 flex-row rounded bg-gray-700/30'>
+    <div className='mt-1 flex h-1 flex-row rounded bg-gray-500/30 dark:bg-gray-700/30'>
       <div
         className={`rounded ${
-          value === max ? 'bg-green-500/70' : 'bg-blue-500/70'
+          value === max
+            ? 'bg-green-400/70 dark:bg-green-500/70'
+            : 'bg-blue-400 dark:bg-blue-500/70'
         } transition-all duration-200`}
         style={{ width: barWidth }}
       />

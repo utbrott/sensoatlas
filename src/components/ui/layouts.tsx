@@ -62,7 +62,9 @@ const AppShell = ({ title, children }: LayoutShellProps) => {
           <div className='h-14' />
         </div>
         <div className='w-full'>
-          <div className='ml-64 mt-1 p-4'>{children}</div>
+          <div className='ml-64 mt-1 flex items-start justify-center p-4'>
+            {children}
+          </div>
           <div className='h-14' />
         </div>
       </div>

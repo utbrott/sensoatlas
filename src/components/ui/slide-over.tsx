@@ -33,7 +33,11 @@ interface SlideOverContentProps {
 }
 
 const SlideOverContent = ({ children }: SlideOverContentProps) => {
-  return <div className='relative mt-6 h-fit flex-1 px-4'>{children}</div>
+  return (
+    <div className='prose relative mt-6 h-fit flex-1 px-4 prose-a:text-sm dark:prose-invert dark:prose-a:text-sm'>
+      {children}
+    </div>
+  )
 }
 
 interface SlideOverProps extends SlideOverHeaderProps, SlideOverContentProps {

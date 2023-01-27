@@ -1,7 +1,9 @@
 import { createStoreContext } from '@store/create-store-context'
 
-import { configFields } from '@data/laboratories/strain/strain-gauge'
-import { taskFields } from '@data/laboratories/strain/strain-gauge'
+import {
+  configFields,
+  taskFields
+} from '@data/laboratories/strain/strain-gauge'
 
 import { initialConfigCreator } from '@utils/configuration'
 import { initialTaskCreator, initialValidationCreator } from '@utils/tasks'

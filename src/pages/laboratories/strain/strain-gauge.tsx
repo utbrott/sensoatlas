@@ -14,17 +14,29 @@ import { taskFields } from '@data/laboratories/strain/strain-gauge'
 import { lineChartCreator } from '@atoms/chart'
 import { LineChart } from '@atoms/chart'
 import { Tab } from '@ui/tab-group'
-import { getNewGaugeResistance } from '@data/index'
+import { getNewGaugeResistance } from '@data/laboratories/strain/validation-data'
+import { SlideOver } from '@ui/slide-over'
+import {
+  StrainArticle,
+  StrainPageHeader
+} from '@data/laboratories/strain/strain-gauge'
+import { Button } from '@ui/button'
 
 export default function StrainGauge() {
   const [isConfigSaved, setIsConfigSaved] = useState(false)
   const [tasksComplete, setTasksComplete] = useState(false)
+  const [isSlideOverOpen, setIsSlideOverOpen] = useState(false)
 
   return (
     <Shell.App title='Laboratories | SensoAtlas'>
       <Provider>
-        <div className='flex w-full justify-center'>
-          <div className=''></div>
+        <div className='flex w-full max-w-3xl flex-col content-center justify-center space-y-4'>
+          <div className='flex h-full w-full flex-col space-y-4 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
+            <StrainPageHeader />
+            <Button onClick={() => setIsSlideOverOpen(true)}>
+              View theory
+            </Button>
+          </div>
           <div className='flex max-w-3xl flex-col content-center space-y-4'>
             <div className='flex justify-center space-x-4'>
               <Config
@@ -46,6 +58,13 @@ export default function StrainGauge() {
             <Charts tasksComplete={tasksComplete} />
           </div>
         </div>
+        <SlideOver
+          isOpen={isSlideOverOpen}
+          title='Strain gauges'
+          closeHandler={() => setIsSlideOverOpen(false)}
+        >
+          <StrainArticle />
+        </SlideOver>
       </Provider>
     </Shell.App>
   )

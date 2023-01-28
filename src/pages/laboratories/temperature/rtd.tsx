@@ -44,12 +44,12 @@ export default function Rtd() {
                 completionHandler={setTasksComplete}
               />
             </div>
-            {/* <Charts tasksComplete={tasksComplete} /> */}
+            <Charts tasksComplete={tasksComplete} />
           </div>
         </div>
         <SlideOver
           isOpen={isSlideOverOpen}
-          title='Strain gauges'
+          title='RTDs'
           closeHandler={() => setIsSlideOverOpen(false)}
         >
           <RtdArticle />

@@ -120,7 +120,7 @@ export const configFields: ConfigItem[] = [
 
 export const taskFields: TaskItem[] = [
   {
-    prompt: `Given the values of temperature T ${units.celcius}, calculate sensors resistance Rt ${units.ohms}.`,
+    prompt: `Given the values of temperature T [${units.celcius}], calculate sensors resistance Rt ${units.ohms}.`,
 
     data: [],
     validation: []

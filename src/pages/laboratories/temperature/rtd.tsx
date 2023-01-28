@@ -10,6 +10,7 @@ import { Tab } from '@ui/tab-group'
 import { SlideOver } from '@ui/slide-over'
 import { RtdPageHeader, RtdArticle } from '@data/laboratories/temperature/rtd'
 import { Button } from '@ui/button'
+import { getTemperatureSlopes } from '@data/index'
 
 export default function Rtd() {
   const [isConfigSaved, setIsConfigSaved] = useState(false)
@@ -71,32 +72,17 @@ const Charts = ({ tasksComplete }: ChartsProps) => {
 
   console.log(dataStore, configStore)
 
-  // const chart1Data = lineChartCreator({
-  //   xvalues: dataStore.data0,
-  //   yvalues: dataStore.validation0
-  // })
+  const { xvalue: xvalues, yvalues } = getTemperatureSlopes({
+    sensor: 'rtd',
+    timeConstantValues: dataStore.validation1
+  })
 
-  // const chart2Data = lineChartCreator({
-  //   xvalues: dataStore.data1,
-  //   yvalues: dataStore.validation1
-  // })
+  const chart1Data = lineChartCreator({
+    xvalues: dataStore.data0,
+    yvalues: [dataStore.validation0]
+  })
 
-  // const chart3Data = lineChartCreator({
-  //   xvalues: dataStore.data1,
-  //   yvalues: getNewGaugeResistance({
-  //     material: {
-  //       gaugeFactor: Number(configStore.material.gaugeFactor),
-  //       modulus: Number(configStore.material.modulus),
-  //       tempCoeff: Number(configStore.material.tempCoeff)
-  //     },
-  //     resistance: Number(configStore.resistance.resistance),
-  //     bridge: {
-  //       name: String(configStore.bridge.name),
-  //       multiplier: Number(configStore.bridge.multiplier)
-  //     },
-  //     taskData: dataStore.data1
-  //   })
-  // })
+  const chart2Data = lineChartCreator({ xvalues, yvalues })
 
   return tasksComplete ? (
     <div className='flex h-full w-full flex-col space-y-4 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
@@ -104,46 +90,33 @@ const Charts = ({ tasksComplete }: ChartsProps) => {
       <span>
         <Tab.Group>
           <Tab.List>
-            <Tab>{'Task 1: Vout = f(\u03b5)'}</Tab>
-            <Tab>{'Task 2.1: Vout = f(T)'}</Tab>
-            <Tab>{'Task 2.2: R = f(T)'}</Tab>
+            <Tab>{'Task 1: Static characteristic,  R = f(T)'}</Tab>
+            <Tab>{'Task 2: Dynamic characteristic, Vout = f(T)'}</Tab>
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
-              {/* <LineChart
-                chartName='strain-out-volt'
+              <LineChart
+                chartName='rtd-static'
                 chartData={chart1Data}
-                labels={{
-                  xaxis: 'Microstrains [\u00b5\u03b5]',
-                  yaxis: 'Output voltage [mV]'
-                }}
-                hasDataPoints
-                withTooltip
-              /> */}
-            </Tab.Panel>
-            <Tab.Panel>
-              {/* <LineChart
-                chartName='temperature-out-voltage'
-                chartData={chart2Data}
-                labels={{
-                  xaxis: 'Temperature [\u00b0C]',
-                  yaxis: 'Output voltage [mV]'
-                }}
-                hasDataPoints
-                withTooltip
-              /> */}
-            </Tab.Panel>
-            <Tab.Panel>
-              {/* <LineChart
-                chartName='temperature-resistance'
-                // chartData={chart3Data}
                 labels={{
                   xaxis: 'Temperature [\u00b0C]',
                   yaxis: 'Resistance [\u03a9]'
                 }}
                 hasDataPoints
                 withTooltip
-              /> */}
+              />
+            </Tab.Panel>
+            <Tab.Panel>
+              <LineChart
+                chartName='rtd-dynamic'
+                chartData={chart2Data}
+                labels={{
+                  xaxis: 'Temperature [\u00b0C]',
+                  yaxis: 'Output voltage [mV]'
+                }}
+                withTooltip
+                legend={['Bare', 'Sheathed', 'In thermowell']}
+              />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

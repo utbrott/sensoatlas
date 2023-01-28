@@ -10,7 +10,10 @@ import { useRouter } from 'next/router'
 import {
   getRandomStrainSet,
   getRandomTemperatureSet,
-  getStrainValidationData
+  getStrainValidationData,
+  getRtdResistanceValidation,
+  getThermocoupleVoltageValidation,
+  getTauValidationData
 } from '@data/index'
 
 export type DataKeys = Record<string, number[]>
@@ -203,27 +206,112 @@ export const Tasks = ({
   }
 
   const [data, setData] = useState<number[][]>([])
-  const updateData = (newData: number[], idx: number) => {
+  const updateData = ({ data, idx }: { data: number[]; idx: number }) => {
     setData(currentData => {
-      currentData[idx] = newData
+      currentData[idx] = data
       return currentData
     })
   }
 
   const [validation, setValidation] = useState<number[][]>([])
-  const updateValidation = (newValidation: number[], idx: number) => {
+  const updateValidation = ({ data, idx }: { data: number[]; idx: number }) => {
     setValidation(currentValidation => {
-      currentValidation[idx] = newValidation
+      currentValidation[idx] = data
       return currentValidation
     })
   }
 
   /* Scuffed, but does the job */
   if (unlocked && !dataReady) {
+    let data0: number[]
+    let data1: number[]
+
     switch (asPath.replace('/laboratories/', '')) {
       case 'temperature/rtd':
+        setData([[], []])
+        setValidation([[], []])
+        setProgress([0, 0])
+
+        data0 = getRandomTemperatureSet({
+          min: 5,
+          max: 495
+        })
+
+        updateData({
+          data: data0,
+          idx: 0
+        })
+
+        updateValidation({
+          data: getRtdResistanceValidation({
+            coeff: Number(store.sensor.tempCoeff),
+            resistance: Number(store.resistance.resistance),
+            taskData: data0
+          }),
+          idx: 0
+        })
+
+        updateValidation({
+          data: getTauValidationData({
+            sensor: {
+              type: 'rtd',
+              density: Number(store.sensor.density),
+              heatCapacity: Number(store.sensor.heatCapacity),
+              conductivity: Number(store.sensor.conductivity)
+            },
+            filler: {
+              density: Number(store.filler.density),
+              heatCapacity: Number(store.filler.heatCapacity),
+              conductivity: Number(store.filler.conductivity)
+            },
+            thickness: Number(store.thickness.thickness)
+          }),
+          idx: 1
+        })
+
         break
       case 'temperature/thermocouple':
+        setData([[], []])
+        setValidation([[], []])
+        setProgress([0, 0])
+
+        data0 = getRandomTemperatureSet({
+          min: 5,
+          max: 495
+        })
+
+        updateData({
+          data: data0,
+          idx: 0
+        })
+
+        updateValidation({
+          data: getThermocoupleVoltageValidation({
+            coeff: Number(store.sensor.seebeckCoeff),
+            temperature: Number(store.refTemperature.refTemperature),
+            taskData: data0
+          }),
+          idx: 0
+        })
+
+        updateValidation({
+          data: getTauValidationData({
+            sensor: {
+              type: 'thermocouple',
+              density: Number(store.sensor.density),
+              heatCapacity: Number(store.sensor.heatCapacity),
+              conductivity: Number(store.sensor.conductivity)
+            },
+            filler: {
+              density: Number(store.filler.density),
+              heatCapacity: Number(store.filler.heatCapacity),
+              conductivity: Number(store.filler.conductivity)
+            },
+            thickness: Number(store.thickness.thickness)
+          }),
+          idx: 1
+        })
+
         break
       case 'displacement/lvdt':
         break
@@ -232,34 +320,47 @@ export const Tasks = ({
         setValidation([[], []])
         setProgress([0, 0])
 
-        const data0 = getRandomStrainSet({
+        data0 = getRandomStrainSet({
           modulus: Number(store.material.modulus)
         })
-        updateData(data0, 0)
-        const data1 = getRandomTemperatureSet({
+
+        data1 = getRandomTemperatureSet({
           min: 5,
           max: 45
         })
-        updateData(data1, 1)
 
-        const validation0 = getStrainValidationData({
-          material: store.material,
-          voltage: Number(store.voltage.voltage),
-          resistance: Number(store.resistance.resistance),
-          bridge: store.bridge,
-          taskData: data0
+        updateData({
+          data: data0,
+          idx: 0
         })
-        updateValidation(validation0, 0)
 
-        const validation1 = getStrainValidationData({
-          material: store.material,
-          voltage: Number(store.voltage.voltage),
-          resistance: Number(store.resistance.resistance),
-          bridge: store.bridge,
-          taskData: data1,
-          withTemperature: true
+        updateData({
+          data: data1,
+          idx: 1
         })
-        updateValidation(validation1, 1)
+
+        updateValidation({
+          data: getStrainValidationData({
+            material: store.material,
+            voltage: Number(store.voltage.voltage),
+            resistance: Number(store.resistance.resistance),
+            bridge: store.bridge,
+            taskData: data0
+          }),
+          idx: 0
+        })
+
+        updateValidation({
+          data: getStrainValidationData({
+            material: store.material,
+            voltage: Number(store.voltage.voltage),
+            resistance: Number(store.resistance.resistance),
+            bridge: store.bridge,
+            taskData: data1,
+            withTemperature: true
+          }),
+          idx: 1
+        })
 
         break
       case 'magnetoresistance/amr':

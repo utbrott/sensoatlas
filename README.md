@@ -32,16 +32,45 @@
 
 ## Features<a name="features"></a>
 
-- Four sensors (RTD, Thermocouple, LVDT, Strain gauge) available
-- Tasks with randomized data generated for them
-- Downloadable sensor's characteristic charts for each of the sensors
+- 10 different laboratories available
+  - 2 for temperature sensors: RTD, Thermocouples,
+  - 1 for displacment sensors: LVDT,
+  - 1 for strain sensors: Strain gauges,
+  - 2 for magnetoresistance measurement: AMR sensors, Hall effect sensors
+  - 2 for piezoelectric sensors: piezoelectric cable, accelerometer,
+  - 2 for generic transducers: 4-20mA measurement loop, pressure sensors.
+- Each laboratory can be configured, each laboratory can be unique - random data
+  generation,
+- Downloadable characteristic charts.
+
+### Progress of adding laboratories
+
+- [x] Temperature
+  - [x] RTDs,
+  - [x] Thermocouples,
+- [x] Displacement
+  - [x] LVDTs,
+- [x] Strain
+  - [x] Strain gauges,
+- [ ] Magnetoresistance
+  - [ ] AMR sensors,
+  - [ ] Hall effect sensors,
+- [ ] Piezoelectricity
+  - [ ] Piezoelectric cable,
+  - [ ] Accelerometer,
+- [ ] Transducers
+  - [ ] Measurement loop,
+  - [ ] Pressure transducers,
 
 ## Libraries used<a name="libraries"></a>
 
-- Built using [Next.js](https://nextjs.org) and [Tailwind CSS](https://tailwindcss.com)
-- Icons from [Tabler icons](https://tabler-icons.io), [Heroicons](https://heroicons.com/), [Octicons](https://primer.style/octicons/)
-- Equations with [React Latex](https://github.com/zzish/react-latex) and [Katex](https://katex.org/)
-- Charts generation via [Recharts](https://recharts.org)
+- Built using [Next.js](https://nextjs.org) and [Tailwind
+  CSS](https://tailwindcss.com),
+- Icons from [Tabler icons](https://tabler-icons.io),
+  [Heroicons](https://heroicons.com/),
+- Equations with [React Latex](https://github.com/zzish/react-latex) and
+  [Katex](https://katex.org/),
+- Charts generation via [Recharts](https://recharts.org).
 
 ## Setup and Configuration for development
 
@@ -50,16 +79,18 @@ to start with the project, but it's highly recommended. You can get it here:
 https://pnpm.io/
 
 ### Install required dependencies:
+
 ```shell
 pnpm install
 ```
 
 ### Start development server
+
 ```shell
 pnpm dev
 ```
-Server should be available at http://localhost:3000, if the post is available (check logs in terminal for port that server uses)
 
+Server should be available at http://localhost:3000, if the post is available (check logs in terminal for port that server uses)
 
 ## License:
 

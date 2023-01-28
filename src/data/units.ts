@@ -2,6 +2,7 @@ export const units = {
   /* General */
   ohmsUnicode: '\u03a9',
   ohms: '$\\big[\\Omega\\big]$',
+  kohmsUnicode: 'k\u03a9',
   kohms: '$\\big[k\\Omega\\big]$',
   density: '$\\big[kg{\\cdot}m^{-3}\\big]$',
   /* Temperture */
@@ -12,5 +13,5 @@ export const units = {
   /* Strain */
   microstrains: '$\\big[\\mu\\varepsilon\\big]$',
   /* Electromagnetism */
-  permeability: '$\\big[H{\\cdot}m^{-1}'
+  permeability: '$\\big[H{\\cdot}m^{-1}\\big]$'
 }

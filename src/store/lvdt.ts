@@ -1,6 +1,6 @@
 import { createStoreContext } from '@store/create-store-context'
 
-import { configFields, taskFields } from '@data/laboratories/temperature/rtd'
+import { configFields, taskFields } from '@data/laboratories/displacement/lvdt'
 
 import { initialConfigCreator } from '@atoms/config'
 import { initialTaskCreator, initialValidationCreator } from '@atoms/tasks'

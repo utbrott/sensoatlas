@@ -129,7 +129,7 @@ export const configFields: ConfigItem[] = [
 
 export const taskFields: TaskItem[] = [
   {
-    prompt: `Given the values of temperature T ${units.celcius}, calculate the output voltage [mV].`,
+    prompt: `Given the values of temperature T [${units.celcius}], calculate the output voltage [mV].`,
 
     data: [],
     validation: []
@@ -142,40 +142,55 @@ export const taskFields: TaskItem[] = [
 ]
 
 export const ThermocoupleArticle = () => {
-  const sensorResistanceEq: EquationProps = {
-    equations: ['R_t=R(1+\\alpha(T-T_{ref}))'],
+  const sensorOutputVoltage: EquationProps = {
+    equations: ['$V_{\\text{out}}=S_{AB}\\cdot(T_1 - T_0)$'],
     symbols: [
-      `$R$ is base resistance ${units.ohms},`,
-      '$\\alpha$ is temperature coefficient,',
-      `$T$ is surroundings temperature [${units.celcius}],`,
-      `$T_{ref}$ is reference temperature, 0${units.celcius}.`
+      '$S_{AB}$ - Seebecks coefficient [$\\mu V\\cdot K^{-1}$];',
+      `$T_1$ is environment temperature [${units.celcius}],`,
+      `$T_0$ is reference temperature [${units.celcius}],`
     ]
   }
 
   const sensorDataTab: TableProps = {
     headers: [
-      { label: 'Material name' },
-      { label: 'Temperature coeff.' },
-      { label: 'Density', unit: units.density },
-      { label: 'Heat capacity', unit: units.heatCapacity },
-      { label: 'Thermal conducivity', unit: units.thermalConductivity }
+      {
+        label: 'Thermocouple type',
+        unit: ''
+      },
+      {
+        label: 'Seebecks coefficient',
+        unit: '[$\\mu V\\cdot K^{-1}$]'
+      },
+      {
+        label: 'Density',
+        unit: '[$kg\\cdot m^{-3}$]'
+      },
+      {
+        label: 'Heat capacity',
+        unit: '[$J\\cdot (kg ^\\circ C)^{-1}$]'
+      },
+      {
+        label: 'Thermal conductivity',
+        unit: '[$W\\cdot (mK)^{-1}$]'
+      }
     ],
     data: [
-      ['Platinum (Pt)', 0.00385, 21450, 133, 69],
-      ['Copper (Cu)', 0.0041, 8960, 385, 384],
-      ['Nickel (Ni)', 0.0062, 8908, 440, 106],
-      ['Tungsten (W)', 0.0045, 21450, 134, 173]
+      ['Type J', 51, 8535, 345, 46],
+      ['Type K', 40, 8738, 380, 35],
+      ['Type R', 12, 16628, 99, 55],
+      ['Type T', 60, 8902, 316, 160],
+      ['Type E', 40, 8825, 336, 33]
     ]
   }
 
   const timeConstantEq: EquationProps = {
-    equations: ['\\tau=\\cfrac{x}{K}\\cdot\\rho\\cdot{l}\\cdot{C}'],
+    equations: ['$\\tau=\\cfrac{x}{K}\\cdot\\rho\\cdot l\\cdot C$'],
     symbols: [
       '$x$ is thickness [mm],',
       `$K$ is thermal conductivity ${units.thermalConductivity},`,
-      `$\\rho$ is density ${units.density},`,
-      '$l$ is length (of protective sleeve), 15mm,',
-      `$C$ is heat capacity ${units.heatCapacity}.`
+      `$\\rho$ is density ${units.density}`,
+      `$C$ is heat capacity ${units.heatCapacity}`,
+      '$l$ is length, 15mm,'
     ]
   }
 
@@ -186,7 +201,7 @@ export const ThermocoupleArticle = () => {
       '$\\tau_{\\textsf{thermowell}}=\\tau_{\\textsf{sheathed}}+\\tau_{\\textsf{fill}}+\\tau_{\\textsf{case}}$'
     ],
     symbols: [
-      'Thickness of bare element $x_{\\textsf{bare}}$ is 2mm,',
+      'Thickness of bare element $x_{\\textsf{bare}}$ is 1.25mm,',
       'Thickness of air layer inside $x_{\\textsf{air}}$ is 0.2mm,',
       'Thickness of probe filling $x_{\\textsf{fill}}$ is 2.5mm,',
       '$x_{\\textsf{case}}$ is thickness of protective case (sheath, thermowell).'
@@ -219,21 +234,21 @@ export const ThermocoupleArticle = () => {
       </p>
       <h3>Calculating resistance change</h3>
       <p>
-        With RTDs temperature measurement is done by measuring sensor&apos;s
-        resistance with it&apos;s surrouding temperature change. This gives
-        sensor&apos;s static response characteristic:
+        With thermocouples temperature measurement is done by measuring
+        sensor&apos;s output voltage with it&apos;s surrouding temperature
+        change. This gives sensor&apos;s static response characteristic:
       </p>
-      {useParseEquation({ ...sensorResistanceEq })}
+      {useParseEquation({ ...sensorOutputVoltage })}
       <h3>Calculating time constant</h3>
       <p>
-        Resistance temperature detectors also have dynamic response characteric,
-        which shows how fast sensor stabilizes after sudden change in it&apos;s
+        Thermocouples also have dynamic response characteric, which shows how
+        fast sensor stabilizes after sudden change of temperature in it&apos;s
         surroudings.
       </p>
       {useParseEquation({ ...timeConstantEq })}
       <h3>Calculating time constant in different cases:</h3>
       <p>
-        Using the equation listed above calculate time constant of each part,
+        Using the equation listed above, calculate time constant of each part,
         then sum them:
       </p>
       {useParseEquation({ ...timeConstantCasesEq })}

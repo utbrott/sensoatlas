@@ -70,8 +70,6 @@ const Charts = ({ tasksComplete }: ChartsProps) => {
     (store: Record<string, { [key: string]: string | number }>) => store
   )
 
-  console.log(dataStore, configStore)
-
   const { xvalue: xvalues, yvalues } = getTemperatureSlopes({
     sensor: 'rtd',
     timeConstantValues: dataStore.validation1
@@ -111,11 +109,11 @@ const Charts = ({ tasksComplete }: ChartsProps) => {
                 chartName='rtd-dynamic'
                 chartData={chart2Data}
                 labels={{
-                  xaxis: 'Temperature [\u00b0C]',
+                  xaxis: 'Time [s]',
                   yaxis: 'Output voltage [mV]'
                 }}
                 withTooltip
-                legend={['Bare', 'Sheathed', 'In thermowell']}
+                legend={['Bare sensor', 'Sheathed', 'In thermowell']}
               />
             </Tab.Panel>
           </Tab.Panels>

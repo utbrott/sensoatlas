@@ -1,3 +1,8 @@
+> **Note** This is (soon to be) archival version of SensoAtlas, versioned as
+> 0.1.1, before a complete rebuild from ground up, using modified tech-stack.
+> All the development of the modified version, versioned as 0.2.0 can be found
+> under dedicated branch
+
 <div align="center">
 
 <h1>SensoAtlas</h1>
@@ -40,16 +45,18 @@ to start with the project, but it's highly recommended. You can get it here:
 https://pnpm.io/
 
 ### Install required dependencies (with pnpm):
+
 ```shell
 pnpm install
 ```
 
 ### Start development server (with pnpm)
+
 ```shell
 pnpm dev
 ```
-Server should be available at http://localhost:3000, if the post is available (check logs in terminal for port that server uses)
 
+Server should be available at http://localhost:3000, if the post is available (check logs in terminal for port that server uses)
 
 ## License:
 

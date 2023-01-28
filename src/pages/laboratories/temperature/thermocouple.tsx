@@ -78,9 +78,6 @@ interface ChartsProps {
 
 const Charts = ({ tasksComplete }: ChartsProps) => {
   const [dataStore] = useStore((store: Record<string, number[]>) => store)
-  const [configStore] = useStore(
-    (store: Record<string, { [key: string]: string | number }>) => store
-  )
 
   const { xvalue: xvalues, yvalues } = getTemperatureSlopes({
     sensor: 'rtd',

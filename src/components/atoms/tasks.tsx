@@ -9,10 +9,12 @@ import { useRouter } from 'next/router'
 import {
   getRandomStrainSet,
   getRandomTemperatureSet,
+  getRandomDisplacementSet,
   getStrainValidationData,
   getRtdResistanceValidation,
   getThermocoupleVoltageValidation,
-  getTauValidationData
+  getTauValidationData,
+  getLvdtVoltageValidation
 } from '@data/index'
 
 export type DataKeys = Record<string, number[]>
@@ -297,8 +299,8 @@ export const Tasks = ({
           }),
           idx: 1
         })
-
         break
+
       case 'temperature/thermocouple':
         setData([[], []])
         setValidation([[], []])
@@ -340,10 +342,34 @@ export const Tasks = ({
           }),
           idx: 1
         })
+        break
 
-        break
       case 'displacement/lvdt':
+        setData([[]])
+        setValidation([[]])
+        setProgress([0])
+
+        data0 = getRandomDisplacementSet({
+          min: 0,
+          max: 15
+        })
+
+        updateData({
+          data: data0,
+          idx: 0
+        })
+
+        updateValidation({
+          data: getLvdtVoltageValidation({
+            turns: Number(store.turns.turns),
+            voltage: Number(store.voltage.voltage),
+            frequency: Number(store.frequency.frequency),
+            taskData: data0
+          }),
+          idx: 0
+        })
         break
+
       case 'strain/strain-gauge':
         setData([[], []])
         setValidation([[], []])
@@ -390,8 +416,8 @@ export const Tasks = ({
           }),
           idx: 1
         })
-
         break
+
       case 'magnetoresistance/amr':
         break
       case 'magnetoresistance/hall-effect':
@@ -424,7 +450,7 @@ export const Tasks = ({
     <div className='flex w-full max-w-sm flex-col gap-2 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
       <span className='font-medium'>Tasks for the laboratory</span>
       {unlocked ? (
-        <div className='flex h-full flex-col justify-between space-y-4'>
+        <div className='flex h-full flex-col space-y-4'>
           {Object.keys(initialTasks).map((_, index) => {
             return (
               <TaskPromptField

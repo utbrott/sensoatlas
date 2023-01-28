@@ -122,14 +122,11 @@ export const getTauValidationData = ({
   const THICKNESS_RTD = 2
   const THICKNESS_THERMOCOUPLE = 1.25
 
-  const sensorThickness =
-    sensor.type === 'rtd' ? THICKNESS_RTD : THICKNESS_THERMOCOUPLE
-
   const bareTimeConstant = getTimeConstant(
     sensor.conductivity,
     sensor.density,
     sensor.heatCapacity,
-    sensorThickness
+    sensor.type === 'rtd' ? THICKNESS_RTD : THICKNESS_THERMOCOUPLE
   )
 
   const airTimeConstant = getTimeConstant(

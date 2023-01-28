@@ -66,7 +66,7 @@ export const configFields: ConfigItem[] = [
   },
   {
     type: 'select',
-    id: 'resistance',
+    id: 'refTemperature',
     label: 'Reference temperature (T0)',
     options: [
       {
@@ -94,15 +94,15 @@ export const configFields: ConfigItem[] = [
     options: [
       {
         name: '0.50mm',
-        voltage: 0.5
+        thickness: 0.5
       },
       {
         name: '0.75mm',
-        voltage: 0.75
+        thickness: 0.75
       },
       {
         name: '1.00mm',
-        voltage: 1.0
+        thickness: 1.0
       }
     ]
   },

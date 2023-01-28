@@ -1,5 +1,5 @@
 import { round } from 'lodash'
-import { getRandomSet } from '@utils/data-generation'
+import { getRandomSet } from '@data/data-generation'
 
 interface GetRandomTemperatureSet {
   min: number

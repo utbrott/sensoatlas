@@ -3,11 +3,39 @@ import { RadioGroup } from '@ui/radio-group'
 import { Button } from '@ui/button'
 import { SchematicImage } from './schematic-image'
 import { useRouter } from 'next/router'
-import { ConfigItem } from '@utils/configuration'
 import { useGetImagePath } from '@hooks/use-get-image-path'
-import { getFieldById, getFieldOption } from '@utils/configuration'
 
 export type ConfigKeys = Record<string, { [key: string]: string | number }>
+
+export type ConfigItem = {
+  type: 'select' | 'radio'
+  id: string
+  label?: string
+  options?: { [key: string]: number | string }[]
+}
+
+interface InitialCreatorProps {
+  fields: ConfigItem[]
+}
+
+export const initialConfigCreator = ({ fields }: InitialCreatorProps) => {
+  const config = {}
+
+  fields.map(field => {
+    const option = field.options.find(opt => opt.name === field.options[0].name)
+    return (config[field.id] = option)
+  })
+
+  return config
+}
+
+export const getFieldById = (fields: ConfigItem[], fieldId: string) => {
+  return fields.find((field: ConfigItem) => field.id == fieldId)
+}
+
+export const getFieldOption = (field: ConfigItem, optionName: string) => {
+  return field.options.find(option => option.name === optionName)
+}
 
 interface ConfigFieldProps {
   name: string

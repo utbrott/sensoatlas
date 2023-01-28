@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { TaskItem } from '@utils/tasks'
 import { Form, useZodForm } from '@ui/forms'
 import { Button } from '@ui/button'
 import { object, number } from 'zod'
@@ -17,6 +16,36 @@ import {
 } from '@data/index'
 
 export type DataKeys = Record<string, number[]>
+
+export type TaskItem = {
+  prompt: string
+  data?: number[]
+  validation?: number[]
+}
+
+interface InitialCreatorProps {
+  fields: TaskItem[]
+}
+
+export const initialTaskCreator = ({ fields }: InitialCreatorProps) => {
+  const tasks = {}
+
+  fields.map((field, fieldIdx) => {
+    return (tasks[`data${fieldIdx}`] = field.data)
+  })
+
+  return tasks
+}
+
+export const initialValidationCreator = ({ fields }: InitialCreatorProps) => {
+  const validation = {}
+
+  fields.map((field, fieldId) => {
+    return (validation[`validation${fieldId}`] = field.validation)
+  })
+
+  return validation
+}
 
 interface DataDisplayProps {
   data: number[]

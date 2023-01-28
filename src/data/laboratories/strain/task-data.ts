@@ -1,5 +1,5 @@
 import { round } from 'lodash'
-import { getRandomSet } from '@utils/data-generation'
+import { getRandomSet } from '@data/data-generation'
 
 export function getStrain(modulus: number, area: number, mass: number) {
   modulus = modulus * 10 ** 9

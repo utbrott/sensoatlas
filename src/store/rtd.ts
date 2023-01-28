@@ -2,8 +2,8 @@ import { createStoreContext } from '@store/create-store-context'
 
 import { configFields, taskFields } from '@data/laboratories/temperature/rtd'
 
-import { initialConfigCreator } from '@utils/configuration'
-import { initialTaskCreator, initialValidationCreator } from '@utils/tasks'
+import { initialConfigCreator } from '@atoms/config'
+import { initialTaskCreator, initialValidationCreator } from '@atoms/tasks'
 
 export const config = initialConfigCreator({ fields: configFields })
 export const tasks = initialTaskCreator({ fields: taskFields })

@@ -1,5 +1,5 @@
 import { Card } from '@ui/card'
-import { LaboratoryProps } from '@data/labs-library'
+import { LaboratoryProps, LibraryProps } from '@data/labs-library'
 
 export interface LibraryCardProps extends LaboratoryProps {
   category: string
@@ -39,4 +39,26 @@ export const LibraryCard = ({
       />
     </div>
   )
+}
+
+export const libraryCardCreator = (
+  library: LibraryProps[]
+): LibraryCardProps[] => {
+  const libraryCards: LibraryCardProps[] = []
+
+  library.forEach(element => {
+    const { category, laboratories } = element
+
+    laboratories.forEach(laboratory => {
+      libraryCards.push({
+        category: category,
+        name: laboratory.name,
+        description: laboratory.description,
+        href: laboratory.href,
+        disabled: laboratory.disabled
+      })
+    })
+  })
+
+  return [...libraryCards]
 }

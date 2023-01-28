@@ -1,5 +1,5 @@
-import { ConfigItem } from '@utils/configuration'
-import { TaskItem } from '@utils/tasks'
+import { ConfigItem } from '@atoms/config'
+import { TaskItem } from '@atoms/tasks'
 import { units } from '@data/units'
 import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
 import { TableProps, useParseTable } from '@hooks/use-parse-table'

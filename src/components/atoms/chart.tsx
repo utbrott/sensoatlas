@@ -196,35 +196,52 @@ const useDownloadChart = (chartName: string): UseDownloadChart => {
   return [downloadChart, { ref: ref, isLoading: isLoading }]
 }
 
-interface SingleLineChart {
+interface LineChartCreator {
   xvalues: number[]
-  yvalues: number[]
+  yvalues: number[][]
   withMirrorX?: boolean
+}
+
+type ChartValues = {
+  xval: number
+  y0: number
+  y1?: number
+  y2?: number
+  y3?: number
+  y4?: number
 }
 
 export const lineChartCreator = ({
   xvalues,
   yvalues,
   withMirrorX
-}: SingleLineChart) => {
-  const chartData: { xval: number; y0: number }[] = []
+}: LineChartCreator) => {
+  const chartData: ChartValues[] = []
 
   xvalues.forEach((value, index) => {
     chartData.push({
       xval: value,
-      y0: yvalues[index]
+      y0: yvalues[0][index],
+      y1: yvalues[1][index],
+      y2: yvalues[2][index],
+      y3: yvalues[3][index],
+      y4: yvalues[4][index]
     })
   })
 
   chartData.sort((a, b) => a.xval - b.xval)
 
   if (withMirrorX) {
-    const mirroredData: { xval: number; y0: number }[] = []
+    const mirroredData: ChartValues[] = []
 
     Object.values(chartData).map((datapoint, index) => {
       mirroredData.unshift({
         xval: -datapoint[index].xval,
-        y0: datapoint[index].y0
+        y0: datapoint[index].y0,
+        y1: datapoint[index].y1,
+        y2: datapoint[index].y2,
+        y3: datapoint[index].y3,
+        y4: datapoint[index].y4
       })
 
       mirroredData.push(datapoint)

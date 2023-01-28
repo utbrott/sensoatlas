@@ -82,29 +82,31 @@ const Charts = ({ tasksComplete }: ChartsProps) => {
 
   const chart1Data = lineChartCreator({
     xvalues: dataStore.data0,
-    yvalues: dataStore.validation0
+    yvalues: [dataStore.validation0]
   })
 
   const chart2Data = lineChartCreator({
     xvalues: dataStore.data1,
-    yvalues: dataStore.validation1
+    yvalues: [dataStore.validation1]
   })
 
   const chart3Data = lineChartCreator({
     xvalues: dataStore.data1,
-    yvalues: getNewGaugeResistance({
-      material: {
-        gaugeFactor: Number(configStore.material.gaugeFactor),
-        modulus: Number(configStore.material.modulus),
-        tempCoeff: Number(configStore.material.tempCoeff)
-      },
-      resistance: Number(configStore.resistance.resistance),
-      bridge: {
-        name: String(configStore.bridge.name),
-        multiplier: Number(configStore.bridge.multiplier)
-      },
-      taskData: dataStore.data1
-    })
+    yvalues: [
+      getNewGaugeResistance({
+        material: {
+          gaugeFactor: Number(configStore.material.gaugeFactor),
+          modulus: Number(configStore.material.modulus),
+          tempCoeff: Number(configStore.material.tempCoeff)
+        },
+        resistance: Number(configStore.resistance.resistance),
+        bridge: {
+          name: String(configStore.bridge.name),
+          multiplier: Number(configStore.bridge.multiplier)
+        },
+        taskData: dataStore.data1
+      })
+    ]
   })
 
   return tasksComplete ? (

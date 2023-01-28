@@ -1,6 +1,136 @@
+import { ConfigItem } from '@utils/configuration'
+import { TaskItem } from '@utils/tasks'
 import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
 import { TableProps, useParseTable } from '@hooks/use-parse-table'
 import { units } from '@data/units'
+
+export const RtdPageHeader = () => {
+  return (
+    <div className='space-y-2'>
+      <span className='text-lg font-medium'>
+        Resistance Temperature Detectors (RTDs)
+      </span>
+      <span className='text-justify text-sm text-gray-700 dark:text-gray-300'>
+        <p>
+          Choose a sensor configuration below and save it, then complete the
+          tasks that will be shown on the new card. Leaving the page or clicking
+          reset clears the configuration. Remember that doing so will delete any
+          progress. If you need to reset the configuration, but you generated
+          the graphs already, save them before clicking reset.
+        </p>
+      </span>
+    </div>
+  )
+}
+
+export const configFields: ConfigItem[] = [
+  {
+    type: 'select',
+    id: 'sensor',
+    label: 'Inner wire material',
+    options: [
+      {
+        name: 'Platinium',
+        tempCoeff: 0.00385,
+        density: 21450,
+        heatCapacity: 133,
+        conductivity: 69.1
+      },
+      {
+        name: 'Copper',
+        tempCoeff: 0.004041,
+        density: 8960,
+        heatCapacity: 385,
+        conductivity: 384.1
+      },
+      {
+        name: 'Nickel',
+        tempCoeff: 0.00617,
+        density: 8908,
+        heatCapacity: 440,
+        conductivity: 106
+      },
+      {
+        name: 'Tungsten',
+        tempCoeff: 0.0045,
+        density: 19300,
+        heatCapacity: 134,
+        conductivity: 173
+      }
+    ]
+  },
+  {
+    type: 'radio',
+    id: 'resistance',
+    label: 'Resistance (R)',
+    options: [
+      {
+        name: `100${units.ohmsUnicode}`,
+        resistance: 100
+      },
+      {
+        name: `500${units.ohmsUnicode}`,
+        resistance: 500
+      },
+      {
+        name: `1000${units.ohmsUnicode}`,
+        resistance: 1000
+      }
+    ]
+  },
+  {
+    type: 'radio',
+    id: 'thickness',
+    label: 'Sheath/Thermowell thickness',
+    options: [
+      {
+        name: '0.50mm',
+        thickness: 0.5
+      },
+      {
+        name: '0.75mm',
+        thickness: 0.75
+      },
+      {
+        name: '1.00mm',
+        thickness: 1.0
+      }
+    ]
+  },
+  {
+    type: 'radio',
+    id: 'filler',
+    label: 'Thermowell filling material',
+    options: [
+      {
+        name: 'MgO Powder',
+        density: 3580,
+        heatCapacity: 877,
+        conductivity: 26.8
+      },
+      {
+        name: 'Sillicon Compound',
+        density: 3210,
+        heatCapacity: 800,
+        conductivity: 3
+      }
+    ]
+  }
+]
+
+export const taskFields: TaskItem[] = [
+  {
+    prompt: `Given the values of temperature T ${units.celcius}, calculate sensors resistance Rt ${units.ohms}.`,
+
+    data: [],
+    validation: []
+  },
+  {
+    prompt:
+      'Based on selected sensor configuration, calculate time constant $\\tau$ [s] of sensor (bare, sheathed and in thermowell).',
+    validation: []
+  }
+]
 
 export const RtdArticle = () => {
   const sensorResistanceEq: EquationProps = {
@@ -22,7 +152,7 @@ export const RtdArticle = () => {
       { label: 'Thermal conducivity', unit: units.thermalConductivity }
     ],
     data: [
-      ['Platinum (Pt)', 0.0037, 21450, 133, 69],
+      ['Platinum (Pt)', 0.00385, 21450, 133, 69],
       ['Copper (Cu)', 0.0041, 8960, 385, 384],
       ['Nickel (Ni)', 0.0062, 8908, 440, 106],
       ['Tungsten (W)', 0.0045, 21450, 134, 173]
@@ -70,8 +200,7 @@ export const RtdArticle = () => {
   }
 
   return (
-    <>
-      <h2>Intro</h2>
+    <span className='text-justify text-sm'>
       <p>
         Sensors used to measure temperature. Many RTD elements consist of a
         length of fine wire wrapped around a heat-resistant ceramic or glass
@@ -80,14 +209,14 @@ export const RtdArticle = () => {
         material has an accurate resistance/temperature relationship which is
         used to provide an indication of temperature.
       </p>
-      <h2>Calculating resistance change</h2>
+      <h3>Calculating resistance change</h3>
       <p>
         With RTDs temperature measurement is done by measuring sensor&apos;s
         resistance with it&apos;s surrouding temperature change. This gives
         sensor&apos;s static response characteristic:
       </p>
       {useParseEquation({ ...sensorResistanceEq })}
-      <h2>Calculating time constant</h2>
+      <h3>Calculating time constant</h3>
       <p>
         Resistance temperature detectors also have dynamic response characteric,
         which shows how fast sensor stabilizes after sudden change in it&apos;s
@@ -100,11 +229,11 @@ export const RtdArticle = () => {
         then sum them:
       </p>
       {useParseEquation({ ...timeConstantCasesEq })}
-      <h2>Material constants</h2>
+      <h3>Material constants</h3>
       <h4>Sensor materials:</h4>
       {useParseTable({ ...sensorDataTab })}
       <h4>Protective casing materials:</h4>
       {useParseTable({ ...fillerMaterialDataTab })}
-    </>
+    </span>
   )
 }

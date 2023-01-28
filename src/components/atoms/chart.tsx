@@ -43,10 +43,7 @@ const ChartTooltip = ({ labels, label, active, payload }: TooltipProps) => {
   ) : null
 }
 
-type ChartData = {
-  xval: number
-  [key: string]: number
-}
+type ChartData = { [key: string]: number }
 
 interface DownloadBtnProps extends ButtonProps {
   isLoading: boolean
@@ -116,7 +113,7 @@ export const LineChart = ({
                 withZeroRef?.x ? withZeroRef.x * 1 : 'auto'
               ]}
               type='number'
-              dataKey='xval'
+              dataKey='x'
               tickCount={withZeroRef ? 11 : 10}
               label={{
                 value: labels.xaxis,
@@ -202,53 +199,32 @@ interface LineChartCreator {
   withMirrorX?: boolean
 }
 
-type ChartValues = {
-  xval: number
-  y0: number
-  y1?: number
-  y2?: number
-  y3?: number
-  y4?: number
-}
-
 export const lineChartCreator = ({
   xvalues,
   yvalues,
   withMirrorX
 }: LineChartCreator) => {
-  const chartData: ChartValues[] = []
+  const chartData: ChartData[] = []
 
-  xvalues.forEach((value, index) => {
-    chartData.push({
-      xval: value,
-      y0: yvalues[0][index],
-      y1: yvalues[1][index],
-      y2: yvalues[2][index],
-      y3: yvalues[3][index],
-      y4: yvalues[4][index]
+  xvalues.map((xValue, xIdx) => {
+    const obj: ChartData = {}
+    obj['x'] = xValue
+    yvalues.map((yVal, yIdx) => {
+      obj[`y${yIdx}`] = yVal[xIdx]
     })
+    chartData.push(obj)
   })
 
-  chartData.sort((a, b) => a.xval - b.xval)
+  chartData.sort((a, b) => a.x - b.x)
 
-  if (withMirrorX) {
-    const mirroredData: ChartValues[] = []
+  if (!withMirrorX) return chartData
 
-    Object.values(chartData).map((datapoint, index) => {
-      mirroredData.unshift({
-        xval: -datapoint[index].xval,
-        y0: datapoint[index].y0,
-        y1: datapoint[index].y1,
-        y2: datapoint[index].y2,
-        y3: datapoint[index].y3,
-        y4: datapoint[index].y4
-      })
-
-      mirroredData.push(datapoint)
+  const mirroredEntries: ChartData[] = Object.values(chartData)
+    .filter(value => value.x > 0)
+    .map(value => {
+      return { ...value, x: -value.x }
     })
+    .reverse()
 
-    return mirroredData
-  }
-
-  return chartData
+  return [...mirroredEntries, ...chartData]
 }

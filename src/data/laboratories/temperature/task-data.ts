@@ -13,11 +13,7 @@ export const getRandomTemperatureSet = ({
   min = Math.ceil(min)
   max = Math.floor(max)
 
-  return getRandomSet(
-    5,
-    { min, max, step: 5 },
-    { lower: min - 5, upper: max + 5 }
-  )
+  return getRandomSet(5, { min, max, step: 5 }, { lower: min, upper: max })
 }
 
 type SensorType = 'rtd' | 'thermocouple'

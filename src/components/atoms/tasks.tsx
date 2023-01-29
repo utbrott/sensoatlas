@@ -264,8 +264,8 @@ export const Tasks = ({
         setProgress([0, 0])
 
         data0 = getRandomTemperatureSet({
-          min: 5,
-          max: 495
+          min: 0,
+          max: 500
         })
 
         updateData({
@@ -307,8 +307,8 @@ export const Tasks = ({
         setProgress([0, 0])
 
         data0 = getRandomTemperatureSet({
-          min: 5,
-          max: 495
+          min: 0,
+          max: 500
         })
 
         updateData({
@@ -380,8 +380,8 @@ export const Tasks = ({
         })
 
         data1 = getRandomTemperatureSet({
-          min: 5,
-          max: 45
+          min: 0,
+          max: 50
         })
 
         updateData({

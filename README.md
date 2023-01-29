@@ -53,7 +53,7 @@
 - [x] Strain
   - [x] Strain gauges,
 - [ ] Magnetoresistance
-  - [ ] AMR sensors,
+  - [x] AMR sensors,
   - [ ] Hall effect sensors,
 - [ ] Piezoelectricity
   - [ ] Piezoelectric cable,

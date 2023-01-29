@@ -6,3 +6,6 @@ export * from './laboratories/temperature/validation-data'
 
 export * from './laboratories/displacement/task-data'
 export * from './laboratories/displacement/validation-data'
+
+export * from './laboratories/magnetoresistance/task-data'
+export * from './laboratories/magnetoresistance/validation-data'

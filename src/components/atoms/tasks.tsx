@@ -10,11 +10,13 @@ import {
   getRandomStrainSet,
   getRandomTemperatureSet,
   getRandomDisplacementSet,
+  getRandomCurrentSet,
   getStrainValidationData,
   getRtdResistanceValidation,
   getThermocoupleVoltageValidation,
   getTauValidationData,
-  getLvdtVoltageValidation
+  getLvdtVoltageValidation,
+  getResistanceChangeValidation
 } from '@data/index'
 
 export type DataKeys = Record<string, number[]>
@@ -97,7 +99,7 @@ export const TaskPromptField = ({
       <div className='mb-1 border-b pb-1 text-sm text-gray-700 dark:border-gray-700 dark:text-gray-300'>
         Task {index + 1}
       </div>
-      <div className='text-sm'>
+      <div className='text-justify text-sm'>
         <Latex>{prompt}</Latex>
       </div>
       {initial && <DataDisplay data={initial} />}
@@ -419,7 +421,29 @@ export const Tasks = ({
         break
 
       case 'magnetoresistance/amr':
+        setData([[]])
+        setValidation([[]])
+        setProgress([0])
+
+        data0 = getRandomCurrentSet({
+          min: -1,
+          max: 1
+        })
+
+        updateData({
+          data: data0,
+          idx: 0
+        })
+
+        updateValidation({
+          data: getResistanceChangeValidation({
+            hyValue: Number(store.hyValue.hyValue),
+            taskData: data0
+          }),
+          idx: 0
+        })
         break
+
       case 'magnetoresistance/hall-effect':
         break
       case 'piezoelectricity/cable':

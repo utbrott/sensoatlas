@@ -14,19 +14,27 @@ export const useParseEquation = ({
 
   const equationsList = (hasEquations ? equations : []).map(
     (equation, index) => {
-      return <Latex key={index}>{`$${equation}$`}</Latex>
+      return (
+        <div className='py-1' key={index}>
+          <Latex>{`$${equation}$`}</Latex>
+        </div>
+      )
     }
   )
 
   const symbolsList = (hasSymbols ? symbols : []).map((symbol, index) => {
-    return <Latex key={index}>{symbol}</Latex>
+    return (
+      <div className='py-0.5' key={index}>
+        <Latex key={index}>{symbol}</Latex>
+      </div>
+    )
   })
 
   return (
     <span className='flex flex-col rounded-md border  bg-gray-200/30 p-4 dark:border-gray-700/70 dark:bg-gray-700/30'>
       <span className='flex flex-col px-4 pb-4 text-lg'>{equationsList}</span>
       {symbolsList.length !== 0 && (
-        <span className='dark:text-gray-300'>Where:</span>
+        <span className='pb-1 dark:text-gray-300'>Where:</span>
       )}
       <span className='flex flex-col px-4 dark:text-gray-300'>
         {symbolsList}

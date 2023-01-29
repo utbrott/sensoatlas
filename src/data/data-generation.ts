@@ -1,20 +1,26 @@
 import { round } from 'lodash'
 
-const getRandomInRange = (min: number, max: number, step?: number) => {
+const getRandomInRange = (
+  min: number,
+  max: number,
+  step?: number,
+  withNegative?: boolean
+) => {
   min = Math.ceil(min)
   max = Math.floor(max)
 
-  if (step) {
-    const valuesCount = Math.ceil(max / step)
-    return Math.floor(Math.random() * valuesCount) * step + min
-  }
+  const randomized = step
+    ? Math.floor(Math.random() * Math.ceil(max / step)) * step + min
+    : Math.floor(Math.random() * (max - min + 1) + min)
 
-  return Math.floor(Math.random() * (max - min + 1) + min)
+  const negativeOrPositive = Math.random() < 0.5 ? -1 : 1
+
+  return withNegative ? randomized * negativeOrPositive : randomized
 }
 
 export const getRandomSet = (
   size: number,
-  gen: { min: number; max: number; step?: number },
+  gen: { min: number; max: number; step?: number; withNegatives?: boolean },
   limits?: { lower?: number; upper?: number }
 ) => {
   const set = new Set<number>()
@@ -25,7 +31,9 @@ export const getRandomSet = (
   }
 
   for (let i = set.size; set.size < (limits?.upper ? size - 1 : size); i++) {
-    set.add(round(getRandomInRange(gen.min, gen.max, gen.step), 2))
+    set.add(
+      round(getRandomInRange(gen.min, gen.max, gen.step, gen.withNegatives), 2)
+    )
   }
 
   if (typeof limits?.upper !== ('undefined' || null)) {

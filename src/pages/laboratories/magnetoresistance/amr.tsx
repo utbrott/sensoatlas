@@ -17,10 +17,7 @@ import { lineChartCreator } from '@atoms/chart'
 import { LineChart } from '@atoms/chart'
 import { Tab } from '@ui/tab-group'
 import { SlideOver } from '@ui/slide-over'
-import {
-  AmrPageHeader,
-  AmrArticle
-} from '@data/laboratories/magnetoresistance/amr'
+import { PageHeader, Article } from '@data/laboratories/magnetoresistance/amr'
 import { Button } from '@ui/button'
 
 export default function Lvdt() {
@@ -33,7 +30,7 @@ export default function Lvdt() {
       <Provider>
         <div className='flex w-full max-w-3xl flex-col content-center justify-center space-y-4'>
           <div className='flex h-full w-full flex-col space-y-4 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
-            <AmrPageHeader />
+            <PageHeader />
             <Button onClick={() => setIsSlideOverOpen(true)}>
               View theory
             </Button>
@@ -64,7 +61,7 @@ export default function Lvdt() {
           title='AMR sensors'
           closeHandler={() => setIsSlideOverOpen(false)}
         >
-          <AmrArticle />
+          <Article />
         </SlideOver>
       </Provider>
     </Shell.App>

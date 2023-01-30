@@ -16,10 +16,7 @@ import { LineChart } from '@atoms/chart'
 import { Tab } from '@ui/tab-group'
 import { getNewGaugeResistance } from '@data/laboratories/strain/validation-data'
 import { SlideOver } from '@ui/slide-over'
-import {
-  StrainArticle,
-  StrainPageHeader
-} from '@data/laboratories/strain/strain-gauge'
+import { Article, PageHeader } from '@data/laboratories/strain/strain-gauge'
 import { Button } from '@ui/button'
 
 export default function StrainGauge() {
@@ -32,7 +29,7 @@ export default function StrainGauge() {
       <Provider>
         <div className='flex w-full max-w-3xl flex-col content-center justify-center space-y-4'>
           <div className='flex h-full w-full flex-col space-y-4 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
-            <StrainPageHeader />
+            <PageHeader />
             <Button onClick={() => setIsSlideOverOpen(true)}>
               View theory
             </Button>
@@ -63,7 +60,7 @@ export default function StrainGauge() {
           title='Strain gauges'
           closeHandler={() => setIsSlideOverOpen(false)}
         >
-          <StrainArticle />
+          <Article />
         </SlideOver>
       </Provider>
     </Shell.App>

@@ -4,7 +4,7 @@ import { units } from '@data/units'
 import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
 import { TableProps, useParseTable } from '@hooks/use-parse-table'
 
-export const StrainPageHeader = () => {
+export const PageHeader = () => {
   return (
     <div className='space-y-2'>
       <span className='text-lg font-medium'>Strain gauge sensors</span>
@@ -131,7 +131,7 @@ export const taskFields: TaskItem[] = [
   }
 ]
 
-export const StrainArticle = () => {
+export const Article = () => {
   const resistanceNoTemperature: EquationProps = {
     equations: ['$\\Delta R=R\\cdot \\varepsilon \\cdot GF$'],
     symbols: [

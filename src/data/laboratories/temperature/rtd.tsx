@@ -4,7 +4,7 @@ import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
 import { TableProps, useParseTable } from '@hooks/use-parse-table'
 import { units } from '@data/units'
 
-export const RtdPageHeader = () => {
+export const PageHeader = () => {
   return (
     <div className='space-y-2'>
       <span className='text-lg font-medium'>
@@ -132,7 +132,7 @@ export const taskFields: TaskItem[] = [
   }
 ]
 
-export const RtdArticle = () => {
+export const Article = () => {
   const sensorResistanceEq: EquationProps = {
     equations: ['R_t=R(1+\\alpha(T-T_{ref}))'],
     symbols: [

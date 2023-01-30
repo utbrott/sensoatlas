@@ -18,8 +18,8 @@ import { LineChart } from '@atoms/chart'
 import { Tab } from '@ui/tab-group'
 import { SlideOver } from '@ui/slide-over'
 import {
-  ThermocouplePageHeader,
-  ThermocoupleArticle
+  PageHeader,
+  Article
 } from '@data/laboratories/temperature/thermocouple'
 import { Button } from '@ui/button'
 import { getTemperatureSlopes } from '@data/index'
@@ -34,7 +34,7 @@ export default function Thermocouple() {
       <Provider>
         <div className='flex w-full max-w-3xl flex-col content-center justify-center space-y-4'>
           <div className='flex h-full w-full flex-col space-y-4 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
-            <ThermocouplePageHeader />
+            <PageHeader />
             <Button onClick={() => setIsSlideOverOpen(true)}>
               View theory
             </Button>
@@ -65,7 +65,7 @@ export default function Thermocouple() {
           title='Thermocouples'
           closeHandler={() => setIsSlideOverOpen(false)}
         >
-          <ThermocoupleArticle />
+          <Article />
         </SlideOver>
       </Provider>
     </Shell.App>

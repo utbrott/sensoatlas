@@ -4,7 +4,7 @@ import { units } from '@data/units'
 import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
 import { TableProps, useParseTable } from '@hooks/use-parse-table'
 
-export const AmrPageHeader = () => {
+export const PageHeader = () => {
   return (
     <div className='space-y-2'>
       <span className='text-lg font-medium'>Hall effect sensors</span>
@@ -102,7 +102,7 @@ export const taskFields: TaskItem[] = [
   }
 ]
 
-export const AmrArticle = () => {
+export const Article = () => {
   const sensorOutputVoltage: EquationProps = {
     equations: ['$V_{out} = r_H{\\cdot}\\bigg(\\cfrac{I}{t}\\cdot B\\bigg)$'],
     symbols: [

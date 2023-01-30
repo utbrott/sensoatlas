@@ -3,7 +3,7 @@ import { TaskItem } from '@atoms/tasks'
 import { units } from '@data/units'
 import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
 
-export const AmrPageHeader = () => {
+export const PageHeader = () => {
   return (
     <div className='space-y-2'>
       <span className='text-lg font-medium'>
@@ -53,7 +53,7 @@ export const taskFields: TaskItem[] = [
   }
 ]
 
-export const AmrArticle = () => {
+export const Article = () => {
   const amrResistanceChange = {
     equations: [
       '$\\cfrac{\\Delta R}{R} \\cong \\cfrac{\\Delta \\rho}{\\rho}\\cdot\\cfrac{H_x}{H_y + H_k}$',

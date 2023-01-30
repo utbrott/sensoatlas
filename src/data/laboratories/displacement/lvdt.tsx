@@ -3,7 +3,7 @@ import { TaskItem } from '@atoms/tasks'
 import { units } from '@data/units'
 import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
 
-export const LvdtPageHeader = () => {
+export const PageHeader = () => {
   return (
     <div className='space-y-2'>
       <span className='text-lg font-medium'>
@@ -92,7 +92,7 @@ export const taskFields: TaskItem[] = [
   }
 ]
 
-export const LvdtArticle = () => {
+export const Article = () => {
   const lvdtOutputVoltage: EquationProps = {
     equations: [
       '$V_{out}=f\\cdot I_p\\cdot\\bigg(4\\pi{\\cdot}\\mu_0{\\cdot}N_p N_s{\\cdot}l_p\\cdot\\cfrac{x}{3l_s}\\log{\\Big(\\cfrac{r_o}{r_i}\\Big)}\\bigg)\\bigg(1-\\cfrac{x^2}{2l_p^2}\\bigg)$',

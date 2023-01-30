@@ -4,7 +4,7 @@ import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
 import { TableProps, useParseTable } from '@hooks/use-parse-table'
 import { units } from '@data/units'
 
-export const ThermocouplePageHeader = () => {
+export const PageHeader = () => {
   return (
     <div className='space-y-2'>
       <span className='text-lg font-medium'>Thermocouples</span>
@@ -141,7 +141,7 @@ export const taskFields: TaskItem[] = [
   }
 ]
 
-export const ThermocoupleArticle = () => {
+export const Article = () => {
   const sensorOutputVoltage: EquationProps = {
     equations: ['$V_{\\text{out}}=S_{AB}\\cdot(T_1 - T_0)$'],
     symbols: [

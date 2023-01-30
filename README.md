@@ -55,8 +55,8 @@
 - [x] Magnetoresistance
   - [x] AMR sensors,
   - [x] Hall effect sensors,
-- [ ] Piezoelectricity
-  - [ ] Piezoelectric cable,
+- [x] Piezoelectricity
+  - [x] Piezoelectric cable,
   - [x] Accelerometer,
 - [ ] Transducers
   - [ ] Measurement loop,

@@ -59,3 +59,28 @@ export const getPiezoOutputVoltageValidation = ({
 
   return [...data]
 }
+
+interface GetCableOutputVoltage {
+  weight: number
+  taskData: number[]
+}
+
+export const getCableOutputVoltageValidation = ({
+  weight,
+  taskData
+}: GetCableOutputVoltage) => {
+  const data: number[] = []
+
+  const CABLE_SENS = 300 * 10 ** -3
+  const G_ACCEL = 10
+
+  function getOutputVoltage(weight: number, height: number) {
+    return round(weight * G_ACCEL * height * CABLE_SENS, 2)
+  }
+
+  taskData.forEach(datapoint => {
+    data.push(getOutputVoltage(weight, datapoint))
+  })
+
+  return [...data]
+}

@@ -15,13 +15,15 @@ import {
   getStrainValidationData,
   getRandomAmplitudeSet,
   getRandomFrequencySet,
+  getRandomHeight,
   getRtdResistanceValidation,
   getThermocoupleVoltageValidation,
   getTauValidationData,
   getLvdtVoltageValidation,
   getResistanceChangeValidation,
   getHallOutputVoltage,
-  getPiezoOutputVoltageValidation
+  getPiezoOutputVoltageValidation,
+  getCableOutputVoltageValidation
 } from '@data/index'
 
 export type DataKeys = Record<string, number[]>
@@ -476,6 +478,28 @@ export const Tasks = ({
 
         break
       case 'piezoelectricity/cable':
+        setData([[]])
+        setValidation([[]])
+        setProgress([0])
+
+        data0 = getRandomHeight({
+          min: 0.05,
+          max: 0.5
+        })
+
+        updateData({
+          data: data0,
+          idx: 0
+        })
+
+        updateValidation({
+          data: getCableOutputVoltageValidation({
+            weight: Number(store.weight.weight),
+            taskData: data0
+          }),
+          idx: 0
+        })
+
         break
       case 'piezoelectricity/accelerometer':
         setData([[], []])

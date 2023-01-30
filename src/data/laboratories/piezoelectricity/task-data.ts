@@ -14,3 +14,10 @@ export const getRandomFrequencySet = ({ min, max }: GetRandomMinMax) => {
 
   return getRandomSet(5, { min, max, step: 2 })
 }
+
+export const getRandomHeight = ({ min, max }: GetRandomMinMax) => {
+  min = round(min, 2)
+  max = round(max, 2)
+
+  return getRandomSet(5, { min, max, step: 0.05 })
+}

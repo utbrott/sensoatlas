@@ -1,26 +1,13 @@
-import { getRandomSet } from '@data/data-generation'
+import { getRandomSet, GetRandomMinMax } from '@data/data-generation'
 
-interface GetRandomCurrentSet {
-  min: number
-  max: number
-}
-
-export const getRandomCurrentSet = ({ min, max }: GetRandomCurrentSet) => {
+export const getRandomCurrentSet = ({ min, max }: GetRandomMinMax) => {
   min = Math.ceil(min)
   max = Math.floor(max)
 
   return getRandomSet(5, { min, max, step: 0.1, withNegatives: true })
 }
 
-interface GetRandomMagneticField {
-  min: number
-  max: number
-}
-
-export const getRandomMagneticField = ({
-  min,
-  max
-}: GetRandomMagneticField) => {
+export const getRandomMagneticField = ({ min, max }: GetRandomMinMax) => {
   min = Math.ceil(min)
   max = Math.floor(max)
 

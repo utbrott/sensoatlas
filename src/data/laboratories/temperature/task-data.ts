@@ -1,15 +1,7 @@
 import { round } from 'lodash'
-import { getRandomSet } from '@data/data-generation'
+import { getRandomSet, GetRandomMinMax } from '@data/data-generation'
 
-interface GetRandomTemperatureSet {
-  min: number
-  max: number
-}
-
-export const getRandomTemperatureSet = ({
-  min,
-  max
-}: GetRandomTemperatureSet) => {
+export const getRandomTemperatureSet = ({ min, max }: GetRandomMinMax) => {
   min = Math.ceil(min)
   max = Math.floor(max)
 

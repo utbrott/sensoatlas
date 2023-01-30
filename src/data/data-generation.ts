@@ -1,5 +1,10 @@
 import { round } from 'lodash'
 
+export interface GetRandomMinMax {
+  min: number
+  max: number
+}
+
 const getRandomInRange = (
   min: number,
   max: number,

@@ -1,14 +1,6 @@
-import { getRandomSet } from '@data/data-generation'
+import { getRandomSet, GetRandomMinMax } from '@data/data-generation'
 
-interface GetRandomDisplacementSet {
-  min: number
-  max: number
-}
-
-export const getRandomDisplacementSet = ({
-  min,
-  max
-}: GetRandomDisplacementSet) => {
+export const getRandomDisplacementSet = ({ min, max }: GetRandomMinMax) => {
   min = Math.ceil(min)
   max = Math.floor(max)
 

@@ -13,12 +13,15 @@ import {
   getRandomCurrentSet,
   getRandomMagneticField,
   getStrainValidationData,
+  getRandomAmplitudeSet,
+  getRandomFrequencySet,
   getRtdResistanceValidation,
   getThermocoupleVoltageValidation,
   getTauValidationData,
   getLvdtVoltageValidation,
   getResistanceChangeValidation,
-  getHallOutputVoltage
+  getHallOutputVoltage,
+  getPiezoOutputVoltageValidation
 } from '@data/index'
 
 export type DataKeys = Record<string, number[]>
@@ -475,6 +478,52 @@ export const Tasks = ({
       case 'piezoelectricity/cable':
         break
       case 'piezoelectricity/accelerometer':
+        setData([[], []])
+        setValidation([[], []])
+        setProgress([0, 0])
+
+        data0 = getRandomAmplitudeSet({
+          min: 0.1,
+          max: 1.1
+        })
+
+        data1 = getRandomFrequencySet({
+          min: 6,
+          max: 34
+        })
+
+        updateData({
+          data: data0,
+          idx: 0
+        })
+
+        updateData({
+          data: data1,
+          idx: 1
+        })
+
+        updateValidation({
+          data: getPiezoOutputVoltageValidation({
+            constant: 'frequency',
+            piezoCoefficient: Number(store.material.piezoCoeff),
+            frequency: Number(store.frequency.frequency),
+            amplitude: Number(store.amplitude.amplitude),
+            taskData: data0
+          }),
+          idx: 0
+        })
+
+        updateValidation({
+          data: getPiezoOutputVoltageValidation({
+            constant: 'amplitude',
+            piezoCoefficient: Number(store.material.piezoCoeff),
+            frequency: Number(store.frequency.frequency),
+            amplitude: Number(store.amplitude.amplitude),
+            taskData: data1
+          }),
+          idx: 1
+        })
+
         break
       case 'transducers/measurement-loop':
         break

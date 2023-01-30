@@ -11,8 +11,8 @@ const getRandomInRange = (
   step?: number,
   withNegative?: boolean
 ) => {
-  min = Math.ceil(min)
-  max = Math.floor(max)
+  min = round(min, 2)
+  max = round(max, 2)
 
   const randomized = step
     ? Math.floor(Math.random() * Math.ceil(max / step)) * step + min

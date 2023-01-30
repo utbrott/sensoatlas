@@ -57,7 +57,7 @@
   - [x] Hall effect sensors,
 - [ ] Piezoelectricity
   - [ ] Piezoelectric cable,
-  - [ ] Accelerometer,
+  - [x] Accelerometer,
 - [ ] Transducers
   - [ ] Measurement loop,
   - [ ] Pressure transducers,

@@ -9,3 +9,6 @@ export * from './laboratories/displacement/validation-data'
 
 export * from './laboratories/magnetoresistance/task-data'
 export * from './laboratories/magnetoresistance/validation-data'
+
+export * from './laboratories/piezoelectricity/task-data'
+export * from './laboratories/piezoelectricity/validation-data'

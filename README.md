@@ -52,9 +52,9 @@
   - [x] LVDTs,
 - [x] Strain
   - [x] Strain gauges,
-- [ ] Magnetoresistance
+- [x] Magnetoresistance
   - [x] AMR sensors,
-  - [ ] Hall effect sensors,
+  - [x] Hall effect sensors,
 - [ ] Piezoelectricity
   - [ ] Piezoelectric cable,
   - [ ] Accelerometer,

@@ -11,12 +11,14 @@ import {
   getRandomTemperatureSet,
   getRandomDisplacementSet,
   getRandomCurrentSet,
+  getRandomMagneticField,
   getStrainValidationData,
   getRtdResistanceValidation,
   getThermocoupleVoltageValidation,
   getTauValidationData,
   getLvdtVoltageValidation,
-  getResistanceChangeValidation
+  getResistanceChangeValidation,
+  getHallOutputVoltage
 } from '@data/index'
 
 export type DataKeys = Record<string, number[]>
@@ -445,6 +447,30 @@ export const Tasks = ({
         break
 
       case 'magnetoresistance/hall-effect':
+        setData([[]])
+        setValidation([[]])
+        setProgress([0])
+
+        data0 = getRandomMagneticField({
+          min: -50,
+          max: 50
+        })
+
+        updateData({
+          data: data0,
+          idx: 0
+        })
+
+        updateValidation({
+          data: getHallOutputVoltage({
+            hallCoefficient: Number(store.material.hallCoeff),
+            thickness: Number(store.thickness.thickness),
+            current: Number(store.current.current),
+            taskData: data0
+          }),
+          idx: 0
+        })
+
         break
       case 'piezoelectricity/cable':
         break

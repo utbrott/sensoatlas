@@ -13,5 +13,6 @@ export const units = {
   /* Strain */
   microstrains: '$\\big[\\mu\\varepsilon\\big]$',
   /* Electromagnetism */
-  permeability: '$\\big[H{\\cdot}m^{-1}\\big]$'
+  permeability: '$\\big[H{\\cdot}m^{-1}\\big]$',
+  hallCoefficient: '$\\big[cm^3 C^{-1}\\big]$'
 }

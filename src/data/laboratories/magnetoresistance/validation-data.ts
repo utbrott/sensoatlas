@@ -52,3 +52,40 @@ export const getResistanceChangeValidation = ({
 
   return [...data]
 }
+
+interface GetHallOutputVoltage {
+  hallCoefficient: number
+  thickness: number
+  current: number
+  taskData: number[]
+}
+
+export const getHallOutputVoltage = ({
+  hallCoefficient,
+  thickness,
+  current,
+  taskData
+}: GetHallOutputVoltage) => {
+  const data: number[] = []
+
+  current = current * 10 ** -3
+  thickness = thickness * 10 ** -6
+
+  function getVoltage(
+    hallCoeff: number,
+    thickness: number,
+    current: number,
+    magneticField: number
+  ) {
+    return round(
+      hallCoeff * (current / thickness) * (magneticField * 10 ** -3) * 10 ** -6,
+      2
+    )
+  }
+
+  taskData.forEach(datapoint => {
+    data.push(getVoltage(hallCoefficient, thickness, current, datapoint))
+  })
+
+  return [...data]
+}

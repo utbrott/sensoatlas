@@ -61,7 +61,7 @@ export default function Lvdt() {
         </div>
         <SlideOver
           isOpen={isSlideOverOpen}
-          title='AMR sensors'
+          title='Hall effect sensors'
           closeHandler={() => setIsSlideOverOpen(false)}
         >
           <AmrArticle />

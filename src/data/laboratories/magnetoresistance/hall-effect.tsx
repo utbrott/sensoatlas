@@ -7,9 +7,7 @@ import { TableProps, useParseTable } from '@hooks/use-parse-table'
 export const AmrPageHeader = () => {
   return (
     <div className='space-y-2'>
-      <span className='text-lg font-medium'>
-        Anisotropic Magneto-Resistive (AMR) sensors
-      </span>
+      <span className='text-lg font-medium'>Hall effect sensors</span>
       <span className='text-justify text-sm text-gray-700 dark:text-gray-300'>
         <p>
           Choose a sensor configuration below and save it, then complete the

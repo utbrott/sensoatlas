@@ -78,8 +78,6 @@ interface ChartsProps {
 const Charts = ({ tasksComplete }: ChartsProps) => {
   const [dataStore] = useStore((store: Record<string, number[]>) => store)
 
-  console.log(dataStore)
-
   const chart1Data = lineChartCreator({
     xvalues: dataStore.data0,
     yvalues: [dataStore.validation0]

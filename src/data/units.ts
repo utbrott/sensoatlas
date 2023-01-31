@@ -5,6 +5,7 @@ export const units = {
   kohmsUnicode: 'k\u03a9',
   kohms: '$\\big[k\\Omega\\big]$',
   density: '$\\big[kg{\\cdot}m^{-3}\\big]$',
+  milliamps: '$\\big[mA\\big]$',
   /* Temperture */
   celcius: '\u00b0C',
   heatCapacity: '$\\big[J{\\cdot}(kg\\degree{C})^{-1}\\big]$',

@@ -12,3 +12,6 @@ export * from './laboratories/magnetoresistance/validation-data'
 
 export * from './laboratories/piezoelectricity/task-data'
 export * from './laboratories/piezoelectricity/validation-data'
+
+export * from './laboratories/transducers/task-data'
+export * from './laboratories/transducers/validation-data'

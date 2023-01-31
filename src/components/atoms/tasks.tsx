@@ -16,6 +16,7 @@ import {
   getRandomAmplitudeSet,
   getRandomFrequencySet,
   getRandomHeight,
+  getRandomPressure,
   getRtdResistanceValidation,
   getThermocoupleVoltageValidation,
   getTauValidationData,
@@ -23,7 +24,9 @@ import {
   getResistanceChangeValidation,
   getHallOutputVoltage,
   getPiezoOutputVoltageValidation,
-  getCableOutputVoltageValidation
+  getCableOutputVoltageValidation,
+  getPressureCurrentValidation,
+  getPressureTimeConstantValidation
 } from '@data/index'
 
 export type DataKeys = Record<string, number[]>
@@ -552,6 +555,34 @@ export const Tasks = ({
       case 'transducers/measurement-loop':
         break
       case 'transducers/pressure':
+        setData([[]])
+        setValidation([[], []])
+        setProgress([0, 0])
+
+        data0 = getRandomPressure({
+          min: 0.8,
+          max: 2.8
+        })
+
+        updateData({
+          data: data0,
+          idx: 0
+        })
+
+        updateValidation({
+          data: getPressureCurrentValidation({
+            minReading: Number(store.sensor.minReading),
+            maxReading: Number(store.sensor.maxReading),
+            taskData: data0
+          }),
+          idx: 0
+        })
+
+        updateValidation({
+          data: getPressureTimeConstantValidation(),
+          idx: 1
+        })
+
         break
       default:
         throw new Error('Laboratory not found')

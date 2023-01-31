@@ -15,7 +15,7 @@ const getRandomInRange = (
   max = round(max, 2)
 
   const randomized = step
-    ? Math.floor(Math.random() * Math.ceil(max / step)) * step + min
+    ? Math.floor(Math.random() * Math.ceil((max - min) / step)) * step + min
     : Math.floor(Math.random() * (max - min + 1) + min)
 
   const negativeOrPositive = Math.random() < 0.5 ? -1 : 1

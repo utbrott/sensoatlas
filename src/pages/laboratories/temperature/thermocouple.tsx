@@ -98,7 +98,7 @@ const Charts = ({ tasksComplete }: ChartsProps) => {
         <Tab.Group>
           <Tab.List>
             <Tab>{'Task 1: Static characteristic,  Vout = f(T)'}</Tab>
-            <Tab>{'Task 2: Dynamic characteristic, Vout = f(T)'}</Tab>
+            <Tab>{'Task 2: Dynamic characteristic, T = f(t)'}</Tab>
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
@@ -118,8 +118,8 @@ const Charts = ({ tasksComplete }: ChartsProps) => {
                 chartName='thermocouple-dynamic'
                 chartData={chart2Data}
                 labels={{
-                  xaxis: 'Time [s]',
-                  yaxis: 'Output voltage [mV]'
+                  xaxis: 'Time [ms]',
+                  yaxis: 'Temperature [\u00b0C]'
                 }}
                 withTooltip
                 legend={['Bare sensor', 'Sheathed', 'Inside thermowell']}

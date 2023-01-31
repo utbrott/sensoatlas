@@ -137,7 +137,7 @@ export const Article = () => {
     equations: ['R_t=R(1+\\alpha(T-T_{ref}))'],
     symbols: [
       `$R$ is base resistance ${units.ohms},`,
-      '$\\alpha$ is temperature coefficient,',
+      `$\\alpha$ is temperature coefficient ${units.temperatureCoefficient},`,
       `$T$ is surroundings temperature [${units.celcius}],`,
       `$T_{ref}$ is reference temperature, 0${units.celcius}.`
     ]
@@ -146,7 +146,7 @@ export const Article = () => {
   const sensorDataTab: TableProps = {
     headers: [
       { label: 'Material name' },
-      { label: 'Temperature coeff.' },
+      { label: 'Temperature coeff.', unit: units.temperatureCoefficient },
       { label: 'Density', unit: units.density },
       { label: 'Heat capacity', unit: units.heatCapacity },
       { label: 'Thermal conducivity', unit: units.thermalConductivity }

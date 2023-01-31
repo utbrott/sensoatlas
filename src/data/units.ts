@@ -8,6 +8,7 @@ export const units = {
   milliamps: '$\\big[mA\\big]$',
   /* Temperture */
   celcius: '\u00b0C',
+  temperatureCoefficient: '$\\big[\\Omega\\cdot(\\Omega\\degree C)^{-1}\\big]$',
   heatCapacity: '$\\big[J{\\cdot}(kg\\degree{C})^{-1}\\big]$',
   thermalConductivity: '$\\big[W{\\cdot}(mK)^{-1}\\big]$',
   seebeckCoeff: '$\\big[\\mu{V}{\\cdot}K^{-1}\\big]',

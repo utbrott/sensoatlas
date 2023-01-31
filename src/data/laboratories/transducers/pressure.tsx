@@ -63,16 +63,14 @@ export const taskFields: TaskItem[] = [
 export const Article = () => {
   const processingChar: EquationProps = {
     equations: [
-      '$y = ax + b$',
-      '$a = \\cfrac{y_{max} - y_{min}}{x_{max} - x_{min}}$',
-      '$b = y_{min} - ax_{min}$'
+      '$P = A{\\cdot}I + B$',
+      '$A =\\bigg(\\cfrac{I_{max} - I_{min}}{P_{max} - P_{min}}\\bigg)\\textsf{,}\\quad B = I_{min} - A{\\cdot}P_{min} $',
+      '$\\quad$',
+      '$\\therefore \\, P = \\bigg(\\cfrac{I_{max} - I_{min}}{P_{max} - P_{min}}\\bigg){\\cdot}I + \\big(I_{min} - \\bigg(\\cfrac{I_{max} - I_{min}}{P_{max} - P_{min}}\\bigg){\\cdot}P_{min}\\big)$'
     ],
     symbols: [
-      '$y$ is processing characteristic,',
-      '$a$ is slope constant,',
-      '$b$ is slope intercept point,',
-      '$x_{max}$, $x_{min}$ are max. and min. pressure readouts,',
-      '$y_{max}$, $y_{min}$ are max. and min. current readouts,'
+      '$P_{max}$, $P_{min}$ are max. and min. pressure read-outs,',
+      '$I_{max}$, $I_{min}$ are max. and min. current read-outs.'
     ]
   }
 
@@ -89,8 +87,8 @@ export const Article = () => {
   const pressureSensors: TableProps = {
     headers: [
       { label: 'Pressure sensor' },
-      { label: 'Min. readout @ 0.885bar', unit: units.milliamps },
-      { label: 'Max. readout @ 2.855bar', unit: units.milliamps }
+      { label: 'Current @ 0.885bar', unit: units.milliamps },
+      { label: 'Current @ 2.855bar', unit: units.milliamps }
     ],
     data: [
       ['Keller PY21', 4.06, 6.07],
@@ -117,9 +115,9 @@ export const Article = () => {
       </p>
       <h3>Forming the processing characteristic</h3>
       <p>
-        This can be done using basic calculus and formulas for linear
-        polynomial, the constants should be rounded to 4th decimal place for
-        optimal accuracy:
+        The constants should be rounded to 4th decimal place for optimal
+        accuracy. Then the resulting formula will allow for calculation of any
+        current value corresponding to a set pressure.
       </p>
       {useParseEquation({ ...processingChar })}
       <h3>Calculating the time constant</h3>

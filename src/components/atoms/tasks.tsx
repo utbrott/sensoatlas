@@ -18,6 +18,10 @@ import {
   getRandomHeight,
   getRandomPressure,
   getRangePercentValue,
+  getResistanceRange
+} from '@data/index';
+
+import {
   getRtdResistanceValidation,
   getThermocoupleVoltageValidation,
   getTauValidationData,
@@ -28,7 +32,8 @@ import {
   getCableOutputVoltageValidation,
   getPressureCurrentValidation,
   getPressureTimeConstantValidation,
-  getRangeLimitsValidation
+  getRangeLimitsValidation,
+  getOutputResistanceValidation
 } from '@data/index';
 
 export type DataKeys = Record<string, number[]>;
@@ -555,12 +560,16 @@ export const Tasks = ({
 
         break;
       case 'transducers/measurement-loop':
-        setData([[]]);
-        setValidation([[]]);
-        setProgress([0]);
+        setData([[], []]);
+        setValidation([[], []]);
+        setProgress([0, 0]);
 
         data0 = getRangePercentValue({
           transducer: String(store.type.type),
+          resistanceLimit: Number(store.resistance.max)
+        });
+
+        data1 = getResistanceRange({
           resistanceLimit: Number(store.resistance.max)
         });
 
@@ -569,12 +578,24 @@ export const Tasks = ({
           idx: 0
         });
 
+        updateData({
+          data: data1,
+          idx: 1
+        });
+
         updateValidation({
           data: getRangeLimitsValidation({
             transducer: String(store.type.type),
             taskData: data0
           }),
           idx: 0
+        });
+
+        updateValidation({
+          data: getOutputResistanceValidation({
+            taskData: data1
+          }),
+          idx: 1
         });
 
         break;

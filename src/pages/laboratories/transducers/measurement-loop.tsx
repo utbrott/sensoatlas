@@ -84,9 +84,11 @@ const Charts = ({ tasksComplete }: ChartsProps) => {
   console.log(dataStore);
 
   const chart1Data = lineChartCreator({
-    xvalues: [0, 5 * 0.25, 5 * 0.75, 5],
-    yvalues: [
-      [dataStore.validation0[0], ...dataStore.data0, dataStore.validation0[1]]
+    yvalues: [[0, 5 * 0.25, 5 * 0.75, 5]],
+    xvalues: [
+      dataStore.validation0[0],
+      ...dataStore.data0,
+      dataStore.validation0[1]
     ]
   });
 
@@ -106,11 +108,11 @@ const Charts = ({ tasksComplete }: ChartsProps) => {
                 chartName='accel-vout-amplitude'
                 chartData={chart1Data}
                 labels={{
-                  xaxis: 'Output current [mA]',
-                  yaxis:
+                  xaxis:
                     String(configStore.type.type) === 'voltage'
                       ? 'Voltage [V]'
-                      : 'Resistance [\u03a9]'
+                      : 'Resistance [\u03a9]',
+                  yaxis: 'Output current [mA]'
                 }}
                 hasDataPoints
                 withTooltip

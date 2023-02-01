@@ -1,4 +1,8 @@
-import { getRandomSet, GetRandomMinMax } from '@data/data-generation';
+import {
+  getRandomSet,
+  GetRandomMinMax,
+  getRandomInRange
+} from '@data/data-generation';
 import { round } from 'lodash';
 
 export const getRandomPressure = ({ min, max }: GetRandomMinMax) => {
@@ -84,6 +88,21 @@ export const getRangePercentValue = ({
       upper = getValueAtPercent(resistanceRange, UPPER_PERECET) + 100;
       break;
   }
+
+  return [lower, upper];
+};
+
+interface GetResistanceRange {
+  resistanceLimit: number;
+}
+
+export const getResistanceRange = ({ resistanceLimit }: GetResistanceRange) => {
+  const lower = getRandomInRange(10, 30, 0.5);
+  const upper = getRandomInRange(
+    (resistanceLimit - 10) * 0.9,
+    resistanceLimit * 0.9,
+    0.5
+  );
 
   return [lower, upper];
 };

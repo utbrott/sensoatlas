@@ -58,10 +58,7 @@ interface GetRangeLimits {
   taskData: number[];
 }
 
-export const getRangeLimitsValidation = ({
-  transducer,
-  taskData
-}: GetRangeLimits) => {
+export const getRangeLimitsValidation = ({ taskData }: GetRangeLimits) => {
   const CURRENT = {
     MIN: 0,
     MAX: 5
@@ -77,7 +74,17 @@ export const getRangeLimitsValidation = ({
   const rangeMin = round(slope * 0 + slopeIntercept, 1);
   const rangeMax = round(slope * 5 + slopeIntercept, 1);
 
-  console.log(rangeMin, rangeMax);
-
   return [rangeMin, rangeMax];
+};
+
+interface GetOutputResistance {
+  taskData: number[];
+}
+
+export const getOutputResistanceValidation = ({
+  taskData
+}: GetOutputResistance) => {
+  return [
+    round((taskData[0] * 5 - taskData[1] * (5 * 0.9)) / (5 - 5 * 0.9), 2)
+  ];
 };

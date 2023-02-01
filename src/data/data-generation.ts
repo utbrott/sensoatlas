@@ -5,7 +5,7 @@ export interface GetRandomMinMax {
   max: number;
 }
 
-const getRandomInRange = (
+export const getRandomInRange = (
   min: number,
   max: number,
   step?: number,

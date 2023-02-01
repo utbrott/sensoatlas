@@ -52,3 +52,32 @@ export const getPressureTimeConstantValidation = () => {
 
   return [timeConstant]
 }
+
+interface GetRangeLimits {
+  transducer: 'voltage' | 'resistance' | string
+  taskData: number[]
+}
+
+export const getRangeLimitsValidation = ({
+  transducer,
+  taskData
+}: GetRangeLimits) => {
+  const CURRENT = {
+    MIN: 0,
+    MAX: 5
+  }
+
+  const slope = round(
+    (taskData[1] - taskData[0]) / (CURRENT.MAX * 0.75 - CURRENT.MAX * 0.25),
+    4
+  )
+
+  const slopeIntercept = round(taskData[0] - slope * CURRENT.MAX * 0.25, 4)
+
+  const rangeMin = round(slope * 0 + slopeIntercept, 1)
+  const rangeMax = round(slope * 5 + slopeIntercept, 1)
+
+  console.log(rangeMin, rangeMax)
+
+  return [rangeMin, rangeMax]
+}

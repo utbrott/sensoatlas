@@ -17,6 +17,7 @@ import {
   getRandomFrequencySet,
   getRandomHeight,
   getRandomPressure,
+  getRangePercentValue,
   getRtdResistanceValidation,
   getThermocoupleVoltageValidation,
   getTauValidationData,
@@ -26,7 +27,8 @@ import {
   getPiezoOutputVoltageValidation,
   getCableOutputVoltageValidation,
   getPressureCurrentValidation,
-  getPressureTimeConstantValidation
+  getPressureTimeConstantValidation,
+  getRangeLimitsValidation
 } from '@data/index'
 
 export type DataKeys = Record<string, number[]>
@@ -553,6 +555,28 @@ export const Tasks = ({
 
         break
       case 'transducers/measurement-loop':
+        setData([[]])
+        setValidation([[]])
+        setProgress([0])
+
+        data0 = getRangePercentValue({
+          transducer: String(store.type.type),
+          resistanceLimit: Number(store.resistance.max)
+        })
+
+        updateData({
+          data: data0,
+          idx: 0
+        })
+
+        updateValidation({
+          data: getRangeLimitsValidation({
+            transducer: String(store.type.type),
+            taskData: data0
+          }),
+          idx: 0
+        })
+
         break
       case 'transducers/pressure':
         setData([[]])

@@ -49,3 +49,41 @@ export const getPressureSlope = ({ timeConstant }: GetPressureSlope) => {
     yvalues: pressureTimeConstant
   }
 }
+
+interface GetRangePercentValue {
+  transducer: 'voltage' | 'resistance' | string
+  resistanceLimit: number
+}
+
+export const getRangePercentValue = ({
+  transducer,
+  resistanceLimit
+}: GetRangePercentValue) => {
+  const LOWER_PERCENT = 0.25
+  const UPPER_PERECET = 0.75
+
+  const VOLTAGE_RANGE = 50
+  const RESISTANCE_LOWER = 100
+
+  const resistanceRange = resistanceLimit - RESISTANCE_LOWER
+
+  function getValueAtPercent(max: number, percent: number) {
+    return round(max * percent, 2)
+  }
+
+  let lower: number
+  let upper: number
+
+  switch (transducer) {
+    case 'voltage':
+      lower = getValueAtPercent(VOLTAGE_RANGE, LOWER_PERCENT)
+      upper = getValueAtPercent(VOLTAGE_RANGE, UPPER_PERECET)
+      break
+    case 'resistance':
+      lower = getValueAtPercent(resistanceRange, LOWER_PERCENT) + 100
+      upper = getValueAtPercent(resistanceRange, UPPER_PERECET) + 100
+      break
+  }
+
+  return [lower, upper]
+}

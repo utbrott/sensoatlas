@@ -18,12 +18,14 @@ export const library: LibraryProps[] = [
       {
         label: 'RTDs',
         name: 'Resistance Temperature Detectors',
-        description: 'Short about RTDs',
+        description:
+          'Learn about using relative resistance change to measure temperature.',
         href: '/rtd'
       },
       {
         name: 'Thermocouples',
-        description: 'Short about Thermocouples',
+        description:
+          'Learn about using thermoelectric effect to measure temperature.',
         href: '/thermocouple'
       }
     ]
@@ -34,7 +36,8 @@ export const library: LibraryProps[] = [
       {
         label: 'LVDT',
         name: 'Linear Variable Differential Transformer',
-        description: 'Short about LVDTs',
+        description:
+          'Using a differential transformer to measure displacement.',
         href: '/lvdt'
       }
     ]
@@ -44,7 +47,7 @@ export const library: LibraryProps[] = [
     laboratories: [
       {
         name: 'Strain gauges',
-        description: 'Short about strain gauges',
+        description: 'How to use relative resistance change to measure strain.',
         href: '/strain-gauge'
       }
     ]
@@ -54,13 +57,15 @@ export const library: LibraryProps[] = [
     laboratories: [
       {
         name: 'AMR sensors',
-        description: 'Short about AMR sensors',
+        description:
+          'Using change in electrical resistance to measure magnetic fields.',
         href: '/amr'
       },
       {
         label: 'Hall effect',
         name: 'Hall Effect sensors',
-        description: 'Short about hall effect sensors',
+        description:
+          'Learn about Hall effect and using it to measure magnetic fields.',
         href: '/hall-effect'
       }
     ]
@@ -70,12 +75,14 @@ export const library: LibraryProps[] = [
     laboratories: [
       {
         name: 'Piezoelectric cable',
-        description: 'Short about piezoelectric cable',
+        description:
+          "Piezoelectric effect and it's use in measuring force of an impact.",
         href: '/cable'
       },
       {
         name: 'Accelerometer',
-        description: 'Short about Accelerometer',
+        description:
+          'Utilizing piezoelectric effect to measure acceleration and vibrations.',
         href: '/accelerometer'
       }
     ]
@@ -84,14 +91,15 @@ export const library: LibraryProps[] = [
     category: 'transducers',
     laboratories: [
       {
-        label: 'Measurement loop',
-        name: '4-20mA measurement loop',
-        description: 'Short about Measurement loop',
+        name: 'Measurement loop',
+        description:
+          'Learn the basics of how measurement (current) loops work.',
         href: '/measurement-loop'
       },
       {
         name: 'Pressure measurement',
-        description: 'Short about pressure measurement',
+        description:
+          'How to use current loops to measure pressure and sudden pressure changes.',
         href: '/pressure'
       }
     ]

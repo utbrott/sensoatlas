@@ -1,47 +1,49 @@
-import { Select } from '@ui/select'
-import { RadioGroup } from '@ui/radio-group'
-import { Button } from '@ui/button'
-import { SchematicImage } from './schematic-image'
-import { useRouter } from 'next/router'
-import { useGetImagePath } from '@hooks/use-get-image-path'
+import { Select } from '@ui/select';
+import { RadioGroup } from '@ui/radio-group';
+import { Button } from '@ui/button';
+import { SchematicImage } from './schematic-image';
+import { useRouter } from 'next/router';
+import { useGetImagePath } from '@hooks/use-get-image-path';
 
-export type ConfigKeys = Record<string, { [key: string]: string | number }>
+export type ConfigKeys = Record<string, { [key: string]: string | number }>;
 
 export type ConfigItem = {
-  type: 'select' | 'radio'
-  id: string
-  label?: string
-  options?: { [key: string]: number | string }[]
-}
+  type: 'select' | 'radio';
+  id: string;
+  label?: string;
+  options?: { [key: string]: number | string }[];
+};
 
 interface InitialCreatorProps {
-  fields: ConfigItem[]
+  fields: ConfigItem[];
 }
 
 export const initialConfigCreator = ({ fields }: InitialCreatorProps) => {
-  const config = {}
+  const config = {};
 
   fields.map(field => {
-    const option = field.options.find(opt => opt.name === field.options[0].name)
-    return (config[field.id] = option)
-  })
+    const option = field.options.find(
+      opt => opt.name === field.options[0].name
+    );
+    return (config[field.id] = option);
+  });
 
-  return config
-}
+  return config;
+};
 
 export const getFieldById = (fields: ConfigItem[], fieldId: string) => {
-  return fields.find((field: ConfigItem) => field.id == fieldId)
-}
+  return fields.find((field: ConfigItem) => field.id == fieldId);
+};
 
 export const getFieldOption = (field: ConfigItem, optionName: string) => {
-  return field.options.find(option => option.name === optionName)
-}
+  return field.options.find(option => option.name === optionName);
+};
 
 interface ConfigFieldProps {
-  name: string
-  fields: ConfigItem[]
-  useStore: any
-  disabled?: boolean
+  name: string;
+  fields: ConfigItem[];
+  useStore: any;
+  disabled?: boolean;
 }
 
 const ConfigField = ({
@@ -50,8 +52,8 @@ const ConfigField = ({
   useStore,
   disabled
 }: ConfigFieldProps) => {
-  const [fieldValue, setStore] = useStore((store: ConfigKeys) => store[name])
-  const field = getFieldById(fields, name)
+  const [fieldValue, setStore] = useStore((store: ConfigKeys) => store[name]);
+  const field = getFieldById(fields, name);
 
   if (field.type === 'select') {
     return (
@@ -67,10 +69,10 @@ const ConfigField = ({
             <Select.Option value={option.name} key={index}>
               {option.name}
             </Select.Option>
-          )
+          );
         })}
       </Select>
-    )
+    );
   }
 
   return (
@@ -85,18 +87,18 @@ const ConfigField = ({
           <RadioGroup.Option value={option.name} key={index}>
             {option.name}
           </RadioGroup.Option>
-        )
+        );
       })}
     </RadioGroup>
-  )
-}
+  );
+};
 
 interface Props {
-  initial: ConfigKeys
-  fields: ConfigItem[]
-  useStore: any
-  disabled?: boolean
-  configSaveHandler: () => void
+  initial: ConfigKeys;
+  fields: ConfigItem[];
+  useStore: any;
+  disabled?: boolean;
+  configSaveHandler: () => void;
 }
 
 export const Config = ({
@@ -106,15 +108,15 @@ export const Config = ({
   disabled,
   configSaveHandler
 }: Props) => {
-  const { reload, asPath } = useRouter()
+  const { reload, asPath } = useRouter();
 
-  const [store] = useStore((store: ConfigKeys) => store)
+  const [store] = useStore((store: ConfigKeys) => store);
 
-  const singleImg = !asPath.includes('strain') ? true : false
+  const singleImg = !asPath.includes('strain') ? true : false;
 
-  let imagePath = useGetImagePath({ withExtension: singleImg })
+  let imagePath = useGetImagePath({ withExtension: singleImg });
   if (!singleImg) {
-    imagePath = `${imagePath}-${store.bridge.name.toLowerCase()}.png`
+    imagePath = `${imagePath}-${store.bridge.name.toLowerCase()}.png`;
   }
 
   return (
@@ -130,7 +132,7 @@ export const Config = ({
               useStore={useStore}
               disabled={disabled}
             />
-          )
+          );
         })}
       </div>
       <div className='mt-1'>
@@ -154,5 +156,5 @@ export const Config = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

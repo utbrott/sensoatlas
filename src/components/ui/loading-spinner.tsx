@@ -1,5 +1,5 @@
-import { cva, VariantProps } from 'class-variance-authority'
-import { IconLoader2 } from '@tabler/icons'
+import { cva, VariantProps } from 'class-variance-authority';
+import { IconLoader2 } from '@tabler/icons';
 
 const spinner = cva('relative w-5 h-5', {
   variants: {
@@ -12,7 +12,7 @@ const spinner = cva('relative w-5 h-5', {
   defaultVariants: {
     size: 'medium'
   }
-})
+});
 
 const spinnerInner = cva('absolute h-5 w-5 animate-ease-spin', {
   variants: {
@@ -33,7 +33,7 @@ const spinnerInner = cva('absolute h-5 w-5 animate-ease-spin', {
     color: 'white',
     size: 'medium'
   }
-})
+});
 
 interface SpinnerProps
   extends VariantProps<typeof spinner>,
@@ -46,5 +46,5 @@ export const Spinner = ({ size, color, withTransparency }: SpinnerProps) => {
         className={spinnerInner({ size, color, withTransparency })}
       />
     </span>
-  )
-}
+  );
+};

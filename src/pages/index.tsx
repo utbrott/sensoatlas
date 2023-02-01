@@ -1,6 +1,6 @@
-import { Shell } from '@ui/layouts'
-import { Button } from '@ui/button'
-import { IconChevronRight } from '@tabler/icons'
+import { Shell } from '@ui/layouts';
+import { Button } from '@ui/button';
+import { IconChevronRight } from '@tabler/icons';
 
 export default function Index() {
   return (
@@ -23,5 +23,5 @@ export default function Index() {
         </div>
       </div>
     </Shell.Page>
-  )
+  );
 }

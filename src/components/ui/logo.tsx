@@ -1,19 +1,19 @@
-import Link from 'next/link'
-import { useTheme } from 'next-themes'
-import { AppIconGradient, AppIconPlain } from '@assets/logo/app-icon'
-import { FacultyFull, FacultyIcon } from '@assets/logo/faculty-logo'
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import { AppIconGradient, AppIconPlain } from '@assets/logo/app-icon';
+import { FacultyFull, FacultyIcon } from '@assets/logo/faculty-logo';
 
 interface LogoProps {
-  variant: 'full' | 'icon'
+  variant: 'full' | 'icon';
 }
 
 interface AppLogoProps extends LogoProps {
-  withGradient?: boolean
+  withGradient?: boolean;
 }
 
 const AppLogo = ({ variant, withGradient }: AppLogoProps) => {
-  const { theme } = useTheme()
-  const logoBackground = theme === 'light' ? 'light' : 'dark'
+  const { theme } = useTheme();
+  const logoBackground = theme === 'light' ? 'light' : 'dark';
 
   return (
     <Link href='/'>
@@ -37,14 +37,14 @@ const AppLogo = ({ variant, withGradient }: AppLogoProps) => {
         )}
       </div>
     </Link>
-  )
-}
+  );
+};
 
 interface FacultyLogoProps extends LogoProps {}
 
 const FacultyLogo = ({ variant }: FacultyLogoProps) => {
-  const { theme } = useTheme()
-  const logoBackground = theme === 'light' ? 'light' : 'dark'
+  const { theme } = useTheme();
+  const logoBackground = theme === 'light' ? 'light' : 'dark';
 
   return (
     <>
@@ -54,7 +54,7 @@ const FacultyLogo = ({ variant }: FacultyLogoProps) => {
         <FacultyIcon background={logoBackground} />
       )}
     </>
-  )
-}
+  );
+};
 
-export const Logo = Object.assign({ App: AppLogo, Faculty: FacultyLogo })
+export const Logo = Object.assign({ App: AppLogo, Faculty: FacultyLogo });

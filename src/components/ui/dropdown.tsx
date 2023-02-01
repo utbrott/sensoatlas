@@ -1,11 +1,11 @@
-import { Menu, Transition } from '@headlessui/react'
-import React, { Fragment } from 'react'
-import { Button, ButtonProps } from './button'
-import { IconCaretDown } from '@tabler/icons'
+import { Menu, Transition } from '@headlessui/react';
+import React, { Fragment } from 'react';
+import { Button, ButtonProps } from './button';
+import { IconCaretDown } from '@tabler/icons';
 
 interface DropdownButtonProps extends ButtonProps {
-  children: React.ReactNode
-  withCaret?: boolean
+  children: React.ReactNode;
+  withCaret?: boolean;
 }
 const DropdownButton = ({
   children,
@@ -17,12 +17,12 @@ const DropdownButton = ({
       {children}
       {withCaret && <IconCaretDown className='h-4 w-4 fill-gray-50' />}
     </Menu.Button>
-  )
-}
+  );
+};
 
 interface DropdownRootProps extends DropdownButtonProps {
-  label: React.ReactNode
-  children: React.ReactNode
+  label: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const DropdownRoot = ({ label, children, ...props }: DropdownRootProps) => {
@@ -36,11 +36,11 @@ const DropdownRoot = ({ label, children, ...props }: DropdownRootProps) => {
       <DropdownButton {...props}>{label}</DropdownButton>
       {children}
     </Menu>
-  )
-}
+  );
+};
 
 interface DropdownItemProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
@@ -53,11 +53,11 @@ const DropdownItem = ({ children, ...props }: DropdownItemProps) => {
         {children}
       </button>
     </Menu.Item>
-  )
-}
+  );
+};
 
 interface DropdownItemsProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const DropdownItems = ({ children }: DropdownItemsProps) => {
@@ -75,20 +75,20 @@ const DropdownItems = ({ children }: DropdownItemsProps) => {
         {children}
       </Menu.Items>
     </Transition>
-  )
-}
+  );
+};
 
 interface DropdownSection {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const DropdownSection = ({ children }) => {
-  return <div className='px-1 py-1'>{children}</div>
-}
+  return <div className='px-1 py-1'>{children}</div>;
+};
 
 export const Dropdown = Object.assign(DropdownRoot, {
   Button: DropdownButton,
   Items: DropdownItems,
   Section: DropdownSection,
   Item: DropdownItem
-})
+});

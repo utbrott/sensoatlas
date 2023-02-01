@@ -1,8 +1,8 @@
-import { ConfigItem } from '@atoms/config'
-import { TaskItem } from '@atoms/tasks'
-import { units } from '@data/units'
-import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
-import { TableProps, useParseTable } from '@hooks/use-parse-table'
+import { ConfigItem } from '@atoms/config';
+import { TaskItem } from '@atoms/tasks';
+import { units } from '@data/units';
+import { EquationProps, useParseEquation } from '@hooks/use-parse-equation';
+import { TableProps, useParseTable } from '@hooks/use-parse-table';
 
 export const PageHeader = () => {
   return (
@@ -18,8 +18,8 @@ export const PageHeader = () => {
         </p>
       </span>
     </div>
-  )
-}
+  );
+};
 
 export const configFields: ConfigItem[] = [
   {
@@ -114,7 +114,7 @@ export const configFields: ConfigItem[] = [
       }
     ]
   }
-]
+];
 
 export const taskFields: TaskItem[] = [
   {
@@ -129,7 +129,7 @@ export const taskFields: TaskItem[] = [
     data: [],
     validation: []
   }
-]
+];
 
 export const Article = () => {
   const resistanceNoTemperature: EquationProps = {
@@ -139,7 +139,7 @@ export const Article = () => {
       `$\\varepsilon$ is applied strain ${units.microstrains},`,
       '$GF$ is gauge factor.'
     ]
-  }
+  };
 
   const resistanceWithTemperature: EquationProps = {
     equations: [
@@ -153,7 +153,7 @@ export const Article = () => {
       `$T$ is surroundings temperature [${units.celcius}],`,
       `$T_{ref}$ is reference temperature, 20${units.celcius}.`
     ]
-  }
+  };
 
   const bridgeOutput: EquationProps = {
     equations: [
@@ -166,7 +166,7 @@ export const Article = () => {
       `$R$ is base resistance ${units.ohms},`,
       `$\\Delta R$ is calculated resistance change ${units.ohms}.`
     ]
-  }
+  };
 
   const strainSensorTable: TableProps = {
     headers: [
@@ -186,7 +186,7 @@ export const Article = () => {
       ['Platinum', 6.1, 0.003729],
       ['Monel', 1.9, 0.0011]
     ]
-  }
+  };
 
   return (
     <span className='text-justify text-sm'>
@@ -225,5 +225,5 @@ export const Article = () => {
       <h3>Material constants</h3>
       {useParseTable({ ...strainSensorTable })}
     </span>
-  )
-}
+  );
+};

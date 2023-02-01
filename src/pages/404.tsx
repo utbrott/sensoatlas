@@ -1,5 +1,5 @@
-import { Shell } from '@ui/layouts'
-import { Button } from '@ui/button'
+import { Shell } from '@ui/layouts';
+import { Button } from '@ui/button';
 
 export default function Custom404() {
   return (
@@ -23,5 +23,5 @@ export default function Custom404() {
         </Button.Link>
       </div>
     </Shell.Page>
-  )
+  );
 }

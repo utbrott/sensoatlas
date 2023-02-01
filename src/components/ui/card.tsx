@@ -1,14 +1,14 @@
-import { Button } from '@ui/button'
+import { Button } from '@ui/button';
 
 export interface Props {
-  category?: string
-  title: string
-  description: string
-  redirects?: { buttonLabel: string; href: string }
+  category?: string;
+  title: string;
+  description: string;
+  redirects?: { buttonLabel: string; href: string };
 }
 
 export const Card = ({ category, title, description, redirects }: Props) => {
-  const { buttonLabel, href } = redirects
+  const { buttonLabel, href } = redirects;
 
   return (
     <div className='flex h-full w-[32rem] max-w-md flex-col rounded p-8'>
@@ -31,5 +31,5 @@ export const Card = ({ category, title, description, redirects }: Props) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};

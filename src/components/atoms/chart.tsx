@@ -9,26 +9,26 @@ import {
   Legend,
   ReferenceLine,
   Label
-} from 'recharts'
-import { Button, ButtonProps } from '@ui/button'
-import { IconFileDownload } from '@tabler/icons'
-import { Spinner } from '@ui/loading-spinner'
-import colors from 'tailwindcss/colors'
-import { useCallback } from 'react'
-import { useCurrentPng } from 'recharts-to-png'
-import { saveAs } from 'file-saver'
+} from 'recharts';
+import { Button, ButtonProps } from '@ui/button';
+import { IconFileDownload } from '@tabler/icons';
+import { Spinner } from '@ui/loading-spinner';
+import colors from 'tailwindcss/colors';
+import { useCallback } from 'react';
+import { useCurrentPng } from 'recharts-to-png';
+import { saveAs } from 'file-saver';
 
 interface TooltipProps extends Pick<ChartProps, 'labels'> {
-  label?: string
-  active?: boolean
-  payload?: { name: string; value: number }[]
+  label?: string;
+  active?: boolean;
+  payload?: { name: string; value: number }[];
 }
 
 const ChartTooltip = ({ labels, label, active, payload }: TooltipProps) => {
-  const { xaxis, yaxis } = labels
+  const { xaxis, yaxis } = labels;
   const yLabels = payload.map((label, index) => {
-    return <p key={index}>{`${label.name}: ${label.value}`}</p>
-  })
+    return <p key={index}>{`${label.name}: ${label.value}`}</p>;
+  });
 
   return active && payload ? (
     <div className='rounded bg-gray-800 p-2 text-xs text-gray-50'>
@@ -40,13 +40,13 @@ const ChartTooltip = ({ labels, label, active, payload }: TooltipProps) => {
         <p>{`${yaxis}: ${payload[0].value}`}</p>
       )}
     </div>
-  ) : null
-}
+  ) : null;
+};
 
-type ChartData = { [key: string]: number }
+type ChartData = { [key: string]: number };
 
 interface DownloadBtnProps extends ButtonProps {
-  isLoading: boolean
+  isLoading: boolean;
 }
 
 const DownloadBtn = ({ isLoading, ...props }: DownloadBtnProps) => {
@@ -59,20 +59,20 @@ const DownloadBtn = ({ isLoading, ...props }: DownloadBtnProps) => {
       )}
       {isLoading ? 'Downloading...' : 'Download chart'}
     </Button>
-  )
-}
+  );
+};
 
-type zeroReference = { x?: number; y?: number }
+type zeroReference = { x?: number; y?: number };
 
 interface ChartProps {
-  chartName: string
-  chartData: ChartData[]
-  labels: { xaxis: string; yaxis: string }
-  legend?: string[]
-  withTooltip?: boolean
-  hasDataPoints?: boolean
-  withAutoDomain?: boolean
-  withZeroRef?: zeroReference
+  chartName: string;
+  chartData: ChartData[];
+  labels: { xaxis: string; yaxis: string };
+  legend?: string[];
+  withTooltip?: boolean;
+  hasDataPoints?: boolean;
+  withAutoDomain?: boolean;
+  withZeroRef?: zeroReference;
 }
 
 export const LineChart = ({
@@ -85,7 +85,7 @@ export const LineChart = ({
   withAutoDomain,
   withZeroRef
 }: ChartProps) => {
-  const [downloadHandler, { ref, isLoading }] = useDownloadChart(chartName)
+  const [downloadHandler, { ref, isLoading }] = useDownloadChart(chartName);
 
   const lineColors: string[] = [
     colors.sky[600],
@@ -93,9 +93,11 @@ export const LineChart = ({
     colors.yellow[500],
     colors.purple[700],
     colors.red[600]
-  ]
+  ];
 
-  const yKeys = Object.keys(chartData[0]).filter(point => point.startsWith('y'))
+  const yKeys = Object.keys(chartData[0]).filter(point =>
+    point.startsWith('y')
+  );
 
   return (
     <>
@@ -159,7 +161,7 @@ export const LineChart = ({
                   dot={hasDataPoints ? { strokeWidth: 0 } : false}
                   fill={lineColors[index]}
                 />
-              )
+              );
             })}
             {legend && <Legend verticalAlign='top' />}
           </LineChartRoot>
@@ -174,29 +176,29 @@ export const LineChart = ({
         />
       </div>
     </>
-  )
-}
+  );
+};
 
 type UseDownloadChart = [
   () => Promise<void | undefined>,
   { ref: React.MutableRefObject<any>; isLoading: boolean }
-]
+];
 
 const useDownloadChart = (chartName: string): UseDownloadChart => {
-  const [getPng, { ref, isLoading }] = useCurrentPng()
+  const [getPng, { ref, isLoading }] = useCurrentPng();
 
   const downloadChart = useCallback(async () => {
-    const chartAsPng = await getPng()
-    if (chartAsPng) saveAs(chartAsPng, `sensoatlas-${chartName}-chart.png`)
-  }, [getPng, chartName])
+    const chartAsPng = await getPng();
+    if (chartAsPng) saveAs(chartAsPng, `sensoatlas-${chartName}-chart.png`);
+  }, [getPng, chartName]);
 
-  return [downloadChart, { ref: ref, isLoading: isLoading }]
-}
+  return [downloadChart, { ref: ref, isLoading: isLoading }];
+};
 
 interface LineChartCreator {
-  xvalues: number[]
-  yvalues: number[][]
-  withMirrorX?: boolean
+  xvalues: number[];
+  yvalues: number[][];
+  withMirrorX?: boolean;
 }
 
 export const lineChartCreator = ({
@@ -204,27 +206,27 @@ export const lineChartCreator = ({
   yvalues,
   withMirrorX
 }: LineChartCreator) => {
-  const chartData: ChartData[] = []
+  const chartData: ChartData[] = [];
 
   xvalues.map((xValue, xIdx) => {
-    const obj: ChartData = {}
-    obj['x'] = xValue
+    const obj: ChartData = {};
+    obj['x'] = xValue;
     yvalues.map((yVal, yIdx) => {
-      obj[`y${yIdx}`] = yVal[xIdx]
-    })
-    chartData.push(obj)
-  })
+      obj[`y${yIdx}`] = yVal[xIdx];
+    });
+    chartData.push(obj);
+  });
 
-  chartData.sort((a, b) => a.x - b.x)
+  chartData.sort((a, b) => a.x - b.x);
 
-  if (!withMirrorX) return chartData
+  if (!withMirrorX) return chartData;
 
   const mirroredEntries: ChartData[] = Object.values(chartData)
     .filter(value => value.x > 0)
     .map(value => {
-      return { ...value, x: -value.x }
+      return { ...value, x: -value.x };
     })
-    .reverse()
+    .reverse();
 
-  return [...mirroredEntries, ...chartData]
-}
+  return [...mirroredEntries, ...chartData];
+};

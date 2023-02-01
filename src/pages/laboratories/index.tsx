@@ -1,6 +1,6 @@
-import { Shell } from '@ui/layouts'
-import { library } from '@data/labs-library'
-import { LibraryCard, libraryCardCreator } from '@atoms/library-card'
+import { Shell } from '@ui/layouts';
+import { library } from '@data/labs-library';
+import { LibraryCard, libraryCardCreator } from '@atoms/library-card';
 
 export default function Library() {
   const Cards = libraryCardCreator(library).map(card => {
@@ -13,8 +13,8 @@ export default function Library() {
         key={card.href}
         disabled={card.disabled}
       />
-    )
-  })
+    );
+  });
   return (
     <Shell.App title='Library | SensoAtlas'>
       <div className='flex items-center justify-center'>
@@ -23,5 +23,5 @@ export default function Library() {
         </div>
       </div>
     </Shell.App>
-  )
+  );
 }

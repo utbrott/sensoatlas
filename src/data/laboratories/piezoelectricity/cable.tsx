@@ -1,6 +1,6 @@
-import { ConfigItem } from '@atoms/config'
-import { TaskItem } from '@atoms/tasks'
-import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
+import { ConfigItem } from '@atoms/config';
+import { TaskItem } from '@atoms/tasks';
+import { EquationProps, useParseEquation } from '@hooks/use-parse-equation';
 
 export const PageHeader = () => {
   return (
@@ -16,8 +16,8 @@ export const PageHeader = () => {
         </p>
       </span>
     </div>
-  )
-}
+  );
+};
 
 export const configFields: ConfigItem[] = [
   {
@@ -43,7 +43,7 @@ export const configFields: ConfigItem[] = [
       }
     ]
   }
-]
+];
 
 export const taskFields: TaskItem[] = [
   {
@@ -52,7 +52,7 @@ export const taskFields: TaskItem[] = [
     data: [],
     validation: []
   }
-]
+];
 
 export const Article = () => {
   const sensorOutputVoltage: EquationProps = {
@@ -63,7 +63,7 @@ export const Article = () => {
       '$h$ is height [m],',
       "$S$ is cable's sensitivity, 300 $\\big[mV\\cdot mJ^{-1}\\big]$,"
     ]
-  }
+  };
 
   return (
     <span className='text-justify text-sm'>
@@ -78,5 +78,5 @@ export const Article = () => {
       <h3>Calculating the output voltage from impulse energy</h3>
       {useParseEquation({ ...sensorOutputVoltage })}
     </span>
-  )
-}
+  );
+};

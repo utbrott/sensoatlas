@@ -1,13 +1,13 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 interface UseGetImagePath {
-  withExtension?: boolean
+  withExtension?: boolean;
 }
 
 export const useGetImagePath = ({ withExtension }) => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const strippedPath = router.asPath.replace('/laboratories', '')
+  const strippedPath = router.asPath.replace('/laboratories', '');
 
-  return `/schematics${strippedPath}${withExtension ? '.png' : ''}`
-}
+  return `/schematics${strippedPath}${withExtension ? '.png' : ''}`;
+};

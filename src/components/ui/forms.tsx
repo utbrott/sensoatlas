@@ -1,4 +1,4 @@
-import { ComponentProps, forwardRef } from 'react'
+import { ComponentProps, forwardRef } from 'react';
 import {
   useForm,
   UseFormProps,
@@ -7,47 +7,47 @@ import {
   FieldValues,
   SubmitHandler,
   useFormContext
-} from 'react-hook-form'
-import { ZodSchema, TypeOf } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+} from 'react-hook-form';
+import { ZodSchema, TypeOf } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 interface UseZodFormProps<T extends ZodSchema<any>>
   extends UseFormProps<TypeOf<T>> {
-  schema: T
+  schema: T;
 }
 
 export const useZodForm = <T extends ZodSchema<any>>({
   schema,
   ...formConfig
 }: UseZodFormProps<T>) => {
-  return useForm({ ...formConfig, resolver: zodResolver(schema) })
-}
+  return useForm({ ...formConfig, resolver: zodResolver(schema) });
+};
 
 interface FieldErrorProps {
-  name?: string
+  name?: string;
 }
 
 export const FieldError = ({ name }: FieldErrorProps) => {
   const {
     formState: { errors }
-  } = useFormContext()
+  } = useFormContext();
 
-  if (!name) return null
+  if (!name) return null;
 
-  const error = errors[name]
+  const error = errors[name];
 
-  if (!error) return null
+  if (!error) return null;
 
   return (
     <div className='mt-1 text-xs text-red-500'>{error.message.toString()}</div>
-  )
-}
+  );
+};
 
 interface FormProps<T extends FieldValues = any>
   extends Omit<ComponentProps<'form'>, 'onSubmit'> {
-  form: UseFormReturn<T>
-  onSubmit: SubmitHandler<T>
-  complete?: boolean
+  form: UseFormReturn<T>;
+  onSubmit: SubmitHandler<T>;
+  complete?: boolean;
 }
 
 const FormRoot = <T extends FieldValues = any>({
@@ -71,12 +71,12 @@ const FormRoot = <T extends FieldValues = any>({
         </fieldset>
       </form>
     </FormProvider>
-  )
-}
+  );
+};
 
 interface InputProps extends ComponentProps<'input'> {
-  label: string
-  withProgress?: { max: number; value: number }
+  label: string;
+  withProgress?: { max: number; value: number };
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
@@ -99,16 +99,16 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       )}
       <FieldError name={props.name} />
     </label>
-  )
-})
+  );
+});
 
 interface InputProgressBarProps {
-  value?: number
-  max?: number
+  value?: number;
+  max?: number;
 }
 
 const InputProgressBar = ({ value, max }: InputProgressBarProps) => {
-  const barWidth = `${(value / max) * 100}%`
+  const barWidth = `${(value / max) * 100}%`;
 
   return (
     <div className='mt-1 flex h-1 flex-row rounded bg-gray-500/30 dark:bg-gray-700/30'>
@@ -121,7 +121,7 @@ const InputProgressBar = ({ value, max }: InputProgressBarProps) => {
         style={{ width: barWidth }}
       />
     </div>
-  )
-}
+  );
+};
 
-export const Form = Object.assign(FormRoot, { Input })
+export const Form = Object.assign(FormRoot, { Input });

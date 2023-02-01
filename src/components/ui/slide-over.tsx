@@ -1,11 +1,11 @@
-import { Fragment, SetStateAction } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { IconX } from '@tabler/icons'
-import { Button } from './button'
+import { Fragment, SetStateAction } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { IconX } from '@tabler/icons';
+import { Button } from './button';
 
 interface SlideOverHeaderProps {
-  title: string
-  closeHandler: React.Dispatch<SetStateAction<boolean>>
+  title: string;
+  closeHandler: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const SlideOverHeader = ({ title, closeHandler }: SlideOverHeaderProps) => {
@@ -25,11 +25,11 @@ const SlideOverHeader = ({ title, closeHandler }: SlideOverHeaderProps) => {
         <IconX className='h-5 w-5' />
       </Button>
     </div>
-  )
-}
+  );
+};
 
 interface SlideOverContentProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const SlideOverContent = ({ children }: SlideOverContentProps) => {
@@ -37,11 +37,11 @@ const SlideOverContent = ({ children }: SlideOverContentProps) => {
     <div className='prose relative mt-6 h-fit flex-1 px-4 prose-a:text-sm dark:prose-invert dark:prose-a:text-sm'>
       {children}
     </div>
-  )
-}
+  );
+};
 
 interface SlideOverProps extends SlideOverHeaderProps, SlideOverContentProps {
-  isOpen: boolean
+  isOpen: boolean;
 }
 
 export const SlideOver = ({
@@ -96,5 +96,5 @@ export const SlideOver = ({
         </div>
       </Dialog>
     </Transition.Root>
-  )
-}
+  );
+};

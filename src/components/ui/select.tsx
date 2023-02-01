@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { IconCheck, IconSelector } from '@tabler/icons'
-import Latex from 'react-latex'
+import React, { Fragment } from 'react';
+import { Listbox, Transition } from '@headlessui/react';
+import { IconCheck, IconSelector } from '@tabler/icons';
+import Latex from 'react-latex';
 
 interface SelectButtonProps
   extends Pick<SelectRootProps, 'fullWidth' | 'disabled'> {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export const SelectButton = ({
@@ -25,16 +25,16 @@ export const SelectButton = ({
         <IconSelector className='h-5 w-5 text-gray-700 group-hover:text-gray-900 dark:text-gray-300 dark:group-hover:text-gray-50' />
       </span>
     </Listbox.Button>
-  )
-}
+  );
+};
 
 interface SelectRootProps {
-  label?: string
-  value: any
-  onChange: (value: any) => void
-  fullWidth?: boolean
-  disabled?: boolean
-  children: React.ReactNode
+  label?: string;
+  value: any;
+  onChange: (value: any) => void;
+  fullWidth?: boolean;
+  disabled?: boolean;
+  children: React.ReactNode;
 }
 
 const SelectRoot = ({
@@ -62,12 +62,12 @@ const SelectRoot = ({
         </div>
       </span>
     </Listbox>
-  )
-}
+  );
+};
 
 interface SelectOptionProps {
-  value: any
-  children: React.ReactNode
+  value: any;
+  children: React.ReactNode;
 }
 
 const SelectOption = ({ children, ...props }: SelectOptionProps) => {
@@ -87,11 +87,11 @@ const SelectOption = ({ children, ...props }: SelectOptionProps) => {
         </>
       )}
     </Listbox.Option>
-  )
-}
+  );
+};
 
 interface SelectOptionsProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const SelectOptions = ({ children }: SelectOptionsProps) => {
@@ -109,9 +109,9 @@ const SelectOptions = ({ children }: SelectOptionsProps) => {
         {children}
       </Listbox.Options>
     </Transition>
-  )
-}
+  );
+};
 
 export const Select = Object.assign(SelectRoot, {
   Option: SelectOption
-})
+});

@@ -1,14 +1,14 @@
 export interface LaboratoryProps {
-  label?: string
-  name: string
-  description: string
-  href: string
-  disabled?: boolean
+  label?: string;
+  name: string;
+  description: string;
+  href: string;
+  disabled?: boolean;
 }
 
 export interface LibraryProps {
-  category: string
-  laboratories: LaboratoryProps[]
+  category: string;
+  laboratories: LaboratoryProps[];
 }
 
 export const library: LibraryProps[] = [
@@ -104,4 +104,4 @@ export const library: LibraryProps[] = [
       }
     ]
   }
-]
+];

@@ -1,18 +1,18 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { navItems } from '@data/app-routes'
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { navItems } from '@data/app-routes';
 
 export interface NavItemProps {
-  label: string
-  children?: { label: string; href: string }[]
+  label: string;
+  children?: { label: string; href: string }[];
 }
 
 export const NavItem = ({ label, children }: NavItemProps) => {
-  const router = useRouter()
-  const hasChildren = Array.isArray(children)
+  const router = useRouter();
+  const hasChildren = Array.isArray(children);
 
   const links = (hasChildren ? children : []).map(link => {
-    const isActive = router.asPath === link.href ? true : false
+    const isActive = router.asPath === link.href ? true : false;
 
     return (
       <li key={link.label}>
@@ -27,8 +27,8 @@ export const NavItem = ({ label, children }: NavItemProps) => {
           {link.label}
         </Link>
       </li>
-    )
-  })
+    );
+  });
 
   return (
     <div className='mb-4'>
@@ -37,10 +37,10 @@ export const NavItem = ({ label, children }: NavItemProps) => {
         {links}
       </ul>
     </div>
-  )
-}
+  );
+};
 
 export const Navbar = () => {
-  const items = navItems.map(item => <NavItem key={item.label} {...item} />)
-  return <nav className='mt-4 px-8 py-4'>{items}</nav>
-}
+  const items = navItems.map(item => <NavItem key={item.label} {...item} />);
+  return <nav className='mt-4 px-8 py-4'>{items}</nav>;
+};

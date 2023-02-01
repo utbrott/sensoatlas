@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import { Form, useZodForm } from '@ui/forms'
-import { Button } from '@ui/button'
-import { object, number } from 'zod'
-import { Alert } from '@ui/alerts'
-import { ConfigKeys } from './config'
-import Latex from 'react-latex'
-import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react';
+import { Form, useZodForm } from '@ui/forms';
+import { Button } from '@ui/button';
+import { object, number } from 'zod';
+import { Alert } from '@ui/alerts';
+import { ConfigKeys } from './config';
+import Latex from 'react-latex';
+import { useRouter } from 'next/router';
 import {
   getRandomStrainSet,
   getRandomTemperatureSet,
@@ -29,42 +29,42 @@ import {
   getPressureCurrentValidation,
   getPressureTimeConstantValidation,
   getRangeLimitsValidation
-} from '@data/index'
+} from '@data/index';
 
-export type DataKeys = Record<string, number[]>
+export type DataKeys = Record<string, number[]>;
 
 export type TaskItem = {
-  prompt: string
-  data?: number[]
-  validation?: number[]
-}
+  prompt: string;
+  data?: number[];
+  validation?: number[];
+};
 
 interface InitialCreatorProps {
-  fields: TaskItem[]
+  fields: TaskItem[];
 }
 
 export const initialTaskCreator = ({ fields }: InitialCreatorProps) => {
-  const tasks = {}
+  const tasks = {};
 
   fields.map((field, fieldIdx) => {
-    return (tasks[`data${fieldIdx}`] = field.data)
-  })
+    return (tasks[`data${fieldIdx}`] = field.data);
+  });
 
-  return tasks
-}
+  return tasks;
+};
 
 export const initialValidationCreator = ({ fields }: InitialCreatorProps) => {
-  const validation = {}
+  const validation = {};
 
   fields.map((field, fieldId) => {
-    return (validation[`validation${fieldId}`] = field.validation)
-  })
+    return (validation[`validation${fieldId}`] = field.validation);
+  });
 
-  return validation
-}
+  return validation;
+};
 
 interface DataDisplayProps {
-  data: number[]
+  data: number[];
 }
 
 export const DataDisplay = ({ data }: DataDisplayProps) => {
@@ -79,18 +79,18 @@ export const DataDisplay = ({ data }: DataDisplayProps) => {
             >
               {value}
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
 interface TaskPromptFieldProps {
-  prompt: string
-  initial: number[]
-  index: number
-  useStore: any
+  prompt: string;
+  initial: number[];
+  index: number;
+  useStore: any;
 }
 
 export const TaskPromptField = ({
@@ -99,12 +99,12 @@ export const TaskPromptField = ({
   useStore,
   index
 }: TaskPromptFieldProps) => {
-  const [_, setTask] = useStore((store: ConfigKeys) => store[`data${index}`])
+  const [_, setTask] = useStore((store: ConfigKeys) => store[`data${index}`]);
 
   useEffect(() => {
-    setTask({ [`data${index}`]: initial })
+    setTask({ [`data${index}`]: initial });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <span className='flex flex-col'>
@@ -116,16 +116,16 @@ export const TaskPromptField = ({
       </div>
       {initial && <DataDisplay data={initial} />}
     </span>
-  )
-}
+  );
+};
 
 interface TaskFormFieldProps {
-  data: number[]
-  withValidation?: boolean
-  index: number
-  useStore: any
-  progress: number
-  updateProgressHandler: (progress: number) => void
+  data: number[];
+  withValidation?: boolean;
+  index: number;
+  useStore: any;
+  progress: number;
+  updateProgressHandler: (progress: number) => void;
 }
 
 export const TaskFormField = ({
@@ -138,24 +138,24 @@ export const TaskFormField = ({
 }: TaskFormFieldProps) => {
   const [_, setStore] = useStore(
     (store: ConfigKeys) => store[`validation${index}`]
-  )
-  const formDone = progress === data.length
+  );
+  const formDone = progress === data.length;
 
   useEffect(() => {
     if (!formDone) {
       console.log(
         `Task ${index + 1} (${progress + 1}/${data.length}):`,
         data[progress]
-      )
+      );
     }
-  }, [formDone, index, progress, data])
+  }, [formDone, index, progress, data]);
 
   const errMsgs = {
     missing: "This can't be empty.",
     invalid: "This doesn't seem to be correct."
-  }
+  };
 
-  let validator: any
+  let validator: any;
   if (withValidation) {
     validator = object({
       value: number({
@@ -164,20 +164,20 @@ export const TaskFormField = ({
       })
         .max(data[progress], { message: errMsgs.invalid })
         .min(data[progress], { message: errMsgs.invalid })
-    })
+    });
   } else {
     validator = object({
       value: number({
         required_error: errMsgs.missing,
         invalid_type_error: errMsgs.missing
       })
-    })
+    });
   }
 
   const form = useZodForm({
     schema: validator,
     reValidateMode: 'onSubmit'
-  })
+  });
 
   return (
     <Form
@@ -185,11 +185,11 @@ export const TaskFormField = ({
       onSubmit={({ value }) => {
         if (progress !== data.length) {
           if (!withValidation) {
-            setStore({ [`validation${index}`]: value })
+            setStore({ [`validation${index}`]: value });
           }
-          updateProgressHandler(progress)
-          form.reset()
-          setTimeout(() => form.setFocus('value'), 0)
+          updateProgressHandler(progress);
+          form.reset();
+          setTimeout(() => form.setFocus('value'), 0);
         }
       }}
     >
@@ -205,16 +205,16 @@ export const TaskFormField = ({
         {formDone ? 'Completed' : 'Submit'}
       </Button.Submit>
     </Form>
-  )
-}
+  );
+};
 
 interface TasksProps {
-  initialTasks: DataKeys
-  initialValidation: DataKeys
-  fields: TaskItem[]
-  useStore: any
-  unlocked?: boolean
-  completionHandler: React.Dispatch<React.SetStateAction<boolean>>
+  initialTasks: DataKeys;
+  initialValidation: DataKeys;
+  fields: TaskItem[];
+  useStore: any;
+  unlocked?: boolean;
+  completionHandler: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Tasks = ({
@@ -225,67 +225,67 @@ export const Tasks = ({
   unlocked,
   completionHandler
 }: TasksProps) => {
-  const [store, setStore] = useStore((store: ConfigKeys) => store)
-  const { asPath } = useRouter()
+  const [store, setStore] = useStore((store: ConfigKeys) => store);
+  const { asPath } = useRouter();
 
-  const [dataReady, setDataReady] = useState(false)
+  const [dataReady, setDataReady] = useState(false);
 
-  const [progress, setProgress] = useState<number[]>([])
+  const [progress, setProgress] = useState<number[]>([]);
   const updateProgress = (idx: number) => {
     const updatedProgress = progress.map((state, index) => {
-      return idx === index ? state + 1 : state
-    })
+      return idx === index ? state + 1 : state;
+    });
 
-    setProgress(updatedProgress)
+    setProgress(updatedProgress);
 
-    let completed = true
+    let completed = true;
     updatedProgress.forEach((value, index) => {
       if (value !== validation[index].length) {
-        completed = false
+        completed = false;
       }
-    })
+    });
 
     if (completed) {
-      completionHandler(true)
+      completionHandler(true);
     }
-  }
+  };
 
-  const [data, setData] = useState<number[][]>([])
+  const [data, setData] = useState<number[][]>([]);
   const updateData = ({ data, idx }: { data: number[]; idx: number }) => {
     setData(currentData => {
-      currentData[idx] = data
-      return currentData
-    })
-  }
+      currentData[idx] = data;
+      return currentData;
+    });
+  };
 
-  const [validation, setValidation] = useState<number[][]>([])
+  const [validation, setValidation] = useState<number[][]>([]);
   const updateValidation = ({ data, idx }: { data: number[]; idx: number }) => {
     setValidation(currentValidation => {
-      currentValidation[idx] = data
-      return currentValidation
-    })
-  }
+      currentValidation[idx] = data;
+      return currentValidation;
+    });
+  };
 
   /* Scuffed, but does the job */
   if (unlocked && !dataReady) {
-    let data0: number[]
-    let data1: number[]
+    let data0: number[];
+    let data1: number[];
 
     switch (asPath.replace('/laboratories/', '')) {
       case 'temperature/rtd':
-        setData([[], []])
-        setValidation([[], []])
-        setProgress([0, 0])
+        setData([[], []]);
+        setValidation([[], []]);
+        setProgress([0, 0]);
 
         data0 = getRandomTemperatureSet({
           min: 0,
           max: 500
-        })
+        });
 
         updateData({
           data: data0,
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getRtdResistanceValidation({
@@ -294,7 +294,7 @@ export const Tasks = ({
             taskData: data0
           }),
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getTauValidationData({
@@ -312,23 +312,23 @@ export const Tasks = ({
             thickness: Number(store.thickness.thickness)
           }),
           idx: 1
-        })
-        break
+        });
+        break;
 
       case 'temperature/thermocouple':
-        setData([[], []])
-        setValidation([[], []])
-        setProgress([0, 0])
+        setData([[], []]);
+        setValidation([[], []]);
+        setProgress([0, 0]);
 
         data0 = getRandomTemperatureSet({
           min: 0,
           max: 500
-        })
+        });
 
         updateData({
           data: data0,
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getThermocoupleVoltageValidation({
@@ -337,7 +337,7 @@ export const Tasks = ({
             taskData: data0
           }),
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getTauValidationData({
@@ -355,23 +355,23 @@ export const Tasks = ({
             thickness: Number(store.thickness.thickness)
           }),
           idx: 1
-        })
-        break
+        });
+        break;
 
       case 'displacement/lvdt':
-        setData([[]])
-        setValidation([[]])
-        setProgress([0])
+        setData([[]]);
+        setValidation([[]]);
+        setProgress([0]);
 
         data0 = getRandomDisplacementSet({
           min: 0,
           max: 15
-        })
+        });
 
         updateData({
           data: data0,
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getLvdtVoltageValidation({
@@ -381,32 +381,32 @@ export const Tasks = ({
             taskData: data0
           }),
           idx: 0
-        })
-        break
+        });
+        break;
 
       case 'strain/strain-gauge':
-        setData([[], []])
-        setValidation([[], []])
-        setProgress([0, 0])
+        setData([[], []]);
+        setValidation([[], []]);
+        setProgress([0, 0]);
 
         data0 = getRandomStrainSet({
           modulus: Number(store.material.modulus)
-        })
+        });
 
         data1 = getRandomTemperatureSet({
           min: 0,
           max: 50
-        })
+        });
 
         updateData({
           data: data0,
           idx: 0
-        })
+        });
 
         updateData({
           data: data1,
           idx: 1
-        })
+        });
 
         updateValidation({
           data: getStrainValidationData({
@@ -417,7 +417,7 @@ export const Tasks = ({
             taskData: data0
           }),
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getStrainValidationData({
@@ -429,23 +429,23 @@ export const Tasks = ({
             withTemperature: true
           }),
           idx: 1
-        })
-        break
+        });
+        break;
 
       case 'magnetoresistance/amr':
-        setData([[]])
-        setValidation([[]])
-        setProgress([0])
+        setData([[]]);
+        setValidation([[]]);
+        setProgress([0]);
 
         data0 = getRandomCurrentSet({
           min: -1,
           max: 1
-        })
+        });
 
         updateData({
           data: data0,
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getResistanceChangeValidation({
@@ -453,23 +453,23 @@ export const Tasks = ({
             taskData: data0
           }),
           idx: 0
-        })
-        break
+        });
+        break;
 
       case 'magnetoresistance/hall-effect':
-        setData([[]])
-        setValidation([[]])
-        setProgress([0])
+        setData([[]]);
+        setValidation([[]]);
+        setProgress([0]);
 
         data0 = getRandomMagneticField({
           min: -50,
           max: 50
-        })
+        });
 
         updateData({
           data: data0,
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getHallOutputVoltage({
@@ -479,23 +479,23 @@ export const Tasks = ({
             taskData: data0
           }),
           idx: 0
-        })
+        });
 
-        break
+        break;
       case 'piezoelectricity/cable':
-        setData([[]])
-        setValidation([[]])
-        setProgress([0])
+        setData([[]]);
+        setValidation([[]]);
+        setProgress([0]);
 
         data0 = getRandomHeight({
           min: 0.05,
           max: 0.5
-        })
+        });
 
         updateData({
           data: data0,
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getCableOutputVoltageValidation({
@@ -503,33 +503,33 @@ export const Tasks = ({
             taskData: data0
           }),
           idx: 0
-        })
+        });
 
-        break
+        break;
       case 'piezoelectricity/accelerometer':
-        setData([[], []])
-        setValidation([[], []])
-        setProgress([0, 0])
+        setData([[], []]);
+        setValidation([[], []]);
+        setProgress([0, 0]);
 
         data0 = getRandomAmplitudeSet({
           min: 0.1,
           max: 1.1
-        })
+        });
 
         data1 = getRandomFrequencySet({
           min: 6,
           max: 34
-        })
+        });
 
         updateData({
           data: data0,
           idx: 0
-        })
+        });
 
         updateData({
           data: data1,
           idx: 1
-        })
+        });
 
         updateValidation({
           data: getPiezoOutputVoltageValidation({
@@ -540,7 +540,7 @@ export const Tasks = ({
             taskData: data0
           }),
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getPiezoOutputVoltageValidation({
@@ -551,23 +551,23 @@ export const Tasks = ({
             taskData: data1
           }),
           idx: 1
-        })
+        });
 
-        break
+        break;
       case 'transducers/measurement-loop':
-        setData([[]])
-        setValidation([[]])
-        setProgress([0])
+        setData([[]]);
+        setValidation([[]]);
+        setProgress([0]);
 
         data0 = getRangePercentValue({
           transducer: String(store.type.type),
           resistanceLimit: Number(store.resistance.max)
-        })
+        });
 
         updateData({
           data: data0,
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getRangeLimitsValidation({
@@ -575,23 +575,23 @@ export const Tasks = ({
             taskData: data0
           }),
           idx: 0
-        })
+        });
 
-        break
+        break;
       case 'transducers/pressure':
-        setData([[]])
-        setValidation([[], []])
-        setProgress([0, 0])
+        setData([[]]);
+        setValidation([[], []]);
+        setProgress([0, 0]);
 
         data0 = getRandomPressure({
           min: 0.8,
           max: 2.8
-        })
+        });
 
         updateData({
           data: data0,
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getPressureCurrentValidation({
@@ -600,29 +600,29 @@ export const Tasks = ({
             taskData: data0
           }),
           idx: 0
-        })
+        });
 
         updateValidation({
           data: getPressureTimeConstantValidation(),
           idx: 1
-        })
+        });
 
-        break
+        break;
       default:
-        throw new Error('Laboratory not found')
+        throw new Error('Laboratory not found');
     }
 
-    setDataReady(true)
+    setDataReady(true);
   }
 
   useEffect(() => {
     if (unlocked) {
       Object.keys(initialValidation).map((_, index) => {
-        setStore({ [`validation${index}`]: validation[index] })
-      })
+        setStore({ [`validation${index}`]: validation[index] });
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [unlocked])
+  }, [unlocked]);
 
   return (
     <div className='flex w-full max-w-sm flex-col gap-2 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
@@ -638,7 +638,7 @@ export const Tasks = ({
                 key={index}
                 index={index}
               />
-            )
+            );
           })}
           {Object.keys(initialValidation).map((_, index) => {
             return (
@@ -651,7 +651,7 @@ export const Tasks = ({
                 progress={progress[index]}
                 updateProgressHandler={() => updateProgress(index)}
               />
-            )
+            );
           })}
         </div>
       ) : (
@@ -660,5 +660,5 @@ export const Tasks = ({
         </Alert>
       )}
     </div>
-  )
-}
+  );
+};

@@ -1,8 +1,8 @@
-import { ConfigItem } from '@atoms/config'
-import { TaskItem } from '@atoms/tasks'
-import { units } from '@data/units'
-import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
-import { TableProps, useParseTable } from '@hooks/use-parse-table'
+import { ConfigItem } from '@atoms/config';
+import { TaskItem } from '@atoms/tasks';
+import { units } from '@data/units';
+import { EquationProps, useParseEquation } from '@hooks/use-parse-equation';
+import { TableProps, useParseTable } from '@hooks/use-parse-table';
 
 export const PageHeader = () => {
   return (
@@ -18,8 +18,8 @@ export const PageHeader = () => {
         </p>
       </span>
     </div>
-  )
-}
+  );
+};
 
 export const configFields: ConfigItem[] = [
   {
@@ -83,7 +83,7 @@ export const configFields: ConfigItem[] = [
       }
     ]
   }
-]
+];
 
 export const taskFields: TaskItem[] = [
   {
@@ -98,7 +98,7 @@ export const taskFields: TaskItem[] = [
     data: [],
     validation: []
   }
-]
+];
 
 export const Article = () => {
   const sensorOutputVoltage: EquationProps = {
@@ -112,7 +112,7 @@ export const Article = () => {
       '$m$ is seismic mass, 0.1g,',
       '$l$, $w$ are piezoelectric material length, width, 18mm and 13mm,'
     ]
-  }
+  };
   const piezoelectricMaterial: TableProps = {
     headers: [
       { label: 'Material name' },
@@ -123,7 +123,7 @@ export const Article = () => {
       ['Polivinylide fluoride (PVDF)', 340],
       ['Lead zirconate titanate (PZT)', 26]
     ]
-  }
+  };
 
   return (
     <span className='text-justify text-sm'>
@@ -143,5 +143,5 @@ export const Article = () => {
       <h3>Piezoelectric material parameters</h3>
       {useParseTable({ ...piezoelectricMaterial })}
     </span>
-  )
-}
+  );
+};

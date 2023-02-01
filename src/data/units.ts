@@ -18,4 +18,4 @@ export const units = {
   permeability: '$\\big[H{\\cdot}m^{-1}\\big]$',
   hallCoefficient: '$\\big[cm^3\\cdot C^{-1}\\big]$',
   piezoCoefficient: '$\\big[10^{-3}{\\cdot}Vm\\cdot N^{-1}\\big]$'
-}
+};

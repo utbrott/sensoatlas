@@ -1,14 +1,14 @@
-import Latex from 'react-latex'
+import Latex from 'react-latex';
 type TableHeaderProps = {
-  label: string
-  unit?: string
-}
+  label: string;
+  unit?: string;
+};
 
-type TableDataProps = (string | number)[]
+type TableDataProps = (string | number)[];
 
 export interface TableProps {
-  headers: TableHeaderProps[]
-  data: TableDataProps[]
+  headers: TableHeaderProps[];
+  data: TableDataProps[];
 }
 
 export const useParseTable = ({ headers, data }: TableProps): JSX.Element => {
@@ -21,13 +21,13 @@ export const useParseTable = ({ headers, data }: TableProps): JSX.Element => {
         <span>{header.label}</span>
         <span>{header.unit && <Latex>{header.unit}</Latex>}</span>
       </th>
-    )
-  })
+    );
+  });
 
   const body = data.map((row, index) => {
     const bodyItemType = (item: string | number) => {
-      return typeof item === 'number' ? 'text-right' : 'text-left'
-    }
+      return typeof item === 'number' ? 'text-right' : 'text-left';
+    };
 
     return (
       <tr key={index} className='flex w-full dark:bg-gray-700/20'>
@@ -41,11 +41,11 @@ export const useParseTable = ({ headers, data }: TableProps): JSX.Element => {
             >
               {item}
             </td>
-          )
+          );
         })}
       </tr>
-    )
-  })
+    );
+  });
 
   return (
     <table className='w-full table-auto border-separate border-spacing-0 rounded-md border dark:border-gray-700/70'>
@@ -54,5 +54,5 @@ export const useParseTable = ({ headers, data }: TableProps): JSX.Element => {
       </thead>
       <tbody>{body}</tbody>
     </table>
-  )
-}
+  );
+};

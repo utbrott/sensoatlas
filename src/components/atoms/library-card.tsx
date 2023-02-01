@@ -1,9 +1,9 @@
-import { Card } from '@ui/card'
-import { LaboratoryProps, LibraryProps } from '@data/labs-library'
+import { Card } from '@ui/card';
+import { LaboratoryProps, LibraryProps } from '@data/labs-library';
 
 export interface LibraryCardProps extends LaboratoryProps {
-  category: string
-  disabled?: boolean
+  category: string;
+  disabled?: boolean;
 }
 
 export const LibraryCard = ({
@@ -38,16 +38,16 @@ export const LibraryCard = ({
         }}
       />
     </div>
-  )
-}
+  );
+};
 
 export const libraryCardCreator = (
   library: LibraryProps[]
 ): LibraryCardProps[] => {
-  const libraryCards: LibraryCardProps[] = []
+  const libraryCards: LibraryCardProps[] = [];
 
   library.forEach(element => {
-    const { category, laboratories } = element
+    const { category, laboratories } = element;
 
     laboratories.forEach(laboratory => {
       libraryCards.push({
@@ -56,9 +56,9 @@ export const libraryCardCreator = (
         description: laboratory.description,
         href: laboratory.href,
         disabled: laboratory.disabled
-      })
-    })
-  })
+      });
+    });
+  });
 
-  return [...libraryCards]
-}
+  return [...libraryCards];
+};

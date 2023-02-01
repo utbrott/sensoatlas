@@ -1,21 +1,21 @@
-import { useState } from 'react'
-import { Shell } from '@ui/layouts'
-import { config, tasks, validation, Provider, useStore } from '@store/rtd'
-import { configFields, taskFields } from '@data/laboratories/temperature/rtd'
-import { Config } from '@atoms/config'
-import { Tasks } from '@atoms/tasks'
-import { lineChartCreator } from '@atoms/chart'
-import { LineChart } from '@atoms/chart'
-import { Tab } from '@ui/tab-group'
-import { SlideOver } from '@ui/slide-over'
-import { PageHeader, Article } from '@data/laboratories/temperature/rtd'
-import { Button } from '@ui/button'
-import { getTemperatureSlopes } from '@data/index'
+import { useState } from 'react';
+import { Shell } from '@ui/layouts';
+import { config, tasks, validation, Provider, useStore } from '@store/rtd';
+import { configFields, taskFields } from '@data/laboratories/temperature/rtd';
+import { Config } from '@atoms/config';
+import { Tasks } from '@atoms/tasks';
+import { lineChartCreator } from '@atoms/chart';
+import { LineChart } from '@atoms/chart';
+import { Tab } from '@ui/tab-group';
+import { SlideOver } from '@ui/slide-over';
+import { PageHeader, Article } from '@data/laboratories/temperature/rtd';
+import { Button } from '@ui/button';
+import { getTemperatureSlopes } from '@data/index';
 
 export default function Rtd() {
-  const [isConfigSaved, setIsConfigSaved] = useState(false)
-  const [tasksComplete, setTasksComplete] = useState(false)
-  const [isSlideOverOpen, setIsSlideOverOpen] = useState(false)
+  const [isConfigSaved, setIsConfigSaved] = useState(false);
+  const [tasksComplete, setTasksComplete] = useState(false);
+  const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
 
   return (
     <Shell.App title='Laboratories | SensoAtlas'>
@@ -57,27 +57,27 @@ export default function Rtd() {
         </SlideOver>
       </Provider>
     </Shell.App>
-  )
+  );
 }
 
 interface ChartsProps {
-  tasksComplete: boolean
+  tasksComplete: boolean;
 }
 
 const Charts = ({ tasksComplete }: ChartsProps) => {
-  const [dataStore] = useStore((store: Record<string, number[]>) => store)
+  const [dataStore] = useStore((store: Record<string, number[]>) => store);
 
   const { xvalue: xvalues, yvalues } = getTemperatureSlopes({
     sensor: 'rtd',
     timeConstantValues: dataStore.validation1
-  })
+  });
 
   const chart1Data = lineChartCreator({
     xvalues: dataStore.data0,
     yvalues: [dataStore.validation0]
-  })
+  });
 
-  const chart2Data = lineChartCreator({ xvalues, yvalues })
+  const chart2Data = lineChartCreator({ xvalues, yvalues });
 
   return tasksComplete ? (
     <div className='flex h-full w-full flex-col space-y-4 rounded-md bg-gray-200/30 p-4 dark:bg-gray-800'>
@@ -117,5 +117,5 @@ const Charts = ({ tasksComplete }: ChartsProps) => {
         </Tab.Group>
       </span>
     </div>
-  ) : null
-}
+  ) : null;
+};

@@ -1,8 +1,8 @@
-import { ConfigItem } from '@atoms/config'
-import { TaskItem } from '@atoms/tasks'
-import { units } from '@data/units'
-import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
-import { TableProps, useParseTable } from '@hooks/use-parse-table'
+import { ConfigItem } from '@atoms/config';
+import { TaskItem } from '@atoms/tasks';
+import { units } from '@data/units';
+import { EquationProps, useParseEquation } from '@hooks/use-parse-equation';
+import { TableProps, useParseTable } from '@hooks/use-parse-table';
 
 export const PageHeader = () => {
   return (
@@ -18,8 +18,8 @@ export const PageHeader = () => {
         </p>
       </span>
     </div>
-  )
-}
+  );
+};
 
 export const configFields: ConfigItem[] = [
   {
@@ -44,7 +44,7 @@ export const configFields: ConfigItem[] = [
       }
     ]
   }
-]
+];
 
 export const taskFields: TaskItem[] = [
   {
@@ -58,7 +58,7 @@ export const taskFields: TaskItem[] = [
       'Using the given (from theory) formula, calculate estimated time constant of a pressure sensor $\\tau$ [s], knowing that the starting presssure was 2.5 bar and pressure change lasted 0.5s.',
     validation: []
   }
-]
+];
 
 export const Article = () => {
   const processingChar: EquationProps = {
@@ -72,7 +72,7 @@ export const Article = () => {
       '$P_{max}$, $P_{min}$ are max. and min. pressure read-outs,',
       '$I_{max}$, $I_{min}$ are max. and min. current read-outs.'
     ]
-  }
+  };
 
   const timeConstant: EquationProps = {
     equations: ['$\\tau = \\cfrac{t}{ln(1 - \\frac{P_{change}}{P_0 - P_e})}$'],
@@ -82,7 +82,7 @@ export const Article = () => {
       '$P_0$ is the starting pressure [bar],',
       '$P_e$ is the final pressure value [bar].'
     ]
-  }
+  };
 
   const pressureSensors: TableProps = {
     headers: [
@@ -95,7 +95,7 @@ export const Article = () => {
       ['Wika A10', 7.495, 15.48],
       ['Kaeser 7.07', 3.205, 15.995]
     ]
-  }
+  };
 
   return (
     <span className='text-justify text-sm'>
@@ -125,5 +125,5 @@ export const Article = () => {
       <h3>Presssure sensor parameters</h3>
       {useParseTable({ ...pressureSensors })}
     </span>
-  )
-}
+  );
+};

@@ -1,19 +1,19 @@
-import { round } from 'lodash'
+import { round } from 'lodash';
 
 function getResistanceChange(
   strain: number,
   factor: number,
   resistance?: number
 ) {
-  return resistance * strain * factor
+  return resistance * strain * factor;
 }
 
 function getTemperatureEffect(
   temperature: { coeff: number; value: number },
   resistance: number
 ) {
-  const REF_TEMPERATURE = 20
-  return resistance * temperature.coeff * (temperature.value - REF_TEMPERATURE)
+  const REF_TEMPERATURE = 20;
+  return resistance * temperature.coeff * (temperature.value - REF_TEMPERATURE);
 }
 
 function getOutputVoltage(
@@ -28,23 +28,23 @@ function getOutputVoltage(
     strain,
     factor,
     resistance
-  )
+  );
 
   if (temperature) {
     const temperatureEffect: number = getTemperatureEffect(
       temperature,
       resistance
-    )
+    );
 
     return round(
       multiplier *
         voltage *
         ((resistanceDelta + temperatureEffect) / resistance),
       2
-    )
+    );
   }
 
-  return round(multiplier * voltage * (resistanceDelta / resistance), 2)
+  return round(multiplier * voltage * (resistanceDelta / resistance), 2);
 }
 
 function getNewResistance(
@@ -53,31 +53,31 @@ function getNewResistance(
   factor: number,
   temperature: { coeff: number; value: number }
 ) {
-  strain = strain / 10 ** 6
+  strain = strain / 10 ** 6;
   const resistanceDelta: number = getResistanceChange(
     strain,
     factor,
     resistance
-  )
+  );
   const temperatureEffect: number = getTemperatureEffect(
     temperature,
     resistance
-  )
+  );
 
-  return round(resistance + resistanceDelta + temperatureEffect, 2)
+  return round(resistance + resistanceDelta + temperatureEffect, 2);
 }
 
 interface ValidationFnProps {
   material: {
-    gaugeFactor: number
-    modulus: number
-    tempCoeff: number
-  }
-  voltage?: number
-  resistance: number
-  bridge: { name: string; multiplier: number }
-  taskData: number[]
-  withTemperature?: boolean
+    gaugeFactor: number;
+    modulus: number;
+    tempCoeff: number;
+  };
+  voltage?: number;
+  resistance: number;
+  bridge: { name: string; multiplier: number };
+  taskData: number[];
+  withTemperature?: boolean;
 }
 
 export const getStrainValidationData = ({
@@ -88,15 +88,15 @@ export const getStrainValidationData = ({
   taskData,
   withTemperature
 }: ValidationFnProps) => {
-  const STATIC_STRAIN = 1.5
-  const STATIC_TEMPERATURE = 20
+  const STATIC_STRAIN = 1.5;
+  const STATIC_TEMPERATURE = 20;
 
-  const data: number[] = []
+  const data: number[] = [];
 
   if (withTemperature) {
     taskData.forEach(dataPoint => {
       const value =
-        bridge.name.toLowerCase() === 'quater' ? dataPoint : STATIC_TEMPERATURE
+        bridge.name.toLowerCase() === 'quater' ? dataPoint : STATIC_TEMPERATURE;
 
       data.push(
         getOutputVoltage(
@@ -107,10 +107,10 @@ export const getStrainValidationData = ({
           resistance,
           { coeff: material.tempCoeff, value }
         )
-      )
-    })
+      );
+    });
 
-    return [...data]
+    return [...data];
   }
 
   taskData.forEach(value => {
@@ -122,11 +122,11 @@ export const getStrainValidationData = ({
         material.gaugeFactor,
         resistance
       )
-    )
-  })
+    );
+  });
 
-  return [...data]
-}
+  return [...data];
+};
 
 export const getNewGaugeResistance = ({
   material,
@@ -134,22 +134,22 @@ export const getNewGaugeResistance = ({
   bridge,
   taskData
 }: ValidationFnProps) => {
-  const STATIC_STRAIN = 1.5
-  const STATIC_TEMPERATURE = 20
+  const STATIC_STRAIN = 1.5;
+  const STATIC_TEMPERATURE = 20;
 
-  const data: number[] = []
+  const data: number[] = [];
 
   taskData.forEach(dataPoint => {
     const value =
-      bridge.name.toLowerCase() === 'quater' ? dataPoint : STATIC_TEMPERATURE
+      bridge.name.toLowerCase() === 'quater' ? dataPoint : STATIC_TEMPERATURE;
 
     data.push(
       getNewResistance(resistance, STATIC_STRAIN, material.gaugeFactor, {
         coeff: material.tempCoeff,
         value
       })
-    )
-  })
+    );
+  });
 
-  return [...data]
-}
+  return [...data];
+};

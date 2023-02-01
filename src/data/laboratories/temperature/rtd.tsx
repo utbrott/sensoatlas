@@ -1,8 +1,8 @@
-import { ConfigItem } from '@atoms/config'
-import { TaskItem } from '@atoms/tasks'
-import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
-import { TableProps, useParseTable } from '@hooks/use-parse-table'
-import { units } from '@data/units'
+import { ConfigItem } from '@atoms/config';
+import { TaskItem } from '@atoms/tasks';
+import { EquationProps, useParseEquation } from '@hooks/use-parse-equation';
+import { TableProps, useParseTable } from '@hooks/use-parse-table';
+import { units } from '@data/units';
 
 export const PageHeader = () => {
   return (
@@ -20,8 +20,8 @@ export const PageHeader = () => {
         </p>
       </span>
     </div>
-  )
-}
+  );
+};
 
 export const configFields: ConfigItem[] = [
   {
@@ -116,7 +116,7 @@ export const configFields: ConfigItem[] = [
       }
     ]
   }
-]
+];
 
 export const taskFields: TaskItem[] = [
   {
@@ -130,7 +130,7 @@ export const taskFields: TaskItem[] = [
       'Based on selected sensor configuration, calculate time constant $\\tau$ [s] of sensor (bare, sheathed and in thermowell).',
     validation: []
   }
-]
+];
 
 export const Article = () => {
   const sensorResistanceEq: EquationProps = {
@@ -141,7 +141,7 @@ export const Article = () => {
       `$T$ is surroundings temperature [${units.celcius}],`,
       `$T_{ref}$ is reference temperature, 0${units.celcius}.`
     ]
-  }
+  };
 
   const sensorDataTab: TableProps = {
     headers: [
@@ -157,7 +157,7 @@ export const Article = () => {
       ['Nickel (Ni)', 0.0062, 8908, 440, 106],
       ['Tungsten (W)', 0.0045, 21450, 134, 173]
     ]
-  }
+  };
 
   const timeConstantEq: EquationProps = {
     equations: ['\\tau=\\cfrac{x}{K}\\cdot\\rho\\cdot{l}\\cdot{C}'],
@@ -168,7 +168,7 @@ export const Article = () => {
       '$l$ is length (of protective sleeve), 15mm,',
       `$C$ is heat capacity ${units.heatCapacity}.`
     ]
-  }
+  };
 
   const timeConstantCasesEq: EquationProps = {
     equations: [
@@ -182,7 +182,7 @@ export const Article = () => {
       'Thickness of probe filling $x_{\\textsf{fill}}$ is 2.5mm,',
       '$x_{\\textsf{case}}$ is thickness of protective case (sheath, thermowell).'
     ]
-  }
+  };
 
   const fillerMaterialDataTab: TableProps = {
     headers: [
@@ -197,7 +197,7 @@ export const Article = () => {
       ['Air', 1.225, 1005, 0.025],
       ['SS304 (Casing)', 8030, 500, 21.4]
     ]
-  }
+  };
 
   return (
     <span className='text-justify text-sm'>
@@ -235,5 +235,5 @@ export const Article = () => {
       <h4>Protective casing materials:</h4>
       {useParseTable({ ...fillerMaterialDataTab })}
     </span>
-  )
-}
+  );
+};

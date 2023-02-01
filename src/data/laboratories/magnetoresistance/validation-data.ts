@@ -1,8 +1,8 @@
-import { round } from 'lodash'
+import { round } from 'lodash';
 
 interface MagnetoresistanceValidationFn {
-  taskData: number[]
-  hyValue?: number
+  taskData: number[];
+  hyValue?: number;
 }
 
 export const getResistanceChangeValidation = ({
@@ -14,32 +14,32 @@ export const getResistanceChangeValidation = ({
     WHY: 1.77,
     HK: 238.731,
     MRES_COEFF: 0.02
-  }
-  const data: number[] = []
-  const hData: number[] = []
+  };
+  const data: number[] = [];
+  const hData: number[] = [];
 
   const getFieldStrength = (current: number) => {
-    return round(current * 10 ** 3 * CONST_VALUES.WHX, 2)
-  }
+    return round(current * 10 ** 3 * CONST_VALUES.WHX, 2);
+  };
 
   const getResistanceChange = ({
     hxValue,
     hyValue
   }: {
-    hxValue: number
-    hyValue: number
+    hxValue: number;
+    hyValue: number;
   }) => {
     return round(
       CONST_VALUES.MRES_COEFF * 100 * (hxValue / (hyValue + CONST_VALUES.HK)),
       2
-    )
-  }
+    );
+  };
 
   taskData.forEach(datapoint => {
-    hData.push(getFieldStrength(datapoint))
-  })
+    hData.push(getFieldStrength(datapoint));
+  });
 
-  console.log(hData)
+  console.log(hData);
 
   hData.forEach(datapoint => {
     data.push(
@@ -47,17 +47,17 @@ export const getResistanceChangeValidation = ({
         hxValue: datapoint,
         hyValue
       })
-    )
-  })
+    );
+  });
 
-  return [...data]
-}
+  return [...data];
+};
 
 interface GetHallOutputVoltage {
-  hallCoefficient: number
-  thickness: number
-  current: number
-  taskData: number[]
+  hallCoefficient: number;
+  thickness: number;
+  current: number;
+  taskData: number[];
 }
 
 export const getHallOutputVoltage = ({
@@ -66,10 +66,10 @@ export const getHallOutputVoltage = ({
   current,
   taskData
 }: GetHallOutputVoltage) => {
-  const data: number[] = []
+  const data: number[] = [];
 
-  current = current * 10 ** -3
-  thickness = thickness * 10 ** -6
+  current = current * 10 ** -3;
+  thickness = thickness * 10 ** -6;
 
   function getVoltage(
     hallCoeff: number,
@@ -80,12 +80,12 @@ export const getHallOutputVoltage = ({
     return round(
       hallCoeff * (current / thickness) * (magneticField * 10 ** -3) * 10 ** -6,
       2
-    )
+    );
   }
 
   taskData.forEach(datapoint => {
-    data.push(getVoltage(hallCoefficient, thickness, current, datapoint))
-  })
+    data.push(getVoltage(hallCoefficient, thickness, current, datapoint));
+  });
 
-  return [...data]
-}
+  return [...data];
+};

@@ -1,11 +1,11 @@
-import React, { Fragment, SetStateAction } from 'react'
-import { Dialog as HeadlessDialog, Transition } from '@headlessui/react'
-import { Button } from './button'
-import { IconX } from '@tabler/icons'
+import React, { Fragment, SetStateAction } from 'react';
+import { Dialog as HeadlessDialog, Transition } from '@headlessui/react';
+import { Button } from './button';
+import { IconX } from '@tabler/icons';
 
 interface HeaderProps extends Pick<Props, 'closeHandler'> {
-  title: string
-  withCloseAction?: boolean
+  title: string;
+  withCloseAction?: boolean;
 }
 const DialogHeader = ({
   title,
@@ -33,11 +33,11 @@ const DialogHeader = ({
         </Button>
       )}
     </div>
-  )
-}
+  );
+};
 
 interface PanelProps extends HeaderProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const DialogPanel = ({ children, ...props }: PanelProps) => {
@@ -62,13 +62,13 @@ const DialogPanel = ({ children, ...props }: PanelProps) => {
         </Transition.Child>
       </div>
     </div>
-  )
-}
+  );
+};
 
 interface Props extends HeaderProps {
-  isOpen: boolean
-  closeHandler: React.Dispatch<SetStateAction<boolean>>
-  children: React.ReactNode
+  isOpen: boolean;
+  closeHandler: React.Dispatch<SetStateAction<boolean>>;
+  children: React.ReactNode;
 }
 
 export const Dialog = ({
@@ -101,5 +101,5 @@ export const Dialog = ({
         </DialogPanel>
       </HeadlessDialog>
     </Transition>
-  )
-}
+  );
+};

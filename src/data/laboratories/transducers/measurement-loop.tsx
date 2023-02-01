@@ -1,8 +1,8 @@
-import { ConfigItem } from '@atoms/config'
-import { TaskItem } from '@atoms/tasks'
-import { units } from '@data/units'
-import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
-import { TableProps, useParseTable } from '@hooks/use-parse-table'
+import { ConfigItem } from '@atoms/config';
+import { TaskItem } from '@atoms/tasks';
+import { units } from '@data/units';
+import { EquationProps, useParseEquation } from '@hooks/use-parse-equation';
+import { TableProps, useParseTable } from '@hooks/use-parse-table';
 
 export const PageHeader = () => {
   return (
@@ -18,8 +18,8 @@ export const PageHeader = () => {
         </p>
       </span>
     </div>
-  )
-}
+  );
+};
 
 export const configFields: ConfigItem[] = [
   {
@@ -56,7 +56,7 @@ export const configFields: ConfigItem[] = [
       }
     ]
   }
-]
+];
 
 export const taskFields: TaskItem[] = [
   {
@@ -65,7 +65,7 @@ export const taskFields: TaskItem[] = [
     data: [],
     validation: []
   }
-]
+];
 
 export const Article = () => {
   const processingChar: EquationProps = {
@@ -80,7 +80,7 @@ export const Article = () => {
       '$y_{1}$, $y_{2}$ are voltage or resistace values at specified % of range,',
       '$I_{1}$, $I_{2}$ are current values for corresponding % of range.'
     ]
-  }
+  };
 
   return (
     <span className='text-justify text-sm'>
@@ -106,5 +106,5 @@ export const Article = () => {
       </p>
       {useParseEquation({ ...processingChar })}
     </span>
-  )
-}
+  );
+};

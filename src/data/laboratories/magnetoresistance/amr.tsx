@@ -1,7 +1,7 @@
-import { ConfigItem } from '@atoms/config'
-import { TaskItem } from '@atoms/tasks'
-import { units } from '@data/units'
-import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
+import { ConfigItem } from '@atoms/config';
+import { TaskItem } from '@atoms/tasks';
+import { units } from '@data/units';
+import { EquationProps, useParseEquation } from '@hooks/use-parse-equation';
 
 export const PageHeader = () => {
   return (
@@ -19,8 +19,8 @@ export const PageHeader = () => {
         </p>
       </span>
     </div>
-  )
-}
+  );
+};
 
 export const configFields: ConfigItem[] = [
   {
@@ -42,7 +42,7 @@ export const configFields: ConfigItem[] = [
       }
     ]
   }
-]
+];
 
 export const taskFields: TaskItem[] = [
   {
@@ -51,7 +51,7 @@ export const taskFields: TaskItem[] = [
     data: [],
     validation: []
   }
-]
+];
 
 export const Article = () => {
   const amrResistanceChange = {
@@ -64,7 +64,7 @@ export const Article = () => {
       '$H_k$ is anisotropic field, 3 Oersted $\\approx$ 238.731$\\big[{A}{\\cdot}{m^{-1}}\\big]$',
       '${\\Delta\\rho}/{\\rho}$ is magnetoresitive constant, 2%'
     ]
-  }
+  };
 
   return (
     <span className='text-justify text-sm'>
@@ -83,5 +83,5 @@ export const Article = () => {
       </h3>
       {useParseEquation({ ...amrResistanceChange })}
     </span>
-  )
-}
+  );
+};

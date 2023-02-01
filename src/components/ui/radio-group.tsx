@@ -1,13 +1,13 @@
-import { RadioGroup as HeadlessRadio } from '@headlessui/react'
-import { useState } from 'react'
+import { RadioGroup as HeadlessRadio } from '@headlessui/react';
+import { useState } from 'react';
 
 interface RadioGroupRootProps {
-  label?: React.ReactNode
-  stacked?: boolean
-  value: any
-  onChange: React.Dispatch<any>
-  children: React.ReactNode
-  disabled?: boolean
+  label?: React.ReactNode;
+  stacked?: boolean;
+  value: any;
+  onChange: React.Dispatch<any>;
+  children: React.ReactNode;
+  disabled?: boolean;
 }
 
 const RadioGroupRoot = ({
@@ -30,12 +30,12 @@ const RadioGroupRoot = ({
         {children}
       </div>
     </HeadlessRadio>
-  )
-}
+  );
+};
 
 interface RadioGroupOptionProps {
-  value: any
-  children: React.ReactNode
+  value: any;
+  children: React.ReactNode;
 }
 
 const RadioGroupOption = ({ value, children }: RadioGroupOptionProps) => {
@@ -46,9 +46,9 @@ const RadioGroupOption = ({ value, children }: RadioGroupOptionProps) => {
     >
       {children}
     </HeadlessRadio.Option>
-  )
-}
+  );
+};
 
 export const RadioGroup = Object.assign(RadioGroupRoot, {
   Option: RadioGroupOption
-})
+});

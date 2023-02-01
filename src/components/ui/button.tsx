@@ -1,8 +1,8 @@
-import { ComponentProps } from 'react'
-import { cva, VariantProps } from 'class-variance-authority'
-import { useRouter } from 'next/router'
-import { useFormContext } from 'react-hook-form'
-import { Spinner } from './loading-spinner'
+import { ComponentProps } from 'react';
+import { cva, VariantProps } from 'class-variance-authority';
+import { useRouter } from 'next/router';
+import { useFormContext } from 'react-hook-form';
+import { Spinner } from './loading-spinner';
 
 const buttonStyles = cva(
   [
@@ -57,7 +57,7 @@ const buttonStyles = cva(
       variant: 'default'
     }
   }
-)
+);
 
 export interface ButtonProps
   extends ComponentProps<'button'>,
@@ -75,11 +75,11 @@ const _Button = ({
       className={buttonStyles({ variant, modifier, iconOnly, fullWidth })}
       {...props}
     />
-  )
-}
+  );
+};
 
 interface LinkButtonProps extends ButtonProps {
-  href: string
+  href: string;
 }
 
 const LinkButton = ({
@@ -90,7 +90,7 @@ const LinkButton = ({
   href,
   ...props
 }: LinkButtonProps) => {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <button
@@ -98,23 +98,23 @@ const LinkButton = ({
       onClick={() => router.push(href)}
       {...props}
     />
-  )
-}
+  );
+};
 
 interface SubmitButtonProps extends ButtonProps {}
 
 const SubmitButton = ({ children, ...props }: SubmitButtonProps) => {
-  const { formState } = useFormContext()
+  const { formState } = useFormContext();
 
   return (
     <Button type='submit' disabled={formState.isSubmitting} {...props}>
       {formState.isSubmitting && <Spinner withTransparency />}
       {children}
     </Button>
-  )
-}
+  );
+};
 
 export const Button = Object.assign(_Button, {
   Link: LinkButton,
   Submit: SubmitButton
-})
+});

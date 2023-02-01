@@ -1,7 +1,7 @@
-import { ConfigItem } from '@atoms/config'
-import { TaskItem } from '@atoms/tasks'
-import { units } from '@data/units'
-import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
+import { ConfigItem } from '@atoms/config';
+import { TaskItem } from '@atoms/tasks';
+import { units } from '@data/units';
+import { EquationProps, useParseEquation } from '@hooks/use-parse-equation';
 
 export const PageHeader = () => {
   return (
@@ -19,8 +19,8 @@ export const PageHeader = () => {
         </p>
       </span>
     </div>
-  )
-}
+  );
+};
 
 export const configFields: ConfigItem[] = [
   {
@@ -80,7 +80,7 @@ export const configFields: ConfigItem[] = [
       }
     ]
   }
-]
+];
 
 export const taskFields: TaskItem[] = [
   {
@@ -90,7 +90,7 @@ export const taskFields: TaskItem[] = [
     data: [],
     validation: []
   }
-]
+];
 
 export const Article = () => {
   const lvdtOutputVoltage: EquationProps = {
@@ -111,7 +111,7 @@ export const Article = () => {
       '$l_s$ is length of each secondary winding, 10mm,',
       '${r_{o}}/{r_{i}}$ is outer to inner coil winding radius ratio, here - 2.'
     ]
-  }
+  };
 
   return (
     <span className='text-justify text-sm'>
@@ -137,5 +137,5 @@ export const Article = () => {
       </p>
       {useParseEquation({ ...lvdtOutputVoltage })}
     </span>
-  )
-}
+  );
+};

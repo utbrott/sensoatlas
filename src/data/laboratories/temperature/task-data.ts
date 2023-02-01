@@ -1,24 +1,24 @@
-import { round } from 'lodash'
-import { getRandomSet, GetRandomMinMax } from '@data/data-generation'
+import { round } from 'lodash';
+import { getRandomSet, GetRandomMinMax } from '@data/data-generation';
 
 export const getRandomTemperatureSet = ({ min, max }: GetRandomMinMax) => {
-  min = Math.ceil(min)
-  max = Math.floor(max)
+  min = Math.ceil(min);
+  max = Math.floor(max);
 
-  return getRandomSet(5, { min, max, step: 5 }, { lower: min, upper: max })
-}
+  return getRandomSet(5, { min, max, step: 5 }, { lower: min, upper: max });
+};
 
-type SensorType = 'rtd' | 'thermocouple'
+type SensorType = 'rtd' | 'thermocouple';
 
 interface GetTemperatureSlopes {
-  sensor: SensorType
-  timeConstantValues: number[]
+  sensor: SensorType;
+  timeConstantValues: number[];
 }
 
 interface GetTemperatureValue {
-  time: number
-  timeConstantValue: number
-  sensor: SensorType
+  time: number;
+  timeConstantValue: number;
+  sensor: SensorType;
 }
 
 export const getTemperatureSlopes = ({
@@ -30,26 +30,26 @@ export const getTemperatureSlopes = ({
     timeConstantValue,
     sensor
   }: GetTemperatureValue) => {
-    const INITIAL_TEMPERATURE = 0
-    const surroudingTemperature = sensor === 'rtd' ? 50 : 300
+    const INITIAL_TEMPERATURE = 0;
+    const surroudingTemperature = sensor === 'rtd' ? 50 : 300;
 
     return round(
       surroudingTemperature -
         (surroudingTemperature - INITIAL_TEMPERATURE) *
           Math.exp((time / timeConstantValue) * -1),
       2
-    )
-  }
+    );
+  };
 
-  const bareTimeConstantSlope: number[] = []
-  const sheathedTimeConstantSlope: number[] = []
-  const thermowellTimeConstantSlope: number[] = []
+  const bareTimeConstantSlope: number[] = [];
+  const sheathedTimeConstantSlope: number[] = [];
+  const thermowellTimeConstantSlope: number[] = [];
 
-  const SEC_IN_MIN = 60
-  const time: number[] = []
+  const SEC_IN_MIN = 60;
+  const time: number[] = [];
 
   for (let i = 0; i <= SEC_IN_MIN; i++) {
-    time[i] = i
+    time[i] = i;
   }
 
   time.forEach(tick => {
@@ -59,7 +59,7 @@ export const getTemperatureSlopes = ({
         timeConstantValue: timeConstantValues[0],
         sensor: sensor
       })
-    )
+    );
 
     sheathedTimeConstantSlope.push(
       getTemperatureValue({
@@ -67,7 +67,7 @@ export const getTemperatureSlopes = ({
         timeConstantValue: timeConstantValues[1],
         sensor: sensor
       })
-    )
+    );
 
     thermowellTimeConstantSlope.push(
       getTemperatureValue({
@@ -75,8 +75,8 @@ export const getTemperatureSlopes = ({
         timeConstantValue: timeConstantValues[2],
         sensor: sensor
       })
-    )
-  })
+    );
+  });
 
   return {
     xvalue: time,
@@ -85,5 +85,5 @@ export const getTemperatureSlopes = ({
       sheathedTimeConstantSlope,
       thermowellTimeConstantSlope
     ]
-  }
-}
+  };
+};

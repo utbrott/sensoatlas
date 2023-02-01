@@ -1,6 +1,6 @@
-import { Shell } from '@ui/layouts'
-import { Button } from '@ui/button'
-import { IconChevronRight } from '@tabler/icons'
+import { Shell } from '@ui/layouts';
+import { Button } from '@ui/button';
+import { IconChevronRight } from '@tabler/icons';
 
 export default function Introduction() {
   return (
@@ -49,5 +49,5 @@ export default function Introduction() {
         </div>
       </div>
     </Shell.App>
-  )
+  );
 }

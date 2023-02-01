@@ -1,10 +1,10 @@
-import { default as NextLink } from 'next/link'
-import { IconExternalLink } from '@tabler/icons'
+import { default as NextLink } from 'next/link';
+import { IconExternalLink } from '@tabler/icons';
 
 export interface Props {
-  href: string
-  children: React.ReactNode
-  isExternal?: boolean
+  href: string;
+  children: React.ReactNode;
+  isExternal?: boolean;
 }
 
 export const Link = ({ isExternal, children, ...props }: Props) => {
@@ -17,5 +17,5 @@ export const Link = ({ isExternal, children, ...props }: Props) => {
         )}
       </span>
     </NextLink>
-  )
-}
+  );
+};

@@ -1,12 +1,12 @@
-import { default as NextHead } from 'next/head'
-import { Button } from '@ui/button'
-import { Logo } from '@ui/logo'
-import { ThemeToggle } from '@ui/theme-toggle'
-import { Navbar } from '@atoms/navigation'
-import { IconBrandGithub } from '@tabler/icons'
+import { default as NextHead } from 'next/head';
+import { Button } from '@ui/button';
+import { Logo } from '@ui/logo';
+import { ThemeToggle } from '@ui/theme-toggle';
+import { Navbar } from '@atoms/navigation';
+import { IconBrandGithub } from '@tabler/icons';
 
 interface HeadProps {
-  title?: string
+  title?: string;
 }
 
 export const Head = ({ title }: HeadProps) => {
@@ -15,8 +15,8 @@ export const Head = ({ title }: HeadProps) => {
       {title && <title>{title}</title>}
       <meta name='viewport' content='initial-scale=1.0, width=device-width' />
     </NextHead>
-  )
-}
+  );
+};
 
 export const Header = () => {
   return (
@@ -34,8 +34,8 @@ export const Header = () => {
         </Button.Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const Footer = () => {
   return (
@@ -44,11 +44,11 @@ export const Footer = () => {
         <Logo.Faculty variant='full' />
       </div>
     </footer>
-  )
-}
+  );
+};
 
 interface LayoutShellProps extends HeadProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const AppShell = ({ title, children }: LayoutShellProps) => {
@@ -69,8 +69,8 @@ const AppShell = ({ title, children }: LayoutShellProps) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 const PageShell = ({ title, children }: LayoutShellProps) => {
   return (
@@ -82,7 +82,7 @@ const PageShell = ({ title, children }: LayoutShellProps) => {
         <Footer />
       </div>
     </>
-  )
-}
+  );
+};
 
-export const Shell = Object.assign({ App: AppShell, Page: PageShell })
+export const Shell = Object.assign({ App: AppShell, Page: PageShell });

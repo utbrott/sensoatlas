@@ -1,8 +1,8 @@
-import { ConfigItem } from '@atoms/config'
-import { TaskItem } from '@atoms/tasks'
-import { units } from '@data/units'
-import { EquationProps, useParseEquation } from '@hooks/use-parse-equation'
-import { TableProps, useParseTable } from '@hooks/use-parse-table'
+import { ConfigItem } from '@atoms/config';
+import { TaskItem } from '@atoms/tasks';
+import { units } from '@data/units';
+import { EquationProps, useParseEquation } from '@hooks/use-parse-equation';
+import { TableProps, useParseTable } from '@hooks/use-parse-table';
 
 export const PageHeader = () => {
   return (
@@ -18,8 +18,8 @@ export const PageHeader = () => {
         </p>
       </span>
     </div>
-  )
-}
+  );
+};
 
 export const configFields: ConfigItem[] = [
   {
@@ -91,7 +91,7 @@ export const configFields: ConfigItem[] = [
       }
     ]
   }
-]
+];
 
 export const taskFields: TaskItem[] = [
   {
@@ -100,7 +100,7 @@ export const taskFields: TaskItem[] = [
     data: [],
     validation: []
   }
-]
+];
 
 export const Article = () => {
   const sensorOutputVoltage: EquationProps = {
@@ -111,7 +111,7 @@ export const Article = () => {
       '$t$ is semiconductor thickness [\u00b5m],',
       '$B$ is magnetic field [mT].'
     ]
-  }
+  };
   const semiconductorMaterial: TableProps = {
     headers: [
       { label: 'Material name' },
@@ -123,7 +123,7 @@ export const Article = () => {
       ['Indium arsenide (InAs)', 125],
       ['Indium antimonide (InSb)', 70]
     ]
-  }
+  };
 
   return (
     <span className='text-justify text-sm'>
@@ -144,5 +144,5 @@ export const Article = () => {
       <h3>Semiconductor material parameters</h3>
       {useParseTable({ ...semiconductorMaterial })}
     </span>
-  )
-}
+  );
+};

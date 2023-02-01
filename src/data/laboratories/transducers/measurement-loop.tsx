@@ -84,7 +84,14 @@ export const Article = () => {
 
   return (
     <span className='text-justify text-sm'>
-      <p>---</p>
+      <p>
+        Measurement (current) loops are commonly used for electronic signalling,
+        with the two values of lower and upper limit (0-5, 4-20mA, etc.)
+        representing 0-100% of the range of measurement or control. These loops
+        are used both for carrying sensor information from field
+        instrumentation, and carrying control signals to the process modulating
+        devices, such as a valve.
+      </p>
       <h3>Forming the processing characteristic</h3>
       <p>
         The constants should be rounded to 4th decimal place for optimal

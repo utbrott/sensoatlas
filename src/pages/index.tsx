@@ -16,7 +16,7 @@ export default function Index() {
           instructions on the page.
         </p>
         <div className='mt-6 flex justify-center'>
-          <Button.Link variant='accent' href='/laboratories'>
+          <Button.Link variant='accent' href='/introduction'>
             Get started
             <IconChevronRight className='h-5 w-5' />
           </Button.Link>

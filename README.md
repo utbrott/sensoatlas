@@ -43,25 +43,6 @@
   generation,
 - Downloadable characteristic charts.
 
-### Progress of adding laboratories
-
-- [x] Temperature
-  - [x] RTDs,
-  - [x] Thermocouples,
-- [x] Displacement
-  - [x] LVDTs,
-- [x] Strain
-  - [x] Strain gauges,
-- [x] Magnetoresistance
-  - [x] AMR sensors,
-  - [x] Hall effect sensors,
-- [x] Piezoelectricity
-  - [x] Piezoelectric cable,
-  - [x] Accelerometer,
-- [ ] Transducers
-  - [ ] Measurement loop,
-  - [ ] Pressure transducers,
-
 ## Libraries used<a name="libraries"></a>
 
 - Built using [Next.js](https://nextjs.org) and [Tailwind

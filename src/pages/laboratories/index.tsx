@@ -1,16 +1,27 @@
-import Head from 'next/head';
-import { LibraryGrid } from '@components/library-grid';
+import { Shell } from '@ui/layouts';
+import { library } from '@data/labs-library';
+import { LibraryCard, libraryCardCreator } from '@atoms/library-card';
 
-const Library = () => {
+export default function Library() {
+  const Cards = libraryCardCreator(library).map(card => {
+    return (
+      <LibraryCard
+        category={card.category}
+        name={card.name}
+        description={card.description}
+        href={card.href}
+        key={card.href}
+        disabled={card.disabled}
+      />
+    );
+  });
   return (
-    <>
-      <Head>
-        <title>SensoAtlas - Library</title>
-        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-      </Head>
-      <LibraryGrid />
-    </>
+    <Shell.App title='Library | SensoAtlas'>
+      <div className='flex items-center justify-center'>
+        <div className='grid grid-cols-2 items-center justify-center gap-8'>
+          {Cards}
+        </div>
+      </div>
+    </Shell.App>
   );
-};
-
-export default Library;
+}

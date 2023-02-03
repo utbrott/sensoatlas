@@ -1,24 +1,107 @@
-import { CardItem } from '@components/library-card';
+export interface LaboratoryProps {
+  label?: string;
+  name: string;
+  description: string;
+  href: string;
+  disabled?: boolean;
+}
 
-export const cardItems: CardItem[] = [
+export interface LibraryProps {
+  category: string;
+  laboratories: LaboratoryProps[];
+}
+
+export const library: LibraryProps[] = [
   {
-    id: 'temperature-rtd',
-    title: 'Temperature sensors: RTD',
-    desc: 'Aim of this laboratory is to observe how the RTD temperature sensor parameters change dependant on the configuration. For each sensor type there are two tasks to be completed. Using the provided values and formulas complete the tasks and view the generated graph. ',
+    category: 'temperature',
+    laboratories: [
+      {
+        label: 'RTDs',
+        name: 'Resistance Temperature Detectors',
+        description:
+          'Learn about using relative resistance change to measure temperature.',
+        href: '/rtd'
+      },
+      {
+        name: 'Thermocouples',
+        description:
+          'Learn about using thermoelectric effect to measure temperature.',
+        href: '/thermocouple'
+      }
+    ]
   },
   {
-    id: 'temperature-thermcouple',
-    title: 'Temperature sensors: Thermocouple',
-    desc: 'Aim of this laboratory is to observe how the Thermocouple sensors parameters change dependant on the configuration. For each sensor type there are two tasks to be completed. Using the provided values and formulas complete the tasks and view the generated graph. ',
+    category: 'displacement',
+    laboratories: [
+      {
+        label: 'LVDT',
+        name: 'Linear Variable Differential Transformer',
+        description:
+          'Using a differential transformer to measure displacement.',
+        href: '/lvdt'
+      }
+    ]
   },
   {
-    id: 'displacement',
-    title: 'Displacement sensors: LVDT',
-    desc: 'Aim of this laboratory is to observe how the LVDT displacement sensor parameters change dependant on the configuration. There is one task to be completed. Using the provided values and formulas complete the tasks and view the generated graph. ',
+    category: 'strain',
+    laboratories: [
+      {
+        name: 'Strain gauges',
+        description: 'How to use relative resistance change to measure strain.',
+        href: '/strain-gauge'
+      }
+    ]
   },
   {
-    id: 'strain',
-    title: 'Strain gauge sensors',
-    desc: 'Aim of this laboratory is to observe how the Strain Gauge sensor parameters change dependant on the configuration. There are two tasks to be completed. Using the provided values and formulas complete the tasks and view the generated graph. ',
+    category: 'magnetoresistance',
+    laboratories: [
+      {
+        name: 'AMR sensors',
+        description:
+          'Using change in electrical resistance to measure magnetic fields.',
+        href: '/amr'
+      },
+      {
+        label: 'Hall effect',
+        name: 'Hall Effect sensors',
+        description:
+          'Learn about Hall effect and using it to measure magnetic fields.',
+        href: '/hall-effect'
+      }
+    ]
   },
+  {
+    category: 'piezoelectricity',
+    laboratories: [
+      {
+        name: 'Piezoelectric cable',
+        description:
+          "Piezoelectric effect and it's use in measuring force of an impact.",
+        href: '/cable'
+      },
+      {
+        name: 'Accelerometer',
+        description:
+          'Utilizing piezoelectric effect to measure acceleration and vibrations.',
+        href: '/accelerometer'
+      }
+    ]
+  },
+  {
+    category: 'transducers',
+    laboratories: [
+      {
+        name: 'Measurement loop',
+        description:
+          'Learn the basics of how measurement (current) loops work.',
+        href: '/measurement-loop'
+      },
+      {
+        name: 'Pressure measurement',
+        description:
+          'How to use current loops to measure pressure and sudden pressure changes.',
+        href: '/pressure'
+      }
+    ]
+  }
 ];

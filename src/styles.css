@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  scrollbar-width: thin;
+}
+/* Global default styles */
+body {
+  @apply thin-scrollbar bg-gray-50 font-sans text-gray-900 antialiased dark:bg-gray-900 dark:text-gray-50;
+}
+
+form {
+  margin-block-end: 0;
+}
+
+/* Fix webkit autofill */
+input:-webkit-autofill {
+  -webkit-text-fill-color: theme('colors.gray.800') !important;
+}
+
+/* Remove step arrows from number input */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Custom componets layer styles */
+@layer components {
+  .gradient-emphasis {
+    @apply bg-gradient-to-br from-sky-500 to-blue-600 bg-clip-text text-transparent dark:from-sky-400 dark:to-blue-600;
+  }
+
+  .thin-scrollbar {
+    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400/50 dark:scrollbar-thumb-gray-600/50;
+  }
+}

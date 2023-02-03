@@ -36,6 +36,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
+# testing page, storybook replacement
 src/pages/sandbox.tsx
 
 public/logo/*.svg

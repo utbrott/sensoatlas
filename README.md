@@ -1,7 +1,5 @@
-> **Note** This is (soon to be) archival version of SensoAtlas, versioned as
-> 0.1.1, before a complete rebuild from ground up, using modified tech-stack.
-> All the development of the modified version, versioned as 0.2.0 can be found
-> under dedicated branch
+> **Note** This is archival version of SensoAtlas, versioned as
+> 0.1.1, before a complete rebuild from ground up, using modified stack.
 
 <div align="center">
 
@@ -15,7 +13,6 @@ Built in mind with simplyfing remote studying
 [![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=nextdotjs)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/typescript-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
 [![Chakra UI](https://img.shields.io/badge/chakra%20ui-319795?style=for-the-badge&logo=chakraui&logoColor=white)](https://chakra-ui.com)
-![Work In Progress](https://img.shields.io/badge/Work%20In%20Progress-orange?style=for-the-badge)
 
 </div>
 
